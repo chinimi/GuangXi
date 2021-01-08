@@ -1,0 +1,35 @@
+/* CSS Document */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,cite,del,dfn,em,font,img,ins,q,s,samp,small,strike,strong,sub,sup,ul,li,fieldset,form,label,img,
+legend,table,caption,tbody,tfoot,thead,tr,th,tt,var,b,u,i,center,dl,dd,dt,ol,header,nav,aside,article,section,footer,hgroup,time,input{margin:0px; padding:0px; font-size:14px; vertical-align:baseline;font-family:"微软雅黑","黑体";}
+body {font-family:"微软雅黑","黑体"; font-size:14px; color:#707070;}
+h1,h2,h3,h4,h5,h6{/*font-weight:normal;*/}
+dt,ul,ol,li {list-style:none; vertical-align:middle;}
+address,caption,cite,code,dfn,em,th,var, strong,u,i{font-weight: normal;font-style: normal; text-decoration:none;} 
+caption,th {text-align: left; font-style:normal;} 
+fieldset,img,abbr,acronym{border:0;}
+form{display:inline;}
+a{color:#383838;text-decoration:none;outline:none; }
+a:hover{color:#00a0ff}
+/*cancel (doted) border of link*/
+a,a:active{outline:none}
+table{border-collapse:collapse; border-spacing: 0;}
+.clear{ clear:both; overflow:hidden; font-size:0; height:0;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{display:inline-block}
+ *html .clearfix{height:1%}
+.clearfix{display:block}
+.fl{float:left;}
+.fr{float:right;}
+/*----------hack--------------*/
+/*
+1.    firfox opera
+2.  * ie7 ie6
+3.  _ ie6
+4.  class {#   } safari֧#                     
+5.  ע*/
+
+/*\*//*/class/**/ 
+
+/*ע IE8 beta1 hack*/
+
+/**/
