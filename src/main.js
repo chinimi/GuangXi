@@ -6,6 +6,8 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import global_ from '../static/data/globalConfig.js'//引用文件
+Vue.prototype.GLOBAL = global_//挂载到Vue实例上面
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
