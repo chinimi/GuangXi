@@ -4,6 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+/*引入elementui*/
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+
 Vue.config.productionTip = false
 
 import global_ from '../static/data/globalConfig.js'//引用文件

@@ -3,7 +3,7 @@
       <!--navHeader-->
       <div class="nav_header">
         <div class="nav_logo">
-          <img src="../../../static/images/logo.png"  width="300"   alt="logo">
+          <img src="../../../static/images/logo.png"  width="400"   alt="logo">
         </div>
         <ul  class="nav_title">
           <li
@@ -16,17 +16,36 @@
             <span>{{item.name}}</span>
           </li>
         </ul>
+        <div class="nav_login"></div>
+      </div>
+
+      <!--toolbar-->
+
+      <div id="toolbar">
+        <ul  class="">
+          <li
+            v-for="(item,index) in toollist"
+            :key="index"
+            :class="['toolbtn', item.icon,{activeTool : ( currentTool == item.value ? true : false )}]"
+            @click="currentTool= item.value;execute(item.value)"
+
+          >
+
+          <!--<span>{{item.name}}</span>-->
+          </li>
+        </ul>
+
       </div>
 
       <!--tab -->
-
       <!--切换组件-->
       <div style="position: relative;z-index:1; ">
         <!--組件跳轉-->
         <!--  <com :is="currentComp"></com>-->
 
         <div v-show="currentComp=='index'">
-          <index></index>
+          <indexlefttop></indexlefttop>
+          <indexleftbottom></indexleftbottom>
           <indexright></indexright>
         </div>
 
@@ -54,15 +73,7 @@
         </div>
 
       </div>
-
-
   <!--tab -->
-
-
-
-
-
-
     </div>
 </template>
 
@@ -77,7 +88,8 @@ import OSM from "ol/source/OSM"
 import XYZ from "ol/source/XYZ"
 //Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0MzAyNzUyYi0zY2QxLTQxZDItODRkOS1hNTA3MDU3ZTBiMDUiLCJpZCI6MjU0MSwiaWF0IjoxNTMzNjI1MTYwfQ.oHn1SUWJa12esu7XUUtEoc1BbEbuZpRocLetw6M6_AA';
 
-import index from "../../components/indexpage/index"
+import indexlefttop from "../../components/indexpage/indexlefttop"
+import indexleftbottom from "../../components/indexpage/indexleftbottom"
 import indexright from "../../components/indexpage/indexright"
 import infoSystem from "../../components/infosys/infoSystem"
 import programModel from "../../components/programmodel/programModel"
@@ -89,8 +101,23 @@ import operationalDisplay from "../../components/operationdispaly/operationalDis
 
 export default {
     name: 'Map',
+  components:{
+
+    indexlefttop,
+    indexleftbottom,
+    indexright,
+    infoSystem,
+    programModel,
+    qualityClassfy,
+    qualityPrediction,
+    bearingCapacity,
+    operationalDisplay,
+
+  },
     data () {
         return {
+          toolbarVisible:true,//toobar显引
+          currentTool:'',
           map:null,
           view:null,
           labelActiveName:'UpperAirObservation',
@@ -148,24 +175,57 @@ export default {
               comp: 'operationalDisplay'
             }
 
+          ],
+          toollist:[
+
+            {
+              icon:"magnifying",
+              name: 'magnifying',
+              value: 'magnifying',
+              // comp: '2'
+            },
+            {
+              icon:"layer",
+              name: 'layer',
+              value: 'layer',
+              // comp: '3'
+            },
+            {
+              icon:"measure",
+              name: 'measure',
+              value: 'measure',
+              // comp: '3'
+            },
+            {
+              icon:"screentool",
+              name: 'screentool',
+              value: 'screentool',
+              // comp: '4'
+            },
+            {
+              icon:"set",
+              name: 'set',
+              value: 'set',
+              // comp: '4'
+            }
+
+
+
           ]
 
 
         }
     },
-    components:{
 
-      index,
-      indexright,
-      infoSystem,
-      programModel,
-      qualityClassfy,
-      qualityPrediction,
-      bearingCapacity,
-      operationalDisplay,
-
-    },
     methods:{
+      execute(currentTool){
+        console.log("执行工具"+currentTool)
+
+
+
+      }
+
+
 
     },
     mounted(){
@@ -241,33 +301,38 @@ export default {
   color: #fff;
   top: 23px;
 }
-
+.nav_login{
+  position: absolute;
+  cursor: pointer;
+  top:17px;
+  right:30px;
+  width:50px;
+  height: 50px;
+  background: url("../../../static/images/loginpic.png");
+}
 
 
 
 .sliderMenuClass{
   cursor: pointer;
-  color: #fff;
+  color: #333;
   list-style: none;
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
-  width: 100px;
-  margin-right:10px;
+  width: 137px;
+  margin-right: 10px;
   float: left;
   line-height: 32px;
-  background: #042c64;
   padding: 5px 0;
-  border-radius: 20px;
-  border: 1px solid #018FCD!important;
-
-
+  background: url("../../../static/images/nav_title_bg.png") no-repeat;
 }
 .active{
 
-  background-color: #d49500!important;
+  /*background-color: #d49500!important;*/
   color: #fff!important;
-  border: 1px solid #d49500!important;
+  /*border: 1px solid #d49500!important;*/
 }
+
 
 >>>.el-tabs__item{
   color: #fff;
@@ -506,8 +571,52 @@ export default {
 }
 
 
+  /*toolbar*/
+  #toolbar{
+    z-index: 1;
+    position: absolute;
+    top: 86px;
+    right: 9px;
+
+  }
+  #toolbar .toolbtn{
+    float: left;
+    width: 70px;
+    height: 62px;
+    /*border: solid 1px red;*/
+    cursor: pointer;
+
+    }
+   /*放大*/
+    .magnifying{
+      background: url("../../../static/images/magnify.png") no-repeat;
+    }
+
+    /*图层*/
+    .layer{
+      background: url("../../../static/images/layer.png") no-repeat;
+    }
+    /*图层控制*/
+    .layercontrol{
+      background: url("../../../static/images/layer.png") no-repeat;
+    }
+    /*测量*/
+    .measure{
+      background: url("../../../static/images/measure.png") no-repeat;
+    }
+    /*截图*/
+    .screentool{
+      background: url("../../../static/images/screenshot.png") no-repeat;
+     }
+    /*设置*/
+    .set{
+      background: url("../../../static/images/setting.png") no-repeat;
+    }
 
 
+  .activeTool{
+    color: red;
+  }
 </style>
 <style>
   @import url('../../../static/css/swap2.css');
