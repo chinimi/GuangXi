@@ -81,7 +81,7 @@ import programmePreparation from './programmePreparation.vue';
     width: 1480px;
     height: 505px;
     position: absolute;
-    top: 109px;
+    top: 274px;
     left: 265px;
     background: rgba(21, 37, 63, 0.86);
     border-radius: 5px;
@@ -90,6 +90,7 @@ import programmePreparation from './programmePreparation.vue';
 #programModel .programModel_title{
     background: rgba(5, 160, 236, 0.26);
     height: 46px;
+    margin-top: 1px;
 }
 #oneDimensionalModel .programModelClass {
     cursor: pointer;

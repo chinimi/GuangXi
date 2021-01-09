@@ -7,7 +7,7 @@
 
       <div class="model_content">
         <el-row  class="second_line">
-          <el-colv :span="12">3436.23 </el-colv>
+          <el-col :span="12">3436.23 </el-col>
         </el-row>
       </div>
 

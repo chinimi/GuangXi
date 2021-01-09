@@ -112,12 +112,10 @@ import moduleManager from './moduleManager.vue';
     border-radius: 5px;
     z-index: 9;
 }
-/* #programModel .programModel_title{
+#programModel .programModel_title{
   position: absolute;
-  left: 500px;
-  color: #fff;
-  top: 23px;
-} */
+  left: -19%;
+}
 #programModel .programModelClass {
     cursor: pointer;
     color: #fff;

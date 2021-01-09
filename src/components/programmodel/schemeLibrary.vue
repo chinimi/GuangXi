@@ -322,7 +322,8 @@ export default {
 #schemeLibrary .left {
   float: left;
   margin-right: 10px;
-  height: 459px;
+  height: 426px;
+  margin-top: -24px;
 }
 #schemeLibrary .lefts {
   width: 311px;
@@ -330,7 +331,7 @@ export default {
   border-right: 2px dashed royalblue;
 }
 #schemeLibrary .right {
-  width: 1138px;
+  width: 1092px;
   /* background: rebeccapurple; */
 }
 #schemeLibrary .singleli_title {
