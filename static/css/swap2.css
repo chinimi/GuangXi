@@ -102,6 +102,13 @@ body {
  .el-table--enable-row-hover .el-table__body tr:hover>td {
   background-color: transparent !important;
 }
+/* .el-pagination.is-background .el-pager li {
+  margin: 0 5px;
+  background-color:transparent !important;
+  color: #01bdf5 !important;
+  min-width: 30px;
+  border-radius: 2px;
+} */
 
 /* .el-table td, .el-table th.is-leaf {
   border-bottom: 1px solid #01bdf5 ;
