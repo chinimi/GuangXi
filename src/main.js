@@ -10,7 +10,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-
+import '@/assets/icon/iconfont.css'
 Vue.config.productionTip = false
 
 import global_ from '../static/data/globalConfig.js'//引用文件

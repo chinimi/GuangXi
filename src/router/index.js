@@ -4,6 +4,10 @@ import Router from 'vue-router'
 /*vue中@的路径的使用*/
 import login from '../views/login/login'
 import home from '../views/home/home'
+import groundWater from '../components/qualityclassfy/groundWater.vue'
+import changeWater from '../components/qualityclassfy/changeWater.vue'
+import drinkWater from '../components/qualityclassfy/drinkWater.vue'
+import environWater from '../components/qualityclassfy/environWater.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -20,19 +24,40 @@ export default new Router({
       name: 'home',
       component:home,
       children:[
-        // {
-        //   path:'/index',
-        //   name:'index',
-        //   component:Index,
-        // },{
-        //
-        //
-        // }
+        {
+          path: '/groundWater',
+          name: 'groundWater',
+          component:groundWater,
 
 
+        },
+
+        {
+          path: '/changeWater',
+          name: 'changeWater',
+          component:changeWater,
+
+
+        },
+        {
+          path: '/drinkWater',
+          name: 'drinkWater',
+          component:drinkWater,
+
+
+        },
+        {
+          path: '/environWater',
+          name: 'environWater',
+          component:environWater,
+
+
+        },
 
       ]
-    }
+    },
+    /*水质评价 路由配置*/
+
 
   ]
 })
