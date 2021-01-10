@@ -112,7 +112,7 @@
             </el-col>
           </el-row>
         </div>
-        <div style="margin: 16% 0 0 75%;">
+        <div style="margin: 50% 0 0 75%;">
           <el-button type="primary" size="small" plain>查找</el-button>
         </div>
       </li>
@@ -121,116 +121,28 @@
           <el-button type="primary" size="small" plain>新增方案</el-button>
         </div>
         <div>
-          <el-table :data="tableData" height="365">
+          <el-table border :data="tableData" height="480" style="background-color: transparent;">
             <el-table-column prop="tab1" label="序号" min-width="50">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab1"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab1 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab2" label="方案编码" min-width="80">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab2"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab2 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab3" label="方案名称" min-width="100">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab3"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab3 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab4" label="创建时间" min-width="100">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab4"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab4 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab5" label="修改时间" min-width="100">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab5"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab5 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab6" label="基准模板" min-width="80">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab6"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab6 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab7" label="一级流域分区" min-width="150">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab7"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab7 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab8" label="二级流域分区" min-width="150">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab8"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab8 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab9" label="行政分区（市）" min-width="150">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab9"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab9 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab10" label="水资源分区" min-width="100">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab10"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab10 }}</span>
-              </template>
             </el-table-column>
             <el-table-column prop="tab11" label="所属河长" min-width="100">
-              <template slot-scope="scope">
-                <el-input
-                  placeholder="请输入内容"
-                  v-show="scope.row.show"
-                  v-model="scope.row.tab11"
-                ></el-input>
-                <span v-show="!scope.row.show">{{ scope.row.tab11 }}</span>
-              </template>
             </el-table-column>
             <el-table-column label="操作" min-width="300">
               <template slot-scope="scope">
@@ -253,6 +165,20 @@
             </el-table-column>
           </el-table>
         </div>
+        <div>
+          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
+          <el-pagination
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400"
+          >
+          </el-pagination>
+        </div>
       </li>
     </ul>
   </div>
@@ -272,7 +198,11 @@ export default {
       fourstagePartitionList: [],
       fivestagePartition: "",
       fivestagePartitionList: [],
-      tableData: []
+      tableData: [],
+      currentPage1: 5,
+      currentPage2: 5,
+      currentPage3: 5,
+      currentPage4: 4
     };
   },
   created() {
@@ -293,11 +223,63 @@ export default {
         tab9: "南宁",
         tab10: "一级分区",
         tab11: "河长A"
-      }
+      },
+        {
+        tab1: "1",
+        tab2: "TLR",
+        tab3: " 田东—隆安-日常",
+        tab4: "2020-1-4",
+        tab5: "2020-12-30",
+        tab6: "模板1",
+        tab7: "珠江流域",
+        tab8: "左江",
+        tab9: "南宁",
+        tab10: "一级分区",
+        tab11: "河长A"
+      },
+        {
+        tab1: "1",
+        tab2: "TLR",
+        tab3: " 田东—隆安-日常",
+        tab4: "2020-1-4",
+        tab5: "2020-12-30",
+        tab6: "模板1",
+        tab7: "珠江流域",
+        tab8: "左江",
+        tab9: "南宁",
+        tab10: "一级分区",
+        tab11: "河长A"
+      },
+        {
+        tab1: "1",
+        tab2: "TLR",
+        tab3: " 田东—隆安-日常",
+        tab4: "2020-1-4",
+        tab5: "2020-12-30",
+        tab6: "模板1",
+        tab7: "珠江流域",
+        tab8: "左江",
+        tab9: "南宁",
+        tab10: "一级分区",
+        tab11: "河长A"
+      },  {
+        tab1: "1",
+        tab2: "TLR",
+        tab3: " 田东—隆安-日常",
+        tab4: "2020-1-4",
+        tab5: "2020-12-30",
+        tab6: "模板1",
+        tab7: "珠江流域",
+        tab8: "左江",
+        tab9: "南宁",
+        tab10: "一级分区",
+        tab11: "河长A"
+      },
+
     ];
-    list.forEach(element => {
-      element["show"] = false;
-    });
+    // list.forEach(element => {
+    //   element["show"] = false;
+    // });
     this.tableData = list;
     // })
   },
@@ -311,6 +293,12 @@ export default {
     },
     handleDelete(index, row) {
       console.log(index, row);
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
     }
   },
   computed: {},
@@ -322,8 +310,8 @@ export default {
 #schemeLibrary .left {
   float: left;
   margin-right: 10px;
-  height: 426px;
-  margin-top: -24px;
+  height: 50%;
+  margin-top: -6px;
 }
 #schemeLibrary .lefts {
   width: 311px;
@@ -337,7 +325,7 @@ export default {
 #schemeLibrary .singleli_title {
   font-size: 13px;
   height: 35px;
-  line-height: 35px;
+  line-height: 65px;
   border-radius: 5px;
   font-weight: lighter;
   margin-left: 3%;
@@ -362,6 +350,15 @@ export default {
   /* border-radius: 10px !important; */
   /* border: 0px !important; */
   height: 30px !important;
-  width: 196px !important;
+  /* width: 196px !important; */
+}
+#schemeLibrary .el-pagination__total{
+  color:#ffffff !important;
+}
+#schemeLibrary .el-pagination__jump{
+  color:#ffffff !important;
+}
+#schemeLibrary .el-pagination .el-select .el-input .el-input__inner{
+         color: #ffff;
 }
 </style>

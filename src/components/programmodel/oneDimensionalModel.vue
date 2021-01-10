@@ -12,7 +12,7 @@
           </li>
         </ul>
           <!--切换组件-->
-      <div style="position:absolute ;z-index:1; ">
+      <div>
         <!--組件跳轉-->
         <div v-show="currentComp=='schemeLibrary'">
           <schemeLibrary></schemeLibrary>
@@ -79,11 +79,12 @@ import programmePreparation from './programmePreparation.vue';
 <style scoped="scoped">
 #oneDimensionalModel{
     width: 1480px;
-    height: 505px;
+    height: 640px;
     position: absolute;
-    top: 274px;
+    top: 150px;
     left: 265px;
-    background: rgba(21, 37, 63, 0.86);
+    /* background: rgba(21, 37, 63, 0.86); */
+    background: #031823;
     border-radius: 5px;
     z-index: 9;
 }

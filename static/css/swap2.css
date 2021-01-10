@@ -95,3 +95,16 @@ body {
 .border-right{
   border-right: solid 1px  #01ddff;;
 }
+.el-table th,  .el-table tr {
+  background-color: transparent !important;
+  color: #01bdf5 !important;
+}
+ .el-table--enable-row-hover .el-table__body tr:hover>td {
+  background-color: transparent !important;
+}
+
+/* .el-table td, .el-table th.is-leaf {
+  border-bottom: 1px solid #01bdf5 ;
+} */
+
+

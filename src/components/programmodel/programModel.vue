@@ -18,7 +18,7 @@
           <oneDimensionalModel></oneDimensionalModel>
         </div>
 
-        <div v-show="currentComp=='infoSystem'">
+        <div v-show="currentComp=='twoDimensionalModel'">
           <twoDimensionalModel></twoDimensionalModel>
         </div>
 
@@ -108,7 +108,8 @@ import moduleManager from './moduleManager.vue';
     position: absolute;
     top: 40px;
     left: 20px;
-    background: rgba(21, 37, 63, 0.86);
+    /* background: rgba(21, 37, 63, 0.86); */
+    background: #031823;
     border-radius: 5px;
     z-index: 9;
 }
