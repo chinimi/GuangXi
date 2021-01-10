@@ -21,7 +21,7 @@
 
           <!--二级菜单-->
 
-          <el-menu-item  v-for="subitem in item.children"   :index="'/'+subitem.path">
+          <el-menu-item  v-for="subitem in item.children"   :index="'/'+subitem.path" :key="item.id">
             <template slot="title">
 <!--              <i class="el-icon-menu"></i>-->
               <i class="el-icon-menu"></i>
