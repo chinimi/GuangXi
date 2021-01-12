@@ -12,6 +12,8 @@ Vue.use(ElementUI);
 
 import '@/assets/icon/iconfont.css'
 Vue.config.productionTip = false
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 
 import global_ from '../static/data/globalConfig.js'//引用文件
 Vue.prototype.GLOBAL = global_//挂载到Vue实例上面

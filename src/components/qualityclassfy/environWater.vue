@@ -1,20 +1,18 @@
 <template>
   <div  id="groundWater">
     <div class="left_menu">
-      <div style="color:#fff;">22222222222</div>
-
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="6">
             <div class="sysfxTit">
               评价标准：
             </div>
           </el-col>
-          <el-col :span="14" style="margin-left: -5%;">
+          <el-col :span="18" style="margin-left: -5%;">
             <div>
-              <el-select v-model="primaryPartition">
+              <el-select v-model="evaluatiStandarVal">
                 <el-option
-                  v-for="(item, index) in primaryPartitionList"
+                  v-for="(item, index) in evaluationOptopn"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -293,6 +291,7 @@
 
       <el-table   border :data="tableData" height="480" style="background-color: transparent;">
         <el-table-column prop="tab1" label="序号" min-width="50">
+
         </el-table-column>
         <el-table-column prop="tab2" label="方案编码" min-width="80">
         </el-table-column>
@@ -340,9 +339,31 @@
   export default {
     data() {
       return {
+        /*评价标准*/
+        evaluatiStandarVal:'SL395-2007',
+        evaluationOptopn:[{
+          value:'SL395-2007',
+          value:'SL395-2007',
+        }],
+        /*评价项目*/
+        evalProVal:'SL395-2007',
+        evalProOptopn:[{
+          value:'SL395-2007',
+          value:'SL395-2007',
+        }],
         checkedCities: [],
         checkedCities2: [],
         tableData: [],
+        primaryPartition: "",
+        primaryPartitionList: [],
+        secondaryPartition: "",
+        secondaryPartitionList: [],
+        tertiaryPartition: "",
+        tertiaryPartitionList: [],
+        fourstagePartition: "",
+        fourstagePartitionList: [],
+        fivestagePartition: "",
+        fivestagePartitionList: [],
         currentPage1: 5,
         currentPage2: 5,
         currentPage3: 5,
@@ -484,7 +505,7 @@
     /* text-align: right; */
     margin-right: 10px;
   }
-  #groundWater .el-input__inner {
+  #groundWater >>>.el-input__inner {
     padding-left: 10px !important;
     color: #058cd0;
     border: 1px solid #058cd0;
@@ -495,15 +516,15 @@
     /* border-radius: 10px !important; */
     /* border: 0px !important; */
     height: 30px !important;
-    /* width: 196px !important; */
+    /*width: 190px !important;*/
   }
-  #groundWater .el-pagination__total{
+  #groundWater >>>.el-pagination__total{
     color:#ffffff !important;
   }
-  #groundWater .el-pagination__jump{
+  #groundWater >>>.el-pagination__jump{
     color:#ffffff !important;
   }
-  #groundWater .el-pagination .el-select .el-input .el-input__inner{
+  #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
     color: #ffff;
   }
 
