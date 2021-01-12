@@ -1,6 +1,6 @@
 <template>
   <div id="modelParameter">
-    <ul class="title">
+    <ul class="clear-fix title">
       <li
         v-for="(item, index) in menu"
         :key="index"

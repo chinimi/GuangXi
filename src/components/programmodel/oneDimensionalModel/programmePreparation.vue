@@ -1,6 +1,6 @@
 <template>
   <div id="programmePreparation">
-        <ul class="programModel_title">
+        <ul class="clear-fix programModel_title">
           <li
             v-for="(item,index) in menu"
             :key="index"
@@ -12,7 +12,7 @@
           </li>
         </ul>
           <!--切换组件-->
-      <div tyle="position:absolute ;z-index:1; ">
+      <div tyle="position:relative ;z-index:1; ">
         <!--組件跳轉-->
         <div v-show="currentComp=='basicSetup'">
           <basicSetup></basicSetup>
@@ -97,10 +97,10 @@ import boundaryConditions from './boundaryConditions.vue';
     z-index: 9;
 }
 #programmePreparation .programModel_title{
-  position: absolute;
+  position: relative!important;
   /* left: -19%; */
-  width: 620px;    /* height: 350px; */
-
+  width: 100%!important;
+  box-sizing: border-box;
 }
 #programmePreparation .programModelClass {
     cursor: pointer;

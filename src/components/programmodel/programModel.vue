@@ -36,10 +36,10 @@
   </div>
 </template>
 <script>
-import oneDimensionalModel from './oneDimensionalModel.vue';
-import twoDimensionalModel from './twoDimensionalModel.vue';
-import remoteSensingModel from './remoteSensingModel.vue';
-import moduleManager from './moduleManager.vue';
+import oneDimensionalModel from './oneDimensionalModel/oneDimensionalModel.vue';
+import twoDimensionalModel from './twoDimensionalModel/twoDimensionalModel.vue';
+import remoteSensingModel from './remoteSensingModel/remoteSensingModel.vue';
+import moduleManager from './moduleManager/moduleManager.vue';
 
 
   export default {

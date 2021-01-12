@@ -75,6 +75,20 @@ body {
 
 
 }
+.clear {
+  clear: both;
+  height: 0;
+}
+
+.clear-fix:after,
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  font-size: 0;
+  clear: both;
+  visibility: hidden;
+}
 .model_content{
   font-size: 14px;
   padding:15px 10px 10px 10px;
@@ -112,6 +126,9 @@ body {
 }
  .el-table--enable-row-hover .el-table__body tr:hover>td {
   background-color: transparent !important;
+}
+.el-checkbox{
+  color: #fff!important;
 }
 /* .el-pagination.is-background .el-pager li {
   margin: 0 5px;

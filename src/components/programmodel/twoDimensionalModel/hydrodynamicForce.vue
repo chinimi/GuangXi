@@ -1,31 +1,13 @@
 <template>
-  <div id="convectiveDiffusion">
+  <div id="hydrodynamicForce">
     <div class="singleli_title">
       <el-row>
         <el-col :span="8">
           <div class="sysfxTit">
-            扩散系数（㎡/s）
+            糙率全局值（n）
           </div>
         </el-col>
-        <el-col :span="14" style="margin-left: -9%;">
-          <div>
-            <el-input
-              style="width:196px"
-              v-model="input"
-              placeholder="请输入内容"
-            ></el-input>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
-     <div class="singleli_title">
-      <el-row>
-        <el-col :span="8">
-          <div class="sysfxTit">
-            降解系数（1/day）
-          </div>
-        </el-col>
-        <el-col :span="14" style="margin-left: -9%;">
+        <el-col :span="14" style="margin-left: -22%;">
           <div>
             <el-input
               style="width:196px"
@@ -38,30 +20,10 @@
     </div>
     <ul>
       <li class="container">
-        <div>
-          <el-table
-            border
-            :data="tableData"
-            style="background-color: transparent; height: 350px;"
-          >
-            <el-table-column
-              prop="name"
-              label="组分"
-              align="center"
-            ></el-table-column>
-            <el-table-column
-              prop="code"
-              label="降解系数"
-              align="center"
-            ></el-table-column>
-          </el-table>
-        </div>
-      </li>
-      <li class="container">
         <div class="container_table">
           <el-table
-            :data="tableData1"
-            style="width: 100%;background-color: transparent;"
+            :data="tableData"
+            style="width: 60%;background-color: transparent;margin-left: 13%;"
             height="400px;"
           >
             <el-table-column prop="date" label="河槽类型及情况">
@@ -96,20 +58,6 @@ export default {
     return {
       input: "",
       tableData: [
-        {
-          name: "COD",
-          code: "0",
-        },
-        {
-          name: "NH3H",
-          code: "0",
-        },
-        {
-          name: "TH",
-          code: "0",
-        }
-      ],
-      tableData1: [
         {
           date: "第一类 小河（汛期最大水面宽度30m）",
           name: "",
@@ -164,38 +112,35 @@ export default {
 </script>
 
 <style>
-#convectiveDiffusion {
+#hydrodynamicForce {
   position: absolute;
   color: #fff;
   left: 170px;
   top: 10px;
   width: 1300px;
 }
-#convectiveDiffusion .container {
-  float: left;
-  width: 45%;
-  margin-right: 10px;
+#hydrodynamicForce .container {
+  width: 100%;
   /* background: lightcoral; */
 }
-#convectiveDiffusion .singleli_title {
-  width: 45%;
+#hydrodynamicForce .singleli_title {
   font-size: 13px;
   height: 35px;
   line-height: 35px;
   border-radius: 5px;
   font-weight: lighter;
-  margin-left: 3%;
+  margin-left: 15%;
   margin-top: 20px;
 }
 
-#convectiveDiffusion .singleli_title .sysfxTit {
+#hydrodynamicForce .singleli_title .sysfxTit {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
   /* text-align: right; */
   margin-right: 10px;
 }
-#convectiveDiffusion .el-input__inner {
+#hydrodynamicForce .el-input__inner {
   /* padding-left: 10px !important; */
   color: #058cd0;
   border: 1px solid #058cd0;
@@ -208,7 +153,7 @@ export default {
   height: 30px !important;
   /* width: 196px !important; */
 }
-#convectiveDiffusion .container_table .el-table .cell {
+#hydrodynamicForce .container_table .el-table .cell {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   white-space: normal;
