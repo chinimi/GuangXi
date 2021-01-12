@@ -132,7 +132,7 @@ export default {
   float: left;
   margin-right: 10px;
   height: 360px;
-  margin-top: 66px;
+  margin-top: 20px;
 }
 #basicSetup .lefts {
   width: 311px;

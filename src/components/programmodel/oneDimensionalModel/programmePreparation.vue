@@ -97,10 +97,14 @@ import boundaryConditions from './boundaryConditions.vue';
     z-index: 9;
 }
 #programmePreparation .programModel_title{
-  position: relative!important;
-  /* left: -19%; */
-  width: 100%!important;
-  box-sizing: border-box;
+display: inline-block;
+    position: relative!important;
+    /* width: 100%!important; */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    left: -29%;
+    margin: 0;
+    padding: 10px 0;
 }
 #programmePreparation .programModelClass {
     cursor: pointer;

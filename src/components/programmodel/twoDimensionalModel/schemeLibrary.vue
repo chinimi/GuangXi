@@ -311,7 +311,7 @@ export default {
 };
 </script>
 <style>
-#schemeLibrary .left {
+/* #schemeLibrary .left {
   float: left;
   margin-right: 10px;
   height: 50%;
@@ -319,12 +319,10 @@ export default {
 }
 #schemeLibrary .lefts {
   width: 311px;
-  /* background: red; */
   border-right: 2px dashed royalblue;
-}
-#schemeLibrary .right {
+} */
+/* #schemeLibrary .right {
   width: 1092px;
-  /* background: rebeccapurple; */
 }
 #schemeLibrary .singleli_title {
   font-size: 13px;
@@ -340,7 +338,6 @@ export default {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
-  /* text-align: right; */
   margin-right: 10px;
 }
 #schemeLibrary .el-input__inner {
@@ -351,10 +348,7 @@ export default {
   -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   font-size: 16px !important;
-  /* border-radius: 10px !important; */
-  /* border: 0px !important; */
   height: 30px !important;
-  /* width: 196px !important; */
 }
 #schemeLibrary .el-pagination__total{
   color:#ffffff !important;
@@ -364,5 +358,5 @@ export default {
 }
 #schemeLibrary .el-pagination .el-select .el-input .el-input__inner{
          color: #ffff;
-}
+} */
 </style>

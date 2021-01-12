@@ -85,9 +85,7 @@ export default {
 </script>
 <style>
 #modelParameter {
-  position: absolute;
-  top: 119px;
-  left: -23px;
+  position: relative;
   z-index: 9;
 }
 #modelParameter .title{
@@ -109,7 +107,6 @@ export default {
     background: rgba(5, 160, 236, 0.58);
         margin-top: 20px;
     border-radius: 50px;
-
 }
 #modelParameter .active {
     color: #fff!important;

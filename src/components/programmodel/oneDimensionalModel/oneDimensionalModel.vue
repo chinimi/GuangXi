@@ -91,7 +91,7 @@ import programmePreparation from './programmePreparation.vue';
 #programModel .programModel_title{
     background: rgba(5, 160, 236, 0.26);
     height: 46px;
-    margin-top: 1px;
+    /* margin-top: 1px; */
 }
 #oneDimensionalModel .programModelClass {
     cursor: pointer;

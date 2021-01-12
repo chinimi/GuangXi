@@ -74,7 +74,7 @@ export default {
 };
 </script>
 <style>
-#modelParameter {
+/* #modelParameter {
   position: absolute;
   top: 119px;
   left: -23px;
@@ -82,10 +82,6 @@ export default {
 }
 #modelParameter .title{
   position: absolute;
-  /* left: -19%; */
-  /* width: 620px;
-     height: 350px; */
-
 }
 #modelParameter .Class {
     cursor: pointer;
@@ -104,7 +100,6 @@ export default {
 #modelParameter .active {
     color: #fff!important;
     background: #01ddff!important;
-    /* border-left: 4px solid #0718fa; */
-}
+} */
 
 </style>

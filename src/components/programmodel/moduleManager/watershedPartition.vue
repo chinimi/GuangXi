@@ -315,21 +315,33 @@ export default {
 };
 </script>
 <style>
-#administrativeDivisions .left {
+
+#administrativeDivisions .left{
+   border-right: 2px dashed royalblue;
+       border-right: 2px dashed royalblue;
+    float: left;
+    left: 0px;
+    position: absolute;
+    width: 21%;
+}
+/* #schemeLibrary .left {
   float: left;
   margin-right: 10px;
   height: 50%;
   margin-top: -6px;
 }
-#administrativeDivisions .lefts {
+#schemeLibrary .lefts {
   width: 311px;
-  /* background: red; */
   border-right: 2px dashed royalblue;
-}
+} */
+
 #administrativeDivisions .right {
-  width: 1092px;
+  float: left;
+  left: 22%;
+  height: 100%;
+  position: absolute;
+  width: 77%;
   /* background: rebeccapurple; */
-  margin-top: -4%;
 }
 #administrativeDivisions .singleli_title {
   font-size: 13px;
@@ -361,6 +373,60 @@ export default {
   height: 30px !important;
   /* width: 196px !important; */
 }
+#administrativeDivisions .el-pagination__total{
+  color:#ffffff !important;
+}
+#administrativeDivisions .el-pagination__jump{
+  color:#ffffff !important;
+}
+#administrativeDivisions .el-pagination .el-select .el-input .el-input__inner{
+         color: #ffff;
+}
+#administrativeDivisions ul{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* #administrativeDivisions .left {
+  float: left;
+  margin-right: 10px;
+  height: 50%;
+  margin-top: -6px;
+}
+#administrativeDivisions .lefts {
+  width: 311px;
+  border-right: 2px dashed royalblue;
+}
+#administrativeDivisions .right {
+  width: 1092px;
+  margin-top: -4%;
+}
+#administrativeDivisions .singleli_title {
+  font-size: 13px;
+  height: 35px;
+  line-height: 65px;
+  border-radius: 5px;
+  font-weight: lighter;
+  margin-left: 3%;
+  margin-top: 20px;
+}
+
+#administrativeDivisions .singleli_title .sysfxTit {
+  color: white;
+  letter-spacing: 1px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+#administrativeDivisions .el-input__inner {
+  padding-left: 10px !important;
+  color: #058cd0;
+  border: 1px solid #058cd0;
+  background: #031823;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 16px !important;
+  height: 30px !important;
+}
 #administrativeDivisions .el-pagination__total {
   color: #ffffff !important;
 }
@@ -369,5 +435,5 @@ export default {
 }
 #administrativeDivisions .el-pagination .el-select .el-input .el-input__inner {
   color: #ffff;
-}
+} */
 </style>

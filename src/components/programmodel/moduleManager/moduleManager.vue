@@ -108,11 +108,11 @@ import waterResourcesZoning from './waterResourcesZoning.vue';
     margin-top: 1px;
     line-height: 46px;
     color: #fff;
+    padding-left: 20px;
+
 }
 #moduleManager .programModel_title{
   position: relative;
-  left: -2%;
-
 }
 #moduleManager .programModelClass {
     cursor: pointer;

@@ -115,7 +115,8 @@ import moduleManager from './moduleManager/moduleManager.vue';
 }
 #programModel .programModel_title{
   position: absolute;
-  left: -19%;
+  height: 100%;
+  /* left: -19%; */
 }
 #programModel .programModelClass {
     cursor: pointer;
@@ -124,13 +125,13 @@ import moduleManager from './moduleManager/moduleManager.vue';
     font-size: 14px;
     text-align: center;
     width: 205px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     line-height: 32px;
     padding: 7px 0;
 }
 #programModel .programModel_active {
     color: #fff!important;
     background: rgba(5, 160, 236, 0.58)!important;
-    border-left: 4px solid #0718fa;
+    border-left: 5px solid #0718fa;
 }
 </style>

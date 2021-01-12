@@ -1,6 +1,6 @@
 <template>
   <div id="schemeLibrary">
-    <ul>
+    <ul class="clear-fix">
       <li class="left lefts">
         <div style="margin: 10px;">
           <el-button type="primary" size="small" plain>行政分区</el-button>
@@ -112,16 +112,13 @@
             </el-col>
           </el-row>
         </div>
-
-
-
-
-        <div style="margin: 50% 0 0 75%;">
-          <el-button type="primary" size="small" plain>查找</el-button>
+        <div >
+          <el-button type="primary" size="small" plain style="float:right;    right: 20px;
+    position: relative;">查找</el-button>
         </div>
       </li>
-      <li class="left right">
-        <div style="margin:1% 0 1% 0;">
+      <li class=" right">
+        <div style="margin:10px 0;">
           <el-button type="primary" size="small" plain>新增方案</el-button>
         </div>
         <div>
@@ -311,7 +308,15 @@ export default {
 };
 </script>
 <style>
-#schemeLibrary .left {
+#schemeLibrary .left{
+   border-right: 2px dashed royalblue;
+       border-right: 2px dashed royalblue;
+    float: left;
+    left: 0px;
+    position: absolute;
+    width: 21%;
+}
+/* #schemeLibrary .left {
   float: left;
   margin-right: 10px;
   height: 50%;
@@ -319,11 +324,15 @@ export default {
 }
 #schemeLibrary .lefts {
   width: 311px;
-  /* background: red; */
   border-right: 2px dashed royalblue;
-}
+} */
+
 #schemeLibrary .right {
-  width: 1092px;
+  float: left;
+  left: 22%;
+  height: 100%;
+  position: absolute;
+  width: 77%;
   /* background: rebeccapurple; */
 }
 #schemeLibrary .singleli_title {
@@ -364,5 +373,10 @@ export default {
 }
 #schemeLibrary .el-pagination .el-select .el-input .el-input__inner{
          color: #ffff;
+}
+#schemeLibrary ul{
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 </style>

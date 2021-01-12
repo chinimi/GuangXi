@@ -113,7 +113,7 @@
         </div>
       </li>
       <li class=" clear-fix left right">
-        <div style="margin:1% 0 1% 0;">
+        <div>
           <el-button type="primary" size="small" plain>上传模板</el-button>
           <div style="margin-left: 11%;margin-top: -2%;">
           <el-checkbox-group v-model="checkList">
@@ -319,7 +319,7 @@ export default {
   float: left;
   margin-right: 10px;
   height: 50%;
-  margin-top: -6px;
+  /* margin-top: -6px; */
 }
 #administrativeDivisions .lefts {
   width: 311px;
@@ -329,7 +329,7 @@ export default {
 #administrativeDivisions .right {
   width: 1092px;
   /* background: rebeccapurple; */
-  margin-top: -4%;
+  margin-top: -2%;
 }
 #administrativeDivisions .singleli_title {
   font-size: 13px;
