@@ -1,7 +1,6 @@
 <template>
     <div  id="groundWater">
       <div class="left_menu">
-<div style="color:#fff;">11111</div>
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -11,9 +10,9 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="pjbzval">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in pjbzOption"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -33,9 +32,9 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="pjxmval">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in pjxmOption"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -55,9 +54,9 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="qzfsval">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in qzfsOption"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -67,13 +66,22 @@
             </el-col>
           </el-row>
         </div>
-        <div style="margin-left:20px;">
+        <!--水系参数-->
+        <div style="width: 100%;padding-left:20px;">
 
-        <el-checkbox-group v-model="checkedCities" @change="">
-          <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
-        </el-checkbox-group>
+          <!-- <el-checkbox-group v-model="pjbzval" @change="">
+             <el-checkbox v-for="item in curWaterSysOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>
+           </el-checkbox-group>-->
+
+          <el-radio-group  v-model="cursysval">
+            <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+              <el-radio :label="product.value"   >{{product.label}}</el-radio>
+            </el-col>
+          </el-radio-group>
 
         </div>
+        <!--1级-->
+
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -95,9 +103,7 @@
             </el-col>
           </el-row>
         </div>
-
-
-
+        <!--2级-->
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -119,6 +125,7 @@
             </el-col>
           </el-row>
         </div>
+        <!--3级-->
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -140,6 +147,7 @@
             </el-col>
           </el-row>
         </div>
+        <!--4级-->
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -161,28 +169,7 @@
             </el-col>
           </el-row>
         </div>
-        <div class="singleli_title">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                五级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-
+        <!--测站级别-->
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -204,7 +191,7 @@
             </el-col>
           </el-row>
         </div>
-
+        <!--测站名称-->
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -226,10 +213,39 @@
             </el-col>
           </el-row>
         </div>
+        <!--自定义-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                自定义：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fivestagePartition">
+                  <el-option
+                    v-for="(item, index) in fivestagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
         <div style="margin-left:20px;">
-          <el-checkbox-group v-model="checkedCities2" @change="">
-            <el-checkbox v-for="city in cities2" :label="city" :key="city">{{city}}</el-checkbox>
-          </el-checkbox-group>
+          <!--时间段选择-->
+          <div >
+
+            <el-radio-group  v-model="selectTimeType">
+              <el-col :span="12" v-for="product in timequantumOption"   :key="product.value">
+                <el-radio :label="product.value"   >{{product.label}}</el-radio>
+              </el-col>
+            </el-radio-group>
+
+          </div>
 
         </div>
 
@@ -242,9 +258,9 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="pjbcVal">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in pjbcOption"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -255,7 +271,7 @@
           </el-row>
         </div>
 
-        <div class="singleli_title">
+        <div class="singleli_title" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -263,26 +279,49 @@
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="primaryPartition">
-                  <el-option
-                    v-for="(item, index) in primaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
+              <el-date-picker
+                v-model="startTime"
+                format="yyyy-MM"
+                type="month"
+                align="right"
+                size="mini"
+                placeholder="选择日期时间">
+              </el-date-picker>
             </el-col>
           </el-row>
         </div>
-      <div  style="padding-left: 80px;">
-        <el-button>查询</el-button>
+
+        <!--时间序列-->
+
+        <div class="singleli_title" v-if="selectTimeType=='ordertime'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                截至时间：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <el-date-picker
+                v-model="endTime"
+                format="yyyy-MM"
+                type="month"
+                align="right"
+                size="mini"
+                placeholder="选择日期时间">
+              </el-date-picker>
+            </el-col>
+          </el-row>
+        </div>
 
 
-      </div>
+        <div class="singleli_title" >
+          <el-row>
+            <el-col :span="20" style="text-align: center">
+              <el-button @click="queryTableData">确定</el-button>
+            </el-col>
 
-
+          </el-row>
+        </div>
 
 
 
@@ -292,6 +331,7 @@
 
         <el-table   border :data="tableData" height="480" style="background-color: transparent;">
           <el-table-column prop="tab1" label="序号" min-width="50">
+
           </el-table-column>
           <el-table-column prop="tab2" label="方案编码" min-width="80">
           </el-table-column>
@@ -336,18 +376,84 @@
 </template>
 
 <script>
+  import  getWater from '../../api/index'
 export default {
     data() {
         return {
+          /*评价标准*/
+          evaluatiStandarVal:'SL395-2007',
+          evaluationOptopn:[{
+            value:'SL395-2007',
+            value:'SL395-2007',
+          }],
+          /*评价项目*/
+          evalProVal:'SL395-2007',
+          evalProOptopn:[{
+            value:'SL395-2007',
+            value:'SL395-2007',
+          }],
           checkedCities: [],
           checkedCities2: [],
-          tableData: [],
+
           currentPage1: 5,
           currentPage2: 5,
           currentPage3: 5,
           currentPage4: 4,
+          primaryPartition: "",
+          primaryPartitionList: [],
+          secondaryPartition: "",
+          secondaryPartitionList: [],
+          tertiaryPartition: "",
+          tertiaryPartitionList: [],
+          fourstagePartition: "",
+          fourstagePartitionList: [],
+          fivestagePartition: "",
+          fivestagePartitionList: [],
+          tableData: [],
           cities:['流域水系', '水资源分区', '行政区划'],
-          cities2:['按单时间段评价', '按时间序列评价']
+          cities2:['按单时间段评价', '按时间序列评价'],
+
+
+          /*评价标准*/
+          pjbzval:'all',
+          pjbzOption:[{
+            label:"全部",
+            value:'all',
+          }],
+          /*评价项目*/
+          pjxmval:'all',
+          pjxmOption:[{
+            label:"总硬度",
+            value:'all',
+          }],
+          /*取值方式*/
+          qzfsval:'average',
+          qzfsOption:[{
+            label:"平均值",
+            value:'average',
+          }],
+          /*当前水系*/
+          cursysval:'water1',
+          /*水系参数*/
+          curWaterSysOption:[{label:'流域水系',value:'water1'},{label:'水资源分区',value:'water2'},{label:'行政区划',value:'water3'}],
+          /*时间选择*/
+          selectTimeType:"singletime",
+          /*时间段选择*/
+          timequantumOption:[{
+            value:'singletime',
+            label:'按单时间段评价',
+          },{
+            value:'ordertime',
+            label:'按单时序列评价',
+
+          }],
+          /*评价步长*/
+          pjbcVal:'',//评价步长
+          pjbcOption:[{value:'month',label:'月份'}],
+          /*初始时间*/
+          startTime:'',
+          /*截至时间*/
+          endTime:'',
         }
     },
     created() {
@@ -431,8 +537,55 @@ export default {
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+      },
+      queryTableData(){
+        alert(1)
+        // this.$http.get('menus")
+        // if(res.meta.status!==200) return this.$message.error("失败了")
+        // this.getMenuList=res.data//获取所有左侧菜单数据
+        // console.log(res)
+        let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+      var param={
+        "pageNum":"0",
+        "pageSize":"10",
+        "qzfs":"avg",
+        "tjsj":"201507-201508"
       }
 
+        this.getWater(url,param)
+
+
+        let opts= JSON.stringify(param)
+        console.log(opts)
+
+        fetch(url,opts)
+          .then((response) => {
+            alert(1)
+            console.log(response)
+            console.log(response)
+
+            return response.json()
+          })
+          .then((responseText) => {
+            alert(responseText)
+          })
+          .catch((error) => {
+            alert(error)
+          })
+
+
+      /*  this.$http.get(url,{params:param},{
+          emulateJSON:true
+        }).then(function(res){
+          alert("成功")
+          console.log(res)
+
+        },function(res){
+          alert("失败")
+
+        });*/
+
+      }
     }
 }
 </script>
@@ -483,28 +636,109 @@ export default {
     /* text-align: right; */
     margin-right: 10px;
   }
-  #groundWater .el-input__inner {
+  #groundWater >>>.el-input__inner {
     padding-left: 10px !important;
     color: #058cd0;
     border: 1px solid #058cd0;
-    background: #031823;
+    /*background: #031823;*/
+    background: rgba(21,37,63,0.86);
     -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
     box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
     font-size: 16px !important;
     /* border-radius: 10px !important; */
     /* border: 0px !important; */
     height: 30px !important;
-    /* width: 196px !important; */
+     /*width: 190px !important;*/
   }
-  #groundWater .el-pagination__total{
+  #groundWater >>>.el-pagination__total{
     color:#ffffff !important;
   }
-  #groundWater .el-pagination__jump{
+  #groundWater >>>.el-pagination__jump{
     color:#ffffff !important;
   }
-  #groundWater .el-pagination .el-select .el-input .el-input__inner{
+  #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
     color: #ffff;
   }
 
+  >>>.el-main{
+    padding:0;
+  }
+  >>>.el-input__inner {
+    padding-left: 30px;
+    color: #058cd0;
+    border: 1px solid #058cd0;
+    background: #031823;
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    font-size: 14px;
+    height: 30px ;
+
+  }
+  >>>.el-pagination__total{
+    color:#ffffff !important;
+  }
+  >>>.el-pagination__jump{
+    color:#ffffff !important;
+  }
+  >>>.el-pagination .el-select .el-input .el-input__inner{
+    color: #ffff;
+
+  }
+
+  >>>.el-button{
+    padding: 5px 15px !important;
+  }
+  >>>.el-button:active {
+    color: #fff;
+    border-color: #3a8ee6;
+    outline: 0;
+    background: rgba(21,37,63,0.86);
+  }
+  >>>.el-button:focus, .el-button:hover {
+    color: #fff;
+    border-color: #c6e2ff;
+    background-color: rgba(21,37,63,0.86);
+  }
+
+  >>>.el-radio-group{
+    width:100%;
+  }
+  >>>.el-radio {
+    color: #fff;
+  }
+  >>>.el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width:86%;
+  }
+  >>>.el-select-dropdown__item.selected{
+    padding-left:20px!important;
+  }
+
+  >>>.el-radio__label {
+    font-size: 14px;
+    padding-left: 4px;
+  }
+  /* 滚动样式修改*/
+  >>> ::-webkit-scrollbar {
+    background-color: transparent !important;
+    height: 0 !important;
+    width: 0 !important;
+  }
+
+  >>> ::-webkit-scrollbar-thumb {
+    background-color: transparent !important;
+  }
+
+  /* 修改边框颜色*/
+  >>> ::-webkit-scrollbar-thumb {
+    background-color: transparent !important;
+  }
+  >>>.el-container{
+    height: 100%;
+  }
+ >>>.el-menu-item:focus, .el-menu-item:hover{
+   background: red;
+   color:#fff;
+
+  }
 
 </style>

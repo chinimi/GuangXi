@@ -124,9 +124,13 @@ export default {
           tabPosition: 'right',
           PanelVisual:'true',
           // 当前选中的组件
-          currentComp: 'index',
+          // currentComp: 'index',
+          currentComp: 'qualityClassfy',
+          // currentComp: 'operationalDisplay',
           // 当前选中的li标签
-          isActive: 'index',
+          // isActive: 'index',
+          isActive: 'qualityClassfy',
+          // isActive: 'operationalDisplay',
           menu: [
             {
               // icon:"icon-home",
@@ -229,38 +233,38 @@ export default {
 
     },
     mounted(){
-        // 初始化定位
-        let pos = [parseFloat(107.8), parseFloat(23.729)];
-        pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
-        map = new olMap({
-            target:'map',
-            layers: [
-					 new ollayerTile({
-                         source: new OSM()
-                     }),
-                    //  new ollayerTile({
-                    //     source: new XYZ({
-                    //         url:tdtURL + '/DataServer?T=img_w' + '&x={x}&y={y}&l={z}' + '&tk=b72e0a86555fa046d016a2c2612c0e44',
-                    //     })
-                    //  }), // 加载天地图
-                     new ollayerTile({
-                         source:new TileArcgisRest({
-                             url:baseMap
-                         })
-                     })
+    // 初始化定位
+    let pos = [parseFloat(107.8), parseFloat(23.729)];
+    pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
+    map = new olMap({
+      target:'map',
+      layers: [
+        new ollayerTile({
+          source: new OSM()
+        }),
+        //  new ollayerTile({
+        //     source: new XYZ({
+        //         url:tdtURL + '/DataServer?T=img_w' + '&x={x}&y={y}&l={z}' + '&tk=b72e0a86555fa046d016a2c2612c0e44',
+        //     })
+        //  }), // 加载天地图
+        new ollayerTile({
+          source:new TileArcgisRest({
+            url:baseMap
+          })
+        })
 
-            ],
-            view:new olView({
-                center: pos,
-                zoom: 7.6,
-                minZoom:5,
-                maxZoom: 20,
-                projection: 'EPSG:3857'
-            })
-        });
+      ],
+      view:new olView({
+        center: pos,
+        zoom: 7.6,
+        minZoom:5,
+        maxZoom: 20,
+        projection: 'EPSG:3857'
+      })
+    });
 
 
-    }
+  }
 }
 </script>
 

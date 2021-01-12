@@ -3,17 +3,17 @@
   <div  id="waterQuality" >
     <!--水质评价质量监测-->
       <!--左侧递归标题目录树-->
-    <el-aside   style="width:15%;height:100%;background:#001938;">
+    <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,0.86);">
       <el-menu
           :router="true"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
-          background-color="#001938"
+          background-color="rgba(21,37,63,0.86)"
           text-color="#fff"
           active-text-color="#018faf">
         <!--一级菜单-->
-        <el-submenu :index=item.id  v-for="item in menulist" :key="item.id">
+        <el-submenu :index=item.id  v-for="item in menulist" :key="item.id+''">
           <template slot="title">
             <i :class=iconsObj[item.id]></i>
             <span>{{item.authName}}</span>
@@ -21,7 +21,7 @@
 
           <!--二级菜单-->
 
-          <el-menu-item  v-for="subitem in item.children"   :index="'/'+subitem.path" :key="item.id">
+          <el-menu-item  v-for="subitem  in item.children"   :index="'/'+subitem.path" :key="subitem.id">
             <template slot="title">
 <!--              <i class="el-icon-menu"></i>-->
               <i class="el-icon-menu"></i>
@@ -50,7 +50,7 @@
      {
        path:"baseWaterAsses",
        "authName": "水质基础评价",
-       id:'1_0',
+       id:'szjcpkj',
       /* children: [
          { "authName": "二级菜单" ,  id:'1_0_0',},
          {
@@ -65,12 +65,12 @@
      {
        /*切换对应组件*/
        "authName": "专项评价",
-       id:'1_2',
+       id:'zxpjfxmodelpart',
        children: [
-         { "authName": "地表水资源天然水化学特征评价" ,com:'groundWater', id:'1_2_0', path:'groundWater'},
-         { "authName": "水质变化趋势分析",com:"changeWater" ,id:'1_2_1',path:'changeWater'},
-         { "authName": "饮用水源地安全评价",com:"drinkWater",id:'1_2_2',path:'drinkWater' },
-         { "authName": "水生态环境分析评价",com:"environWater" ,id:'1_2_3',path:'environWater'},
+         { "authName": "地表水资源天然水化学特征评价" ,com:'groundWater', id:'dbszytrs', path:'groundWater'},
+         { "authName": "水质变化趋势分析",com:"changeWater" ,id:'szbhqs',path:'changeWater'},
+         { "authName": "饮用水源地安全评价",com:"drinkWater",id:'yysydaq',path:'drinkWater' },
+         { "authName": "水生态环境分析评价",com:"environWater" ,id:'ssthjfx',path:'environWater'},
        ]
      }
    ]
@@ -84,8 +84,8 @@
 
         menulist: menulist,
         iconsObj:{
-         "1_0":"iconfont icon-shuidi3",
-         "1_2":"iconfont icon-kongqi",
+         "szjcpkj":"iconfont icon-shuidi3",
+         "zxpjfxmodelpart":"iconfont icon-kongqi",
 
 
 
