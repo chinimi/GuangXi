@@ -1,6 +1,102 @@
 <template>
   <div id="associativeOperate">
     <el-container>
+      <!--右侧-->
+      <el-main width="50%"  class="associateRight">
+        <div class="topPan">
+          <div class="analyze_title">
+            <i class="iconfont icon-fuhao-tuceng"></i>
+            <span>水质专题</span>
+          </div>
+          <!--内容部分-->
+          <div class="analyze_content">
+            <ul >
+              <li
+                v-for="item  in subjectProducts"
+                :class="['sliderClass',{activeLi : ( curli == item.name ? true : false )}]"
+                @click="curli = item.name"
+              >
+
+                <span>{{item.title}}</span>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <div class="middlePan">
+          <div class="analyze_title">
+            <span>统计分析</span>
+          </div>
+          <!--内容部分-->
+          <div class="analyze_content">
+            <ul  class="mid_tab_title">
+              <li
+                v-for="item  in calculateType"
+                :class="['middleSliderClass',{ activeLi : ( curMidTab == item.name ? true : false )}]"
+                @click="curMidTab = item.name;curMidCom=item.comp ;showMidTab(item.comp)"
+              >
+
+                <span>{{item.name}}</span>
+              </li>
+              <div class="clear"></div>
+            </ul>
+
+            <div  class="mid_tab_content">
+              <div v-show="curMidCom == 'first'">
+
+                <el-radio-group  v-model="firstRadio">
+                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
+                  </el-col>
+                </el-radio-group>
+
+              </div>
+              <div v-show="curMidCom == 'second'">
+                <el-radio-group  v-model="secondRadio">
+                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
+                  </el-col>
+                </el-radio-group>
+
+
+              </div>
+              <div v-show="curMidCom == 'third'">
+                <el-radio-group  v-model="thirdRadio">
+                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
+                  </el-col>
+                </el-radio-group>
+
+
+              </div>
+              <div v-show="curMidCom == 'fourth'">
+                <el-radio-group  v-model="fourthRadio">
+                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
+                  </el-col>
+                </el-radio-group>
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="bottomPan">
+          <div class="analyze_title">
+            <span>三维展示</span>
+          </div>
+
+          <!--内容部分-->
+          <div class="analyze_content">
+
+
+          </div>
+
+
+        </div>
+      </el-main>
       <!--左侧-->
       <el-aside  style='display: block' width="50%" class="associateLeft">
         <div class="left_menu">
@@ -327,102 +423,7 @@
         </div>
 
       </el-aside>
-      <!--右侧-->
-      <el-main width="50%"  class="associateRight">
-        <div class="topPan">
-          <div class="analyze_title">
-            <i class="iconfont icon-fuhao-tuceng"></i>
-            <span>水质专题</span>
-          </div>
-          <!--内容部分-->
-          <div class="analyze_content">
-            <ul >
-              <li
-                v-for="item  in subjectProducts"
-                :class="['sliderClass',{activeLi : ( curli == item.name ? true : false )}]"
-                @click="curli = item.name"
-              >
 
-                <span>{{item.title}}</span>
-              </li>
-            </ul>
-
-          </div>
-        </div>
-        <div class="middlePan">
-          <div class="analyze_title">
-            <span>统计分析</span>
-          </div>
-          <!--内容部分-->
-          <div class="analyze_content">
-            <ul  class="mid_tab_title">
-              <li
-                v-for="item  in calculateType"
-                :class="['middleSliderClass',{ activeLi : ( curMidTab == item.name ? true : false )}]"
-                @click="curMidTab = item.name;curMidCom=item.comp ;showMidTab(item.comp)"
-              >
-
-                <span>{{item.name}}</span>
-              </li>
-              <div class="clear"></div>
-            </ul>
-
-            <div  class="mid_tab_content">
-              <div v-show="curMidCom == 'first'">
-
-                <el-radio-group  v-model="firstRadio">
-                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
-                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
-                  </el-col>
-                </el-radio-group>
-
-              </div>
-              <div v-show="curMidCom == 'second'">
-                <el-radio-group  v-model="secondRadio">
-                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
-                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
-                  </el-col>
-                </el-radio-group>
-
-
-              </div>
-              <div v-show="curMidCom == 'third'">
-                <el-radio-group  v-model="thirdRadio">
-                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
-                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
-                  </el-col>
-                </el-radio-group>
-
-
-              </div>
-              <div v-show="curMidCom == 'fourth'">
-                <el-radio-group  v-model="fourthRadio">
-                  <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
-                    <el-radio :label="product.value"   >{{product.label}}</el-radio>
-                  </el-col>
-                </el-radio-group>
-
-
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="bottomPan">
-          <div class="analyze_title">
-            <span>三维展示</span>
-          </div>
-
-          <!--内容部分-->
-          <div class="analyze_content">
-
-
-          </div>
-
-
-        </div>
-      </el-main>
     </el-container>
 
 
@@ -449,14 +450,12 @@
         fourstagePartitionList: [],
         fivestagePartition: "",
         fivestagePartitionList: [],
-
         firstRadio:'',//1
         secondRadio:'',//2
         thirdRadio:'',//3
         fourthRadio:'',//4
         curMidCom:'first',//跳转组件
         curMidTab:'first',//tab mid
-        curli:'',
         /*评价标准*/
         pjbzval:'all',
         pjbzOption:[{
@@ -496,6 +495,8 @@
         startTime:'',
         /*截至时间*/
         endTime:'',
+        curli:'4',
+
         subjectProducts:[
           {name:'1',title:'污染物浓度分布专题图'},
           {name:'2',title:'污染物评价类别分布专题图'},
@@ -504,11 +505,8 @@
           {name:'5',title:'水质类别色彩渲染专题图'},
           {name:'6',title:'污染物排放达标专题图'},
           {name:'7',title:'污染物排放量专题图'},
-
-
         ],
         calculateType:[
-
           {
             name: '监测成果',
             value: 'first',
@@ -529,32 +527,20 @@
             value: 'fourth',
             comp: 'fourth'
           },
-
         ],
-
       }
     },
     methods: {
       showMidTab(ele){
         console.log("显示详情")
         console.log(ele)
-
-
       }
-
     },
     computed: {
-
-
     },
     mounted(){
-
-
     },
     watch: {
-
-
-
     }
 
   }
@@ -579,12 +565,11 @@
   left:0;
 }
 .associateRight{
-  /*border:solid 1px blueviolet;*/
+  border-right:dashed 1px rgba(255,249,229,0.5);
   padding:0;
  }
 .associateLeft{
   padding:0;
-  border-right:dashed 1px rgba(255,249,229,0.5);
 }
 
 #associativeOperate .singleli_title {

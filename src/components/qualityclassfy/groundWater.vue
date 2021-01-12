@@ -735,5 +735,10 @@ export default {
   >>>.el-container{
     height: 100%;
   }
+ >>>.el-menu-item:focus, .el-menu-item:hover{
+   background: red;
+   color:#fff;
+
+  }
 
 </style>
