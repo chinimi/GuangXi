@@ -3,10 +3,11 @@
   <div  id="waterQuality" >
     <!--水质评价质量监测-->
       <!--左侧递归标题目录树-->
-    <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,0.86);">
+    <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,1);">
       <el-menu
           :router="true"
           class="el-menu-vertical-demo"
+
           @open="handleOpen"
           @close="handleClose"
           background-color="rgba(21,37,63,0.86)"
@@ -149,5 +150,17 @@
     position: absolute;
     top: 0;
     right: 0;
+  }
+
+>>>.el-menu-item:focus, .el-menu-item:hover{
+  background: rgba(25, 17, 28, 0.2) !important;
+  /*color:#fff!important;*/
+
+}
+
+  >>>.el-submenu__title:hover {
+    /*background-color: #ecf5ff;*/
+    background: rgba(25, 17, 28, 0.2) !important;
+
   }
 </style>

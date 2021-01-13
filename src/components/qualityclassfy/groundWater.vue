@@ -68,7 +68,6 @@
         </div>
         <!--水系参数-->
         <div style="width: 100%;padding-left:20px;">
-
           <!-- <el-checkbox-group v-model="pjbzval" @change="">
              <el-checkbox v-for="item in curWaterSysOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>
            </el-checkbox-group>-->
@@ -78,10 +77,8 @@
               <el-radio :label="product.value"   >{{product.label}}</el-radio>
             </el-col>
           </el-radio-group>
-
         </div>
         <!--1级-->
-
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -290,9 +287,7 @@
             </el-col>
           </el-row>
         </div>
-
         <!--时间序列-->
-
         <div class="singleli_title" v-if="selectTimeType=='ordertime'">
           <el-row>
             <el-col :span="8">
@@ -312,8 +307,6 @@
             </el-col>
           </el-row>
         </div>
-
-
         <div class="singleli_title" >
           <el-row>
             <el-col :span="20" style="text-align: center">
@@ -322,41 +315,208 @@
 
           </el-row>
         </div>
-
-
-
       </div>
       <!--table表格-->
       <div class="right_menu">
+         <!--矿化度-->
+        <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="480" style="background-color: transparent;">
+            <el-table-column
+              label="序号"
+              type="index"
+              width="50">
+            </el-table-column>
+            <el-table-column
+              prop="stcd"
+              label="测站编码">
+            </el-table-column>
+            <el-table-column
+              prop="stnm"
+              label="测站名称">
+            </el-table-column>
+            <el-table-column
+              prop="mndgMax"
+              label="矿化度指标">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="级别">
+            </el-table-column>
 
-        <el-table   border :data="tableData" height="480" style="background-color: transparent;">
-          <el-table-column prop="tab1" label="序号" min-width="50">
+            <el-table-column
+              prop="mndgName"
+              label="类型">
+            </el-table-column>
 
+            <el-table-column
+              label="备注">
+              <template slot-scope="scope">
+                <!--  {{scope.row.time}}-->
+                备注
+              </template>
+            </el-table-column>
+
+          </el-table>
+
+        <!--总硬度-->
+        <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="480" style="background-color: transparent;">
+          <el-table-column
+            label="序号"
+            type="index"
+            width="50">
           </el-table-column>
-          <el-table-column prop="tab2" label="方案编码" min-width="80">
+          <el-table-column
+            prop="stcd"
+            label="河流编码">
           </el-table-column>
-          <el-table-column prop="tab3" label="方案名称" min-width="100">
+          <el-table-column
+            prop="stnm"
+            label="河段名称">
           </el-table-column>
-          <el-table-column prop="tab4" label="创建时间" min-width="100">
+          <el-table-column
+            prop="stnm"
+            label="测站名称">
           </el-table-column>
-          <el-table-column prop="tab5" label="修改时间" min-width="100">
+          <el-table-column
+            prop="thrd"
+            label="总硬度指标">
           </el-table-column>
-          <el-table-column prop="tab6" label="基准模板" min-width="80">
+
+          <el-table-column
+            prop="thrdType"
+            label="级别">
           </el-table-column>
-          <el-table-column prop="tab7" label="一级流域分区" min-width="150">
-          </el-table-column>
-          <el-table-column prop="tab8" label="二级流域分区" min-width="150">
-          </el-table-column>
-          <el-table-column prop="tab9" label="行政分区（市）" min-width="150">
-          </el-table-column>
-          <el-table-column prop="tab10" label="水资源分区" min-width="100">
-          </el-table-column>
-          <el-table-column prop="tab11" label="所属河长" min-width="100">
+
+
+
+          <el-table-column
+            label="备注">
+            <template slot-scope="scope">
+              <!--  {{scope.row.time}}-->
+              备注
+            </template>
           </el-table-column>
 
         </el-table>
 
-        <div>
+        <!--水化学类型-->
+        <el-table v-if="pjxmval=='shxlx'"  border :data="tableData" height="480" style="background-color: transparent;">
+
+        <el-table-column
+            label="序号"
+            type="index"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            prop="stcd"
+            label="河流编码">
+          </el-table-column>
+          <el-table-column
+            prop="stnm"
+            label="河段名称">
+          </el-table-column>
+          <el-table-column
+            prop="ca"
+            label="Ca2+">
+          </el-table-column>
+          <el-table-column
+            prop="mg"
+            label="Mg2+">
+          </el-table-column>
+          <el-table-column
+            prop="na"
+            label="Na+">
+          </el-table-column>
+          <el-table-column
+
+            label="HCO3-">
+
+            <template slot-scope="scope">
+              {{scope.row.hco3}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="SO42-">
+            <template slot-scope="scope">
+                {{scope.row.so4}}
+
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="cl"
+            label="Cl-">
+          </el-table-column>
+
+          <el-table-column
+            label="备注">
+            <template slot-scope="scope">
+              <!--  {{scope.row.time}}-->
+
+              备注
+            </template>
+          </el-table-column>
+
+        </el-table>
+
+        <!--地表天然水-->
+        <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="480" style="background-color: transparent;">
+          <el-table-column
+            label="序号"
+            type="index"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            prop="stcd"
+            label="河流编码">
+          </el-table-column>
+
+          <el-table-column
+            prop="stnm"
+            label="测站名称">
+          </el-table-column>
+          <el-table-column
+            prop="f"
+            label="氟">
+          </el-table-column>
+          <el-table-column
+            prop="ars"
+            label="砷">
+          </el-table-column>
+          <el-table-column
+            prop="mndg"
+            label="矿化物">
+          </el-table-column>
+
+          <el-table-column
+
+            label="氯化物">
+            <template slot-scope="scope">
+              {{scope.row.cl}}
+
+            </template>
+          </el-table-column>
+          <el-table-column
+
+            label="硫酸盐">
+            <template slot-scope="scope">
+                {{scope.row.so4}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="备注">
+            <template slot-scope="scope">
+              <!--  {{scope.row.time}}-->
+              备注
+            </template>
+          </el-table-column>
+
+        </el-table>
+
+        <!--分页-->
+        <div style="padding-top:30px;">
           <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
           <el-pagination
             background
@@ -376,218 +536,214 @@
 </template>
 
 <script>
+  // 引入axios
+  import axios from 'axios'
   import  getWater from '../../api/index'
-export default {
-    data() {
-        return {
-          /*评价标准*/
-          evaluatiStandarVal:'SL395-2007',
-          evaluationOptopn:[{
-            value:'SL395-2007',
-            value:'SL395-2007',
-          }],
-          /*评价项目*/
-          evalProVal:'SL395-2007',
-          evalProOptopn:[{
-            value:'SL395-2007',
-            value:'SL395-2007',
-          }],
-          checkedCities: [],
-          checkedCities2: [],
+  export default {
+      data() {
+          return {
+            /*评价标准*/
+            evaluatiStandarVal:'SL395-2007',
+            evaluationOptopn:[{
+              value:'SL395-2007',
+              value:'SL395-2007',
+            }],
+            /*评价项目*/
+            evalProVal:'SL395-2007',
+            evalProOptopn:[{
+              value:'SL395-2007',
+              value:'SL395-2007',
+            }],
+            checkedCities: [],
+            checkedCities2: [],
 
-          currentPage1: 5,
-          currentPage2: 5,
-          currentPage3: 5,
-          currentPage4: 4,
-          primaryPartition: "",
-          primaryPartitionList: [],
-          secondaryPartition: "",
-          secondaryPartitionList: [],
-          tertiaryPartition: "",
-          tertiaryPartitionList: [],
-          fourstagePartition: "",
-          fourstagePartitionList: [],
-          fivestagePartition: "",
-          fivestagePartitionList: [],
-          tableData: [],
-          cities:['流域水系', '水资源分区', '行政区划'],
-          cities2:['按单时间段评价', '按时间序列评价'],
+            currentPage1: 5,
+            currentPage2: 5,
+            currentPage3: 5,
+            currentPage4: 4,
+            primaryPartition: "",
+            primaryPartitionList: [],
+            secondaryPartition: "",
+            secondaryPartitionList: [],
+            tertiaryPartition: "",
+            tertiaryPartitionList: [],
+            fourstagePartition: "",
+            fourstagePartitionList: [],
+            fivestagePartition: "",
+            fivestagePartitionList: [],
+            tableData: [],
+            cities:['流域水系', '水资源分区', '行政区划'],
+            cities2:['按单时间段评价', '按时间序列评价'],
 
 
-          /*评价标准*/
-          pjbzval:'all',
-          pjbzOption:[{
-            label:"全部",
-            value:'all',
-          }],
-          /*评价项目*/
-          pjxmval:'all',
-          pjxmOption:[{
-            label:"总硬度",
-            value:'all',
-          }],
-          /*取值方式*/
-          qzfsval:'average',
-          qzfsOption:[{
-            label:"平均值",
-            value:'average',
-          }],
-          /*当前水系*/
-          cursysval:'water1',
-          /*水系参数*/
-          curWaterSysOption:[{label:'流域水系',value:'water1'},{label:'水资源分区',value:'water2'},{label:'行政区划',value:'water3'}],
-          /*时间选择*/
-          selectTimeType:"singletime",
-          /*时间段选择*/
-          timequantumOption:[{
-            value:'singletime',
-            label:'按单时间段评价',
-          },{
-            value:'ordertime',
-            label:'按单时序列评价',
+            /*评价标准*/
+            pjbzval:'all',
+            pjbzOption:[{
+              label:"全部",
+              value:'all',
+            }],
+            /*评价项目*/
+            pjxmval:'khd',
+            pjxmOption:[{
+              label:"矿化度",
+              value:'khd',
+            },{
+              label:"总硬度",
+              value:'zyd',
+              },{
+              label:"水化学类型",
+              value:'shxlx',
+            },{
+              label:"地表天然水",
+              value:'dbtrs',
+            }
+          ],
+            /*取值方式*/
+            qzfsval:'average',
+            qzfsOption:[{
+              label:"平均值",
+              value:'average',
+            }],
+            /*当前水系*/
+            cursysval:'water1',
+            /*水系参数*/
+            curWaterSysOption:[{label:'流域水系',value:'water1'},{label:'水资源分区',value:'water2'},{label:'行政区划',value:'water3'}],
+            /*时间选择*/
+            selectTimeType:"singletime",
+            /*时间段选择*/
+            timequantumOption:[{
+              value:'singletime',
+              label:'按单时间段评价',
+            },{
+              value:'ordertime',
+              label:'按单时序列评价',
 
-          }],
-          /*评价步长*/
-          pjbcVal:'',//评价步长
-          pjbcOption:[{value:'month',label:'月份'}],
-          /*初始时间*/
-          startTime:'',
-          /*截至时间*/
-          endTime:'',
+            }],
+            /*评价步长*/
+            pjbcVal:'',//评价步长
+            pjbcOption:[{value:'month',label:'月份'}],
+            /*初始时间*/
+            startTime:'',
+            /*截至时间*/
+            endTime:'',
+          }
+      },
+      created() {
+
+      },
+      computed: {
+
+      },
+      methods: {
+        handleSizeChange(val) {
+          console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+          console.log(`当前页: ${val}`);
+        },
+        queryTableData(){
+          var param={
+            "pageNum":"0",      // --当前页
+            "pageSize":"10",     //--一页显示数量
+            "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+            "tjsj":"201507-201508"
+          }
+
+          this.tableData=[]
+
+          /*矿化度请求*/
+        if(this.pjxmval=="khd") {
+          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+          /*http请求*/
+          this.$http.post(khdurl, JSON.stringify(param), {
+            emulateJSON: true,
+          }).then(function(res) {
+            console.log(res)
+
+            this.tableData=res.body.data.pageResultList
+          }).catch(function(res){
+
+
+          })
+
+
         }
-    },
-    created() {
-      let list = [
-        {
-          tab1: "1",
-          tab2: "TLR",
-          tab3: " 田东—隆安-日常",
-          tab4: "2020-1-4",
-          tab5: "2020-12-30",
-          tab6: "模板1",
-          tab7: "珠江流域",
-          tab8: "左江",
-          tab9: "南宁",
-          tab10: "一级分区",
-          tab11: "河长A"
-        },
-        {
-          tab1: "1",
-          tab2: "TLR",
-          tab3: " 田东—隆安-日常",
-          tab4: "2020-1-4",
-          tab5: "2020-12-30",
-          tab6: "模板1",
-          tab7: "珠江流域",
-          tab8: "左江",
-          tab9: "南宁",
-          tab10: "一级分区",
-          tab11: "河长A"
-        },
-        {
-          tab1: "1",
-          tab2: "TLR",
-          tab3: " 田东—隆安-日常",
-          tab4: "2020-1-4",
-          tab5: "2020-12-30",
-          tab6: "模板1",
-          tab7: "珠江流域",
-          tab8: "左江",
-          tab9: "南宁",
-          tab10: "一级分区",
-          tab11: "河长A"
-        },
-        {
-          tab1: "1",
-          tab2: "TLR",
-          tab3: " 田东—隆安-日常",
-          tab4: "2020-1-4",
-          tab5: "2020-12-30",
-          tab6: "模板1",
-          tab7: "珠江流域",
-          tab8: "左江",
-          tab9: "南宁",
-          tab10: "一级分区",
-          tab11: "河长A"
-        },  {
-          tab1: "1",
-          tab2: "TLR",
-          tab3: " 田东—隆安-日常",
-          tab4: "2020-1-4",
-          tab5: "2020-12-30",
-          tab6: "模板1",
-          tab7: "珠江流域",
-          tab8: "左江",
-          tab9: "南宁",
-          tab10: "一级分区",
-          tab11: "河长A"
-        },
 
-      ];
+        /*水化学类型*/
+          if(this.pjxmval=="shxlx") {
+            let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
+            /*http请求*/
+            this.$http.post(chemistryurl, JSON.stringify( param), {
+              emulateJSON: true,
+            }).then(function (res) {
+              console.log(res)
 
-      this.tableData = list;
+              this.tableData = res.body.data.pageResultList
+            }).catch(function (res) {
 
-    },
-    computed: {
+              // alert("请求失败")
+            })
 
-    },
-    methods: {
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+          }
+
+          /*总硬度*/
+          if(this.pjxmval=="zyd") {
+            let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
+            /*http请求*/
+            this.$http.post(zydurl, JSON.stringify(param), {
+              emulateJSON: true,
+            }).then(function (res) {
+
+              console.log(res)
+
+              this.tableData = res.body.data.pageResultList
+            }).catch(function (res) {
+              console.log(res)
+
+            })
+
+          }
+
+
+          /*地表天然水*/
+          if(this.pjxmval=="dbtrs") {
+
+            let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
+            /*http请求*/
+            this.$http.post(dbtrsurl, JSON.stringify(param), {
+              emulateJSON: true,
+            }).then(function (res) {
+              console.log(res)
+              this.tableData = res.body.data.pageResultList
+            }).catch(function (res) {
+
+
+            })
+
+          }
+
+
+
+
+
+
+        }
       },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+      watch:{
+        pjxmval(newValue){
+
+          this.tableData=[]
+
+
+
+        }
+
+
+
       },
-      queryTableData(){
-        alert(1)
-        // this.$http.get('menus")
-        // if(res.meta.status!==200) return this.$message.error("失败了")
-        // this.getMenuList=res.data//获取所有左侧菜单数据
-        // console.log(res)
-        let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-      var param={
-        "pageNum":"0",
-        "pageSize":"10",
-        "qzfs":"avg",
-        "tjsj":"201507-201508"
-      }
-
-        this.getWater(url,param)
 
 
-        let opts= JSON.stringify(param)
-        console.log(opts)
-
-        fetch(url,opts)
-          .then((response) => {
-            alert(1)
-            console.log(response)
-            console.log(response)
-
-            return response.json()
-          })
-          .then((responseText) => {
-            alert(responseText)
-          })
-          .catch((error) => {
-            alert(error)
-          })
-
-
-      /*  this.$http.get(url,{params:param},{
-          emulateJSON:true
-        }).then(function(res){
-          alert("成功")
-          console.log(res)
-
-        },function(res){
-          alert("失败")
-
-        });*/
-
-      }
-    }
-}
+  }
 </script>
 
 <style scoped>
@@ -597,10 +753,10 @@ export default {
     background: #fff;
   }
   #groundWater .left_menu{
-    width: 30%;
+    width: 20%;
     height: calc( 100vh - 80px);
-
     background: #031823;
+    /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     left: 0;
@@ -608,12 +764,11 @@ export default {
     border-left: #fff solid 1px;
   }
   #groundWater  .right_menu{
-    width: 70%;
+    width: 80%;
     height: calc( 100vh - 80px);
     padding-top: 50px;
-
-    /*background: rgb(0, 25, 56);*/
     background: #031823;
+    /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     right: 0;
@@ -640,8 +795,8 @@ export default {
     padding-left: 10px !important;
     color: #058cd0;
     border: 1px solid #058cd0;
-    /*background: #031823;*/
-    background: rgba(21,37,63,0.86);
+    background: #031823;
+    /*background: rgba(21,37,63,0.86);*/
     -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
     box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
     font-size: 16px !important;
@@ -719,25 +874,25 @@ export default {
   }
   /* 滚动样式修改*/
   >>> ::-webkit-scrollbar {
-    background-color: transparent !important;
-    height: 0 !important;
-    width: 0 !important;
+    /*background-color: transparent !important;*/
+    /*height: 0 !important;*/
+    /*width: 0 !important;*/
   }
 
   >>> ::-webkit-scrollbar-thumb {
-    background-color: transparent !important;
+    /*background-color: transparent !important;*/
   }
 
   /* 修改边框颜色*/
   >>> ::-webkit-scrollbar-thumb {
-    background-color: transparent !important;
+    /*background-color: transparent !important;*/
   }
   >>>.el-container{
     height: 100%;
   }
  >>>.el-menu-item:focus, .el-menu-item:hover{
-   background: red;
-   color:#fff;
+   background: red!important;
+   color:#fff!important;
 
   }
 
