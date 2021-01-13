@@ -1,4 +1,5 @@
 <template>
+  <!--方案库主页面-->
   <div id="schemeLibrary">
     <ul class="clear-fix">
       <li class="left lefts">
@@ -112,9 +113,14 @@
             </el-col>
           </el-row>
         </div>
-        <div >
-          <el-button type="primary" size="small" plain style="float:right;    right: 20px;
-    position: relative;">查找</el-button>
+        <div>
+          <el-button
+            type="primary"
+            size="small"
+            plain
+            style="float:right;right: 20px;position: relative;"
+            >查找</el-button
+          >
         </div>
       </li>
       <li class=" right">
@@ -122,7 +128,12 @@
           <el-button type="primary" size="small" plain>新增方案</el-button>
         </div>
         <div>
-          <el-table border :data="tableData" height="480" style="background-color: transparent;">
+          <el-table
+            border
+            :data="tableData"
+            height="480"
+            style="background-color: transparent;"
+          >
             <el-table-column prop="tab1" label="序号" min-width="50">
             </el-table-column>
             <el-table-column prop="tab2" label="方案编码" min-width="80">
@@ -225,7 +236,7 @@ export default {
         tab10: "一级分区",
         tab11: "河长A"
       },
-        {
+      {
         tab1: "1",
         tab2: "TLR",
         tab3: " 田东—隆安-日常",
@@ -238,7 +249,7 @@ export default {
         tab10: "一级分区",
         tab11: "河长A"
       },
-        {
+      {
         tab1: "1",
         tab2: "TLR",
         tab3: " 田东—隆安-日常",
@@ -251,19 +262,7 @@ export default {
         tab10: "一级分区",
         tab11: "河长A"
       },
-        {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },  {
+      {
         tab1: "1",
         tab2: "TLR",
         tab3: " 田东—隆安-日常",
@@ -276,7 +275,19 @@ export default {
         tab10: "一级分区",
         tab11: "河长A"
       },
-
+      {
+        tab1: "1",
+        tab2: "TLR",
+        tab3: " 田东—隆安-日常",
+        tab4: "2020-1-4",
+        tab5: "2020-12-30",
+        tab6: "模板1",
+        tab7: "珠江流域",
+        tab8: "左江",
+        tab9: "南宁",
+        tab10: "一级分区",
+        tab11: "河长A"
+      }
     ];
     // list.forEach(element => {
     //   element["show"] = false;
@@ -308,13 +319,13 @@ export default {
 };
 </script>
 <style>
-#schemeLibrary .left{
-   border-right: 2px dashed royalblue;
-       border-right: 2px dashed royalblue;
-    float: left;
-    left: 0px;
-    position: absolute;
-    width: 21%;
+#schemeLibrary .left {
+  border-right: 2px dashed royalblue;
+  border-right: 2px dashed royalblue;
+  float: left;
+  left: 0px;
+  position: absolute;
+  width: 21%;
 }
 /* #schemeLibrary .left {
   float: left;
@@ -365,16 +376,16 @@ export default {
   height: 30px !important;
   /* width: 196px !important; */
 }
-#schemeLibrary .el-pagination__total{
-  color:#ffffff !important;
+#schemeLibrary .el-pagination__total {
+  color: #ffffff !important;
 }
-#schemeLibrary .el-pagination__jump{
-  color:#ffffff !important;
+#schemeLibrary .el-pagination__jump {
+  color: #ffffff !important;
 }
-#schemeLibrary .el-pagination .el-select .el-input .el-input__inner{
-         color: #ffff;
+#schemeLibrary .el-pagination .el-select .el-input .el-input__inner {
+  color: #ffff;
 }
-#schemeLibrary ul{
+#schemeLibrary ul {
   position: relative;
   width: 100%;
   height: 100%;

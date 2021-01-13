@@ -1,4 +1,5 @@
 <template>
+<!--一维模型主页面-->
   <div id="oneDimensionalModel">
         <ul class="programModel_title">
           <li
@@ -14,10 +15,11 @@
           <!--切换组件-->
       <div>
         <!--組件跳轉-->
+        <!--方案库组件-->
         <div v-show="currentComp=='schemeLibrary'">
           <schemeLibrary></schemeLibrary>
         </div>
-
+        <!--方案编制组件-->
         <div v-show="currentComp=='programmePreparation'">
           <programmePreparation></programmePreparation>
         </div>
