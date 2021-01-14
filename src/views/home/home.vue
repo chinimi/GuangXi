@@ -98,10 +98,10 @@ import qualityPrediction from "../../components/qualitypredict/qualityPrediction
 import bearingCapacity from "../../components/bearcapacity/bearingCapacity"
 import operationalDisplay from "../../components/operationdispaly/operationalDisplay"
 
-
 export default {
-  name: 'Map',
-  components:{
+    name: 'Map',
+    components:{
+
     indexlefttop,
     indexleftbottom,
     indexright,
@@ -177,10 +177,8 @@ export default {
               value: 'operationalDisplay',
               comp: 'operationalDisplay'
             }
-
           ],
           toollist:[
-
             {
               icon:"magnifying",
               name: 'magnifying',
@@ -211,63 +209,77 @@ export default {
               value: 'set',
               // comp: '4'
             }
-
-
-
           ]
-
-
         }
     },
+    mounted(){
+    // 初始化定位
+      let pos = [parseFloat(120.8), parseFloat(23.729)];
+      pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
+      map = new olMap({
+      target:'map',
+      layers: [
+        new ollayerTile({
+          source: new OSM()
+
+        }),
+        new ollayerTile({
+          source:new TileArcgisRest({
+            url:baseMap
+          })
+        })
+      ],
+      view: new olView({
+        center: pos,
+        minZoom:5,
+        maxZoom: 20,
+        zoom: 7.6,
+        // projection:'EPSG:4326'
+
+      })
+    });
+
+     /*   var labelCoords_org=[107.8, 23.729];
+      var labelCoords=ol.proj.transform(labelCoords_org, "EPSG:4326", "EPSG:3857");
+
+      var feature = new ol.Feature({
+        geometry: new ol.geom.Point(labelCoords)
+      });
+
+      var source = new ol.source.Vector({features:[feature]});
+
+      var vectorLayer = new ol.layer.Vector({
+        source: source,
+        style: new ol.style.Style({
+          fill: new ol.style.Fill({
+            color: 'rgba(255, 255, 255, 0.2'
+          }),
+          stroke: new ol.style.Stroke({
+            color: '#00c033',
+            width: 2
+          }),
+          image: new ol.style.Circle({
+            radius: 7,
+            fill: new ol.style.Fill({
+              color: '#00c033'
+            })
+          })
+        })
+      });
+      map.addLayer(vectorLayer);*/
+
+     /*触发全局变量*/
+     // this.$store.dispatch('SaveMap',map) //1：存储全局变量
+
+
+  },
 
     methods:{
       execute(currentTool){
         console.log("执行工具"+currentTool)
-
-
-
-      }
-
-
+      },
 
     },
-    mounted(){
-    // 初始化定位
-    let pos = [parseFloat(107.8), parseFloat(23.729)];
-    pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
-
-
-    map = new olMap({
-      target:'map',
-      layers: [
-        new ollayerTile({
-          source: new OSM()
-        }),
-        //  new ollayerTile({
-        //     source: new XYZ({
-        //         url:tdtURL + '/DataServer?T=img_w' + '&x={x}&y={y}&l={z}' + '&tk=b72e0a86555fa046d016a2c2612c0e44',
-        //     })
-        //  }), // 加载天地图
-        new ollayerTile({
-          source:new TileArcgisRest({
-            url:baseMap
-          })
-        })
-
-      ],
-      view:new olView({
-        center: pos,
-        zoom: 7.6,
-        minZoom:5,
-        maxZoom: 20,
-        projection: 'EPSG:3857'
-      })
-    });
-
-    window.map=map
-
-
-  }
 }
 </script>
 

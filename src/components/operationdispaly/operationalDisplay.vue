@@ -416,7 +416,7 @@
 
 
           <div  style="padding-left: 80px;margin-top:15px;">
-            <el-button @click="drawPolygon">确定</el-button>
+            <el-button @click="drawPoint">确定</el-button>
             <el-button>取消</el-button>
           </div>
 
@@ -463,10 +463,19 @@
           value:'all',
         }],
         /*评价项目*/
-        pjxmval:'all',
+        pjxmval:'khd',
         pjxmOption:[{
+          label:"矿化度",
+          value:'khd',
+        },{
           label:"总硬度",
-          value:'all',
+          value:'zyd',
+        },{
+          label:"水化学类型",
+          value:'shxlx',
+        },{
+          label:"地表天然水",
+          value:'dbtrs',
         }],
         /*取值方式*/
         qzfsval:'average',
@@ -528,13 +537,570 @@
             comp: 'fourth'
           },
         ],
+        pointLayer:null,//绘制的点图层
+        pointSource:null,//点图层上的点要素
+        pointData:[],//当前点
+
       }
     },
     methods: {
       showMidTab(ele){
 
       },
+      /*请求当前评价项目参数*/
+      ajaxPointSource(param,pointLayer){//传请求参数
+
+        var  that=this
+
+        /*矿化度请求*/
+        if(that.pjxmval=="khd") {
+          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+          /*http请求*/
+          this.$http.post(khdurl, JSON.stringify(param), {
+            emulateJSON: true,
+          }).then(function(res) {
+            alert('矿化度')
+
+            let data=res.body.data.pageResultList
+            let points=[]
+            console.log(data)
+
+            for (let i=0;i<data.length;i++) {
+              let coord = data[i]
+
+              var labelCoords = transform([parseFloat(coord.lgtd), parseFloat(coord.lttd)], "EPSG:4326", "EPSG:3857");
+              var point = new ol.Feature({
+                geometry: new ol.geom.Point(labelCoords)
+                // geometry: new ol.geom.Point([coord.lgtd, coord.lttd])
+              });//构点
+              points.push(point)
+            }
+
+          //实例化一个矢量图层Vector作为绘制层
+          var source = new ol.source.Vector({
+            features: points
+          });
+
+            // if(pointLayer){//如果有图层
+            //   source = pointLayer.getSource()
+            //   source.clear();
+            //   pointLayer.setSource(source)
+            //
+            // }else{//没有图层创建新图层
+                  //矢量图层
+              that.pointLayer=new ol.layer.Vector({
+                zIndex: 10,
+                // projection: 'EPSG:4326',
+                source:source,
+                style: new ol.style.Style({
+                  fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.1)'
+                  }),
+                  stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 10
+                  }),
+                  image: new ol.style.Circle({
+                    radius: 10,
+                    fill: new ol.style.Fill({
+                      color: '#62ff3c'
+                    })
+                  })
+                })
+              });
+
+              map.addLayer(that.pointLayer);//添加上站点的图层
+
+
+            // }
+
+
+          }).catch(function(res){
+          })
+
+        }
+
+        /*水化学类型*/
+        if(that.pjxmval=="shxlx") {
+          let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
+          /*http请求*/
+          this.$http.post(chemistryurl, JSON.stringify( param), {
+            emulateJSON: true,
+          }).then(function (res) {
+            alert('水化学类型')
+
+            let data=res.body.data.pageResultList
+            console.log(data)
+
+            let points=[]
+
+            for (let i=0;i<data.length;i++) {
+              let coord = data[i]
+
+              var labelCoords = transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              var point = new ol.Feature({
+                geometry: new ol.geom.Point(labelCoords)
+              });//构点
+              points.push(point)
+            }
+
+            //实例化一个矢量图层Vector作为绘制层
+            var source = new ol.source.Vector({
+              features: points
+            });
+
+            // if(pointLayer){//如果有图层
+            //   pointLayer.setSource(source)
+            //
+            // }else{//没有图层创建新图层
+              //矢量图层
+              that.pointLayer=new ol.layer.Vector({
+                zIndex: 10,
+                // projection: 'EPSG:4326',
+                source:source,
+                style: new ol.style.Style({
+                  fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.1)'
+                  }),
+                  stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 10
+                  }),
+                  image: new ol.style.Circle({
+                    radius: 10,
+                    fill: new ol.style.Fill({
+                      color: '#ffcf43'
+                    })
+                  })
+                })
+              });
+
+              map.addLayer(that.pointLayer);//添加上站点的图层
+
+
+            // }
+
+
+
+
+
+
+
+          }).catch(function (res) {
+
+            // alert("请求失败")
+          })
+        }
+        /*总硬度*/
+        if(that.pjxmval=="zyd") {
+          let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
+          /*http请求*/
+          this.$http.post(zydurl, JSON.stringify(param), {
+            emulateJSON: true,
+          }).then(function (res) {
+            alert('总硬度')
+
+            let data=res.body.data.pageResultList
+            console.log(data)
+
+            let points=[]
+
+            for (let i=0;i<data.length;i++) {
+              let coord = data[i]
+
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              var point = new ol.Feature({
+                // geometry: new ol.geom.Point(labelCoords)
+                geometry: new ol.geom.Point(labelCoords)
+              });//构点
+              points.push(point)
+            }
+
+            //实例化一个矢量图层Vector作为绘制层
+            var source = new ol.source.Vector({
+              features: points
+            });
+
+            // if(pointLayer){//如果有图层
+            //   pointLayer.setSource(source)
+            //
+            // }else{//没有图层创建新图层
+              //矢量图层
+              that.pointLayer=new ol.layer.Vector({
+                zIndex: 10,
+                // projection: 'EPSG:4326',
+                source:source,
+                style: new ol.style.Style({
+                  fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.1)'
+                  }),
+                  stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 10
+                  }),
+                  image: new ol.style.Circle({
+                    radius: 10,
+                    fill: new ol.style.Fill({
+                      color: '#ff0833'
+                    })
+                  })
+                })
+              });
+
+              map.addLayer(that.pointLayer);//添加上站点的图层
+
+
+            // }
+
+
+
+
+          }).catch(function (res) {
+            console.log(res)
+
+          })
+        }
+        /*地表天然水*/
+        if(that.pjxmval=="dbtrs") {
+
+          let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
+          /*http请求*/
+          this.$http.post(dbtrsurl, JSON.stringify(param), {
+            emulateJSON: true,
+          }).then(function (res) {
+
+            alert('地表天然水')
+            let data=res.body.data.pageResultList
+            console.log(data)
+
+            let points=[]
+
+            for (let i=0;i<data.length;i++) {
+              let coord = data[i]
+              console.log(coord.lgtd)
+              console.log(coord.lttd)
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              var point = new ol.Feature({
+                geometry: new ol.geom.Point(labelCoords)
+              });//构点
+              points.push(point)
+            }
+
+            //实例化一个矢量图层Vector作为绘制层
+            var source = new ol.source.Vector({
+              features: points
+            });
+
+            // if(pointLayer){//如果有图层
+            //   pointLayer.setSource(source)
+            //
+            // }else{//没有图层创建新图层
+              //矢量图层
+              that.pointLayer=new ol.layer.Vector({
+                zIndex: 10,
+                // projection: 'EPSG:4326',
+                source:source,
+                style: new ol.style.Style({
+                  fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.1)'
+                  }),
+                  stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 10
+                  }),
+                  image: new ol.style.Circle({
+                    radius: 10,
+                    fill: new ol.style.Fill({
+                      color: '#4b97ff'
+                    })
+                  })
+                })
+              });
+
+              map.addLayer(that.pointLayer);//添加上站点的图层
+
+
+            // }
+
+
+
+
+
+
+
+
+
+
+
+          }).catch(function (res) {
+          })
+        }
+      },
+
+      /*绘制点要素   创建source*/
+      PlotPointSource(data){
+
+        let points=[]
+        for (let i=0;i<data.length;i++) {
+          let coord = data[i]
+          console.log(coord.lgtd)
+          console.log(coord.lttd)
+          var point = new ol.Feature({
+            geometry: new ol.geom.Point([coord.lgtd, coord.lttd])
+          });//构点
+          points.push(point)
+
+          //实例化一个矢量图层Vector作为绘制层
+          var source = new ol.source.Vector({
+            features: points
+          });
+          //矢量图层
+          let positionLayer = new ol.layer.Vector({
+            zIndex: 10,
+            projection: 'EPSG:4326',
+            source: source,
+            style: new ol.style.Style({
+              fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.1)'
+              }),
+              stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 10
+              }),
+              image: new ol.style.Circle({
+                radius: 10,
+                fill: new ol.style.Fill({
+                  color: '#ffcf43'
+                })
+              })
+            })
+          });
+
+          return   source
+          // positionLayer.setSource(source);
+          // map.addLayer(positionLayer);//添加上站点的图层
+
+        }
+
+
+      },
+
+
+      drawPoint(){//绘制点要素图层
+        /*1:获取参数*/
+        /*请求经纬度坐标点*/
+        var param={
+          "pageNum":"0",      // --当前页
+          "pageSize":"10",     //--一页显示数量
+          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+          "tjsj":"201507-201508"
+        }
+
+        /*2：a:判断是否有图层，有图层，清空source  b:没有图层，创建一个新的图层*/
+
+        if(this.pointLayer) {//有图层，清空所有几何要素
+          let lastsource =  this.pointLayer.getSource()
+          lastsource.clear();
+          /*请求数据重新绘制*/
+          this.ajaxPointSource(param,this.pointLayer)
+
+
+        }else{
+          console.log("获取请求数据  并创建一个图层")
+          this.ajaxPointSource(param)
+        }
+
+
+        /*  if(this.pointLayer){//有图层，清空所有几何要素
+             let lastsource =  this.pointLayer.getSource()
+                 lastsource.clear();
+             let source=this.PlotPointSource(pointData)//当前数据绘制的图层
+             this.pointLayer.setSource(source)
+          }else{//没有图层，创建一个新的图层，添加要素
+
+            let source=this.PlotPointSource(pointData)//当前数据绘制的图层
+
+            //矢量图层
+              this.pointLayer=new ol.layer.Vector({
+              zIndex: 10,
+              projection: 'EPSG:4326',
+              source:source,
+              style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }),
+                stroke: new ol.style.Stroke({
+                  color: 'red',
+                  width: 10
+                }),
+                image: new ol.style.Circle({
+                  radius: 10,
+                  fill: new ol.style.Fill({
+                    color: '#ffcf43'
+                  })
+                })
+              })
+            });
+
+            map.addLayer( this.pointLayer);//添加上站点的图层
+
+          }*/
+       /* /!*矿化度请求*!/
+        let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+        /!*http请求*!/
+        this.$http.post(khdurl, JSON.stringify(param), {
+          emulateJSON: true,
+        }).then(function(res) {
+          let data=res.body.data.pageResultList
+          let points=[]
+          for (let i=0;i<data.length;i++) {
+            let coord = data[i]
+            console.log(coord.lgtd)
+            console.log(coord.lttd)
+            var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+            var point = new ol.Feature({
+              geometry: new ol.geom.Point(labelCoords)
+            });//构点
+            points.push(point)
+          }
+            //实例化一个矢量图层Vector作为绘制层
+            var source = new ol.source.Vector({
+              features: points
+            });
+            //矢量图层
+            let positionLayer = new ol.layer.Vector({
+              zIndex: 10,
+              projection: 'EPSG:4326',
+              source: source,
+              style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }),
+                stroke: new ol.style.Stroke({
+                  color: 'red',
+                  width: 10
+                }),
+                image: new ol.style.Circle({
+                  radius: 10,
+                  fill: new ol.style.Fill({
+                    color: '#ffcf43'
+                  })
+                })
+              })
+            });
+
+            console.log(map)
+            // positionLayer.setSource(source);
+            map.addLayer(positionLayer);//添加上站点的图层
+
+          }
+        }).catch(function(res){})*/
+
+      },
+
+
+     /* drawPoint(){//绘制点要素图层
+        /!*请求经纬度坐标点*!/
+        var param={
+          "pageNum":"0",      // --当前页
+          "pageSize":"10",     //--一页显示数量
+          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+          "tjsj":"201507-201508"
+        }
+        let pointData=this.ajaxPointData(param)//请求回来的数据
+
+        console.log(pointData)
+      /!*  if(this.pointLayer){//有图层，清空所有几何要素
+           let lastsource =  this.pointLayer.getSource()
+               lastsource.clear();
+           let source=this.PlotPointSource(pointData)//当前数据绘制的图层
+           this.pointLayer.setSource(source)
+        }else{//没有图层，创建一个新的图层，添加要素
+
+          let source=this.PlotPointSource(pointData)//当前数据绘制的图层
+
+          //矢量图层
+            this.pointLayer=new ol.layer.Vector({
+            zIndex: 10,
+            projection: 'EPSG:4326',
+            source:source,
+            style: new ol.style.Style({
+              fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.1)'
+              }),
+              stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 10
+              }),
+              image: new ol.style.Circle({
+                radius: 10,
+                fill: new ol.style.Fill({
+                  color: '#ffcf43'
+                })
+              })
+            })
+          });
+
+          map.addLayer( this.pointLayer);//添加上站点的图层
+
+        }*!/
+        /!*矿化度请求*!/
+        let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+        /!*http请求*!/
+        this.$http.post(khdurl, JSON.stringify(param), {
+          emulateJSON: true,
+        }).then(function(res) {
+          let data=res.body.data.pageResultList
+          let points=[]
+          for (let i=0;i<data.length;i++) {
+            let coord = data[i]
+            console.log(coord.lgtd)
+            console.log(coord.lttd)
+            var labelCoords=ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+            var point = new ol.Feature({
+              geometry: new ol.geom.Point(labelCoords)
+            });//构点
+            points.push(point)
+
+            //实例化一个矢量图层Vector作为绘制层
+            var source = new ol.source.Vector({
+              features: points
+            });
+            //矢量图层
+            let positionLayer = new ol.layer.Vector({
+              zIndex: 10,
+              projection: 'EPSG:4326',
+              source: source,
+              style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }),
+                stroke: new ol.style.Stroke({
+                  color: 'red',
+                  width: 10
+                }),
+                image: new ol.style.Circle({
+                  radius: 10,
+                  fill: new ol.style.Fill({
+                    color: '#ffcf43'
+                  })
+                })
+              })
+            });
+
+            console.log(map)
+            // positionLayer.setSource(source);
+            map.addLayer(positionLayer);//添加上站点的图层
+
+          }
+        }).catch(function(res){})
+
+      },*/
+
+
       drawPolygon(){
+
+
         /*请求经纬度坐标点*/
         var param={
           "pageNum":"0",      // --当前页
@@ -550,17 +1116,16 @@
           }).then(function(res) {
 
             let data=res.body.data.pageResultList
-            console.log(data)
-
             let points=[]
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
+              console.log(coord.lgtd)
+              console.log(coord.lttd)
               var point = new ol.Feature({
                 geometry: new ol.geom.Point([coord.lgtd, coord.lttd])
               });//构点
-
               points.push(point)
-              // console.log(points)
+
               //实例化一个矢量图层Vector作为绘制层
               var source = new ol.source.Vector({
                 features: points
@@ -587,14 +1152,9 @@
                 })
               });
 
-              // console.log(source)
+              console.log(map)
               positionLayer.setSource(source);
               map.addLayer(positionLayer);//添加上站点的图层
-
-
-
-
-
 
             }
 
@@ -606,9 +1166,20 @@
 
 
 
-        console.log(map)
-        this.createVectorLayer()
+        // console.log(map)
+        // this.createVectorLayer()
 
+
+      },
+
+      click(){
+        /*点击地图*/
+        map.on('click', function (e) {
+          alert('点击地图')
+          console.log(e)
+
+
+        })
 
       },
       createVectorLayer(){
@@ -659,25 +1230,32 @@
     },
     mounted(){
       console.log("水质专题中")
-      console.log( map )
-      console.log( this.GLOBAL.map )
-      console.log( window.map )
-      console.log( baseMap  )
-      console.log( tdtURL )
-      console.log( ol )
+      console.log('获取地图全局变量')
+      console.log(this.$store.state.map)
 
 
 
     },
     watch: {
+      pjxmval() {
+        if (this.pointLayer) {
+          this.source = this.pointLayer.getSource()
+          this.source.clear();
+        }
+
+        },
+
+
+
+
     },
-    created() {
-      console.log(map)
-      console.log(ol)
+
+      created() {
 
 
 
-    }
+
+      },
 
   }
 </script>

@@ -647,9 +647,7 @@
             "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
             "tjsj":"201507-201508"
           }
-
           this.tableData=[]
-
           /*矿化度请求*/
         if(this.pjxmval=="khd") {
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
