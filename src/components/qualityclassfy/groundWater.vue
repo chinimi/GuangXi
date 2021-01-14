@@ -536,8 +536,7 @@
 </template>
 
 <script>
-  // 引入axios
-  import axios from 'axios'
+
   import  getWater from '../../api/index'
   export default {
       data() {
