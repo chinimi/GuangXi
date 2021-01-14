@@ -49,19 +49,14 @@
     var menulist =[
      /*一级菜单*/
      {
-       path:"baseWaterAsses",
+       // path:"baseWaterAsses",
        "authName": "水质基础评价",
        id:'szjcpkj',
-      /* children: [
-         { "authName": "二级菜单" ,  id:'1_0_0',},
-         {
-           "authName": "one chicken",
-           id:'1_0_0_0',
-           children: [
-             { "authName": '三级目录', id:'1_1_0_1',
-               children: [{ "authName": "三级目录" ,id:'1_1_0_1_0'}] }]
-         }
-       ]*/
+       path:'groundWater'
+       // children: [
+       //   { "authName": "二级菜单" ,  id:'1_0_0',},
+       //
+       // ]
      },
      {
        /*切换对应组件*/

@@ -100,9 +100,8 @@ import operationalDisplay from "../../components/operationdispaly/operationalDis
 
 
 export default {
-    name: 'Map',
+  name: 'Map',
   components:{
-
     indexlefttop,
     indexleftbottom,
     indexright,
@@ -236,6 +235,8 @@ export default {
     // 初始化定位
     let pos = [parseFloat(107.8), parseFloat(23.729)];
     pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
+
+
     map = new olMap({
       target:'map',
       layers: [
@@ -262,6 +263,8 @@ export default {
         projection: 'EPSG:3857'
       })
     });
+
+    window.map=map
 
 
   }

@@ -416,7 +416,7 @@
 
 
           <div  style="padding-left: 80px;margin-top:15px;">
-            <el-button>确定</el-button>
+            <el-button @click="drawPolygon">确定</el-button>
             <el-button>取消</el-button>
           </div>
 
@@ -532,15 +532,151 @@
     },
     methods: {
       showMidTab(ele){
-        console.log("显示详情")
-        console.log(ele)
-      }
+
+      },
+      drawPolygon(){
+        /*请求经纬度坐标点*/
+        var param={
+          "pageNum":"0",      // --当前页
+          "pageSize":"10",     //--一页显示数量
+          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+          "tjsj":"201507-201508"
+        }
+        /*矿化度请求*/
+          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+          /*http请求*/
+          this.$http.post(khdurl, JSON.stringify(param), {
+            emulateJSON: true,
+          }).then(function(res) {
+
+            let data=res.body.data.pageResultList
+            console.log(data)
+
+            let points=[]
+            for (let i=0;i<data.length;i++) {
+              let coord = data[i]
+              var point = new ol.Feature({
+                geometry: new ol.geom.Point([coord.lgtd, coord.lttd])
+              });//构点
+
+              points.push(point)
+              // console.log(points)
+              //实例化一个矢量图层Vector作为绘制层
+              var source = new ol.source.Vector({
+                features: points
+              });
+              //矢量图层
+             let positionLayer = new ol.layer.Vector({
+                zIndex: 10,
+                projection: 'EPSG:4326',
+                source: source,
+                style: new ol.style.Style({
+                  fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.1)'
+                  }),
+                  stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 10
+                  }),
+                  image: new ol.style.Circle({
+                    radius: 10,
+                    fill: new ol.style.Fill({
+                      color: '#ffcf43'
+                    })
+                  })
+                })
+              });
+
+              // console.log(source)
+              positionLayer.setSource(source);
+              map.addLayer(positionLayer);//添加上站点的图层
+
+
+
+
+
+
+            }
+
+          }).catch(function(res){
+
+
+          })
+
+
+
+
+        console.log(map)
+        this.createVectorLayer()
+
+
+      },
+      createVectorLayer(){
+        var coordinates = [[91.1865234375,40.80322265625],[91.494140625,36.05712890625],[98.0859375,40.58349609375],[91.1865234375,40.80322265625]]
+        //声明一个新的数组
+        var coordinatesPolygon = new Array();
+        //循环遍历将经纬度转到"EPSG:4326"投影坐标系下
+        for (var i = 0; i < coordinates.length; i++) {
+          var pointTransform = ol.proj.fromLonLat([coordinates[i][0], coordinates[i][1]], "EPSG:4326");
+          coordinatesPolygon.push(pointTransform);
+        }
+        //多边形此处注意一定要是[坐标数组]
+        var plygon = new ol.geom.Polygon([coordinatesPolygon])
+        var source = new ol.source.Vector();
+
+        console.log(plygon)
+        console.log(source)
+        //多边形要素类
+        var feature = new ol.Feature({
+          geometry: plygon,
+        });
+        source.addFeature(feature);
+        //矢量图层  vectorLayer
+        var vectorLayer = new ol.layer.Vector({
+          source: source,
+          zIndex:9999,
+          style: new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(200, 255, 255, 0.7)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: 'red',
+              width: 2
+            }),
+            image: new ol.style.Circle({
+              radius: 10,
+              fill: new ol.style.Fill({
+                color: '#ffcc33'
+              })
+            })
+          })
+        });
+        console.log(vectorLayer)
+        map.addLayer(vectorLayer) 
+      },
     },
     computed: {
     },
     mounted(){
+      console.log("水质专题中")
+      console.log( map )
+      console.log( this.GLOBAL.map )
+      console.log( window.map )
+      console.log( baseMap  )
+      console.log( tdtURL )
+      console.log( ol )
+
+
+
     },
     watch: {
+    },
+    created() {
+      console.log(map)
+      console.log(ol)
+
+
+
     }
 
   }

@@ -41,8 +41,7 @@
 
     },
     mounted(){
-    console.log("初始化显示map")
-    console.log(map)
+
     },
 
 
