@@ -154,7 +154,7 @@ export default {
           return respose.json();
         })
         .then(data => {
-          this.tableData = data.ResistanceLocalList;
+          this.tableData = data;
         });
     },
     //每页显示条数
