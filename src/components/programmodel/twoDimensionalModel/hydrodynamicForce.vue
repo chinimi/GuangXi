@@ -1,5 +1,6 @@
 <template>
-  <div id="hydrodynamicForce">
+<!--水动力主页面-->
+  <div id="hydrodynamicForces">
     <div class="singleli_title">
       <el-row>
         <el-col :span="8">
@@ -23,7 +24,7 @@
         <div class="container_table">
           <el-table
             :data="tableData"
-            style="width: 60%;background-color: transparent;margin-left: 13%;"
+            style="width:60%;background-color: transparent;margin-left: 13%;"
             height="400px;"
           >
             <el-table-column prop="date" label="河槽类型及情况">
@@ -112,35 +113,35 @@ export default {
 </script>
 
 <style>
-#hydrodynamicForce {
+#hydrodynamicForces {
   position: absolute;
   color: #fff;
   left: 170px;
   top: 10px;
   width: 1300px;
 }
-#hydrodynamicForce .container {
+#hydrodynamicForces .container {
   width: 100%;
   /* background: lightcoral; */
 }
-#hydrodynamicForce .singleli_title {
+#hydrodynamicForces .singleli_title {
   font-size: 13px;
   height: 35px;
   line-height: 35px;
   border-radius: 5px;
   font-weight: lighter;
-  margin-left: 15%;
+  margin-left: 13%;
   margin-top: 20px;
 }
 
-#hydrodynamicForce .singleli_title .sysfxTit {
+#hydrodynamicForces .singleli_title .sysfxTit {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
   /* text-align: right; */
   margin-right: 10px;
 }
-#hydrodynamicForce .el-input__inner {
+#hydrodynamicForces .el-input__inner {
   /* padding-left: 10px !important; */
   color: #058cd0;
   border: 1px solid #058cd0;
@@ -153,7 +154,7 @@ export default {
   height: 30px !important;
   /* width: 196px !important; */
 }
-#hydrodynamicForce .container_table .el-table .cell {
+#hydrodynamicForces .container_table .el-table .cell {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   white-space: normal;

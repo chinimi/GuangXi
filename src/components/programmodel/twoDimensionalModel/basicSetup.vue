@@ -1,4 +1,5 @@
 <template>
+<!--基本设置主页面-->
   <div id="basicSetup">
     <ul>
       <li class="left lefts">

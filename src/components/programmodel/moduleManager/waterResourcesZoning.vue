@@ -1,4 +1,5 @@
 <template>
+<!--水资源分区主页面-->
   <div id="administrativeDivisions">
     <ul>
       <li class="left lefts">
@@ -113,7 +114,7 @@
         </div>
       </li>
       <li class=" clear-fix left right">
-        <div>
+        <div style="margin: 1% 0px;">
           <el-button type="primary" size="small" plain>上传模板</el-button>
           <div style="margin-left: 11%;margin-top: -2%;">
           <el-checkbox-group v-model="checkList">

@@ -1,4 +1,5 @@
 <template>
+<!--模板管理主页面-->
   <div id="moduleManager">
     <div class="moduleManager_title">
       模板管理

@@ -1,4 +1,5 @@
 <template>
+<!--基本设置主组件-->
   <div id="basicSetup">
     <ul>
       <li class="left lefts">
@@ -11,7 +12,7 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-input v-model="input" placeholder="请输入内容"></el-input>
+                <el-input v-model="templateName" placeholder="模板1"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -25,7 +26,7 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-input v-model="input" placeholder="请输入内容"></el-input>
+                <el-input v-model="ScenarioName" placeholder="请输入内容"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -40,7 +41,7 @@
             <el-col :span="14" style="margin-left: -5%;">
               <div>
                 <el-date-picker
-                  v-model="value1"
+                  v-model="StartTime"
                   type="date"
                   placeholder="选择日期"
                 >
@@ -59,7 +60,7 @@
             <el-col :span="14" style="margin-left: -5%;">
               <div>
                 <el-date-picker
-                  v-model="value1"
+                  v-model="EndTime"
                   type="date"
                   placeholder="选择日期"
                 >
@@ -78,7 +79,7 @@
             <el-col :span="14" style="margin-left: -5%;">
               <div>
                 <el-input-number
-                  v-model="num"
+                  v-model="SimIntervalMinute"
                   controls-position="right"
                   @change="handleChange"
                   :min="1"
@@ -94,11 +95,11 @@
           type="textarea"
           :rows="2"
           placeholder="请输入内容"
-          v-model="textarea"
+          v-model="Description"
         >
         </el-input>
           <div style="margin: 10px;">
-          <el-button type="primary" size="small" plain>保存</el-button>
+          <el-button type="primary" size="small" plain @click="saveModel">保存</el-button>
           <el-button type="primary" size="small" plain>计算</el-button>
           <el-button type="primary" size="small" plain>查看结果</el-button>
         </div>
@@ -111,19 +112,69 @@ export default {
   components: {},
   data() {
     return {
-      num: "",
-      textarea:'',
-      input:'',
-      value1:'',
+      templateName:'',//模板名称
+      ScenarioName:'',//方案名称
+      StartTime:'',//开始时间
+      EndTime:'',//结束时间
+      SimIntervalMinute: '',//计算步长
+      Description:'',//方案描述
     };
   },
   methods: {
+    //获取基本信息
+    getModelManagerData(){
+        var url = modelURL + "/api/GXRCWQ/ModelManager/GetScenarioInfo?scenarioCode=DHJKTXRCFA"
+         fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+            this.templateName = data.templateName
+            this.ScenarioName = data.ScenarioName
+            this.StartTime = data.StartTime
+            this.EndTime = data.EndTime
+            this.SimIntervalMinute = data.SimIntervalMinute
+            this.Description = data.Description
+        });
+    },
+    //保存模板信息
+    saveModel(){
+      var _this = this
+       var url = modelURL + "/api/GXRCWQ/ModelManager/UpdateScenarioInfo"
+      $.ajax({
+        type: "post",
+        dataType: "json",
+        // contentType: "application/json",
+        url: url,
+        data: {
+            "ScenarioCode": "DHJKTXRCFA",
+            "ScenarioName": _this.templateName,
+            "StartTime": _this.StartTime,
+            "EndTime": _this.EndTime,
+            "SimIntervalMinute":_this.SimIntervalMinute,
+            "Description": _this.Description
+        },
+        success: function(data) {
+             if(data != false){
+                      _this.$message({
+                            message: '保存成功',
+                            type: 'success'
+                          });
+                  }else{
+                    _this.$message.error('保存失败');
+                  }
+        },
+        error: function(data) {}
+      });
+    },
     handleChange(){
 
     }
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    this.getModelManagerData()
+  },
   watch: {}
 };
 </script>
