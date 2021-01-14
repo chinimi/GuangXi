@@ -1,0 +1,1001 @@
+<template>
+    <div  id="groundWater">
+      <div class="left_menu">
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                评价标准：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="pjbzval">
+                  <el-option
+                    v-for="(item, index) in pjbzOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                评价项目：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="pjxmval">
+                  <el-option
+                    v-for="(item, index) in pjxmOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                取值方式：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="qzfsval">
+                  <el-option
+                    v-for="(item, index) in qzfsOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--水系参数-->
+        <div style="width: 100%;padding-left:20px;">
+          <!-- <el-checkbox-group v-model="pjbzval" @change="">
+             <el-checkbox v-for="item in curWaterSysOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>
+           </el-checkbox-group>-->
+
+          <el-radio-group  v-model="cursysval">
+            <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+              <el-radio :label="product.value"   >{{product.label}}</el-radio>
+            </el-col>
+          </el-radio-group>
+        </div>
+        <!--1级-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                一级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="primaryPartition">
+                  <el-option
+                    v-for="(item, index) in primaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--2级-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                二级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="secondaryPartition">
+                  <el-option
+                    v-for="(item, index) in secondaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--3级-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                三级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="tertiaryPartition">
+                  <el-option
+                    v-for="(item, index) in tertiaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--4级-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                四级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fourstagePartition">
+                  <el-option
+                    v-for="(item, index) in fourstagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--测站级别-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                测站级别：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fivestagePartition">
+                  <el-option
+                    v-for="(item, index) in fivestagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--测站名称-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                测站名称：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fivestagePartition">
+                  <el-option
+                    v-for="(item, index) in fivestagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--自定义-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                自定义：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="customdefine">
+                  <el-option
+                    v-for="(item, index) in customdefineList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div style="margin-left:20px;">
+          <!--时间段选择-->
+          <div >
+
+            <el-radio-group  v-model="selectTimeType">
+              <el-col :span="12" v-for="product in timequantumOption"   :key="product.value">
+                <el-radio :label="product.value"   >{{product.label}}</el-radio>
+              </el-col>
+            </el-radio-group>
+
+          </div>
+
+        </div>
+
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                评价步长：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="pjbcVal">
+                  <el-option
+                    v-for="(item, index) in pjbcOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div class="singleli_title" >
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                时间选择：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <el-date-picker
+                v-model="startTime"
+                format="yyyy-MM"
+                type="month"
+                align="right"
+                size="mini"
+                @change="getstartTime"
+                placeholder="选择日期时间">
+              </el-date-picker>
+            </el-col>
+          </el-row>
+        </div>
+        <!--时间序列-->
+        <div class="singleli_title" v-if="selectTimeType=='ordertime'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                截至时间：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <el-date-picker
+                v-model="endTime"
+                @change="getendTime"
+                format="yyyy-MM"
+                type="month"
+                align="right"
+                size="mini"
+                placeholder="选择日期时间">
+              </el-date-picker>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title" >
+          <el-row>
+            <el-col :span="20" style="text-align: center">
+              <el-button @click="queryTableData">确定</el-button>
+            </el-col>
+
+          </el-row>
+        </div>
+      </div>
+      <!--table表格-->
+      <div class="right_menu">
+         <!--水质基础评价-->
+        <el-table v-if="pjxmval=='szjcpj'"  border :data="tableData" height="480" style="background-color: transparent;">
+            <el-table-column
+              label="序号"
+              type="index"
+              width="50">
+            </el-table-column>
+            <el-table-column
+              prop="stcd"
+              label="测站编码">
+            </el-table-column>
+<!--            <el-table-column-->
+<!--              label="评价时间">-->
+<!--              <template slot-scope="scope">-->
+<!--                {{scope.row.wqWqsinfBDTO.mnag}}-->
+
+<!--              </template>-->
+<!--            </el-table-column>-->
+
+          <el-table-column
+            label="监测频次">
+            <template slot-scope="scope">
+              {{scope.row.mNFRQ}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="ASDR">
+            <template slot-scope="scope">
+              {{scope.row.aSDR}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="ASOT">
+            <template slot-scope="scope">
+              {{scope.row.asot}}
+
+            </template>
+          </el-table-column>
+<!--            <el-table-column-->
+
+<!--              label="评价时段">-->
+<!--              <template slot-scope="scope">-->
+<!--                {{scope.row.wqWqsinfBDTO.mnag}}-->
+
+<!--              </template>-->
+<!--            </el-table-column>-->
+            <el-table-column
+
+              label="水质类别">
+              <template slot-scope="scope">
+                {{scope.row.wQG}}
+
+              </template>
+            </el-table-column>
+
+            <el-table-column
+
+              label="超标项目与倍数">
+              <template slot-scope="scope">
+                {{scope.row.wQG}}
+
+              </template>
+            </el-table-column>
+
+          <el-table-column
+
+              label="测站备注">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.stlc}}
+
+            </template>
+            </el-table-column>
+
+          <el-table-column
+
+              label="WQEI">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.mnag}}
+
+            </template>
+            </el-table-column>
+
+           <el-table-column
+
+              label="总磷评价参照值">
+             <template slot-scope="scope">
+               {{scope.row.wqWqsinfBDTO.mnfrq}}
+
+             </template>
+            </el-table-column>
+
+          <el-table-column
+
+              label="总氮评价参照值">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.stgrd}}
+
+            </template>
+            </el-table-column>
+
+          <el-table-column
+            label="叶绿素">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.stwqt}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="高锰酸盐指数">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.mnag}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="透明度指数">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.atmn}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+              label="备注">
+              <template slot-scope="scope">
+                  {{scope.row.stlc}}
+
+              </template>
+            </el-table-column>
+
+          </el-table>
+
+        <!--总硬度-->
+        <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="480" style="background-color: transparent;">
+          <el-table-column
+            label="序号"
+            type="index"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            prop="stcd"
+            label="河流编码">
+          </el-table-column>
+          <el-table-column
+            prop="stnm"
+            label="河段名称">
+          </el-table-column>
+          <el-table-column
+            prop="stnm"
+            label="测站名称">
+          </el-table-column>
+          <el-table-column
+            prop="thrd"
+            label="总硬度指标">
+          </el-table-column>
+
+          <el-table-column
+            prop="thrdType"
+            label="级别">
+          </el-table-column>
+
+
+
+
+
+        </el-table>
+
+        <!--水化学类型-->
+        <el-table v-if="pjxmval=='shxlx'"  border :data="tableData" height="480" style="background-color: transparent;">
+
+        <el-table-column
+            label="序号"
+            type="index"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            prop="stcd"
+            label="河流编码">
+          </el-table-column>
+          <el-table-column
+            prop="stnm"
+            label="河段名称">
+          </el-table-column>
+          <el-table-column
+            prop="ca"
+            label="Ca2+">
+          </el-table-column>
+          <el-table-column
+            prop="mg"
+            label="Mg2+">
+          </el-table-column>
+          <el-table-column
+            prop="na"
+            label="Na+">
+          </el-table-column>
+          <el-table-column
+
+            label="HCO3-">
+
+            <template slot-scope="scope">
+              {{scope.row.hco3}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="SO42-">
+            <template slot-scope="scope">
+                {{scope.row.so4}}
+
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="cl"
+            label="Cl-">
+          </el-table-column>
+
+          <el-table-column
+            label="备注">
+            <template slot-scope="scope">
+              <!--  {{scope.row.time}}-->
+
+              备注
+            </template>
+          </el-table-column>
+
+        </el-table>
+
+        <!--地表天然水-->
+        <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="480" style="background-color: transparent;">
+          <el-table-column
+            label="序号"
+            type="index"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            prop="stcd"
+            label="河流编码">
+          </el-table-column>
+
+          <el-table-column
+            prop="stnm"
+            label="测站名称">
+          </el-table-column>
+          <el-table-column
+            prop="f"
+            label="氟">
+          </el-table-column>
+          <el-table-column
+            prop="ars"
+            label="砷">
+          </el-table-column>
+          <el-table-column
+            prop="mndg"
+            label="矿化物">
+          </el-table-column>
+
+          <el-table-column
+
+            label="氯化物">
+            <template slot-scope="scope">
+              {{scope.row.cl}}
+
+            </template>
+          </el-table-column>
+          <el-table-column
+
+            label="硫酸盐">
+            <template slot-scope="scope">
+                {{scope.row.so4}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="备注">
+            <template slot-scope="scope">
+              <!--  {{scope.row.time}}-->
+              备注
+            </template>
+          </el-table-column>
+
+        </el-table>
+
+        <!--分页-->
+        <div style="padding-top:30px;">
+          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
+          <el-pagination
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size=pageSize
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400"
+          >
+          </el-pagination>
+        </div>
+      </div>
+
+	</div>
+</template>
+
+<script>
+  import moment from 'moment'
+  import  getWater from '../../api/index'
+  export default {
+      data() {
+          return {
+
+            checkedCities: [],
+            checkedCities2: [],
+            currentPage:1,
+            currentPage1: 5,
+            currentPage2: 5,
+            currentPage3: 5,
+            currentPage4: 4,
+            primaryPartition: "",
+            primaryPartitionList: [],
+            secondaryPartition: "",
+            secondaryPartitionList: [],
+            tertiaryPartition: "",
+            tertiaryPartitionList: [],
+            fourstagePartition: "",
+            fourstagePartitionList: [],
+            fivestagePartition: "",
+            fivestagePartitionList: [],
+            tableData: [],
+            customdefine:'默认分组',
+            customdefineList:[],
+            cities:['流域水系', '水资源分区', '行政区划'],
+            cities2:['按单时间段评价', '按时间序列评价'],
+
+            pageSize:10,
+            /*评价标准*/
+            pjbzval:'GB3838-2002',
+            pjbzOption:[{
+              label:"全部",
+              value:'all',
+            }],
+            /*评价项目*/
+            pjxmval:'szjcpj',
+            pjxmOption:[{
+              label:"水质基础评价",
+              value:'szjcpj',
+            },{
+              label:"地表天然水",
+              value:'dbtrs',
+            }
+          ],
+            /*取值方式*/
+            qzfsval:'avg',
+            qzfsOption:[{
+              label:"平均值",
+              value:'avg',// min max avg
+            },{
+              label:"最大",
+              value:'max',// min max avg
+            },{
+              label:"最小",
+              value:'min',// min max avg
+            }],
+            /*当前水系*/
+            cursysval:'water2',
+            /*水系参数*/
+            curWaterSysOption:[{label:'流域水系',value:'water1'},{label:'水资源分区',value:'water2'},{label:'行政区划',value:'water3'}],
+            /*时间选择*/
+            selectTimeType:"singletime",
+            /*时间段选择*/
+            timequantumOption:[{
+              value:'singletime',
+              label:'按单时间段评价',
+            },{
+              value:'ordertime',
+              label:'按单时序列评价',
+
+            }],
+            /*评价步长*/
+            pjbcVal:'month',//评价步长
+            pjbcOption:[{value:'month',label:'月份'}],
+            /*初始时间*/
+            startTime:'2015-07',
+            /*截至时间*/
+            endTime:'2015-08',
+          }
+      },
+      created() {
+
+      },
+      computed: {
+
+      },
+      methods: {
+        getstartTime(date){
+          console.log(date)
+          let checkstartTime = moment(this.startTime).format('YYYYMM');
+          let checkendTime = moment(this.endTime).format('YYYYMM');
+
+          console.log(checkstartTime)
+          console.log(checkendTime)
+        },
+        getendTime(date){
+          console.log(date)
+          let checkstartTime = moment(this.startTime).format('YYYYMM');
+          let checkendTime = moment(this.endTime).format('YYYYMM');
+          console.log(checkstartTime)
+          console.log(checkendTime)
+        },
+
+
+
+        handleSizeChange(val) {
+          console.log(`每页 ${val} 条`);
+          this.queryTableData()
+        },
+        handleCurrentChange(val) {
+          console.log(`当前页: ${val}`);
+          console.log(val)
+
+          this.queryTableData()
+
+
+        },
+        queryTableData(){
+          /*时间选择*/
+         /* selectTimeType:"singletime",
+            /!*时间段选择*!/
+            timequantumOption:[{
+            value:'singletime',
+            label:'按单时间段评价',
+          },{
+            value:'ordertime',
+            label:'按单时序列评价',
+
+          }],*/
+
+         console.log(this.selectTimeType)
+          console.log(this.startTime)
+          console.log(this.endTime)
+
+        let checkstartTime = moment(this.startTime).format('YYYYMM');
+        let startyear = moment(this.startTime).format('YYYY');
+        let checkendTime = moment(this.endTime).format('YYYYMM');
+        let endyear = moment(this.endTime).format('YYYY');
+         console.log(checkstartTime)
+         console.log(startyear)
+         console.log(checkstartTime.substring(checkstartTime.length-2))
+          let startMonth=checkstartTime.substring(checkstartTime.length-2)
+         console.log(checkendTime)
+         console.log(endyear)
+          console.log(checkendTime.substring(checkendTime.length-2))
+          let endMonth=checkendTime.substring(checkendTime.length-2)
+
+          console.log(parseInt(endMonth)-parseInt(startMonth))
+
+
+
+          var str=""
+          var count=parseInt(endMonth)-parseInt(startMonth)
+          for(var i=parseInt(startMonth);i<count;i++)
+          {
+            var tmp=i+1;
+            tmp=tmp<10?String('0'+tmp):(tmp)
+            str=str+startyear+tmp+"-"
+
+          }
+          str=str+checkendTime
+          console.log(str)
+
+          let tjsj=null;
+          if(this.selectTimeType=="singletime"){
+            tjsj=checkstartTime
+
+
+          }else{
+            tjsj=str
+          }
+
+
+          var param=
+          {
+            "pageNum":this.currentPage,
+            "pageSize":this.pageSize,
+            "qzfs":this.qzfsval,// min max avg
+            "tjsj":tjsj
+          }
+          this.tableData=[]
+          /*矿化度请求*/
+          let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/base/listswmsar"
+          /*http请求*/
+          this.$http.post(url, JSON.stringify(param), {
+            emulateJSON: true,
+          }).then(function(res) {
+            // alert("chenggong")
+            console.log(res)
+
+            this.tableData=res.body.data.pageResultList
+          }).catch(function(res){
+
+
+          })
+
+        }
+      },
+      watch:{
+        pjxmval(newValue){
+
+          this.tableData=[]
+
+
+
+        }
+
+
+
+      },
+
+
+  }
+</script>
+
+<style scoped>
+  #groundWater{
+    margin:0;
+    padding:0;
+    background: #fff;
+  }
+  #groundWater .left_menu{
+    width: 20%;
+    height: calc( 100vh - 80px);
+    background: #031823;
+    /*background: rgba(21, 37, 63,1);*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-right: #fff dashed 2px;
+    border-left: #fff solid 1px;
+  }
+  #groundWater  .right_menu{
+    width: 80%;
+    height: calc( 100vh - 80px);
+    padding-top: 50px;
+    background: #031823;
+    /*background: rgba(21, 37, 63,1);*/
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  #groundWater .singleli_title {
+    font-size: 13px;
+    height: 35px;
+    line-height: 50px;
+    border-radius: 5px;
+    font-weight: lighter;
+    margin-left: 3%;
+    margin-top: 20px;
+  }
+
+  #groundWater .singleli_title .sysfxTit {
+    color: white;
+    letter-spacing: 1px;
+    font-size: 16px;
+    /* text-align: right; */
+    margin-right: 10px;
+  }
+  #groundWater >>>.el-input__inner {
+    padding-left: 24px !important;
+    color: #058cd0;
+    border: 1px solid #058cd0;
+    background: #031823;
+    /*background: rgba(21,37,63,0.86);*/
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    font-size: 16px !important;
+    /* border-radius: 10px !important; */
+    /* border: 0px !important; */
+    height: 30px !important;
+     /*width: 190px !important;*/
+  }
+  #groundWater >>>.el-pagination__total{
+    color:#ffffff !important;
+  }
+  #groundWater >>>.el-pagination__jump{
+    color:#ffffff !important;
+  }
+  #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
+    color: #ffff;
+  }
+
+  >>>.el-main{
+    padding:0;
+  }
+  >>>.el-input__inner {
+    padding-left: 30px;
+    color: #058cd0;
+    border: 1px solid #058cd0;
+    background: #031823;
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    font-size: 14px;
+    height: 30px ;
+
+  }
+  >>>.el-pagination__total{
+    color:#ffffff !important;
+  }
+  >>>.el-pagination__jump{
+    color:#ffffff !important;
+  }
+  >>>.el-pagination .el-select .el-input .el-input__inner{
+    color: #ffff;
+
+  }
+
+  >>>.el-button{
+    padding: 5px 15px !important;
+  }
+  >>>.el-button:active {
+    color: #fff;
+    border-color: #3a8ee6;
+    outline: 0;
+    background: rgba(21,37,63,0.86);
+  }
+  >>>.el-button:focus, .el-button:hover {
+    color: #fff;
+    border-color: #c6e2ff;
+    background-color: rgba(21,37,63,0.86);
+  }
+
+  >>>.el-radio-group{
+    width:100%;
+  }
+  >>>.el-radio {
+    color: #fff;
+  }
+  >>>.el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width:86%;
+  }
+  >>>.el-select-dropdown__item.selected{
+    padding-left:20px!important;
+  }
+
+  >>>.el-radio__label {
+    font-size: 14px;
+    padding-left: 4px;
+  }
+  /* 滚动样式修改*/
+  >>> ::-webkit-scrollbar {
+    /*background-color: transparent !important;*/
+    /*height: 0 !important;*/
+    /*width: 0 !important;*/
+  }
+
+  >>> ::-webkit-scrollbar-thumb {
+    /*background-color: transparent !important;*/
+  }
+
+  /* 修改边框颜色*/
+  >>> ::-webkit-scrollbar-thumb {
+    /*background-color: transparent !important;*/
+  }
+  >>>.el-container{
+    height: 100%;
+  }
+ >>>.el-menu-item:focus, .el-menu-item:hover{
+   background: red!important;
+   color:#fff!important;
+
+  }
+
+</style>
