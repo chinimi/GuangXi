@@ -98,6 +98,7 @@ import qualityPrediction from "../../components/qualitypredict/qualityPrediction
 import bearingCapacity from "../../components/bearcapacity/bearingCapacity"
 import operationalDisplay from "../../components/operationdispaly/operationalDisplay"
 
+
 export default {
     name: 'Map',
     components:{
@@ -177,8 +178,10 @@ export default {
               value: 'operationalDisplay',
               comp: 'operationalDisplay'
             }
+
           ],
           toollist:[
+
             {
               icon:"magnifying",
               name: 'magnifying',
@@ -209,37 +212,45 @@ export default {
               value: 'set',
               // comp: '4'
             }
+
+
+
           ]
+
+
         }
     },
     mounted(){
     // 初始化定位
-      let pos = [parseFloat(120.8), parseFloat(23.729)];
-      pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
-      map = new olMap({
+    let pos = [parseFloat(107.8), parseFloat(23.729)];
+    pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
+    map = new ol.Map({
       target:'map',
       layers: [
-        new ollayerTile({
-          source: new OSM()
-
+        new ol.layer.Tile({
+          // source: new OSM()
+          source: new ol.source.OSM()
         }),
-        new ollayerTile({
-          source:new TileArcgisRest({
-            url:baseMap
-          })
-        })
+        // new ol.layer.Image({
+        //   source: new ImageArcGISRest({
+        //
+        //     url: baseMap,
+        //   }),
+
+        // new ollayerTile({
+        //   source:new TileArcgisRest({
+        //     url:baseMap
+        //   })
+        // })
       ],
-      view: new olView({
-        center: pos,
+      view: new ol.View({
+        center: ol.proj.fromLonLat([107.8, 23.729]),
         minZoom:5,
         maxZoom: 20,
         zoom: 7.6,
-        // projection:'EPSG:4326'
-
       })
     });
-
-     /*   var labelCoords_org=[107.8, 23.729];
+   /*   var labelCoords_org=[107.8, 23.729];
       var labelCoords=ol.proj.transform(labelCoords_org, "EPSG:4326", "EPSG:3857");
 
       var feature = new ol.Feature({
@@ -268,9 +279,19 @@ export default {
       });
       map.addLayer(vectorLayer);*/
 
-     /*触发全局变量*/
-     // this.$store.dispatch('SaveMap',map) //1：存储全局变量
-
+      /*触发全局变量*/
+      // this.$store.dispatch('SaveMap',map) //1：存储全局变量
+      // console.log("创建的map")
+      // console.log(this.map)
+      // map.on('click', function (e) {
+      //   alert('点击地图')
+      //   console.log(e)
+      //
+      //
+      // })
+      // this.drawPoint()
+      // this.createVectorLayer()
+      // setTimeout(function(){this.createVectorLayer()},3000)
 
   },
 
@@ -278,6 +299,113 @@ export default {
       execute(currentTool){
         console.log("执行工具"+currentTool)
       },
+    /*  createVectorLayer(){
+        var coordinates = [[91.1865234375,40.80322265625],[91.494140625,36.05712890625],[98.0859375,40.58349609375],[91.1865234375,40.80322265625]]
+        //声明一个新的数组
+        var coordinatesPolygon = new Array();
+        //循环遍历将经纬度转到"EPSG:4326"投影坐标系下
+        for (var i = 0; i < coordinates.length; i++) {
+          var pointTransform = ol.proj.fromLonLat([coordinates[i][0], coordinates[i][1]], "EPSG:3857");
+          coordinatesPolygon.push(pointTransform);
+        }
+        //多边形此处注意一定要是[坐标数组]
+        var plygon = new ol.geom.Polygon([coordinatesPolygon])
+        var source = new ol.source.Vector();
+
+        console.log(plygon)
+        console.log(source)
+        //多边形要素类
+        var feature = new ol.Feature({
+          geometry: plygon,
+        });
+        source.addFeature(feature);
+        //矢量图层  vectorLayer
+        var vectorLayer = new ol.layer.Vector({
+          source: source,
+          zIndex:9999,
+          style: new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(200, 255, 255, 0.7)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: 'red',
+              width: 2
+            }),
+            image: new ol.style.Circle({
+              radius: 10,
+              fill: new ol.style.Fill({
+                color: '#ffcc33'
+              })
+            })
+          })
+        });
+        console.log(vectorLayer)
+        this.map.addLayer(vectorLayer)
+      },*/
+    /*  drawPoint(){
+        var  that=this
+        /!*请求经纬度坐标点*!/
+        var param={
+          "pageNum":"0",      // --当前页
+          "pageSize":"10",     //--一页显示数量
+          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+          "tjsj":"201507-201508"
+        }
+        /!*矿化度请求*!/
+        let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+        /!*http请求*!/
+        this.$http.post(khdurl, JSON.stringify(param), {
+          emulateJSON: true,
+        }).then(function(res) {
+          // alert("获取信息")
+          let data=res.body.data.pageResultList
+          let points=[]
+          for (let i=0;i<data.length;i++) {
+            let coord = data[i]
+            var pointTransform = ol.proj.fromLonLat([coord.lgtd, coord.lttd], "EPSG:3857");
+            console.log(pointTransform)
+            var point = new ol.Feature({
+              // geometry: new ol.geom.Point([coord.lgtd, coord.lttd])
+              geometry: new ol.geom.Point([pointTransform.lgtd, pointTransform.lttd])
+            });//构点
+              points.push(point)
+            }
+            console.log(points)
+            //实例化一个矢量图层Vector作为绘制层
+            var source = new ol.source.Vector({
+              features: points
+            });
+            //矢量图层
+            let positionLayer = new ol.layer.Vector({
+              zIndex:9999,
+              projection: 'EPSG:3857',
+              source: source,
+              style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }),
+                stroke: new ol.style.Stroke({
+                  color: 'red',
+                  width: 10
+                }),
+                image: new ol.style.Circle({
+                  radius: 10,
+                  fill: new ol.style.Fill({
+                    color: '#ffcf43'
+                  })
+                })
+              })
+            });
+            positionLayer.setSource(source);
+
+            console.log(that.map)
+            that.map.addLayer(positionLayer);//添加上站点的图层
+        }).catch(function(res){
+
+        })
+      },*/
+
+
 
     },
 }
