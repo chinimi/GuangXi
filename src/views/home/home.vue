@@ -220,7 +220,7 @@ export default {
 
         }
     },
-    
+
     mounted(){
     // 初始化定位
     let pos = [107.8,23.729];
@@ -388,6 +388,7 @@ export default {
 }
 
 .nav_header{
+  z-index:999;
   position: relative;
   width: 100%;
   height: 80px;
