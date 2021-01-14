@@ -1,4 +1,5 @@
 <template>
+<!--二维模型主页面-->
   <div id="twoDimensionalModel">
         <ul class="programModel_title">
           <li
@@ -83,7 +84,6 @@ import programmePreparation from './programmePreparation.vue';
     position: absolute;
     top: 150px;
     left: 265px;
-    /* background: rgba(21, 37, 63, 0.86); */
     background: #031823;
     border-radius: 5px;
     z-index: 9;

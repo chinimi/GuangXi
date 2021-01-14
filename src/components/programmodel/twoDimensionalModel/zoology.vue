@@ -1,4 +1,5 @@
 <template>
+<!--生态主页面-->
   <div id="zoology">
     <ul style="width:1336px">
       <li class="table">

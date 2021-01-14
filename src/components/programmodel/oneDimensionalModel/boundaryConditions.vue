@@ -1,4 +1,5 @@
 <template>
+<!--边界条件主组件-->
   <div
     id="boundaryConditions"
     style="position: relative"
@@ -117,7 +118,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  color: #ffffff;
+  color: #01bdf5 ;
 }
 .boundaryConditions_top {
   position: relative;
@@ -132,6 +133,8 @@ export default {
   height: 50px;
   box-sizing: border-box;
   text-align: right;
+  right: 10px;
+  top: 10px;
 }
 .data_left {
   position: relative;
@@ -145,7 +148,7 @@ export default {
   position: relative;
   width: 80%;
   float: left;
-  background: #6c7874;
+  /* background: #6c7874; */
   height: 100%;
 }
 .data_info {
@@ -172,7 +175,7 @@ export default {
 .info {
   height: 40px;
   line-height: 40px;
-  color: #ffffff;
+  color: #01bdf5 ;
 }
 .info > ul {
   width: 100%;
@@ -188,10 +191,11 @@ export default {
   float: left;
 }
 .echarts {
-  position: relative;
-  width: 60%;
-  height: 100%;
-  float: left;
+    position: relative;
+    width: 59%;
+    height: 100%;
+    float: left;
+    border: 1px solid #fff;
 }
 
 .table {
@@ -208,7 +212,7 @@ td {
   width: 100%;
   position: relative;
   border-collapse: collapse;
-  border: 1px solid black;
+  border: 1px solid #fff;
   height: 90%;
 }
 th,
@@ -220,7 +224,8 @@ td {
   width: 100%;
   height: 10%;
   float: right;
-  bottom: 0;
+  /* bottom: 0; */
+  top:10px;
   /* right: 30px; */
 }
 button{

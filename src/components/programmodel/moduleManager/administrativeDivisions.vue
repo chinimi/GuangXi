@@ -1,4 +1,5 @@
 <template>
+<!--行政分区主页面-->
   <div id="administrativeDivisions">
     <ul>
       <li class="left lefts">

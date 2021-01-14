@@ -1,4 +1,5 @@
 <template>
+<!--对流扩散主组件-->
   <div id="convectiveDiffusion">
     <ul>
       <li class="container">
@@ -13,7 +14,7 @@
           <div>
             <el-input
               style="width:196px"
-              v-model="input"
+              v-model="DispersionFactor"
               placeholder="请输入内容"
             ></el-input>
           </div>
@@ -31,7 +32,7 @@
           <div>
             <el-input
               style="width:196px"
-              v-model="input"
+              v-model="DecayByComponentList"
               placeholder="请输入内容"
             ></el-input>
           </div>
@@ -43,17 +44,28 @@
             border
             :data="tableData"
             style="background-color: transparent; height: 350px;"
+            :cell-class-name="getRowColumn"  @cell-click="handleCellClick"
           >
             <el-table-column
-              prop="name"
+              prop="ComponentName"
               label="组分"
               align="center"
-            ></el-table-column>
+            >
+                <template slot-scope="scope">
+                <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.ComponentName" @blur="inputBlur"></el-input>
+                <span v-else>{{ scope.row.ComponentName }}</span>
+              </template>
+              </el-table-column>
             <el-table-column
-              prop="code"
+              prop="DecayValue"
               label="降解系数"
               align="center"
-            ></el-table-column>
+            >
+               <template slot-scope="scope">
+                <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.DecayValue" @blur="inputBlur"></el-input>
+                <span v-else>{{ scope.row.DecayValue }}</span>
+              </template>
+            </el-table-column>
           </el-table>
         </div>
       </li>
@@ -65,7 +77,7 @@
          图片，降解系数推荐
        </div>
         <div style="position: absolute;top: 465px;right: 102px;">
-          <el-button type="primary" size="small" plain>保存</el-button>
+          <el-button type="primary" size="small" plain @click="saveClick">保存</el-button>
           <el-button type="primary" size="small" plain>计算</el-button>
           <el-button type="primary" size="small" plain>查看结果</el-button>
         </div>
@@ -78,70 +90,85 @@
 export default {
   data() {
     return {
-      input: "",
-      tableData: [
-        {
-          name: "COD",
-          code: "0",
-        },
-        {
-          name: "NH3H",
-          code: "0",
-        },
-        {
-          name: "TH",
-          code: "0",
-        }
-      ],
-      tableData1: [
-        {
-          date: "第一类 小河（汛期最大水面宽度30m）",
-          name: "",
-          address: "",
-          max: ""
-        },
-        {
-          date: "1、平原河流",
-          name: "",
-          address: "",
-          max: ""
-        },
-        {
-          date: "（1）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（2）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（3）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（4）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（5）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        }
-      ]
+      DispersionFactor: '',
+      DecayByComponentList:'',
+      tabRowIndex: null, //单元格横坐标
+      tabColumnIndex: null, //单元格纵坐标
+      tableData: [],
+      roughnessTable: [],
+      tableValue:[],
     };
   },
+  mounted(){
+     this.getTableData();
+  },
   methods: {
-    display(value) {
-      console.log(value);
+    //获取表格数据
+    getTableData() {
+      var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetDispersionAndDecayInfo?scenarioCode=DHJKTXRCFA";
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          this.tableData = data.DecayByComponentList;
+          this.DispersionFactor = data.DispersionFactor;
+        });
+    },
+   //点击单元格得到横纵坐标
+    handleCellClick(row, column, event, cell) {
+      this.tabRowIndex = row.index;
+      this.tabColumnIndex = column.index;
+      this.tableValue.push(row);
+    },
+    //数据中没有横纵坐标需要加上进行下一步判断
+    getRowColumn({row, column, rowIndex, columnIndex}) {
+       row.index = rowIndex;
+       column.index = columnIndex;
+    },
+    //鼠标失去焦点事件
+    inputBlur() {
+      this.tabRowIndex = null;
+      this.tabColumnIndex = "";
+    },
+    //保存
+    saveClick() {
+      //使用some方法，用原来的值与现在的做对比，如果原来的与现在的相等，就满足条件
+      var arrList = [];
+      this.tableData.map(e =>{
+       var flag = this.tableValue.some(el =>{
+           if(e === el || JSON.stringify(e) === JSON.stringify(el)){
+             return arrList.push(e)
+           }
+        })
+      })
+        var testdata={
+              "ScenarioCode": "DHJKTXRCFA",
+              "DispersionFactor": this.DispersionFactor,
+              "DecayByComponentList": arrList
+          }
+      var url = modelURL + "/api/GXRCWQ/ModelManager/UpdateDispersionAndDecayInfo";
+      var _this = this
+        $.ajax({
+                type: "post",
+                dataType: "json",
+                headers: {'Content-Type':'application/json'},
+                url:url,
+                data:JSON.stringify(testdata),
+                success: function(data) {
+                  if(data != false){
+                      _this.$message({
+                            message: '保存成功',
+                            type: 'success'
+                          });
+                  }else{
+                    _this.$message.error('保存失败');
+                  }
+                },
+                error: function(data) {console.log("error"+data)}
+           });
     }
   }
 };
@@ -193,7 +220,7 @@ export default {
 }
 #convectiveDiffusion .image{
       width: 100%;
-    height: 200px;
+    height: 211px;
     border: 1px solid #058cd0;
     border-radius: 5px;
     margin-bottom: 5px;

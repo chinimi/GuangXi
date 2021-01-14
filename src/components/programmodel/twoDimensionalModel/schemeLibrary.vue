@@ -1,4 +1,5 @@
 <template>
+<!--方案库主页面-->
   <div id="schemeLibrary">
     <ul>
       <li class="left lefts">

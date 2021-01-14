@@ -1,4 +1,5 @@
 <template>
+<!--对流扩散主页面-->
   <div id="convectiveDiffusion">
     <ul>
       <li class="container">
@@ -193,7 +194,7 @@ export default {
 }
 #convectiveDiffusion .image{
       width: 100%;
-    height: 200px;
+    height: 211px;
     border: 1px solid #058cd0;
     border-radius: 5px;
     margin-bottom: 5px;
