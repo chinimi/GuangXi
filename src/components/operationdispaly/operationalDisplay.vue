@@ -560,18 +560,14 @@
             emulateJSON: true,
           }).then(function(res) {
             alert('矿化度')
-
             let data=res.body.data.pageResultList
             let points=[]
             console.log(data)
-
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
-
-              var labelCoords = transform([parseFloat(coord.lgtd), parseFloat(coord.lttd)], "EPSG:4326", "EPSG:3857");
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
-                // geometry: new ol.geom.Point([coord.lgtd, coord.lttd])
               });//构点
               points.push(point)
             }
@@ -590,7 +586,7 @@
                   //矢量图层
               that.pointLayer=new ol.layer.Vector({
                 zIndex: 10,
-                // projection: 'EPSG:4326',
+                projection: 'EPSG:4326',
                 source:source,
                 style: new ol.style.Style({
                   fill: new ol.style.Fill({
@@ -637,7 +633,7 @@
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
 
-              var labelCoords = transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
@@ -656,7 +652,7 @@
               //矢量图层
               that.pointLayer=new ol.layer.Vector({
                 zIndex: 10,
-                // projection: 'EPSG:4326',
+                projection: 'EPSG:4326',
                 source:source,
                 style: new ol.style.Style({
                   fill: new ol.style.Fill({
@@ -710,7 +706,6 @@
 
               var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
               var point = new ol.Feature({
-                // geometry: new ol.geom.Point(labelCoords)
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
               points.push(point)
@@ -728,7 +723,7 @@
               //矢量图层
               that.pointLayer=new ol.layer.Vector({
                 zIndex: 10,
-                // projection: 'EPSG:4326',
+                projection: 'EPSG:4326',
                 source:source,
                 style: new ol.style.Style({
                   fill: new ol.style.Fill({
@@ -798,7 +793,7 @@
               //矢量图层
               that.pointLayer=new ol.layer.Vector({
                 zIndex: 10,
-                // projection: 'EPSG:4326',
+                projection: 'EPSG:4326',
                 source:source,
                 style: new ol.style.Style({
                   fill: new ol.style.Fill({
