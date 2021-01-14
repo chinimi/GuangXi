@@ -889,6 +889,17 @@
 
 
       drawPoint(){//绘制点要素图层
+        /*if(this.selectTimeType=="singletime"){
+          if(this.startTime ){
+            this.$message('请选择时间参数');
+            return
+          }
+        }else{
+          if(this.startTime||this.endTime){
+            this.$message('请选择时间参数');
+            return
+          }
+        }*/
         let checkstartTime = moment(this.startTime).format('YYYYMM');
         let startyear = moment(this.startTime).format('YYYY');
         let checkendTime = moment(this.endTime).format('YYYYMM');
