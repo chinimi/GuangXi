@@ -3,7 +3,7 @@
   <div  id="waterQuality" >
     <!--水质评价质量监测-->
       <!--左侧递归标题目录树-->
-    <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,1);">
+    <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,1);padding-top: 25px;">
       <el-menu
           :router="true"
           class="el-menu-vertical-demo"
@@ -52,11 +52,11 @@
        // path:"baseWaterAsses",
        "authName": "水质基础评价",
        id:'szjcpkj',
-       path:'groundWater'
-       // children: [
-       //   { "authName": "二级菜单" ,  id:'1_0_0',},
-       //
-       // ]
+       path:'szjcpj',
+       children: [
+         { "authName": "水质基础评价" ,com:'generalwaterevaluate', id:'generalwaterevaluate', path:'generalwaterevaluate'},
+
+       ]
      },
      {
        /*切换对应组件*/

@@ -19,24 +19,24 @@
         </el-row>
 
         <el-row class="first_line">
-          <el-col :span="12">河流（条）</el-col>
-          <el-col  :span="12">河段（条）</el-col>
+          <el-col :span="12">湖泊（个）</el-col>
+          <el-col  :span="12">水库（座）</el-col>
         </el-row>
         <el-row  class="second_line">
 
-          <el-col :span="12">18936</el-col>
-          <el-col :span="12">55967</el-col>
+          <el-col :span="12">34</el-col>
+          <el-col :span="12">4922</el-col>
 
         </el-row>
 
         <el-row class="first_line">
-          <el-col :span="12">河流（条）</el-col>
-          <el-col  :span="12">河段（条）</el-col>
+          <el-col :span="12">总河（湖）长数（人）</el-col>
+          <el-col  :span="12">河（湖）长数（人）</el-col>
         </el-row>
         <el-row  class="second_line">
 
-          <el-col :span="12">18936</el-col>
-          <el-col :span="12">55967</el-col>
+          <el-col :span="12">2650</el-col>
+          <el-col :span="12">23799</el-col>
 
         </el-row>
 

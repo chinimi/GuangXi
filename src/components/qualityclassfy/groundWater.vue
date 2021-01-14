@@ -522,9 +522,9 @@
             background
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage4"
+            :current-page="currentPage"
             :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
+            :page-size=pageSize
             layout="total, sizes, prev, pager, next, jumper"
             :total="400"
           >
@@ -537,7 +537,9 @@
 
 <script>
 
+
   import  getWater from '../../api/index'
+  import moment from "moment";
   export default {
       data() {
           return {
@@ -555,7 +557,8 @@
             }],
             checkedCities: [],
             checkedCities2: [],
-
+            pageSize:10,
+            currentPage:0,
             currentPage1: 5,
             currentPage2: 5,
             currentPage3: 5,
@@ -598,10 +601,16 @@
             }
           ],
             /*取值方式*/
-            qzfsval:'average',
+            qzfsval:'avg',
             qzfsOption:[{
               label:"平均值",
-              value:'average',
+              value:'avg',
+            },{
+              label:"最小值",
+              value:'min',
+            },{
+              label:"最大值",
+              value:'max',
             }],
             /*当前水系*/
             cursysval:'water1',
@@ -619,12 +628,12 @@
 
             }],
             /*评价步长*/
-            pjbcVal:'',//评价步长
+            pjbcVal:'month',//评价步长
             pjbcOption:[{value:'month',label:'月份'}],
             /*初始时间*/
-            startTime:'',
+            startTime:'2015-07',
             /*截至时间*/
-            endTime:'',
+            endTime:'2015-08',
           }
       },
       created() {
@@ -641,12 +650,68 @@
           console.log(`当前页: ${val}`);
         },
         queryTableData(){
-          var param={
-            "pageNum":"0",      // --当前页
-            "pageSize":"10",     //--一页显示数量
-            "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-            "tjsj":"201507-201508"
+
+          let checkstartTime = moment(this.startTime).format('YYYYMM');
+          let startyear = moment(this.startTime).format('YYYY');
+          let checkendTime = moment(this.endTime).format('YYYYMM');
+          let endyear = moment(this.endTime).format('YYYY');
+          // console.log(checkstartTime)
+          // console.log(startyear)
+          // console.log(checkstartTime.substring(checkstartTime.length-2))
+          let startMonth=checkstartTime.substring(checkstartTime.length-2)
+          // console.log(checkendTime)
+          // console.log(endyear)
+          // console.log(checkendTime.substring(checkendTime.length-2))
+          let endMonth=checkendTime.substring(checkendTime.length-2)
+
+          // console.log(parseInt(endMonth)-parseInt(startMonth))
+
+          console.log(parseInt(startMonth))
+
+
+          var str=""
+          var count=parseInt(endMonth)-parseInt(startMonth)
+
+          if (count-1>0){
+            for(var i=parseInt(startMonth)-1;i<count;i++)
+            {
+              var tmp=i+1;
+              tmp=tmp<10?String('0'+tmp):(tmp)
+              str=str+startyear+tmp+"-"
+
+            }
+          }else{
+            str=str+checkstartTime+'-'
           }
+
+          str=str+checkendTime
+          console.log(str)
+
+          let tjsj=null;
+          if(this.selectTimeType=="singletime"){
+            tjsj=checkstartTime
+
+
+          }else{
+            tjsj=str
+          }
+
+
+          /*1:获取参数*/
+          /*请求经纬度坐标点*/
+          var param=
+            {
+              "pageNum":this.currentPage,
+              "pageSize":this.pageSize,
+              "qzfs":this.qzfsval,// min max avg
+              "tjsj":tjsj
+            }
+          // var param={
+          //   "pageNum":"0",      // --当前页
+          //   "pageSize":"10",     //--一页显示数量
+          //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+          //   "tjsj":"201507-201508"
+          // }
           this.tableData=[]
           /*矿化度请求*/
         if(this.pjxmval=="khd") {
@@ -789,7 +854,7 @@
     margin-right: 10px;
   }
   #groundWater >>>.el-input__inner {
-    padding-left: 10px !important;
+    padding-left: 23px !important;
     color: #058cd0;
     border: 1px solid #058cd0;
     background: #031823;

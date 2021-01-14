@@ -433,6 +433,7 @@
 </template>
 <script>
 
+  import moment from 'moment'
 
   export default {
     components:{
@@ -478,10 +479,16 @@
           value:'dbtrs',
         }],
         /*取值方式*/
-        qzfsval:'average',
+        qzfsval:'avg',
         qzfsOption:[{
           label:"平均值",
-          value:'average',
+          value:'avg',
+        },{
+          label:"最小值",
+          value:'min',
+        },{
+          label:"最大值",
+          value:'max',
         }],
         /*当前水系*/
         cursysval:'water1',
@@ -498,12 +505,12 @@
           label:'按单时序列评价',
         }],
         /*评价步长*/
-        pjbcVal:'',//评价步长
+        pjbcVal:'month',//评价步长
         pjbcOption:[{value:'month',label:'月份'}],
         /*初始时间*/
-        startTime:'',
+        startTime:'2015-07',
         /*截至时间*/
-        endTime:'',
+        endTime:'2015-08',
         curli:'4',
 
         subjectProducts:[
@@ -559,7 +566,7 @@
           this.$http.post(khdurl, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function(res) {
-            alert('矿化度')
+            // alert('矿化度')
             let data=res.body.data.pageResultList
             let points=[]
             console.log(data)
@@ -606,7 +613,7 @@
               });
 
               map.addLayer(that.pointLayer);//添加上站点的图层
-            
+
 
             // }
 
@@ -623,7 +630,7 @@
           this.$http.post(chemistryurl, JSON.stringify( param), {
             emulateJSON: true,
           }).then(function (res) {
-            alert('水化学类型')
+            // alert('水化学类型')
 
             let data=res.body.data.pageResultList
             console.log(data)
@@ -694,7 +701,7 @@
           this.$http.post(zydurl, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function (res) {
-            alert('总硬度')
+            // alert('总硬度')
 
             let data=res.body.data.pageResultList
             console.log(data)
@@ -764,7 +771,7 @@
             emulateJSON: true,
           }).then(function (res) {
 
-            alert('地表天然水')
+            // alert('地表天然水')
             let data=res.body.data.pageResultList
             console.log(data)
 
@@ -882,14 +889,55 @@
 
 
       drawPoint(){//绘制点要素图层
+        let checkstartTime = moment(this.startTime).format('YYYYMM');
+        let startyear = moment(this.startTime).format('YYYY');
+        let checkendTime = moment(this.endTime).format('YYYYMM');
+        let endyear = moment(this.endTime).format('YYYY');
+        // console.log(checkstartTime)
+        // console.log(startyear)
+        // console.log(checkstartTime.substring(checkstartTime.length-2))
+        let startMonth=checkstartTime.substring(checkstartTime.length-2)
+        // console.log(checkendTime)
+        // console.log(endyear)
+        // console.log(checkendTime.substring(checkendTime.length-2))
+        let endMonth=checkendTime.substring(checkendTime.length-2)
+
+        // console.log(parseInt(endMonth)-parseInt(startMonth))
+
+        console.log(parseInt(startMonth))
+
+
+        var str=""
+        var count=parseInt(endMonth)-parseInt(startMonth)
+        for(var i=parseInt(startMonth)-1;i<count;i++)
+        {
+          var tmp=i+1;
+          tmp=tmp<10?String('0'+tmp):(tmp)
+          str=str+startyear+tmp+"-"
+
+        }
+        str=str+checkendTime
+        console.log(str)
+
+        let tjsj=null;
+        if(this.selectTimeType=="singletime"){
+          tjsj=checkstartTime
+
+
+        }else{
+          tjsj=str
+        }
+
+
         /*1:获取参数*/
         /*请求经纬度坐标点*/
-        var param={
-          "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
-          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201507-201508"
-        }
+        var param=
+          {
+            "pageNum":1,
+            "pageSize":10,
+            "qzfs":this.qzfsval,// min max avg
+            "tjsj":tjsj
+          }
 
         /*2：a:判断是否有图层，有图层，清空source  b:没有图层，创建一个新的图层*/
 
@@ -1170,7 +1218,7 @@
       click(){
         /*点击地图*/
         map.on('click', function (e) {
-          alert('点击地图')
+          // alert('点击地图')
           console.log(e)
 
 

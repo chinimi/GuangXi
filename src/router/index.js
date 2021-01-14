@@ -8,6 +8,9 @@ import groundWater from '../components/qualityclassfy/groundWater.vue'
 import changeWater from '../components/qualityclassfy/changeWater.vue'
 import drinkWater from '../components/qualityclassfy/drinkWater.vue'
 import environWater from '../components/qualityclassfy/environWater.vue'
+/*水质基础评价*/
+import generalwaterevaluate from '../components/qualityclassfy/generalwaterevaluate.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -50,6 +53,13 @@ export default new Router({
           path: '/environWater',
           name: 'environWater',
           component:environWater,
+
+
+        },
+        {//水质基础评价
+          path: '/generalwaterevaluate',
+          name: 'generalwaterevaluate',
+          component:generalwaterevaluate,
 
 
         },
