@@ -606,7 +606,7 @@
               });
 
               map.addLayer(that.pointLayer);//添加上站点的图层
-
+            
 
             // }
 

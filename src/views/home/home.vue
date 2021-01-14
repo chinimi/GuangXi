@@ -220,9 +220,10 @@ export default {
 
         }
     },
+    
     mounted(){
     // 初始化定位
-    let pos = [parseFloat(107.8), parseFloat(23.729)];
+    let pos = [107.8,23.729];
     pos= transform(pos, 'EPSG:4326', 'EPSG:3857')
     map = new ol.Map({
       target:'map',
@@ -231,68 +232,20 @@ export default {
           // source: new OSM()
           source: new ol.source.OSM()
         }),
-        // new ol.layer.Image({
-        //   source: new ImageArcGISRest({
-        //
-        //     url: baseMap,
-        //   }),
-
-        // new ollayerTile({
-        //   source:new TileArcgisRest({
-        //     url:baseMap
-        //   })
-        // })
+        new ol.layer.Tile({
+          source:new ol.source.TileArcGISRest({
+            url:baseMap
+          })
+        })
       ],
       view: new ol.View({
-        center: ol.proj.fromLonLat([107.8, 23.729]),
+        center: pos,
         minZoom:5,
         maxZoom: 20,
         zoom: 7.6,
+        //projection: 'EPSG:4326'
       })
     });
-   /*   var labelCoords_org=[107.8, 23.729];
-      var labelCoords=ol.proj.transform(labelCoords_org, "EPSG:4326", "EPSG:3857");
-
-      var feature = new ol.Feature({
-        geometry: new ol.geom.Point(labelCoords)
-      });
-
-      var source = new ol.source.Vector({features:[feature]});
-
-      var vectorLayer = new ol.layer.Vector({
-        source: source,
-        style: new ol.style.Style({
-          fill: new ol.style.Fill({
-            color: 'rgba(255, 255, 255, 0.2'
-          }),
-          stroke: new ol.style.Stroke({
-            color: '#00c033',
-            width: 2
-          }),
-          image: new ol.style.Circle({
-            radius: 7,
-            fill: new ol.style.Fill({
-              color: '#00c033'
-            })
-          })
-        })
-      });
-      map.addLayer(vectorLayer);*/
-
-      /*触发全局变量*/
-      // this.$store.dispatch('SaveMap',map) //1：存储全局变量
-      // console.log("创建的map")
-      // console.log(this.map)
-      // map.on('click', function (e) {
-      //   alert('点击地图')
-      //   console.log(e)
-      //
-      //
-      // })
-      // this.drawPoint()
-      // this.createVectorLayer()
-      // setTimeout(function(){this.createVectorLayer()},3000)
-
   },
 
     methods:{
