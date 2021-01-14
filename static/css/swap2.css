@@ -59,7 +59,8 @@ body {
   line-height: 57px;
   padding-left: 19px;
   font-size: 16px;
-  background: url("../../static/images/title_border.png") no-repeat;
+  border-bottom:solid 1px   #01c3e4;
+  /*background: url("../../static/images/title_border.png") no-repeat;*/
 
 }
 .index_model{

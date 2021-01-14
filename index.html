@@ -4,16 +4,81 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>text</title>
+    <script src="static/js/openlayer/ol-debug.js"></script>
     <style>
       html, body {
         width: 100% ;
         height: 100% ;
         overflow:hidden;
       }
+
+      /*弹窗*/
+      .ol-popup {
+        display: none;
+        position: absolute;
+        background-color: #0d2443;
+        -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+        border: 1px solid #0d2443;
+        bottom: 12px;
+        left: -50px;
+        width: 300px;
+        color: #fff;
+        border-radius: 5px;
+        z-index: 99999;
+      }
+      .ol-popup:after, .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+      .ol-popup:after {
+        border-top-color: #0d2443;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+      }
+      .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+      }
+      .popup-title{
+        font-weight: bold;
+        border-bottom:1px solid #cccccc;
+        padding: 5px 8px;
+      }
+      .popup-content{
+        padding: 5px 8px;
+      }
+      .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+      }
+      .ol-popup-closer:after {
+        color: #fff;
+        content: "✖";
+      }
+
+
     </style>
   </head>
   <body>
     <div id="app"></div>
+    <!--创建弹窗dl-->
+    <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-title" class="popup-title"></div>
+      <div id="popup-content" class="popup-content"></div>
+    </div>
     <script src='static/data/globalConfig.js'></script>
   </body>
 </html>

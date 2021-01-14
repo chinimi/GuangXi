@@ -220,9 +220,9 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="fivestagePartition">
+                <el-select v-model="customdefine">
                   <el-option
-                    v-for="(item, index) in fivestagePartitionList"
+                    v-for="(item, index) in customdefineList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -282,6 +282,7 @@
                 type="month"
                 align="right"
                 size="mini"
+                @change="getstartTime"
                 placeholder="选择日期时间">
               </el-date-picker>
             </el-col>
@@ -298,6 +299,7 @@
             <el-col :span="14" style="margin-left: -5%;">
               <el-date-picker
                 v-model="endTime"
+                @change="getendTime"
                 format="yyyy-MM"
                 type="month"
                 align="right"
@@ -318,8 +320,8 @@
       </div>
       <!--table表格-->
       <div class="right_menu">
-         <!--矿化度-->
-        <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="480" style="background-color: transparent;">
+         <!--水质基础评价-->
+        <el-table v-if="pjxmval=='szjcpj'"  border :data="tableData" height="480" style="background-color: transparent;">
             <el-table-column
               label="序号"
               type="index"
@@ -329,29 +331,128 @@
               prop="stcd"
               label="测站编码">
             </el-table-column>
+<!--            <el-table-column-->
+<!--              label="评价时间">-->
+<!--              <template slot-scope="scope">-->
+<!--                {{scope.row.wqWqsinfBDTO.mnag}}-->
+
+<!--              </template>-->
+<!--            </el-table-column>-->
+
+          <el-table-column
+            label="监测频次">
+            <template slot-scope="scope">
+              {{scope.row.mNFRQ}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="ASDR">
+            <template slot-scope="scope">
+              {{scope.row.aSDR}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="ASOT">
+            <template slot-scope="scope">
+              {{scope.row.asot}}
+
+            </template>
+          </el-table-column>
+<!--            <el-table-column-->
+
+<!--              label="评价时段">-->
+<!--              <template slot-scope="scope">-->
+<!--                {{scope.row.wqWqsinfBDTO.mnag}}-->
+
+<!--              </template>-->
+<!--            </el-table-column>-->
             <el-table-column
-              prop="stnm"
-              label="测站名称">
-            </el-table-column>
-            <el-table-column
-              prop="mndgMax"
-              label="矿化度指标">
-            </el-table-column>
-            <el-table-column
-              prop="mndgType"
-              label="级别">
+
+              label="水质类别">
+              <template slot-scope="scope">
+                {{scope.row.wQG}}
+
+              </template>
             </el-table-column>
 
             <el-table-column
-              prop="mndgName"
-              label="类型">
+
+              label="超标项目与倍数">
+              <template slot-scope="scope">
+                {{scope.row.wQG}}
+
+              </template>
             </el-table-column>
 
-            <el-table-column
+          <el-table-column
+
+              label="测站备注">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.stlc}}
+
+            </template>
+            </el-table-column>
+
+          <el-table-column
+
+              label="WQEI">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.mnag}}
+
+            </template>
+            </el-table-column>
+
+           <el-table-column
+
+              label="总磷评价参照值">
+             <template slot-scope="scope">
+               {{scope.row.wqWqsinfBDTO.mnfrq}}
+
+             </template>
+            </el-table-column>
+
+          <el-table-column
+
+              label="总氮评价参照值">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.stgrd}}
+
+            </template>
+            </el-table-column>
+
+          <el-table-column
+            label="叶绿素">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.stwqt}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="高锰酸盐指数">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.mnag}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            label="透明度指数">
+            <template slot-scope="scope">
+              {{scope.row.wqWqsinfBDTO.atmn}}
+
+            </template>
+          </el-table-column>
+
+          <el-table-column
               label="备注">
               <template slot-scope="scope">
-                <!--  {{scope.row.time}}-->
-                备注
+                  {{scope.row.stlc}}
+
               </template>
             </el-table-column>
 
@@ -388,13 +489,7 @@
 
 
 
-          <el-table-column
-            label="备注">
-            <template slot-scope="scope">
-              <!--  {{scope.row.time}}-->
-              备注
-            </template>
-          </el-table-column>
+
 
         </el-table>
 
@@ -523,7 +618,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="currentPage"
-            :page-sizes="[100, 200, 300, 400]"
+            :page-sizes="[10, 20, 30, 40]"
             :page-size=pageSize
             layout="total, sizes, prev, pager, next, jumper"
             :total="400"
@@ -536,29 +631,15 @@
 </template>
 
 <script>
-
-
+  import moment from 'moment'
   import  getWater from '../../api/index'
-  import moment from "moment";
   export default {
       data() {
           return {
-            /*评价标准*/
-            evaluatiStandarVal:'SL395-2007',
-            evaluationOptopn:[{
-              value:'SL395-2007',
-              value:'SL395-2007',
-            }],
-            /*评价项目*/
-            evalProVal:'SL395-2007',
-            evalProOptopn:[{
-              value:'SL395-2007',
-              value:'SL395-2007',
-            }],
+
             checkedCities: [],
             checkedCities2: [],
-            pageSize:10,
-            currentPage:0,
+            currentPage:1,
             currentPage1: 5,
             currentPage2: 5,
             currentPage3: 5,
@@ -574,27 +655,23 @@
             fivestagePartition: "",
             fivestagePartitionList: [],
             tableData: [],
+            customdefine:'默认分组',
+            customdefineList:[],
             cities:['流域水系', '水资源分区', '行政区划'],
             cities2:['按单时间段评价', '按时间序列评价'],
 
-
+            pageSize:10,
             /*评价标准*/
-            pjbzval:'all',
+            pjbzval:'GB3838-2002',
             pjbzOption:[{
               label:"全部",
               value:'all',
             }],
             /*评价项目*/
-            pjxmval:'khd',
+            pjxmval:'szjcpj',
             pjxmOption:[{
-              label:"矿化度",
-              value:'khd',
-            },{
-              label:"总硬度",
-              value:'zyd',
-              },{
-              label:"水化学类型",
-              value:'shxlx',
+              label:"水质基础评价",
+              value:'szjcpj',
             },{
               label:"地表天然水",
               value:'dbtrs',
@@ -604,16 +681,16 @@
             qzfsval:'avg',
             qzfsOption:[{
               label:"平均值",
-              value:'avg',
+              value:'avg',// min max avg
             },{
-              label:"最小值",
-              value:'min',
+              label:"最大",
+              value:'max',// min max avg
             },{
-              label:"最大值",
-              value:'max',
+              label:"最小",
+              value:'min',// min max avg
             }],
             /*当前水系*/
-            cursysval:'water1',
+            cursysval:'water2',
             /*水系参数*/
             curWaterSysOption:[{label:'流域水系',value:'water1'},{label:'水资源分区',value:'water2'},{label:'行政区划',value:'water3'}],
             /*时间选择*/
@@ -643,47 +720,79 @@
 
       },
       methods: {
+        getstartTime(date){
+          console.log(date)
+          let checkstartTime = moment(this.startTime).format('YYYYMM');
+          let checkendTime = moment(this.endTime).format('YYYYMM');
+
+          console.log(checkstartTime)
+          console.log(checkendTime)
+        },
+        getendTime(date){
+          console.log(date)
+          let checkstartTime = moment(this.startTime).format('YYYYMM');
+          let checkendTime = moment(this.endTime).format('YYYYMM');
+          console.log(checkstartTime)
+          console.log(checkendTime)
+        },
+
+
+
         handleSizeChange(val) {
           console.log(`每页 ${val} 条`);
+          this.queryTableData()
         },
         handleCurrentChange(val) {
           console.log(`当前页: ${val}`);
+          console.log(val)
+
+          this.queryTableData()
+
+
         },
         queryTableData(){
+          /*时间选择*/
+         /* selectTimeType:"singletime",
+            /!*时间段选择*!/
+            timequantumOption:[{
+            value:'singletime',
+            label:'按单时间段评价',
+          },{
+            value:'ordertime',
+            label:'按单时序列评价',
 
-          let checkstartTime = moment(this.startTime).format('YYYYMM');
-          let startyear = moment(this.startTime).format('YYYY');
-          let checkendTime = moment(this.endTime).format('YYYYMM');
-          let endyear = moment(this.endTime).format('YYYY');
-          // console.log(checkstartTime)
-          // console.log(startyear)
-          // console.log(checkstartTime.substring(checkstartTime.length-2))
+          }],*/
+
+         console.log(this.selectTimeType)
+          console.log(this.startTime)
+          console.log(this.endTime)
+
+        let checkstartTime = moment(this.startTime).format('YYYYMM');
+        let startyear = moment(this.startTime).format('YYYY');
+        let checkendTime = moment(this.endTime).format('YYYYMM');
+        let endyear = moment(this.endTime).format('YYYY');
+         console.log(checkstartTime)
+         console.log(startyear)
+         console.log(checkstartTime.substring(checkstartTime.length-2))
           let startMonth=checkstartTime.substring(checkstartTime.length-2)
-          // console.log(checkendTime)
-          // console.log(endyear)
-          // console.log(checkendTime.substring(checkendTime.length-2))
+         console.log(checkendTime)
+         console.log(endyear)
+          console.log(checkendTime.substring(checkendTime.length-2))
           let endMonth=checkendTime.substring(checkendTime.length-2)
 
-          // console.log(parseInt(endMonth)-parseInt(startMonth))
+          console.log(parseInt(endMonth)-parseInt(startMonth))
 
-          console.log(parseInt(startMonth))
 
 
           var str=""
           var count=parseInt(endMonth)-parseInt(startMonth)
+          for(var i=parseInt(startMonth);i<count;i++)
+          {
+            var tmp=i+1;
+            tmp=tmp<10?String('0'+tmp):(tmp)
+            str=str+startyear+tmp+"-"
 
-          if (count-1>0){
-            for(var i=parseInt(startMonth)-1;i<count;i++)
-            {
-              var tmp=i+1;
-              tmp=tmp<10?String('0'+tmp):(tmp)
-              str=str+startyear+tmp+"-"
-
-            }
-          }else{
-            str=str+checkstartTime+'-'
           }
-
           str=str+checkendTime
           console.log(str)
 
@@ -697,29 +806,21 @@
           }
 
 
-          /*1:获取参数*/
-          /*请求经纬度坐标点*/
           var param=
-            {
-              "pageNum":this.currentPage,
-              "pageSize":this.pageSize,
-              "qzfs":this.qzfsval,// min max avg
-              "tjsj":tjsj
-            }
-          // var param={
-          //   "pageNum":"0",      // --当前页
-          //   "pageSize":"10",     //--一页显示数量
-          //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          //   "tjsj":"201507-201508"
-          // }
+          {
+            "pageNum":this.currentPage,
+            "pageSize":this.pageSize,
+            "qzfs":this.qzfsval,// min max avg
+            "tjsj":tjsj
+          }
           this.tableData=[]
           /*矿化度请求*/
-        if(this.pjxmval=="khd") {
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+          let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/base/listswmsar"
           /*http请求*/
-          this.$http.post(khdurl, JSON.stringify(param), {
+          this.$http.post(url, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function(res) {
+            // alert("chenggong")
             console.log(res)
 
             this.tableData=res.body.data.pageResultList
@@ -727,67 +828,6 @@
 
 
           })
-
-
-        }
-
-        /*水化学类型*/
-          if(this.pjxmval=="shxlx") {
-            let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
-            /*http请求*/
-            this.$http.post(chemistryurl, JSON.stringify( param), {
-              emulateJSON: true,
-            }).then(function (res) {
-              console.log(res)
-
-              this.tableData = res.body.data.pageResultList
-            }).catch(function (res) {
-
-              // alert("请求失败")
-            })
-
-          }
-
-          /*总硬度*/
-          if(this.pjxmval=="zyd") {
-            let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
-            /*http请求*/
-            this.$http.post(zydurl, JSON.stringify(param), {
-              emulateJSON: true,
-            }).then(function (res) {
-
-              console.log(res)
-
-              this.tableData = res.body.data.pageResultList
-            }).catch(function (res) {
-              console.log(res)
-
-            })
-
-          }
-
-
-          /*地表天然水*/
-          if(this.pjxmval=="dbtrs") {
-
-            let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
-            /*http请求*/
-            this.$http.post(dbtrsurl, JSON.stringify(param), {
-              emulateJSON: true,
-            }).then(function (res) {
-              console.log(res)
-              this.tableData = res.body.data.pageResultList
-            }).catch(function (res) {
-
-
-            })
-
-          }
-
-
-
-
-
 
         }
       },
@@ -854,7 +894,7 @@
     margin-right: 10px;
   }
   #groundWater >>>.el-input__inner {
-    padding-left: 23px !important;
+    padding-left: 24px !important;
     color: #058cd0;
     border: 1px solid #058cd0;
     background: #031823;
