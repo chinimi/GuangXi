@@ -286,7 +286,7 @@ export default {
 <style>
   canvas{
     position: absolute;
-    z-index: 2;
+    z-index: 0;
     width: 100vw;
     height: 100vh;
   }

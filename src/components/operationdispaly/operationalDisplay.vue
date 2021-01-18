@@ -560,6 +560,7 @@
         var  that=this
 
         /*矿化度请求*/
+        debugger
         if(that.pjxmval=="khd") {
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
           /*http请求*/
@@ -933,10 +934,11 @@
         /*请求经纬度坐标点*/
         var param=
           {
-            "pageNum":1,
-            "pageSize":10,
+            "pageNum":0,
+            "pageSize":100,
             "qzfs":this.qzfsval,// min max avg
-            "tjsj":tjsj
+          //  "tjsj":tjsj
+            "tjsj":"201412-201501-201502-201503-201504-201505-201506-201507-201508-201509-201510-201511-201512-201601-201602-201603-201604-201605-201606-201607-201608-201609-201610-201611-201612"
           }
 
         /*2：a:判断是否有图层，有图层，清空source  b:没有图层，创建一个新的图层*/
@@ -1142,14 +1144,12 @@
 
 
       drawPolygon(){
-
-
         /*请求经纬度坐标点*/
         var param={
           "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
+          "pageSize":"100",     //--一页显示数量
           "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201507-201508"
+          "tjsj":"201412-201501-201502-201503-201504-201505-201506-201507-201508-201509-201510-201511-201512-201601-201602-201603-201604-201605-201606-201607-201608-201609-201610-201611-201612"
         }
         /*矿化度请求*/
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
@@ -2385,7 +2385,7 @@
         /*请求经纬度坐标点*/
         var param={
           "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
+          "pageSize":"100",     //--一页显示数量
           "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
           "tjsj":"201412-201501-201502-201503-201504-201505-201506-201507-201508-201509-201510-201511-201512-201601-201602-201603-201604-201605-201606-201607-201608-201609-201610-201611-201612"
         }
@@ -2396,11 +2396,13 @@
           let lastsource =  this.pointLayer.getSource()
           lastsource.clear();
           /*请求数据重新绘制*/
+           debugger
           this.ajaxPointSource(param,this.pointLayer)
 
 
         }else{
           console.log("获取请求数据  并创建一个图层")
+          debugger
           this.ajaxPointSource(param)
         }
 
@@ -2598,9 +2600,10 @@
         /*请求经纬度坐标点*/
         var param={
           "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
+          "pageSize":"100",     //--一页显示数量
           "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201507-201508"
+         // "tjsj":"201507-201508"
+           "tjsj":"201412-201501-201502-201503-201504-201505-201506-201507-201508-201509-201510-201511-201512-201601-201602-201603-201604-201605-201606-201607-201608-201609-201610-201611-201612"
         }
         /*矿化度请求*/
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"

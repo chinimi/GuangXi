@@ -87,6 +87,7 @@
   top: 52px;
   left: 8px;
   background: url("../../../static/images/left_tt.png");
+  z-index: 10;
 }
 
 
