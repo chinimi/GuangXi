@@ -319,7 +319,7 @@
       <!--table表格-->
       <div class="right_menu">
          <!--矿化度-->
-        <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="480" style="background-color: transparent;">
+        <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
             <el-table-column
               label="序号"
               type="index"
@@ -358,7 +358,7 @@
           </el-table>
 
         <!--总硬度-->
-        <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="480" style="background-color: transparent;">
+        <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
           <el-table-column
             label="序号"
             type="index"
@@ -399,7 +399,7 @@
         </el-table>
 
         <!--水化学类型-->
-        <el-table v-if="pjxmval=='shxlx'"  border :data="tableData" height="480" style="background-color: transparent;">
+        <el-table v-if="pjxmval=='shxlx'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
 
         <el-table-column
             label="序号"
@@ -460,7 +460,7 @@
         </el-table>
 
         <!--地表天然水-->
-        <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="480" style="background-color: transparent;">
+        <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )"" style="background-color: transparent;">
           <el-table-column
             label="序号"
             type="index"
