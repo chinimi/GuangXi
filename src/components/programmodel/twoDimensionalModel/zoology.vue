@@ -4,7 +4,7 @@
     <ul style="width:1336px">
       <li class="table">
         <div>
-          <el-table border :data="tableData" height="400" style="background-color: transparent;">
+          <el-table border :data="tableData" height="600" style="background-color: transparent;">
             <el-table-column prop="tab1" label="子流域名称" min-width="100">
             </el-table-column>
             <el-table-column prop="tab2" label="模型名称" min-width="80">

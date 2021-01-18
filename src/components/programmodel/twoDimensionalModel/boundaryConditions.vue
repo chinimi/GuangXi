@@ -122,7 +122,7 @@ export default {
 .boundaryConditions_top {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 610px;
   padding: 0 40px;
   box-sizing: border-box;
 }

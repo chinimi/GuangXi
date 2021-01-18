@@ -43,7 +43,7 @@
           <el-table
             border
             :data="tableData"
-            style="background-color: transparent; height: 350px;"
+            style="background-color: transparent; height: 540px;"
           >
             <el-table-column
               prop="name"
@@ -65,7 +65,7 @@
        <div class="image">
          图片，降解系数推荐
        </div>
-        <div style="position: absolute;top: 465px;right: 102px;">
+        <div style="position: absolute;top: 628px;right: 102px;">
           <el-button type="primary" size="small" plain>保存</el-button>
           <el-button type="primary" size="small" plain>计算</el-button>
           <el-button type="primary" size="small" plain>查看结果</el-button>
@@ -194,7 +194,7 @@ export default {
 }
 .convectiveDiffusion .image{
       width: 100%;
-    height: 211px;
+    height: 305px;
     border: 1px solid #058cd0;
     border-radius: 5px;
     margin-bottom: 5px;
