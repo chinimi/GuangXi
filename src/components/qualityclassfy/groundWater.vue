@@ -645,11 +645,30 @@
       methods: {
         handleSizeChange(val) {
           console.log(`每页 ${val} 条`);
+          console.log(val)
+          this.pageSize=val
+          this.queryTableData()
+
         },
         handleCurrentChange(val) {
           console.log(`当前页: ${val}`);
+          console.log(val)
+          this.currentPage=val
+          this.queryTableData()
         },
         queryTableData(){
+
+         /* if(this.selectTimeType=="singletime"){
+            if(this.startTime ){
+              this.$message('请选择时间参数');
+              return
+            }
+          }else{
+            if(this.startTime||this.endTime){
+              this.$message('请选择时间参数');
+              return
+            }
+          }*/
 
           let checkstartTime = moment(this.startTime).format('YYYYMM');
           let startyear = moment(this.startTime).format('YYYY');

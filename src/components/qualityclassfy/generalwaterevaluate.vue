@@ -428,36 +428,27 @@
             label="叶绿素">
             <template slot-scope="scope">
               {{scope.row.wqWqsinfBDTO.stwqt}}
-
             </template>
           </el-table-column>
-
           <el-table-column
             label="高锰酸盐指数">
             <template slot-scope="scope">
               {{scope.row.wqWqsinfBDTO.mnag}}
-
             </template>
           </el-table-column>
-
           <el-table-column
             label="透明度指数">
             <template slot-scope="scope">
               {{scope.row.wqWqsinfBDTO.atmn}}
-
             </template>
           </el-table-column>
-
           <el-table-column
               label="备注">
               <template slot-scope="scope">
                   {{scope.row.stlc}}
-
               </template>
             </el-table-column>
-
           </el-table>
-
         <!--总硬度-->
         <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="480" style="background-color: transparent;">
           <el-table-column
@@ -636,7 +627,6 @@
   export default {
       data() {
           return {
-
             checkedCities: [],
             checkedCities2: [],
             currentPage:1,
@@ -721,36 +711,36 @@
       },
       methods: {
         getstartTime(date){
-          console.log(date)
+
           let checkstartTime = moment(this.startTime).format('YYYYMM');
           let checkendTime = moment(this.endTime).format('YYYYMM');
-
-          console.log(checkstartTime)
-          console.log(checkendTime)
         },
         getendTime(date){
-          console.log(date)
+
           let checkstartTime = moment(this.startTime).format('YYYYMM');
           let checkendTime = moment(this.endTime).format('YYYYMM');
-          console.log(checkstartTime)
-          console.log(checkendTime)
         },
 
 
 
         handleSizeChange(val) {
           console.log(`每页 ${val} 条`);
+          this.pageSize=val
           this.queryTableData()
         },
         handleCurrentChange(val) {
           console.log(`当前页: ${val}`);
           console.log(val)
+          this.currentPage=val
 
           this.queryTableData()
 
 
         },
         queryTableData(){
+
+
+
           /*时间选择*/
          /* selectTimeType:"singletime",
             /!*时间段选择*!/
@@ -763,9 +753,21 @@
 
           }],*/
 
-         console.log(this.selectTimeType)
+          console.log(this.selectTimeType)
           console.log(this.startTime)
           console.log(this.endTime)
+
+          /*if(this.selectTimeType=="singletime"){
+            if(this.startTime ){
+              this.$message('请选择时间参数');
+              return
+            }
+          }else{
+            if(this.startTime||this.endTime){
+              this.$message('请选择时间参数');
+              return
+            }
+          }*/
 
         let checkstartTime = moment(this.startTime).format('YYYYMM');
         let startyear = moment(this.startTime).format('YYYY');
