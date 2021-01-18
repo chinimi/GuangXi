@@ -182,7 +182,7 @@ export default {
 #basicSetup .left {
   float: left;
   margin-right: 10px;
-  height: 360px;
+  height: 470px;
   margin-top: 20px;
 }
 #basicSetup .lefts {
@@ -240,7 +240,7 @@ export default {
   line-height: 38px;
 }
 #basicSetup .el-textarea__inner{
-      height: 284px;
+      height: 400px;
       background-color: transparent !important;
     border: 1px solid #01bdf5 !important;
 }

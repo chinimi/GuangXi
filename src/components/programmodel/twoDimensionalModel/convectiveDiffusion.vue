@@ -1,6 +1,6 @@
 <template>
 <!--对流扩散主页面-->
-  <div id="convectiveDiffusion">
+  <div class="convectiveDiffusion">
     <ul>
       <li class="container">
       <div class="singleli_title">
@@ -149,20 +149,20 @@ export default {
 </script>
 
 <style>
-#convectiveDiffusion {
+.convectiveDiffusion {
   position: absolute;
   color: #fff;
   left: 170px;
   top: 10px;
   width: 1300px;
 }
-#convectiveDiffusion .container {
+.convectiveDiffusion .container {
   float: left;
   width: 45%;
   margin-right: 10px;
   /* background: lightcoral; */
 }
-#convectiveDiffusion .singleli_title {
+.convectiveDiffusion .singleli_title {
   font-size: 13px;
   height: 35px;
   line-height: 35px;
@@ -172,14 +172,14 @@ export default {
   margin-bottom: 5px;
 }
 
-#convectiveDiffusion .singleli_title .sysfxTit {
+.convectiveDiffusion .singleli_title .sysfxTit {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
   /* text-align: right; */
   margin-right: 10px;
 }
-#convectiveDiffusion .el-input__inner {
+.convectiveDiffusion .el-input__inner {
   /* padding-left: 10px !important; */
   color: #058cd0;
   border: 1px solid #058cd0;
@@ -192,7 +192,7 @@ export default {
   height: 30px !important;
   /* width: 196px !important; */
 }
-#convectiveDiffusion .image{
+.convectiveDiffusion .image{
       width: 100%;
     height: 211px;
     border: 1px solid #058cd0;

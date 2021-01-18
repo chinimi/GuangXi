@@ -1,6 +1,6 @@
 <template>
 <!--基本设置主页面-->
-  <div id="basicSetup">
+  <div class="basicSetup">
     <ul>
       <li class="left lefts">
         <div class="singleli_title">
@@ -129,22 +129,26 @@ export default {
 };
 </script>
 <style>
-#basicSetup .left {
+.basicSetup{
+    position: absolute;
+    top: 95px;
+}
+.basicSetup .left {
   float: left;
   margin-right: 10px;
   height: 360px;
   margin-top: 20px;
 }
-#basicSetup .lefts {
+.basicSetup .lefts {
   width: 311px;
   /* background: red; */
   border-right: 2px dashed royalblue;
 }
-#basicSetup .right {
+.basicSetup .right {
   width: 1092px;
   /* background: rebeccapurple; */
 }
-#basicSetup .singleli_title {
+.basicSetup .singleli_title {
   font-size: 13px;
   height: 35px;
   line-height: 35px;
@@ -154,14 +158,14 @@ export default {
   margin-top: 20px;
 }
 
-#basicSetup .singleli_title .sysfxTit {
+.basicSetup .singleli_title .sysfxTit {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
   /* text-align: right; */
   margin-right: 10px;
 }
-#basicSetup .el-input__inner {
+.basicSetup .el-input__inner {
   /* padding-left: 10px !important; */
   color: #058cd0;
   border: 1px solid #058cd0;
@@ -174,33 +178,33 @@ export default {
   height: 30px !important;
   width: 196px !important;
 }
-#basicSetup .el-pagination__total {
+.basicSetup .el-pagination__total {
   color: #ffffff !important;
 }
-#basicSetup .el-pagination__jump {
+.basicSetup .el-pagination__jump {
   color: #ffffff !important;
 }
-#basicSetup .el-pagination .el-select .el-input .el-input__inner {
+.basicSetup .el-pagination .el-select .el-input .el-input__inner {
   color: #ffff;
 }
-#basicSetup .el-input-number {
+.basicSetup .el-input-number {
   position: relative;
   display: inline-block;
   width: 196px;
   line-height: 38px;
 }
-#basicSetup .el-textarea__inner{
-      height: 284px;
+.basicSetup .el-textarea__inner{
+      height: 360px;
       background-color: transparent !important;
     border: 1px solid #01bdf5 !important;
 }
-#basicSetup .el-input-number__decrease, .el-input-number__increase {
+.basicSetup .el-input-number__decrease, .el-input-number__increase {
     background: transparent !important;
     border-left: 1px solid #058cd0 !important;
     color:#058cd0 !important ;
 
 }
-#basicSetup .el-input-number.is-controls-right .el-input-number__increase {
+.basicSetup .el-input-number.is-controls-right .el-input-number__increase {
     border-bottom: 1px solid #058cd0 !important;
 }
 </style>

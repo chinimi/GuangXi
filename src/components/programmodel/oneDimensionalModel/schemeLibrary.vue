@@ -131,7 +131,7 @@
           <el-table
             border
             :data="tableData"
-            height="480"
+            height="600"
             style="background-color: transparent;"
           >
             <el-table-column prop="tab1" label="序号" min-width="50">
@@ -387,7 +387,7 @@ export default {
 }
 #schemeLibrary ul {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
 }
 </style>

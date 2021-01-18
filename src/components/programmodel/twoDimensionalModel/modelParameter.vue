@@ -1,6 +1,6 @@
 <template>
 <!--模型参数主页面-->
-  <div id="modelParameter">
+  <div class="modelParameter">
     <ul class="clear-fix title">
       <li
         v-for="(item, index) in menu"
@@ -75,16 +75,15 @@ export default {
 };
 </script>
 <style>
-/* #modelParameter {
-  position: absolute;
-  top: 119px;
-  left: -23px;
-  z-index: 9;
+.modelParameter {
+position: relative;
+    z-index: 9;
+    top: 50px;
 }
-#modelParameter .title{
+.modelParameter .title{
   position: absolute;
 }
-#modelParameter .Class {
+.modelParameter .Class {
     cursor: pointer;
     color: #fff;
     list-style: none;
@@ -98,9 +97,9 @@ export default {
     border-radius: 50px;
 
 }
-#modelParameter .active {
+.modelParameter .active {
     color: #fff!important;
     background: #01ddff!important;
-} */
+}
 
 </style>

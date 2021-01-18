@@ -7,7 +7,7 @@
           流域径流模型
         </div>
         <div>
-          <el-table border :data="tableData" height="400" style="background-color: transparent;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
+          <el-table border :data="tableData" height="550" style="background-color: transparent;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
             <el-table-column prop="CatchmentName" label="子流域名称" min-width="100">
             </el-table-column>
             <el-table-column prop="RRModelName" label="模型名称" min-width="80">

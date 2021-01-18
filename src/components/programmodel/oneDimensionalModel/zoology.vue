@@ -4,7 +4,7 @@
     <ul style="width:1336px">
       <li class="table">
         <div>
-          <el-table border :data="tableData" height="400" style="background-color: transparent;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
+          <el-table border :data="tableData" height="600" style="background-color: transparent;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
             <el-table-column prop="index" label="序号" min-width="60">
             </el-table-column>
             <el-table-column prop="descriptor" label="描述信息" min-width="150">

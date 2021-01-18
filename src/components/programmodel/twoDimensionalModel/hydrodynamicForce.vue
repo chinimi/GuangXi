@@ -1,6 +1,6 @@
 <template>
 <!--水动力主页面-->
-  <div id="hydrodynamicForces">
+  <div class="hydrodynamicForces">
     <div class="singleli_title">
       <el-row>
         <el-col :span="8">
@@ -113,18 +113,18 @@ export default {
 </script>
 
 <style>
-#hydrodynamicForces {
+.hydrodynamicForces {
   position: absolute;
   color: #fff;
   left: 170px;
   top: 10px;
   width: 1300px;
 }
-#hydrodynamicForces .container {
+.hydrodynamicForces .container {
   width: 100%;
   /* background: lightcoral; */
 }
-#hydrodynamicForces .singleli_title {
+.hydrodynamicForces .singleli_title {
   font-size: 13px;
   height: 35px;
   line-height: 35px;
@@ -134,14 +134,14 @@ export default {
   margin-top: 20px;
 }
 
-#hydrodynamicForces .singleli_title .sysfxTit {
+.hydrodynamicForces .singleli_title .sysfxTit {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
   /* text-align: right; */
   margin-right: 10px;
 }
-#hydrodynamicForces .el-input__inner {
+.hydrodynamicForces .el-input__inner {
   /* padding-left: 10px !important; */
   color: #058cd0;
   border: 1px solid #058cd0;
@@ -154,11 +154,11 @@ export default {
   height: 30px !important;
   /* width: 196px !important; */
 }
-#hydrodynamicForces .container_table .el-table .cell {
+.hydrodynamicForces .container_table .el-table .cell {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   white-space: normal;
   word-break: break-all;
-  line-height: 12px;
+  line-height: 17px;
 }
 </style>

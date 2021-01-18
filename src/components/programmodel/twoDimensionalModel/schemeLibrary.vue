@@ -126,7 +126,7 @@
           <el-button type="primary" size="small" plain>新增方案</el-button>
         </div>
         <div>
-          <el-table border :data="tableData" height="480" style="background-color: transparent;">
+          <el-table border :data="tableData" height="600" style="background-color: transparent;">
             <el-table-column prop="tab1" label="序号" min-width="50">
             </el-table-column>
             <el-table-column prop="tab2" label="方案编码" min-width="80">

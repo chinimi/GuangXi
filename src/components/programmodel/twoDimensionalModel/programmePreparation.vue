@@ -1,6 +1,6 @@
 <template>
 <!--方案编制主页面-->
-  <div id="programmePreparation">
+  <div class="programmePreparation">
         <ul class="clear-fix programModel_title">
           <li
             v-for="(item,index) in menu"
@@ -91,19 +91,20 @@ import boundaryConditions from './boundaryConditions.vue';
   }
 </script>
 <style>
-#programmePreparation{
+.programmePreparation{
     /* position: absolute; */
     top: -23px;
     left: 20px;
     z-index: 9;
 }
-#programmePreparation .programModel_title{
+.programmePreparation .programModel_title{
   position: absolute;
   /* left: -19%; */
   width: 620px;    /* height: 350px; */
+  top: 55px;
 
 }
-#programmePreparation .programModelClass {
+.programmePreparation .programModelClass {
     cursor: pointer;
     color: #fff;
     list-style: none;
@@ -117,7 +118,7 @@ import boundaryConditions from './boundaryConditions.vue';
     background: rgba(5, 160, 236, 0.58);
 
 }
-#programmePreparation .programModel_active {
+.programmePreparation .programModel_active {
     color: #fff!important;
     background: #01ddff!important;
     /* border-left: 4px solid #0718fa; */

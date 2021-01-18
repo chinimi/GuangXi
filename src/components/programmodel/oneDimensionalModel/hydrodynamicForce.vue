@@ -22,7 +22,7 @@
     <ul>
       <li class="container">
         <div>
-          <el-table border :data="tableData" style="background-color: transparent;height:424px;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
+          <el-table border :data="tableData" style="background-color: transparent;height:550px;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
             <el-table-column prop="BranchNameCN" label="河道中文" align="center">
                 <template slot-scope="scope">
                 <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.BranchNameCN" @blur="inputBlur"></el-input>
@@ -55,14 +55,14 @@
               天然河道糙率表
           </div>
         <div class="container_table" style="margin-top: -8px;">
-          <el-table :data="roughnessTable" style="width: 100%;background-color: transparent;" height="400px;">
+          <el-table :data="roughnessTable" style="width: 100%;background-color: transparent;height:550px;">
             <el-table-column prop="date" label="河槽类型及情况"></el-table-column>
-            <el-table-column prop="name" label="最小值" width="70"></el-table-column>
-            <el-table-column prop="address" label="正常值" width="70"></el-table-column>
-            <el-table-column prop="max" label="最大值" width="70"></el-table-column>
+            <el-table-column prop="name" label="最小值" width="80"></el-table-column>
+            <el-table-column prop="address" label="正常值" width="80"></el-table-column>
+            <el-table-column prop="max" label="最大值" width="80"></el-table-column>
           </el-table>
         </div>
-        <div style="position: absolute;top:492px;right: 102px;">
+        <div style="position: absolute;top:613px;right: 102px;">
           <el-button type="primary" size="small" plain @click="saveClick">保存</el-button>
           <el-button type="primary" size="small" plain>计算</el-button>
           <el-button type="primary" size="small" plain>查看结果</el-button>
@@ -172,7 +172,7 @@ export default {
 #hydrodynamicForce .container {
   float: left;
   width: 45%!important;
-  margin-right: 10px;
+  margin-right: 60px;
   /* background: lightcoral; */
 }
 #hydrodynamicForce .singleli_title {
@@ -211,9 +211,10 @@ export default {
   box-sizing: border-box;
   white-space: normal;
   word-break: break-all;
-  line-height: 12px;
+  line-height: 17px;
+  font-size: 18px;
 }
 #hydrodynamicForce .container_table .el-table td{
-  padding: 7px 0 !important;
+  padding: 6px 0 !important;
 }
 </style>

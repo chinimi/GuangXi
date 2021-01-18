@@ -1,8 +1,6 @@
 <template>
 <!--边界条件主组件-->
   <div
-    id="boundaryConditions"
-    style="position: relative"
     class="boundaryConditions"
   >
     <div class="boundaryConditions_top clear-fix">
@@ -115,10 +113,11 @@ export default {
 </script>
 <style scoped="scoped">
 .boundaryConditions {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   color: #01bdf5 ;
+  top:96px;
 }
 .boundaryConditions_top {
   position: relative;

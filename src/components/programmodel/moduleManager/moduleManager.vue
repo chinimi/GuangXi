@@ -94,9 +94,9 @@ import waterResourcesZoning from './waterResourcesZoning.vue';
 <style scoped="scoped">
 #moduleManager{
     width: 1480px;
-    height: 640px;
+    height: 775px;
     position: absolute;
-    top: 150px;
+    top: 38px;
     left: 265px;
     /* background: rgba(21, 37, 63, 0.86); */
     background: #031823;

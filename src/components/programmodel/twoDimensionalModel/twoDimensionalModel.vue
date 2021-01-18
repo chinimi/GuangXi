@@ -80,9 +80,9 @@ import programmePreparation from './programmePreparation.vue';
 <style scoped="scoped">
 #twoDimensionalModel{
     width: 1480px;
-    height: 640px;
+    height: 775px;
     position: absolute;
-    top: 150px;
+    top: 38px;
     left: 265px;
     background: #031823;
     border-radius: 5px;
