@@ -58,7 +58,7 @@
               </el-table-column>
             <el-table-column
               prop="DecayValue"
-              label="降解系数"
+              label="降解系数（I/day）"
               align="center"
             >
                <template slot-scope="scope">
@@ -70,13 +70,12 @@
         </div>
       </li>
       <li class="container">
-       <div class="image">
-         图片，扩散系数推荐
-       </div>
-       <div class="image">
-         图片，降解系数推荐
-       </div>
-        <div style="position: absolute;top: 622px;right: 102px;">
+            <el-table :data="convectionTable" style="width: 100%;background-color: transparent;margin-top: 34px;">
+            <el-table-column prop="indicator" label="指标"></el-table-column>
+            <el-table-column prop="minmum" label="最小值（I/d）"></el-table-column>
+            <el-table-column prop="maxmum" label="最大值（I/d）"></el-table-column>
+          </el-table>
+        <div style="position: absolute;top: 588px;right: 102px;">
           <el-button type="primary" size="small" plain @click="saveClick">保存</el-button>
           <el-button type="primary" size="small" plain>计算</el-button>
           <el-button type="primary" size="small" plain>查看结果</el-button>
@@ -87,6 +86,7 @@
 </template>
 
 <script>
+import convectionTable from './Table.js'
 export default {
   data() {
     return {
@@ -97,10 +97,12 @@ export default {
       tableData: [],
       roughnessTable: [],
       tableValue:[],
+      convectionTable:[],
     };
   },
   mounted(){
      this.getTableData();
+     this.convectionTable = convectionTable.convectionTable
   },
   methods: {
     //获取表格数据
@@ -218,11 +220,11 @@ export default {
   height: 30px !important;
   /* width: 196px !important; */
 }
-#convectiveDiffusion .image{
+/* #convectiveDiffusion .image{
       width: 100%;
     height: 305px;
     border: 1px solid #058cd0;
     border-radius: 5px;
     margin-bottom: 5px;
-}
+} */
 </style>

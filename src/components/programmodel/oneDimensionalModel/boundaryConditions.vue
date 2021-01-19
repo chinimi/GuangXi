@@ -57,16 +57,23 @@
               <td></td>
             </tr>
           </table>
-          <button class="table_name">上传</button>
+          <div class="table_name">
+          <el-button type="primary" size="small" plain>上传</el-button>
+          <el-button type="primary" size="small" plain>下载</el-button>
+          </div>
+          <!-- <button class="table_name">上传</button> -->
         </div>
         <div class="echarts">曲线图</div>
       </div>
     </div>
     <!-- 底部 -->
     <div class="boundaryConditions_bottom">
-      <button>保存</button>
+      <!-- <button>保存</button>
       <button>计算</button>
-      <button>查看结果</button>
+      <button>查看结果</button> -->
+          <el-button type="primary" size="small" plain>保存</el-button>
+          <el-button type="primary" size="small" plain>计算</el-button>
+          <el-button type="primary" size="small" plain>查看结果</el-button>
     </div>
   </div>
 </template>
@@ -82,7 +89,7 @@ export default {
           data_name: [{ name: "田东" }, { name: "影著" }],
         },
         {
-          name: "流量边界",
+          name: "水位边界",
           info: false,
           data_name: [{ name: "隆安" }],
         },
@@ -93,6 +100,11 @@ export default {
         },
         {
           name: "降雨站",
+          info: false,
+          data_name: [{ name: "站点1" }, { name: "站点2" }, { name: "站点3" }],
+        },
+        {
+          name: "污染源",
           info: false,
           data_name: [{ name: "站点1" }, { name: "站点2" }, { name: "站点3" }],
         },
@@ -199,12 +211,14 @@ export default {
 }
 
 .table {
-  height: calc(100% - 10px);
+  /* height: calc(100% - 10px); */
+  height: 100%;
   width: calc(40% - 10px);
   position: relative;
   margin: 5px;
   box-sizing: border-box;
   text-align: center;
+  top:-5px
 }
 table,
 th,
@@ -225,11 +239,11 @@ td {
   height: 10%;
   float: right;
   /* bottom: 0; */
-  top:10px;
-  /* right: 30px; */
+      top: 32px;
+    left: 154px;
 }
-button{
+/* button{
   width: 120px!important;
   height: 40px!important;
-}
+} */
 </style>

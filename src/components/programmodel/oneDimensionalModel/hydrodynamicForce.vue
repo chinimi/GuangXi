@@ -18,6 +18,7 @@
           </div>
         </el-col>
       </el-row>
+          <el-button style="position: relative;left: 528px;top: -34px;" type="primary" size="mini" @click="handleAdd">新增</el-button>
     </div>
     <ul>
       <li class="container">
@@ -47,6 +48,14 @@
                 <span v-else>{{ scope.row.ResistanceNumber }}</span>
               </template>
             </el-table-column>
+            <el-table-column label="操作" align="center" width="100">
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  type="primary"
+                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
           </el-table>
         </div>
       </li>
@@ -73,7 +82,7 @@
 </template>
 
 <script>
-import roughnessTableData from './roughnessTable.js'
+import roughnessTableData from './Table.js'
 export default {
   data() {
     return {
@@ -86,7 +95,7 @@ export default {
     };
   },
   mounted(){
-     this.roughnessTable = roughnessTableData;
+     this.roughnessTable = roughnessTableData.roughnessTableData;
      this.getTableData();
   },
   methods: {
@@ -100,10 +109,26 @@ export default {
           return respose.json();
         })
         .then(data => {
+          console.log(data.ResistanceLocalList)
           this.tableData = data.ResistanceLocalList;
           this.ResistanceNumber = data.ResistanceNumber;
         });
     },
+    //新增
+    handleAdd() {
+        let row = {
+        BranchName: "",
+        BranchNameCN: "",
+        Chainage: "",
+        ResistanceNumber: "",
+        // index: "",
+      }
+      this.tableData.unshift(row)
+      },
+    //删除
+    handleDelete(index, row) {
+        this.tableData.splice(index, 1);
+      },
    //点击单元格得到横纵坐标
     handleCellClick(row, column, event, cell) {
       this.tabRowIndex = row.index;

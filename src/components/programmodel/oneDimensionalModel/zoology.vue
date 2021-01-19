@@ -5,7 +5,7 @@
       <li class="table">
         <div>
           <el-table border :data="tableData" height="600" style="background-color: transparent;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
-            <el-table-column prop="index" label="序号" min-width="60">
+            <el-table-column prop="num" label="序号" min-width="60">
             </el-table-column>
             <el-table-column prop="descriptor" label="描述信息" min-width="150">
             </el-table-column>
@@ -17,7 +17,7 @@
                 <span v-else>{{ scope.row.value }}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="index1" label="序号" min-width="60">
+            <el-table-column prop="number" label="序号" min-width="60">
             </el-table-column>
             <el-table-column prop="descriptor1" label="描述信息" min-width="150">
             </el-table-column>
@@ -31,21 +31,7 @@
             </el-table-column>
           </el-table>
         </div>
-        <div>
-          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
-          <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
-          >
-          </el-pagination>
-        </div>
-        <div style="float: right;margin-top: -27px;">
+        <div style="float: right;margin-top: 14px;">
           <el-button type="primary" size="small" plain @click="saveClick">保存</el-button>
           <el-button type="primary" size="small" plain>计算</el-button>
           <el-button type="primary" size="small" plain>查看结果</el-button>
@@ -55,7 +41,7 @@
   </div>
 </template>
 <script>
-import zoologyTableData from './zoologyTable.js'
+import zoologyTableData from './Table.js'
 export default {
   components: {},
   data() {
@@ -73,7 +59,7 @@ export default {
   },
  computed: {},
   mounted() {
-    this.tableData = zoologyTableData;
+    this.tableData = zoologyTableData.zoologyTableData;
   },
   methods: {
        //点击单元格得到横纵坐标
