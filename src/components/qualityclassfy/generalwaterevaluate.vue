@@ -777,10 +777,6 @@
             label="级别">
           </el-table-column>
 
-
-
-
-
         </el-table>
 
         <!--水化学类型-->
@@ -837,7 +833,6 @@
             label="备注">
             <template slot-scope="scope">
               <!--  {{scope.row.time}}-->
-
               备注
             </template>
           </el-table-column>

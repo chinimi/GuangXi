@@ -1,8 +1,8 @@
 
-import stationStore from '../../store/map/comp/stationData'
-import map from '../../store/map/comp/map'
+// import stationStore from '../../store/map/comp/stationData'
+// import map from '../../store/map/comp/map'
 export var calculateLocaltion= function(num) {
-  
+
     var str = "";
     num =num.toFixed(2);
     num = parseFloat(num);
@@ -10,7 +10,7 @@ export var calculateLocaltion= function(num) {
     if(num < -180){
             num = (num - 180 ) % 360 + 180;
     }
-    
+
     num = num+"";
    // num = num.substr(0,5);
     var split = num.split(".");
@@ -18,14 +18,14 @@ export var calculateLocaltion= function(num) {
     var fen = split.length > 1 ? split[1].substr(0,2)  : "";
     if (fen=="")
     {
-        str = degree + fen+"°"; 
+        str = degree + fen+"°";
     }
     else{
-        str = degree + "." + fen+"°"; 
+        str = degree + "." + fen+"°";
     }
-    
 
-   
+
+
     return str;
 }
 
@@ -61,7 +61,7 @@ export var getDifferentValue=function(a,b){
 export const onPointerMove=function(e){
 	let pixel,ishit;
 	// 如果是拖动地图造成的鼠标移动，则不作处理
-	
+
 	pixel = map.getEventPixel(e.originalEvent);
 	ishit = map.hasFeatureAtPixel(pixel);
 	map.getTargetElement().style.cursor = ishit ? 'pointer' : '';
@@ -108,3 +108,34 @@ export const createSelectByClick=function(){
         });
         return selectClick;
     }
+export const createEnvironmentSelectByClick=function(){
+  // console.log("环境质量监测图层显示弹窗")
+  let layer = stationStore.state.environmenStationLayer.layers[0];
+  // console.log(layer)
+  let styleFunction = layer.getStyleFunction();
+  let select = new ol.style.Style({
+    image: new ol.style.Circle({
+      radius: 6,
+      fill: new ol.style.Fill({
+        color: "blue",
+      }),
+      stroke: new ol.style.Stroke({
+        color: 'white',
+        width: 1.5
+      })
+    })
+  });
+  var selectClick = new ol.interaction.Select({
+    condition:ol.events.condition.click,
+    layers:[layer],   //默认不加，会对地图中的所有图层执行单机选中事件
+    style:function (feature) {
+      let orgin = styleFunction(feature);
+      orgin.push(select);
+      return orgin;
+    },
+    multi:false,
+    hitTolerance:10
+  });
+  return selectClick;
+}
+

@@ -27,14 +27,21 @@
             v-for="(item,index) in toollist"
             :key="index"
             :class="['toolbtn', item.icon,{activeTool : ( currentTool == item.value ? true : false )}]"
-            @click="currentTool= item.value;execute(item.value)"
+            @click="currentTool= item.value;execute(item.value);"
 
           >
-
-          <!--<span>{{item.name}}</span>-->
+<!--            @mouseover="selectStyle (item.value),currentTool= item.value "-->
+<!--            @mouseout="outStyle(item.value),currentTool=''"-->
+<!--          <span>{{item.name}}</span>-->
           </li>
         </ul>
+      </div>
+      <!--toolbar tab-->
 
+      <div  style="position: relative;z-index:9;" id="toolbar_tab">
+        <div v-show="currentTool=='layer'">
+        <layercontrol></layercontrol>
+        </div>
       </div>
 
       <!--tab -->
@@ -98,6 +105,10 @@ import qualityPrediction from "../../components/qualitypredict/qualityPrediction
 import bearingCapacity from "../../components/bearcapacity/bearingCapacity"
 import operationalDisplay from "../../components/operationdispaly/operationalDisplay"
 
+/*toolbar*/
+import layercontrol from "../../components/toolbar/layercontrol"
+
+
 
 export default {
     name: 'Map',
@@ -112,24 +123,25 @@ export default {
     qualityPrediction,
     bearingCapacity,
     operationalDisplay,
+    layercontrol,//图层控制
 
   },
     data () {
         return {
           toolbarVisible:true,//toobar显引
-          currentTool:'',
+          currentTool:'',//当前选中的功能方法
           map:null,
           view:null,
           labelActiveName:'UpperAirObservation',
           tabPosition: 'right',
           PanelVisual:'true',
           // 当前选中的组件
-          // currentComp: 'index',
-          currentComp: 'qualityClassfy',
+          currentComp: 'index',
+          // currentComp: 'qualityClassfy',
           // currentComp: 'operationalDisplay',
           // 当前选中的li标签
-          // isActive: 'index',
-          isActive: 'qualityClassfy',
+          isActive: 'index',
+          // isActive: 'qualityClassfy',
           // isActive: 'operationalDisplay',
           menu: [
             {
@@ -252,6 +264,17 @@ export default {
       execute(currentTool){
         console.log("执行工具"+currentTool)
       },
+      outStyle(currentTool){
+
+      },
+      selectStyle(currentTool){
+
+      },
+
+
+
+
+
     /*  createVectorLayer(){
         var coordinates = [[91.1865234375,40.80322265625],[91.494140625,36.05712890625],[98.0859375,40.58349609375],[91.1865234375,40.80322265625]]
         //声明一个新的数组
@@ -718,6 +741,13 @@ export default {
   .activeTool{
     color: red;
   }
+  #toolbar_tab{
+    border:solid 1px pink;
+
+
+  }
+
+
 </style>
 <style>
   @import url('../../../static/css/swap2.css');
