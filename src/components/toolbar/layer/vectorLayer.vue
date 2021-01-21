@@ -33,11 +33,19 @@
     },
     methods:{
       GetPopupContent(features){
+        let property=features[0].getProperties();
+        console.log("获取当前选中要素的属性")
+        let attribute=property.attribute
+        console.log(attribute)
 
+        var hdms="";
 
-        var hdms="11111111";
-
-
+        hdms = hdms+"<span class='Popup_p_title'>"+attribute["SecName"]+"</span>"+
+          "<div><span class='Popup_p'><span class='Popup_span'>经度:</span>"+attribute["Long"]+'°</span>'+
+          "<span class='Popup_p'><span class='Popup_span'>纬度:</span>"+attribute["Lat"]+'°</span>'+
+          "<span class='Popup_p'><span class='Popup_span'>地址:</span>"+attribute["SecAddress"]+'</span>'+
+          "<span class='Popup_p'><span class='Popup_span'>编码:</span>"+attribute["SecCode"]+'</span>';
+        hdms=hdms+"</div>";
 
 
         return hdms;
@@ -102,6 +110,7 @@
             // map.removeOverlay(that.OverlayPopup);
           }
           var features=e.selected;
+
           // var features=e.target.getFeatures().getArray();
           if(features.length>0){
             var element;
@@ -3801,106 +3810,71 @@
             },],
         }
 
+         /*1:绘制多个图层，并给图层设置id*/
+           // console.log(map.getLayers())
+           let data= waterStationData.features
+           let points=[]
+           for (let i=0;i<data.length;i++) {
+             let coord = data[i].geometry.coordinates
 
+             var labelCoords = ol.proj.transform([coord[0], coord[1]], "EPSG:4326", "EPSG:3857");
+             var point = new ol.Feature({
+               geometry: new ol.geom.Point(labelCoords)
+             });//构点
+             // point.properties=data[i].properties
+             point.set('attribute',data[i].properties)
+             /*dle*/
 
+             // var point = new ol.Feature({
+             //   geometry: new ol.geom.Point([coord.Long, coord.Lat])
+             // });//构点
+             points.push(point)
+           }
 
+           console.log(points)
 
-
-                 /*1:绘制多个图层，并给图层设置id*/
-
-                   // console.log(map.getLayers())
-
-                   let data= waterStationData.features
-                   let points=[]
-                   for (let i=0;i<data.length;i++) {
-                     let coord = data[i].geometry.coordinates
-
-                     var labelCoords = ol.proj.transform([coord[0], coord[1]], "EPSG:4326", "EPSG:3857");
-                     var point = new ol.Feature({
-                       geometry: new ol.geom.Point(labelCoords)
-                     });//构点
-                     // var point = new ol.Feature({
-                     //   geometry: new ol.geom.Point([coord.Long, coord.Lat])
-                     // });//构点
-                     points.push(point)
-                   }
-
-                   console.log(points)
-
-                   //实例化一个矢量图层Vector作为绘制层
-                   var source = new ol.source.Vector({
-                     features: points
-                   });
-                   //矢量图层
-              this.layer = new ol.layer.Vector({
-                     layerId:'waterStation',
-                     zIndex: 10,
-                     projection: 'EPSG:4326',
-                     source: source,
-                     style: new ol.style.Style({
+           //实例化一个矢量图层Vector作为绘制层
+            var source = new ol.source.Vector({
+              features: points
+            });
+            //矢量图层
+            this.layer = new ol.layer.Vector({
+                   layerId:'waterStation',
+                   zIndex: 10,
+                   projection: 'EPSG:4326',
+                   source: source,
+                   style: new ol.style.Style({
+                     fill: new ol.style.Fill({
+                       color: 'rgba(255, 255, 255, 0.1)'
+                     }),
+                     stroke: new ol.style.Stroke({
+                       color: 'red',
+                       width: 10
+                     }),
+                     image: new ol.style.Circle({
+                       radius: 10,
                        fill: new ol.style.Fill({
-                         color: 'rgba(255, 255, 255, 0.1)'
-                       }),
-                       stroke: new ol.style.Stroke({
-                         color: 'red',
-                         width: 10
-                       }),
-                       image: new ol.style.Circle({
-                         radius: 10,
-                         fill: new ol.style.Fill({
-                           color: '#ffcf43'
-                         })
+                         color: '#ffcf43'
                        })
                      })
-                   });
+                   })
+                 });
+            this.layer.setSource(source);
+            map.addLayer( this.layer)
 
+        /*2:根据id,删除图层*/
 
-               this.layer.setSource(source);
-                   map.addLayer( this.layer)
+        this.activeLayerEvent()
 
-
-
-
-                 /*2:根据id,删除图层*/
-
-
-      this.activeLayerEvent()
-      // this.layerGroup = createLayerUtils.createLayer(this.name , {UpdateSourceFunc : this.option});
-      // this.layerGroup.product.satellite = this.getSatellite
-      // this.layerGroup.product.obsType = this.getObservedType
-      // animationController.addLayer(this.layerGroup);
     },
     beforeDestroy(){
       console.log("删除图层")
-
       map.removeLayer( this.layer)
-      // this.previousRequest ? this.previousRequest.abort() : null;
-      // animationController.removeLayer(this.layerGroup)
-      // let product = this.layerGroup.product;
-      // let legend = product.legend
-      // if(legend != null){
-      //     let split = legend.split(",")
-      //     split.forEach(element => {
-      //         this.$store.dispatch('delLegend' , {title:product.title,src:element});
-      //     });
-      // }
+
 
     },
     watch:{
-      // list(newValue , oldValue){
-      //
-      // },
-      // layerGroup(newValue){
-      //    let product = newValue.product;
-      //    let legend = newValue.product.legend
-      //
-      //    if(legend != null){
-      //        let split = legend.split(",")
-      //        split.forEach(element => {
-      //            this.$store.dispatch('addLegend' , {title:product.title,src:element});
-      //        });
-      //    }
-      // }
+
     }
   }
 </script>
@@ -3915,9 +3889,9 @@
     padding-left: 20px;
     border-radius: 10px;
     border: 2px solid #24948b;
-    width: 100px;
+    width: 200px;
     color: #dcdbdb;
-    height: 80px;
+    height: 180px;
     overflow-y: auto;
   }
   .environmentFeaturePopup .Popup_p{
@@ -3940,9 +3914,9 @@
   }
   .environmentFeaturePopup .Popup_span{
     font-weight: 500;
-    font-family: cursive;
 
-    font-family: monospace;
+
+
   }
 
 </style>
