@@ -3,18 +3,20 @@
   <div id="administrativeDivisions">
     <ul>
       <li class="left lefts">
-        <div class="singleli_title">
+
+
+    <div class="singleli_title">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                一级分区：
+                省：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="province">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in provinceList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -28,14 +30,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                二级分区：
+                市：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="secondaryPartition">
+                <el-select v-model="city">
                   <el-option
-                    v-for="(item, index) in secondaryPartitionList"
+                    v-for="(item, index) in cityList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -49,14 +51,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                三级分区：
+                县：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="tertiaryPartition">
+                <el-select v-model="county">
                   <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
+                    v-for="(item, index) in countyList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -70,14 +72,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                四级分区：
+                镇：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="fourstagePartition">
+                <el-select v-model="town">
                   <el-option
-                    v-for="(item, index) in fourstagePartitionList"
+                    v-for="(item, index) in townList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -91,14 +93,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                五级分区：
+                村：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="fivestagePartition">
+                <el-select v-model="rustic">
                   <el-option
-                    v-for="(item, index) in fivestagePartitionList"
+                    v-for="(item, index) in rusticList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -109,8 +111,9 @@
           </el-row>
         </div>
 
-        <div style="margin: 50% 0 0 75%;">
-          <el-button type="primary" size="small" plain>查找</el-button>
+
+        <div>
+          <el-button style="float:right;right: 20px;position: relative;" type="primary" size="small" plain>查找</el-button>
         </div>
       </li>
       <li class=" clear-fix left right">
@@ -130,9 +133,9 @@
             height="600"
             style="background-color: transparent;"
           >
-            <el-table-column prop="tab1" label="序号" min-width="50">
+            <el-table-column prop="tab1" label="序号" min-width="70">
             </el-table-column>
-            <el-table-column prop="tab2" label="方案编码" min-width="80">
+            <el-table-column prop="tab2" label="方案编码" min-width="100">
             </el-table-column>
             <el-table-column prop="tab3" label="方案名称" min-width="100">
             </el-table-column>
@@ -140,7 +143,7 @@
             </el-table-column>
             <el-table-column prop="tab5" label="修改时间" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab6" label="基准模板" min-width="80">
+            <el-table-column prop="tab6" label="基准模板" min-width="100">
             </el-table-column>
             <el-table-column prop="tab7" label="一级流域分区" min-width="150">
             </el-table-column>
@@ -148,7 +151,7 @@
             </el-table-column>
             <el-table-column prop="tab9" label="行政分区（市）" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab10" label="水资源分区" min-width="100">
+            <el-table-column prop="tab10" label="水资源分区" min-width="130">
             </el-table-column>
             <el-table-column prop="tab11" label="所属河长" min-width="100">
             </el-table-column>
@@ -196,16 +199,19 @@ export default {
   components: {},
   data() {
     return {
-      primaryPartition: "",
-      primaryPartitionList: [],
-      secondaryPartition: "",
-      secondaryPartitionList: [],
-      tertiaryPartition: "",
-      tertiaryPartitionList: [],
-      fourstagePartition: "",
-      fourstagePartitionList: [],
-      fivestagePartition: "",
-      fivestagePartitionList: [],
+       //行政分区
+      province:'',
+      provinceList:[],
+      city:'',
+      cityList:[],
+      county:'',
+      countyList:[],
+      town:'',
+      townList:[],
+      rustic:'',
+      rusticList:[],
+
+
       tableData: [],
       currentPage1: 5,
       currentPage2: 5,
@@ -324,12 +330,10 @@ export default {
 }
 #administrativeDivisions .lefts {
   width: 311px;
-  /* background: red; */
   border-right: 2px dashed royalblue;
 }
 #administrativeDivisions .right {
   width: 1092px;
-  /* background: rebeccapurple; */
   margin-top: -4%;
 }
 #administrativeDivisions .singleli_title {
@@ -346,7 +350,7 @@ export default {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
-  /* text-align: right; */
+  text-align: right;
   margin-right: 10px;
 }
 #administrativeDivisions .el-input__inner {
@@ -357,10 +361,7 @@ export default {
   -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   font-size: 16px !important;
-  /* border-radius: 10px !important; */
-  /* border: 0px !important; */
   height: 30px !important;
-  /* width: 196px !important; */
 }
 #administrativeDivisions .el-pagination__total {
   color: #ffffff !important;

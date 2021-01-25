@@ -119,7 +119,6 @@ display: inline-block;
     padding: 7px 0;
     float: left;
     background: rgba(5, 160, 236, 0.58);
-
 }
 #programmePreparation .programModel_active {
     color: #fff!important;

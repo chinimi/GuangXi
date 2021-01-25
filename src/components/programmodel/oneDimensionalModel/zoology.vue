@@ -60,8 +60,33 @@ export default {
  computed: {},
   mounted() {
     this.tableData = zoologyTableData.zoologyTableData;
+    this.getTableData()
   },
   methods: {
+    //获取表格数据
+    getTableData() {
+      var that=this
+      var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetEcolabConstantInfo?scenarioCode=DHJKTXRCFA";
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          var data = data.ItemList
+          var arr=[]
+           for(var i=0;i<data.length;i++){
+                 arr.push(data[i].ConstantItem)
+         }
+         var dataVal = arr.slice(0,10)
+         var dataValue = arr.slice(10,20)
+           for(var i=0;i<that.tableData.length;i++){
+                that.tableData[i].value=dataVal[i]
+                that.tableData[i].value1=dataValue[i]
+                }
+        });
+    },
        //点击单元格得到横纵坐标
     handleCellClick(row, column, event, cell) {
       this.tabRowIndex = row.index;
@@ -80,29 +105,24 @@ export default {
     },
     //保存
     saveClick() {
-      //使用some方法，用原来的值与现在的做对比，如果原来的与现在的相等，就满足条件
-      var arrList = [];
+      var arrvalue = [];
+      var arrValue1 = [];
+      var ItemList = [];
       this.tableData.map(e =>{
-       var flag = this.tableValue.some(el =>{
-           if(e === el || JSON.stringify(e) === JSON.stringify(el)){
-             return arrList.push(e)
+          arrvalue.push(e.value)
+          arrValue1.push(e.value1)
+      })
+      var arrList = arrvalue.concat(arrValue1)
+         arrList.map(e =>{
+           var data = {
+               ConstantItem:e
            }
-        })
+           ItemList.push(data)
       })
               var testdata=
               {
-                  "ScenarioCode": "DHJKTXRCFA",
-                    "Value7": 3.0,
-                    "Value9": 3.5,
-                    "Value10": 1.0,
-                    "Value11": 0.5,
-                    "Value13": 2.0,
-                    "Value14": 1.0,
-                    "Value18": 1.0,
-                    "Value22": 1.0,
-                    "Value26": 0.5,
-                    "Value28": 0.5,
-                    "Value29": 0.8,
+                 ItemList: ItemList,
+                 ScenarioCode: "DHJKTXRCFA"
               }
       var url = modelURL + "/api/GXRCWQ/ModelManager/UpdateEcolabConstantInfo";
       var _this = this

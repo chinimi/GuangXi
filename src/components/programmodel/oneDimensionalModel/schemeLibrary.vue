@@ -4,10 +4,215 @@
     <ul class="clear-fix">
       <li class="left lefts">
         <div style="margin: 10px;">
-          <el-button type="primary" size="small" plain>行政分区</el-button>
-          <el-button type="primary" size="small" plain>流域分区</el-button>
-          <el-button type="primary" size="small" plain>水资源分区</el-button>
+          <!-- <el-button type="primary" size="small" plain @click="showTypeClick(1)">行政分区</el-button>
+          <el-button type="primary" size="small" plain @click="showTypeClick(2)">流域分区</el-button>
+          <el-button type="primary" size="small" plain @click="showTypeClick(3)">水资源分区</el-button> -->
+          <el-radio-group  v-model="cursysval">
+            <el-col :span="8" v-for="item in curWaterSysOption"   :key="item.value">
+              <el-radio :label="item.value"   >{{item.label}}</el-radio>
+            </el-col>
+          </el-radio-group>
         </div>
+        <!-- 行政分区 -->
+        <div v-show="cursysval == 'administrative'">
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                省：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="province">
+                  <el-option
+                    v-for="(item, index) in provinceList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                市：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="city">
+                  <el-option
+                    v-for="(item, index) in cityList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                县：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="county">
+                  <el-option
+                    v-for="(item, index) in countyList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                镇：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="town">
+                  <el-option
+                    v-for="(item, index) in townList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                村：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="rustic">
+                  <el-option
+                    v-for="(item, index) in rusticList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        </div>
+
+        <!-- 流域分区 -->
+        <div v-show="cursysval == 'drainagebasin'">
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                流域：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="drainageBasin">
+                  <el-option
+                    v-for="(item, index) in drainageBasinList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                水系：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="basin">
+                  <el-option
+                    v-for="(item, index) in basinList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                一级河流：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="firstOrderStream">
+                  <el-option
+                    v-for="(item, index) in firstOrderStreamList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                二级河流：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="secondOrderStream">
+                  <el-option
+                    v-for="(item, index) in secondOrderStreamList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        </div>
+
+
+        <!-- 水资源 -->
+        <div v-show="cursysval == 'waterResource'">
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -113,6 +318,7 @@
             </el-col>
           </el-row>
         </div>
+        </div>
         <div>
           <el-button
             type="primary"
@@ -200,6 +406,29 @@ export default {
   components: {},
   data() {
     return {
+      //行政分区
+      province:'',
+      provinceList:[],
+      city:'',
+      cityList:[],
+      county:'',
+      countyList:[],
+      town:'',
+      townList:[],
+      rustic:'',
+      rusticList:[],
+
+      //流域分区
+      drainageBasin:'',
+      drainageBasinList:[],
+      basin:'',
+      basinList:[],
+      firstOrderStream:'',
+      firstOrderStreamList:[],
+      secondOrderStream:'',
+      secondOrderStreamList:[],
+
+      //水资源
       primaryPartition: "",
       primaryPartitionList: [],
       secondaryPartition: "",
@@ -210,11 +439,16 @@ export default {
       fourstagePartitionList: [],
       fivestagePartition: "",
       fivestagePartitionList: [],
+
+
       tableData: [],
       currentPage1: 5,
       currentPage2: 5,
       currentPage3: 5,
-      currentPage4: 4
+      currentPage4: 4,
+
+      cursysval:'administrative',
+      curWaterSysOption:[{label:'行政分区',value:'administrative'},{label:'流域分区',value:'drainagebasin'},{label:'水资源分区',value:'waterResource'}],
     };
   },
   created() {
@@ -296,6 +530,9 @@ export default {
     // })
   },
   methods: {
+    showTypeClick(index){
+      this.showType = index;
+    },
     handleLook(index, row) {
       console.log(index, row);
     },
@@ -327,24 +564,12 @@ export default {
   position: absolute;
   width: 21%;
 }
-/* #schemeLibrary .left {
-  float: left;
-  margin-right: 10px;
-  height: 50%;
-  margin-top: -6px;
-}
-#schemeLibrary .lefts {
-  width: 311px;
-  border-right: 2px dashed royalblue;
-} */
-
 #schemeLibrary .right {
   float: left;
   left: 22%;
   height: 100%;
   position: absolute;
   width: 77%;
-  /* background: rebeccapurple; */
 }
 #schemeLibrary .singleli_title {
   font-size: 13px;
@@ -360,8 +585,8 @@ export default {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
-  /* text-align: right; */
   margin-right: 10px;
+  text-align: right;
 }
 #schemeLibrary .el-input__inner {
   padding-left: 10px !important;
@@ -371,10 +596,7 @@ export default {
   -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   font-size: 16px !important;
-  /* border-radius: 10px !important; */
-  /* border: 0px !important; */
   height: 30px !important;
-  /* width: 196px !important; */
 }
 #schemeLibrary .el-pagination__total {
   color: #ffffff !important;
@@ -387,7 +609,6 @@ export default {
 }
 #schemeLibrary ul {
   position: relative;
-  /* width: 100%; */
   height: 100%;
 }
 </style>

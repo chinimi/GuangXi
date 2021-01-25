@@ -1,17 +1,6 @@
 <template>
 <!--一维模型主页面-->
-  <div >
-      <!-- 增加显示隐藏 -->
-      <div class="header_true">
-        <div class="header_xiala_div" @click="header(1)" v-if="slideDown">
-          <img class="xiala_img" src="static/images/xiala.png" alt="">
-        </div>
-        <div class="header_shangla_div" @click="header(2)" v-if="!slideDown">
-          <img class="shangla_img" src="static/images/shangla.png" alt="">
-        </div>
-      </div>
-
-      <div id="oneDimensionalModel" v-if="slideDown">
+  <div id="oneDimensionalModel">
         <ul class="programModel_title">
           <li
             v-for="(item,index) in menu"
@@ -35,9 +24,9 @@
           <programmePreparation></programmePreparation>
         </div>
       </div>
-    </div>
-  </div>
 
+
+  </div>
 </template>
 <script>
 import schemeLibrary from './schemeLibrary.vue';
@@ -52,7 +41,6 @@ import programmePreparation from './programmePreparation.vue';
     },
     data() {
       return {
-         slideDown: true,
          currentComp: 'schemeLibrary',
          isActive: 'schemeLibrary',
          menu: [
@@ -74,14 +62,7 @@ import programmePreparation from './programmePreparation.vue';
       }
     },
     methods: {
-      // 增加显示隐藏
-      header(id){
-        if(id == '1'){
-           this.slideDown = false;
-        }else{
-          this.slideDown = true;
-        }
-      }
+
     },
     computed: {
 
@@ -131,6 +112,4 @@ import programmePreparation from './programmePreparation.vue';
     background: rgba(5, 160, 236, 0.58)!important;
     /* border-left: 4px solid #0718fa; */
 }
-
-
 </style>

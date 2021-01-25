@@ -1,6 +1,16 @@
 <template>
 <!--模板管理主页面-->
-  <div id="moduleManager">
+<div>
+    <!-- 增加显示隐藏 -->
+      <div class="header_true">
+        <div class="header_xiala_div" @click="header(1)" v-if="slideDown">
+          <img class="xiala_img" src="static/images/xiala.png" alt="">
+        </div>
+        <div class="header_shangla_div" @click="header(2)" v-if="!slideDown">
+          <img class="shangla_img" src="static/images/shangla.png" alt="">
+        </div>
+      </div>
+  <div id="moduleManager" v-if="slideDown">
     <div class="moduleManager_title">
       模板管理
     </div>
@@ -30,8 +40,7 @@
           <waterResourcesZoning></waterResourcesZoning>
         </div>
       </div>
-
-
+  </div>
   </div>
 </template>
 <script>
@@ -49,6 +58,7 @@ import waterResourcesZoning from './waterResourcesZoning.vue';
     },
     data() {
       return {
+        slideDown: true,
          currentComp: 'administrativeDivisions',
          isActive: 'administrativeDivisions',
          menu: [
@@ -75,6 +85,14 @@ import waterResourcesZoning from './waterResourcesZoning.vue';
       }
     },
     methods: {
+    // 增加显示隐藏
+      header(id){
+        if(id == '1'){
+           this.slideDown = false;
+        }else{
+          this.slideDown = true;
+        }
+      }
 
     },
     computed: {

@@ -109,8 +109,8 @@
           </el-row>
         </div>
 
-        <div style="margin: 50% 0 0 75%;">
-          <el-button type="primary" size="small" plain>查找</el-button>
+        <div>
+          <el-button style="float:right;right: 20px;position: relative;" type="primary" size="small" plain>查找</el-button>
         </div>
       </li>
       <li class=" clear-fix left right">
@@ -130,9 +130,9 @@
             height="600"
             style="background-color: transparent;"
           >
-            <el-table-column prop="tab1" label="序号" min-width="50">
+            <el-table-column prop="tab1" label="序号" min-width="70">
             </el-table-column>
-            <el-table-column prop="tab2" label="方案编码" min-width="80">
+            <el-table-column prop="tab2" label="方案编码" min-width="100">
             </el-table-column>
             <el-table-column prop="tab3" label="方案名称" min-width="100">
             </el-table-column>
@@ -140,7 +140,7 @@
             </el-table-column>
             <el-table-column prop="tab5" label="修改时间" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab6" label="基准模板" min-width="80">
+            <el-table-column prop="tab6" label="基准模板" min-width="100">
             </el-table-column>
             <el-table-column prop="tab7" label="一级流域分区" min-width="150">
             </el-table-column>
@@ -148,7 +148,7 @@
             </el-table-column>
             <el-table-column prop="tab9" label="行政分区（市）" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab10" label="水资源分区" min-width="100">
+            <el-table-column prop="tab10" label="水资源分区" min-width="130">
             </el-table-column>
             <el-table-column prop="tab11" label="所属河长" min-width="100">
             </el-table-column>
@@ -320,16 +320,13 @@ export default {
   float: left;
   margin-right: 10px;
   height: 50%;
-  /* margin-top: -6px; */
 }
 #administrativeDivisions .lefts {
   width: 311px;
-  /* background: red; */
   border-right: 2px dashed royalblue;
 }
 #administrativeDivisions .right {
   width: 1092px;
-  /* background: rebeccapurple; */
   margin-top: -2%;
 }
 #administrativeDivisions .singleli_title {
@@ -357,10 +354,7 @@ export default {
   -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   font-size: 16px !important;
-  /* border-radius: 10px !important; */
-  /* border: 0px !important; */
   height: 30px !important;
-  /* width: 196px !important; */
 }
 #administrativeDivisions .el-pagination__total {
   color: #ffffff !important;

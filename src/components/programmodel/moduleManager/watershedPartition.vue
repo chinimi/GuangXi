@@ -3,18 +3,19 @@
   <div id="administrativeDivisions">
     <ul>
       <li class="left lefts">
-        <div class="singleli_title">
+
+       <div class="singleli_title">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                一级分区：
+                流域：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="drainageBasin">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in drainageBasinList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -28,14 +29,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                二级分区：
+                水系：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="secondaryPartition">
+                <el-select v-model="basin">
                   <el-option
-                    v-for="(item, index) in secondaryPartitionList"
+                    v-for="(item, index) in basinList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -49,14 +50,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                三级分区：
+                一级河流：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="tertiaryPartition">
+                <el-select v-model="firstOrderStream">
                   <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
+                    v-for="(item, index) in firstOrderStreamList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -70,35 +71,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                四级分区：
+                二级河流：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="fourstagePartition">
+                <el-select v-model="secondOrderStream">
                   <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <div class="singleli_title">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                五级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
+                    v-for="(item, index) in secondOrderStreamList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -109,8 +89,11 @@
           </el-row>
         </div>
 
-        <div style="margin: 50% 0 0 75%;">
-          <el-button type="primary" size="small" plain>查找</el-button>
+
+
+
+        <div>
+          <el-button style="float:right;right: 20px;position: relative;" type="primary" size="small" plain>查找</el-button>
         </div>
       </li>
       <li class=" clear-fix left right">
@@ -130,9 +113,9 @@
             height="600"
             style="background-color: transparent;"
           >
-            <el-table-column prop="tab1" label="序号" min-width="50">
+            <el-table-column prop="tab1" label="序号" min-width="70">
             </el-table-column>
-            <el-table-column prop="tab2" label="方案编码" min-width="80">
+            <el-table-column prop="tab2" label="方案编码" min-width="100">
             </el-table-column>
             <el-table-column prop="tab3" label="方案名称" min-width="100">
             </el-table-column>
@@ -140,7 +123,7 @@
             </el-table-column>
             <el-table-column prop="tab5" label="修改时间" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab6" label="基准模板" min-width="80">
+            <el-table-column prop="tab6" label="基准模板" min-width="100">
             </el-table-column>
             <el-table-column prop="tab7" label="一级流域分区" min-width="150">
             </el-table-column>
@@ -148,7 +131,7 @@
             </el-table-column>
             <el-table-column prop="tab9" label="行政分区（市）" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab10" label="水资源分区" min-width="100">
+            <el-table-column prop="tab10" label="水资源分区" min-width="130">
             </el-table-column>
             <el-table-column prop="tab11" label="所属河长" min-width="100">
             </el-table-column>
@@ -196,16 +179,17 @@ export default {
   components: {},
   data() {
     return {
-      primaryPartition: "",
-      primaryPartitionList: [],
-      secondaryPartition: "",
-      secondaryPartitionList: [],
-      tertiaryPartition: "",
-      tertiaryPartitionList: [],
-      fourstagePartition: "",
-      fourstagePartitionList: [],
-      fivestagePartition: "",
-      fivestagePartitionList: [],
+      //流域分区
+      drainageBasin:'',
+      drainageBasinList:[],
+      basin:'',
+      basinList:[],
+      firstOrderStream:'',
+      firstOrderStreamList:[],
+      secondOrderStream:'',
+      secondOrderStreamList:[],
+
+
       tableData: [],
       currentPage1: 5,
       currentPage2: 5,
@@ -325,16 +309,6 @@ export default {
     position: absolute;
     width: 21%;
 }
-/* #schemeLibrary .left {
-  float: left;
-  margin-right: 10px;
-  height: 50%;
-  margin-top: -6px;
-}
-#schemeLibrary .lefts {
-  width: 311px;
-  border-right: 2px dashed royalblue;
-} */
 
 #administrativeDivisions .right {
   float: left;
@@ -342,7 +316,6 @@ export default {
   height: 100%;
   position: absolute;
   width: 77%;
-  /* background: rebeccapurple; */
 }
 #administrativeDivisions .singleli_title {
   font-size: 13px;
@@ -358,7 +331,7 @@ export default {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
-  /* text-align: right; */
+  text-align: right;
   margin-right: 10px;
 }
 #administrativeDivisions .el-input__inner {
@@ -369,10 +342,7 @@ export default {
   -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   font-size: 16px !important;
-  /* border-radius: 10px !important; */
-  /* border: 0px !important; */
   height: 30px !important;
-  /* width: 196px !important; */
 }
 #administrativeDivisions .el-pagination__total{
   color:#ffffff !important;
@@ -388,53 +358,4 @@ export default {
   width: 100%;
   height: 100%;
 }
-/* #administrativeDivisions .left {
-  float: left;
-  margin-right: 10px;
-  height: 50%;
-  margin-top: -6px;
-}
-#administrativeDivisions .lefts {
-  width: 311px;
-  border-right: 2px dashed royalblue;
-}
-#administrativeDivisions .right {
-  width: 1092px;
-  margin-top: -4%;
-}
-#administrativeDivisions .singleli_title {
-  font-size: 13px;
-  height: 35px;
-  line-height: 65px;
-  border-radius: 5px;
-  font-weight: lighter;
-  margin-left: 3%;
-  margin-top: 20px;
-}
-
-#administrativeDivisions .singleli_title .sysfxTit {
-  color: white;
-  letter-spacing: 1px;
-  font-size: 16px;
-  margin-right: 10px;
-}
-#administrativeDivisions .el-input__inner {
-  padding-left: 10px !important;
-  color: #058cd0;
-  border: 1px solid #058cd0;
-  background: #031823;
-  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  font-size: 16px !important;
-  height: 30px !important;
-}
-#administrativeDivisions .el-pagination__total {
-  color: #ffffff !important;
-}
-#administrativeDivisions .el-pagination__jump {
-  color: #ffffff !important;
-}
-#administrativeDivisions .el-pagination .el-select .el-input .el-input__inner {
-  color: #ffff;
-} */
 </style>

@@ -160,19 +160,75 @@ body {
     .el-table .cell{
       font-size: 17px;
     }
-/* ::-webkit-scrollbar-thumb:hover {
-  background-color: #058cd0!important;
-} */
-/* .el-pagination.is-background .el-pager li {
-  margin: 0 5px;
-  background-color:transparent !important;
-  color: #01bdf5 !important;
-  min-width: 30px;
-  border-radius: 2px;
-} */
 
-/* .el-table td, .el-table th.is-leaf {
-  border-bottom: 1px solid #01bdf5 ;
-} */
+/* 增加显示隐藏 */
+.header_true{
+  width: 1480px;
+  height: 38px;
+  position: absolute;
+  top: 0;
+  left: 265px;
+  text-align: center;
+  /* background: rgba(21, 37, 63, 0.86); */
+  border-radius: 5px;
+  z-index: 9;
+}
+.header_xiala_div{
+  position: relative;
+ width: 80px;
+    height: 30px;
+  left: 50%;
+  border: 1px solid #058cd0;
+  border-radius: 20px;
+  transform: translate(-50%);
+  background: #031823;
+}
+.header_shangla_div{
+  position: relative;
+ width: 80px;
+    height: 30px;
+  left: 50%;
+  top:780px;
+  border: 1px solid #058cd0;
+  border-radius: 20px;
+  transform: translate(-50%);
+  background: #031823;
+}
+.header_true .xiala_img{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+.header_true .shangla_img{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+.el-radio{
+  color:#fff!important;
+}
 
+ .el-input__inner {
+  padding-left: 10px !important;
+  color: #058cd0;
+  border: 1px solid #058cd0;
+  background: #031823;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 16px !important;
+  height: 30px !important;
+}
+ .el-pagination__total {
+  color: #ffffff !important;
+}
+ .el-pagination__jump {
+  color: #ffffff !important;
+}
+ .el-pagination .el-select .el-input .el-input__inner {
+  color: #ffff;
+}
 
