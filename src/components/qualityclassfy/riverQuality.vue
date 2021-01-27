@@ -1037,8 +1037,10 @@
 
         }],
         /*评价步长*/
-        pjbcVal:'month',//评价步长
-        pjbcOption:[{value:'month',label:'月份'}],
+        /*评价步长*/
+        pjbcVal:'year',//评价步长
+        pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+
         /*生物评价*/
         swpjVal:'fir',//生物评价
         swpjOption:[{value:'fir',label:'生物多样性指数'},{value:'sec',label:'生物指数'},{value:'third',label:'生物完整性指数'}],

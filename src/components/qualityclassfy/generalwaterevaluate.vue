@@ -991,8 +991,9 @@
 
             }],
             /*评价步长*/
-            pjbcVal:'month',//评价步长
-            pjbcOption:[{value:'month',label:'月份'}],
+            pjbcVal:'year',//评价步长
+            pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+
             /*初始时间*/
             startTime:'2015-07',
             /*截至时间*/

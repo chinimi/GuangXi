@@ -742,7 +742,7 @@ export default {
     color: red;
   }
   #toolbar_tab{
-    border:solid 1px pink;
+    /*border:solid 1px pink;*/
 
 
   }

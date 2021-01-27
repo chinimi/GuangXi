@@ -66,34 +66,51 @@
             </el-col>
           </el-row>
         </div>
-        <!--水系参数-->
-        <div style="width: 100%;padding-left:20px;">
-          <!-- <el-checkbox-group v-model="pjbzval" @change="">
-             <el-checkbox v-for="item in curWaterSysOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>
-           </el-checkbox-group>-->
+        <!--流域选择-->
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                流域选择：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="lyxzVal">
+                  <el-option
+                    v-for="(item, index) in lyxzOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
 
-          <el-radio-group  v-model="cursysval">
+        <!--划分河段依据-->
+        <div style="width: 100%;padding-left:20px;">
+         <el-radio-group  v-model="cursysval">
             <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
-              <el-radio :label="product.value"   >{{product.label}}</el-radio>
+              <el-radio :label="product.value">{{product.label}}</el-radio>
             </el-col>
           </el-radio-group>
         </div>
 
-
-        <!--流域水系-->
-        <!--流域-->
-        <div class="singleli_title"  v-if="cursysval=='river'">
+        <!--分级选择-->
+        <div class="singleli_title">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                流域：
+                分级选择：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="fjxzVal">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in fjoption"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -103,447 +120,19 @@
             </el-col>
           </el-row>
         </div>
-        <!--水系-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                水系：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="secondaryPartition">
-                  <el-option
-                    v-for="(item, index) in secondaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--一级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                一级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="tertiaryPartition">
-                  <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--二级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                二级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fourstagePartition">
-                  <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--三级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                三级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--四级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'"  >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                四级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--五级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                五级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="customdefine">
-                  <el-option
-                    v-for="(item, index) in customdefineList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--六级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                六级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="customdefine">
-                  <el-option
-                    v-for="(item, index) in customdefineList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--流域水系  over-->
 
 
 
-
-        <!--水资源分区-->
-        <!--1级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                一级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="primaryPartition">
-                  <el-option
-                    v-for="(item, index) in primaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--2级-->
-        <div class="singleli_title"  v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                二级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="secondaryPartition">
-                  <el-option
-                    v-for="(item, index) in secondaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--3级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                三级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="tertiaryPartition">
-                  <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--4级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                四级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fourstagePartition">
-                  <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--测站级别-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                测站级别：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--测站名称-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                测站名称：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--自定义-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                自定义：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="customdefine">
-                  <el-option
-                    v-for="(item, index) in customdefineList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--水资源分区 over-->
-
-
-        <!--行政区-->
-        <!--省-->
-        <div class="singleli_title"    v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                省：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="primaryPartition">
-                  <el-option
-                    v-for="(item, index) in primaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--市-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                市：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="secondaryPartition">
-                  <el-option
-                    v-for="(item, index) in secondaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--县-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                县：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="tertiaryPartition">
-                  <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--镇-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                镇：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fourstagePartition">
-                  <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--村-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                村：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--行政区 over-->
-
-
-        <div style="margin-left:20px;">
-          <!--时间段选择-->
-          <div >
-            <el-radio-group  v-model="selectTimeType">
-              <el-col :span="12" v-for="product in timequantumOption"   :key="product.value">
-                <el-radio :label="product.value"   >{{product.label}}</el-radio>
-              </el-col>
-            </el-radio-group>
-          </div>
-        </div>
+<!--        <div style="margin-left:20px;">-->
+<!--          &lt;!&ndash;时间段选择&ndash;&gt;-->
+<!--          <div >-->
+<!--            <el-radio-group  v-model="selectTimeType">-->
+<!--              <el-col :span="12" v-for="product in timequantumOption"   :key="product.value">-->
+<!--                <el-radio :label="product.value"   >{{product.label}}</el-radio>-->
+<!--              </el-col>-->
+<!--            </el-radio-group>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="singleli_title">
           <el-row>
@@ -571,7 +160,7 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                时间选择：
+                参照系列：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
@@ -617,12 +206,11 @@
       </div>
       <!--table表格-->
       <div class="right_menu">
-         <!--水质评价-->
-        <el-row  style="color:#fff;"></el-row>
+
+       <!-- <el-row  style="color:#fff;"></el-row>
         <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="400" style="margin-bottom:20px;background-color: transparent;">
           <el-table-column
             label="评估指标"
-
           >
           </el-table-column>
           <el-table-column
@@ -643,199 +231,73 @@
           </el-table-column>
 
         </el-table>
+-->
 
 
-        <!--总硬度-->
-        <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-          <el-table-column
-            label="序号"
-            type="index"
-            >
-          </el-table-column>
-          <el-table-column
-            prop="stcd"
-            label="河流编码">
-          </el-table-column>
-          <el-table-column
-            prop="stnm"
-            label="河段名称">
-          </el-table-column>
-          <el-table-column
-            prop="stnm"
-            label="测站名称">
-          </el-table-column>
-          <el-table-column
-            prop="thrd"
-            label="总硬度指标">
-          </el-table-column>
+        <el-table
+          ref="multipleTable"
+          :data="originData"
+          :selectable="checkSelectable"
+          tooltip-effect="dark"
+          style="width: 100%"
+          :span-method="mergeStratege"
+          @selection-change="handleSelectionChange">
 
           <el-table-column
-            prop="thrdType"
-            label="级别">
-          </el-table-column>
-
-
-
-          <el-table-column
-            label="备注">
+                 label="准则层">
             <template slot-scope="scope">
-              <!--  {{scope.row.time}}-->
-              备注
+              <span @click="handleEdit(scope.$index, scope.row)">
+                 {{ scope.row.name }}
+
+              </span>
+
             </template>
           </el-table-column>
+          <el-table-column prop="amount1"
+                           label="指标层"></el-table-column>
+      <el-table-column prop="amount2"
+                           label="代码"></el-table-column>
+    <el-table-column prop="rowspan"
+                           label="跨行"></el-table-column>
 
+          <el-table-column
+            type="selection"
+            width="55">
+          </el-table-column>
         </el-table>
 
-        <!--水化学类型-->
-        <el-table v-if="pjxmval=='shxlx'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
 
-        <el-table-column
-            label="序号"
-            type="index"
-           >
-          </el-table-column>
-          <el-table-column
-            prop="stcd"
-            label="河流编码">
-          </el-table-column>
-          <el-table-column
-            prop="stnm"
-            label="河段名称">
-          </el-table-column>
-          <el-table-column
-            prop="ca"
-            label="Ca2+">
-          </el-table-column>
-          <el-table-column
-            prop="mg"
-            label="Mg2+">
-          </el-table-column>
-          <el-table-column
-            prop="na"
-            label="Na+">
-          </el-table-column>
-          <el-table-column
-            label="HCO3-">
-            <template slot-scope="scope">
-              {{scope.row.hco3}}
-            </template>
-          </el-table-column>
 
-          <el-table-column
-            label="SO42-">
-            <template slot-scope="scope">
-                {{scope.row.so4}}
 
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="cl"
-            label="Cl-">
-          </el-table-column>
 
-          <el-table-column
-            label="备注">
-            <template slot-scope="scope">
-              <!--  {{scope.row.time}}-->
-              备注
-            </template>
-          </el-table-column>
-        </el-table>
-        <!--地表天然水-->
-        <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )"" style="background-color: transparent;">
-          <el-table-column
-            label="序号"
-            type="index"
-            >
-          </el-table-column>
-          <el-table-column
-            prop="stcd"
-            label="河流编码">
-          </el-table-column>
 
-          <el-table-column
-            prop="stnm"
-            label="测站名称">
-          </el-table-column>
-          <el-table-column
-            prop="f"
-            label="氟">
-          </el-table-column>
-          <el-table-column
-            prop="ars"
-            label="砷">
-          </el-table-column>
-          <el-table-column
-            prop="mndg"
-            label="矿化物">
-          </el-table-column>
-
-          <el-table-column
-
-            label="氯化物">
-            <template slot-scope="scope">
-              {{scope.row.cl}}
-
-            </template>
-          </el-table-column>
-          <el-table-column
-
-            label="硫酸盐">
-            <template slot-scope="scope">
-                {{scope.row.so4}}
-
-            </template>
-          </el-table-column>
-
-          <el-table-column
-            label="备注">
-            <template slot-scope="scope">
-              <!--  {{scope.row.time}}-->
-              备注
-            </template>
-          </el-table-column>
-
-        </el-table>
-
-        <!--分页-->
-        <div style="padding-top:30px;">
-          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
-          <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size=pageSize
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
-          >
-          </el-pagination>
-        </div>
       </div>
-
 	</div>
 </template>
 
 <script>
-
-
-  import  getWater from '../../api/index'
   import moment from "moment";
   export default {
       data() {
           return {
+            /*分级选择*/
+            fjxzVal:'first',
+            fjoption:[{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'}],
+
+            /*流域选择*/
+            lyxzVal:'gjly',
+            lyxzOption:[{value:'gjly',label:'桂江流域'},{value:'hhly',label:'黄河流域'}],
             /*评价标准*/
             evaluatiStandarVal:'SL395-2007',
             evaluationOptopn:[{
               value:'SL395-2007',
-              value:'SL395-2007',
+              label:'SL395-2007',
             }],
             /*评价项目*/
             evalProVal:'SL395-2007',
             evalProOptopn:[{
               value:'SL395-2007',
-              value:'SL395-2007',
+              label:'SL395-2007',
             }],
             checkedCities: [],
             checkedCities2: [],
@@ -861,16 +323,16 @@
 
 
             /*评价标准*/
-            pjbzval:'all',
+            pjbzval:'hbjlpg',
             pjbzOption:[{
-              label:"全部",
-              value:'all',
+              label:"湖泊健康评估指标",
+              value:'hbjkpg',
             }],
             /*评价项目*/
-            pjxmval:'khd',
+            pjxmval:'stjk',
             pjxmOption:[{
-              label:"矿化度",
-              value:'khd',
+              label:"水体健康",
+              value:'stjk',
             },{
               label:"总硬度",
               value:'zyd',
@@ -897,7 +359,7 @@
             /*当前水系*/
             cursysval:'river',
             /*水系参数*/
-            curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+            curWaterSysOption:[{label:'河长制分区',value:'river'},{label:'水资源分区',value:'watersource'},{label:'水功能分区',value:'distriction'}],
             /*时间选择*/
             selectTimeType:"singletime",
             /*时间段选择*/
@@ -910,12 +372,102 @@
 
             }],
             /*评价步长*/
-            pjbcVal:'month',//评价步长
-            pjbcOption:[{value:'month',label:'月份'}],
+            pjbcVal:'year',//评价步长
+            pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
             /*初始时间*/
             startTime:'2015-07',
             /*截至时间*/
             endTime:'2015-08',
+
+            tableData: [{
+              date: '2016-05-03',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+              date: '2016-05-02',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+              date: '2016-05-04',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+              date: '2016-05-01',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+              date: '2016-05-08',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+              date: '2016-05-06',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+              date: '2016-05-07',
+              name: '王小虎',
+              address: '上海市普陀区金沙江路 1518 弄'
+            }],
+            multipleSelection: [],//多选参数集合
+            originData: [{
+              id: '12987122',
+              name: '水文水资源(HD)',
+              amount1: '流量过程变异程度',
+              amount2: 'FD',
+              amount3: 10
+            }, {
+              id: '12987123',
+              name: '水文水资源(HD)',
+              amount1: '生态流量满足程度',
+              amount2: 'EF',
+              amount3: 12
+            }, {
+              id: '12987124',
+              name: '水文水资源(HD)',
+              amount1: '健康流量',
+              amount2: 'HEF',
+              amount3: 9
+            }, {
+              id: '12987125',
+              name: '物理结构(PF)',
+              amount1: '河岸带状况',
+              amount2: 'RS',
+              amount3: 17
+            }, {
+              id: '12987126',
+              name: '物理结构(PF)',
+              amount1: '河流连通陶隔状况',
+              amount2: 'RC',
+              amount3: 15
+            }, {
+              id: '12987124',
+              name: '水质(WQ)',
+              amount1: '324',
+              amount2: '1.9',
+              amount3: 9
+            }, {
+              id: '12987125',
+              name: '水质(WQ)',
+              amount1: '621',
+              amount2: '2.2',
+              amount3: 17
+            }, {
+              id: '12987124',
+              name: '水质(WQ)',
+              amount1: '324',
+              amount2: '1.9',
+              amount3: 9
+            }, {
+              id: '12987124',
+              name: '水质(WQ)',
+              amount1: '324',
+              amount2: '1.9',
+              amount3: 9
+            }]
+
+
+
+
           }
       },
       created() {
@@ -925,6 +477,55 @@
 
       },
       methods: {
+        //选中单元格，跳转路由并且传参数
+        handleEdit(index, row) {
+          console.log(index, row);
+          console.log(row.name)
+          this.$router.push({name:'selectriver',params:{}});
+        },
+        checkSelectable(row,index){
+          let flag = true;
+          for (let i = 0; i < this.originData.length; i++) {
+            if( row.name == '王小虎'){
+              flag = false
+            }
+          }
+          return flag
+
+          // let isChecked = true;
+          // if (row.dealerName === null) { // 判断里面是否存在某个参数
+          //   isChecked = true
+          // } else {
+          //   isChecked = false
+          // }
+          // return isChecked
+
+        },
+
+        // 传入element-table的合并方法
+        mergeStratege ({ row, column, rowIndex, columnIndex }) {
+          // 第一层判断控制从哪一列，或多少列合并，
+          if (columnIndex === 0) { // 此处表示第一列合并
+            // if (columnIndex < 2) { // 此处表示前两列合并
+            if (row.isStartMerge) {
+              return {
+                rowspan: row.rowspan,// 合并多少行，由数据处理函数处理得出
+                colspan: 1 // 可以控制合并多少列，可由数据处理函数处理
+              }
+            } else {
+              return {
+                rowspan: 0,
+                colspan: 0
+              }
+            }
+          }
+        },
+
+        handleSelectionChange(val){
+          console.log("获取选中的行要素数组集合")
+          console.log(val)
+
+        },
         handleClick(ele){//选中要素编辑
           console.log(ele)//选中要编辑的要素
 
@@ -1103,6 +704,34 @@
 
 
 
+        },
+        originData: {
+          // 数据处理函数，可以在此处设置从哪一行开始合并
+          // 此函数只处理了行合并情况，可根据需求自行设置列处理
+          handler (newData) {
+            if (newData.length) {
+              // 标记首行开始合并
+              let mergeStartRow = newData[0]
+              mergeStartRow.isStartMerge = true // 标记开始合并的行
+              mergeStartRow.rowspan = 1 // 标记需要合并行数
+              mergeStartRow.startIndex = 0 // 用于计算合并行数
+              // 需要计算最后一次的合并行数，故需要循环到length次
+              for (let i = 1; i <= newData.length; i++) {
+                // row中name字段不相等，则开启下一个合并处理；及最后一次合并
+                if ((newData[i] && mergeStartRow.name !== newData[i].name) || i === newData.length) {
+                  mergeStartRow.endIndex = i // 用于计算合并行数
+                  mergeStartRow.rowspan = mergeStartRow.endIndex - mergeStartRow.startIndex // 计算合并行数
+                  mergeStartRow = newData[i] // 标记新的合并
+                  if (mergeStartRow) {
+                    mergeStartRow.isStartMerge = true
+                    mergeStartRow.rowspan = 1
+                    mergeStartRow.startIndex = i
+                  }
+                }
+              }
+            }
+          },
+          immediate: true
         }
 
 
@@ -1239,21 +868,8 @@
     font-size: 14px;
     padding-left: 4px;
   }
-  /* 滚动样式修改*/
-  >>> ::-webkit-scrollbar {
-    /*background-color: transparent !important;*/
-    /*height: 0 !important;*/
-    /*width: 0 !important;*/
-  }
 
-  >>> ::-webkit-scrollbar-thumb {
-    /*background-color: transparent !important;*/
-  }
 
-  /* 修改边框颜色*/
-  >>> ::-webkit-scrollbar-thumb {
-    /*background-color: transparent !important;*/
-  }
   >>>.el-container{
     height: 100%;
   }
@@ -1263,4 +879,76 @@
 
   }
 
+
+  /*table表格样式*/
+  .el-table__body-wrapper::-webkit-scrollbar {
+    width: 4px;
+    height: 6px;
+  }
+  .el-table__body-wrapper::-webkit-scrollbar-thumb {
+    background-color: #034866;
+  }
+  .el-table--border td {
+    border-right: 1px solid transparent !important;
+  }
+  .el-table--border th {
+    border-right: 1px solid #034866 !important;
+  }
+  .el-table th.gutter{
+    /*
+    * 解决element-ui 表格篡位的问题 👇
+    */
+    display: table-cell!important;
+  }
+  .el-table__fixed-right::before, .el-table__fixed::before {
+    height: 0px;
+  }
+  .el-table thead {
+    font-family: "MicrosoftYaHei";
+    font-size:14px;
+    /* line-height: 10; */
+    color: #feffff
+  }
+  .el-table {
+    font-size: 14px;
+    color: #eef5fb;
+    font-family: MicrosoftYaHei;
+  }
+
+  .el-table__body-wrapper::-webkit-scrollbar {
+    width: 4px;
+    height: 6px;
+  }
+  .el-table__body-wrapper::-webkit-scrollbar-thumb {
+    background-color: #034866;
+  }
+  .el-table--border::after, .el-table--group::after, .el-table::before {
+    background-color: transparent !important;
+  }
+  .el-table td, .el-table th.is-leaf {
+    border-bottom: 1px solid #011a26;
+  }
+  .el-table th, .el-table tr {
+    background-color: #003346;
+  }
+  .el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color : #011a26
+  }
+  .el-table--border::after, .el-table--group::after, .el-table::before {
+    background-color: #011a26;
+  }
+  .el-table, .el-table__expanded-cell {
+    background-color: transparent;
+    border: 1px solid #0c5276;
+  }
+  .el-table thead th{
+    background-color: rgba(0,0,0,.01);
+  }
+  .el-date-table td.current:not(.disabled) span {
+    background-color: #0089c0;
+  }
+  .el-date-table td.today span {
+    color: #0085ba;
+  }
+  /*table表格样式*/
 </style>
