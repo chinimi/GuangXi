@@ -15,6 +15,7 @@ import generalwaterevaluate from '../components/qualityclassfy/generalwaterevalu
 import riverHealthy from '../components/qualityclassfy/riverHealthy.vue'
 import riverQuality from '../components/qualityclassfy/riverQuality.vue'
 
+import selectriver from '../components/qualityclassfy/selectriver.vue'
 
 Vue.use(Router)
 
@@ -28,7 +29,7 @@ export default new Router({
     },
     // 首页
     {
-      path:'/',
+      path:'/',//一级路由
       name: 'home',
       component:home,
       children:[
@@ -46,11 +47,15 @@ export default new Router({
           component:changeWater,
 
 
+
+
         },
         {
           path: '/drinkWater',
           name: 'drinkWater',
           component:drinkWater,
+
+
 
 
         },
@@ -60,6 +65,8 @@ export default new Router({
           component:environWater,
 
 
+
+
         },
         {//水质基础评价
           path: '/generalwaterevaluate',
@@ -67,18 +74,28 @@ export default new Router({
           component:generalwaterevaluate,
 
 
+
+
         },
         {//江河湖库水生态质量评价
           path: '/riverQuality',
           name: 'riverQuality',
           component:riverQuality,
-
-
-    },
+        },
         {//江河湖库水体健康评价
-          path: '/riverHealthy',
+          path: '/riverHealthy',//二级路由
           name: 'riverHealthy',
           component:riverHealthy,
+          // redirect:'/personName',
+          // children:[
+          //   {path:'/phone', name:"phoneNumber", component:riverQuality},
+          //
+          // ]//配置三极路由
+        },
+        {//
+          path: '/selectriver',
+          name: 'selectriver',
+          component:selectriver,
         },
 
       ]
