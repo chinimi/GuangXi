@@ -8,11 +8,121 @@
           <el-button type="primary" size="small" plain @click="showTypeClick(2)">流域分区</el-button>
           <el-button type="primary" size="small" plain @click="showTypeClick(3)">水资源分区</el-button> -->
           <el-radio-group  v-model="cursysval">
-            <el-col :span="8" v-for="item in curWaterSysOption"   :key="item.value">
+            <el-col :span="6" v-for="item in curWaterSysOption"  :key="item.value" style="padding-left: 10px;">
               <el-radio :label="item.value"   >{{item.label}}</el-radio>
             </el-col>
           </el-radio-group>
         </div>
+
+        <!-- 河长制 -->
+        <div v-show="cursysval == 'chief'">
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                一级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="primaryPartition">
+                  <el-option
+                    v-for="(item, index) in primaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                二级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="secondaryPartition">
+                  <el-option
+                    v-for="(item, index) in secondaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                三级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="tertiaryPartition">
+                  <el-option
+                    v-for="(item, index) in tertiaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                四级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fourstagePartition">
+                  <el-option
+                    v-for="(item, index) in fourstagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                五级分区：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fivestagePartition">
+                  <el-option
+                    v-for="(item, index) in fivestagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        </div>
+
         <!-- 行政分区 -->
         <div v-show="cursysval == 'administrative'">
         <div class="singleli_title">
@@ -447,8 +557,8 @@ export default {
       currentPage3: 5,
       currentPage4: 4,
 
-      cursysval:'administrative',
-      curWaterSysOption:[{label:'行政分区',value:'administrative'},{label:'流域分区',value:'drainagebasin'},{label:'水资源分区',value:'waterResource'}],
+      cursysval:'chief',
+      curWaterSysOption:[{label:'河长制',value:'chief'},{label:'流域',value:'drainagebasin'},{label:'水资源',value:'waterResource'},{label:'行政',value:'administrative'}],
     };
   },
   created() {

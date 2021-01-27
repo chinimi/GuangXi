@@ -333,8 +333,8 @@ export default {
   border-right: 2px dashed royalblue;
 }
 #administrativeDivisions .right {
-  width: 1092px;
-  margin-top: -4%;
+  width: 77%;
+  margin-top: -2%;
 }
 #administrativeDivisions .singleli_title {
   font-size: 13px;

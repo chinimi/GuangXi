@@ -7,10 +7,10 @@
       <el-row>
         <el-col :span="8">
           <div class="sysfxTit">
-            扩散系数（㎡/s）
+            纵向扩散系数（㎡/s）
           </div>
         </el-col>
-        <el-col :span="14" style="margin-left: -9%;">
+        <el-col :span="14">
           <div>
             <el-input
               style="width:196px"
@@ -28,7 +28,7 @@
             降解系数（1/day）
           </div>
         </el-col>
-        <el-col :span="14" style="margin-left: -9%;">
+        <el-col :span="14">
           <div>
             <el-input
               style="width:196px"
@@ -196,7 +196,7 @@ export default {
   line-height: 35px;
   border-radius: 5px;
   font-weight: lighter;
-  margin-left: 3%;
+  margin-left: -3%;
   margin-bottom: 5px;
 }
 
@@ -204,7 +204,7 @@ export default {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
-  /* text-align: right; */
+  text-align: right;
   margin-right: 10px;
 }
 #convectiveDiffusion .el-input__inner {

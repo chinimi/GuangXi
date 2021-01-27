@@ -1,6 +1,6 @@
 <template>
 <!--流域分区主页面-->
-  <div id="administrativeDivisions">
+  <div class="watershedPartition">
     <ul>
       <li class="left lefts">
 
@@ -301,7 +301,7 @@ export default {
 </script>
 <style>
 
-#administrativeDivisions .left{
+.watershedPartition .left{
    border-right: 2px dashed royalblue;
        border-right: 2px dashed royalblue;
     float: left;
@@ -310,14 +310,15 @@ export default {
     width: 21%;
 }
 
-#administrativeDivisions .right {
+.watershedPartition .right {
   float: left;
   left: 22%;
   height: 100%;
   position: absolute;
   width: 77%;
+  top:-32px
 }
-#administrativeDivisions .singleli_title {
+.watershedPartition .singleli_title {
   font-size: 13px;
   height: 35px;
   line-height: 65px;
@@ -327,14 +328,14 @@ export default {
   margin-top: 20px;
 }
 
-#administrativeDivisions .singleli_title .sysfxTit {
+.watershedPartition .singleli_title .sysfxTit {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
   text-align: right;
   margin-right: 10px;
 }
-#administrativeDivisions .el-input__inner {
+.watershedPartition .el-input__inner {
   padding-left: 10px !important;
   color: #058cd0;
   border: 1px solid #058cd0;
@@ -344,18 +345,18 @@ export default {
   font-size: 16px !important;
   height: 30px !important;
 }
-#administrativeDivisions .el-pagination__total{
+.watershedPartition .el-pagination__total{
   color:#ffffff !important;
 }
-#administrativeDivisions .el-pagination__jump{
+.watershedPartition .el-pagination__jump{
   color:#ffffff !important;
 }
-#administrativeDivisions .el-pagination .el-select .el-input .el-input__inner{
+.watershedPartition .el-pagination .el-select .el-input .el-input__inner{
          color: #ffff;
 }
-#administrativeDivisions ul{
+.watershedPartition ul{
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
 }
 </style>

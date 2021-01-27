@@ -37,38 +37,12 @@
       </div>
       <div class="data_right clear-fix" v-if="water">
         <div class="table">
-          <div v-show="flow">
             <el-table border :data="tableData" style="background-color: transparent;height:550px;">
             <el-table-column prop="DT" label="时间" align="center">
             </el-table-column>
-            <el-table-column prop="Value" label="流量（m³/s）" align="center" width="130">
+            <el-table-column prop="Value" :label="unit" align="center" width="130">
             </el-table-column>
           </el-table>
-          </div>
-          <div v-show="waterLevel">
-            <el-table border :data="tableData" style="background-color: transparent;height:550px;">
-            <el-table-column prop="DT" label="时间" align="center">
-            </el-table-column>
-            <el-table-column prop="Value" label="水位（m）" align="center" width="130">
-            </el-table-column>
-          </el-table>
-          </div>
-          <div v-show="waterQuality">
-            <el-table border :data="tableData" style="background-color: transparent;height:550px;">
-            <el-table-column prop="DT" label="时间" align="center">
-            </el-table-column>
-            <el-table-column prop="Value" label="氨氮（mg/L）" align="center" width="140">
-            </el-table-column>
-          </el-table>
-          </div>
-          <div v-show="rainfall">
-            <el-table border :data="tableData" style="background-color: transparent;height:550px;">
-            <el-table-column prop="DT" label="时间" align="center">
-            </el-table-column>
-            <el-table-column prop="Value" label="降雨量（mm）" align="center" width="140">
-            </el-table-column>
-          </el-table>
-          </div>
           <div class="table_name">
           <el-button type="primary" size="small" plain>上传</el-button>
           <el-button type="primary" size="small" plain>下载</el-button>
@@ -165,14 +139,11 @@ export default {
   data() {
     return {
       input:'',
-      flow:true,
-      waterLevel:false,
-      waterQuality:false,
-      rainfall:false,
       water:true,
       sourcePollution:false,
       tableData:[],
       active: -1,
+      unit:"流量（m³/s）",
       data: [
         {
           name: "流量边界",
@@ -211,28 +182,16 @@ export default {
     tap(item, index) {
       if(item.name == '流量边界'){
         this.data[index].data_name = this.DischargeItems;
-        this.flow = true;
-        this.waterLevel = false;
-        this.waterQuality = false;
-        this.rainfall = false;
+        this.unit = '流量（m³/s）'
       }else if(item.name == '水位边界'){
         this.data[index].data_name = this.WaterLevelItems;
-        this.flow = false;
-        this.waterLevel = true;
-        this.waterQuality = false;
-        this.rainfall = false;
+        this.unit = '水位（m）'
       }else if(item.name == '水质边界'){
         this.data[index].data_name = this.WaterQualityItems;
-        this.flow = false;
-        this.waterLevel = false;
-        this.waterQuality = true;
-        this.rainfall = false;
+        this.unit = '氨氮（mg/L）'
       }else if(item.name == '降雨站'){
         this.data[index].data_name = this.RainfallItems;
-        this.flow = false;
-        this.waterLevel = false;
-        this.waterQuality = false;
-        this.rainfall = true;
+        this.unit = '降雨量（mm）'
       }else if(item.name == '污染源'){
         this.data[index].data_name = this.PollutionSourceItems;
         this.water = false;

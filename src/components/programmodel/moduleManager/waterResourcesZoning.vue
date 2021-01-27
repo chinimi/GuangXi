@@ -1,6 +1,6 @@
 <template>
 <!--水资源分区主页面-->
-  <div id="administrativeDivisions">
+  <div class="waterResourcesZoning">
     <ul>
       <li class="left lefts">
         <div class="singleli_title">
@@ -316,20 +316,20 @@ export default {
 };
 </script>
 <style>
-#administrativeDivisions .left {
+.waterResourcesZoning .left {
   float: left;
   margin-right: 10px;
   height: 50%;
 }
-#administrativeDivisions .lefts {
+.waterResourcesZoning .lefts {
   width: 311px;
   border-right: 2px dashed royalblue;
 }
-#administrativeDivisions .right {
-  width: 1092px;
+.waterResourcesZoning .right {
+  width: 77%;
   margin-top: -2%;
 }
-#administrativeDivisions .singleli_title {
+.waterResourcesZoning .singleli_title {
   font-size: 13px;
   height: 35px;
   line-height: 65px;
@@ -339,14 +339,14 @@ export default {
   margin-top: 20px;
 }
 
-#administrativeDivisions .singleli_title .sysfxTit {
+.waterResourcesZoning .singleli_title .sysfxTit {
   color: white;
   letter-spacing: 1px;
   font-size: 16px;
   /* text-align: right; */
   margin-right: 10px;
 }
-#administrativeDivisions .el-input__inner {
+.waterResourcesZoning .el-input__inner {
   padding-left: 10px !important;
   color: #058cd0;
   border: 1px solid #058cd0;
@@ -356,13 +356,13 @@ export default {
   font-size: 16px !important;
   height: 30px !important;
 }
-#administrativeDivisions .el-pagination__total {
+.waterResourcesZoning .el-pagination__total {
   color: #ffffff !important;
 }
-#administrativeDivisions .el-pagination__jump {
+.waterResourcesZoning .el-pagination__jump {
   color: #ffffff !important;
 }
-#administrativeDivisions .el-pagination .el-select .el-input .el-input__inner {
+.waterResourcesZoning .el-pagination .el-select .el-input .el-input__inner {
   color: #ffff;
 }
 </style>
