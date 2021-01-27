@@ -1687,11 +1687,170 @@
                 <el-radio :label="product.value"   >{{product.label}}</el-radio>
               </el-col>
             </el-radio-group>
-
           </div>
-          <!--1级-->
+          z
 
-          <div class="singleli_title">
+
+
+          <!--水系-->
+          <div class="singleli_title"  v-if="cursysval=='river'" >
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  水系：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="secondaryPartition">
+                    <el-option
+                      v-for="(item, index) in secondaryPartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--一级河流-->
+          <div class="singleli_title"  v-if="cursysval=='river'">
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  一级河流：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="tertiaryPartition">
+                    <el-option
+                      v-for="(item, index) in tertiaryPartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--二级河流-->
+          <div class="singleli_title"  v-if="cursysval=='river'" >
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  二级河流：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="fourstagePartition">
+                    <el-option
+                      v-for="(item, index) in fourstagePartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--三级河流-->
+          <div class="singleli_title"  v-if="cursysval=='river'" >
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  三级河流：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="fivestagePartition">
+                    <el-option
+                      v-for="(item, index) in fivestagePartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--四级河流-->
+          <div class="singleli_title"  v-if="cursysval=='river'"  >
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  四级河流：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="fivestagePartition">
+                    <el-option
+                      v-for="(item, index) in fivestagePartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--五级河流-->
+          <div class="singleli_title"  v-if="cursysval=='river'" >
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  五级河流：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="customdefine">
+                    <el-option
+                      v-for="(item, index) in customdefineList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--六级河流-->
+          <div class="singleli_title"  v-if="cursysval=='river'" >
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  六级河流：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="customdefine">
+                    <el-option
+                      v-for="(item, index) in customdefineList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--流域水系  over-->
+
+          <!--水资源分区-->
+          <!--1级-->
+          <div class="singleli_title" v-if="cursysval=='watersource'">
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
@@ -1713,7 +1872,7 @@
             </el-row>
           </div>
           <!--2级-->
-          <div class="singleli_title">
+          <div class="singleli_title"  v-if="cursysval=='watersource'">
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
@@ -1735,7 +1894,7 @@
             </el-row>
           </div>
           <!--3级-->
-          <div class="singleli_title">
+          <div class="singleli_title" v-if="cursysval=='watersource'">
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
@@ -1757,7 +1916,7 @@
             </el-row>
           </div>
           <!--4级-->
-          <div class="singleli_title">
+          <div class="singleli_title" v-if="cursysval=='watersource'">
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
@@ -1779,7 +1938,7 @@
             </el-row>
           </div>
           <!--测站级别-->
-          <div class="singleli_title">
+          <div class="singleli_title" v-if="cursysval=='watersource'">
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
@@ -1801,7 +1960,7 @@
             </el-row>
           </div>
           <!--测站名称-->
-          <div class="singleli_title">
+          <div class="singleli_title" v-if="cursysval=='watersource'">
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
@@ -1823,11 +1982,125 @@
             </el-row>
           </div>
           <!--自定义-->
-          <div class="singleli_title">
+          <div class="singleli_title" v-if="cursysval=='watersource'">
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
                   自定义：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="customdefine">
+                    <el-option
+                      v-for="(item, index) in customdefineList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--水资源分区 over-->
+
+
+          <!--行政区-->
+          <!--省-->
+          <div class="singleli_title"    v-if="cursysval=='distriction'">
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  省：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="primaryPartition">
+                    <el-option
+                      v-for="(item, index) in primaryPartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--市-->
+          <div class="singleli_title"  v-if="cursysval=='distriction'">
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  市：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="secondaryPartition">
+                    <el-option
+                      v-for="(item, index) in secondaryPartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--县-->
+          <div class="singleli_title"  v-if="cursysval=='distriction'">
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  县：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="tertiaryPartition">
+                    <el-option
+                      v-for="(item, index) in tertiaryPartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--镇-->
+          <div class="singleli_title"  v-if="cursysval=='distriction'">
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  镇：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="fourstagePartition">
+                    <el-option
+                      v-for="(item, index) in fourstagePartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--村-->
+          <div class="singleli_title"  v-if="cursysval=='distriction'">
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  村：
                 </div>
               </el-col>
               <el-col :span="14" style="margin-left: -5%;">
@@ -1844,6 +2117,12 @@
               </el-col>
             </el-row>
           </div>
+          <!--行政区 over-->
+
+
+
+
+
           <div style="margin-left:20px;">
             <!--时间段选择-->
             <div >
@@ -1994,9 +2273,11 @@
           value:'average',
         }],
         /*当前水系*/
-        cursysval:'water1',
+        cursysval:'river',
         /*水系参数*/
-        curWaterSysOption:[{label:'流域水系',value:'water1'},{label:'水资源分区',value:'water2'},{label:'行政区划',value:'water3'}],
+        curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+
+
         /*时间选择*/
         selectTimeType:"singletime",
         /*时间段选择*/
@@ -2116,7 +2397,7 @@
               });
 
               map.addLayer(that.pointLayer);//添加上站点的图层
-            
+
 
             // }
 

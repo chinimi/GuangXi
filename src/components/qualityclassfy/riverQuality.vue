@@ -79,6 +79,7 @@
         </el-radio-group>
       </div>
 
+
       <!--流域水系-->
       <!--流域-->
       <div class="singleli_title"  v-if="cursysval=='river'">
@@ -257,6 +258,9 @@
         </el-row>
       </div>
       <!--流域水系  over-->
+
+
+
 
       <!--水资源分区-->
       <!--1级-->
@@ -530,20 +534,15 @@
       <!--行政区 over-->
 
 
-
-
       <div style="margin-left:20px;">
         <!--时间段选择-->
         <div >
-
           <el-radio-group  v-model="selectTimeType">
             <el-col :span="12" v-for="product in timequantumOption"   :key="product.value">
               <el-radio :label="product.value"   >{{product.label}}</el-radio>
             </el-col>
           </el-radio-group>
-
         </div>
-
       </div>
 
       <div class="singleli_title">
@@ -618,51 +617,152 @@
     </div>
     <!--table表格-->
     <div class="right_menu">
-      <!--矿化度-->
-      <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
+      <!--水质评价-->
+      <el-row  style="color:#fff;    padding: 12px;">水质评价</el-row>
+      <el-table  v-if="pjxmval=='khd'"  border :data="tableData" height="170" style=" width:80%;margin-bottom:0px;background-color: transparent;">
         <el-table-column
-          label="序号"
-          type="index"
-          width="50">
+          label="评价位置"
+        >
         </el-table-column>
         <el-table-column
           prop="stcd"
-          label="测站编码">
+          label="水质类型">
         </el-table-column>
         <el-table-column
           prop="stnm"
-          label="测站名称">
+          label="分值">
+        </el-table-column>
+      </el-table>
+      <el-row  style="color:#fff; padding: 12px;">
+        <el-row style="float: right">
+        <el-button>上传表</el-button>
+        <el-button>下载模板</el-button>
+
+      </el-row>
+      </el-row>
+      <el-row  style="color:#fff; padding: 12px;">生境评价</el-row>
+      <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="170" style="width:80%;margin-bottom:0px;background-color: transparent;">
+        <el-table-column
+          label="评价位置"
+
+        >
         </el-table-column>
         <el-table-column
-          prop="mndgMax"
-          label="矿化度指标">
+          prop="stcd"
+          label="湖库生境评分HS">
         </el-table-column>
         <el-table-column
-          prop="mndgType"
-          label="级别">
+          prop="stnm"
+          label="等级">
         </el-table-column>
+        <el-table-column
+          prop="stnm"
+          label="分值">
+        </el-table-column>
+        <el-table-column
+          prop="stnm"
+          label="湖滨点">
+        </el-table-column>
+        <!-- <el-table-column
+           fixed="right"
+           label="操作"
+           width="100">
+           <template slot-scope="scope">
+             <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+             <el-button type="text" size="small">编辑</el-button>
+           </template>
+         </el-table-column>-->
 
         <el-table-column
-          prop="mndgName"
-          label="类型">
-        </el-table-column>
-
-        <el-table-column
-          label="备注">
-          <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
-            备注
-          </template>
+          fixed="right"
+          type="selection"
+          width="55">
         </el-table-column>
 
       </el-table>
+      <el-row style="float: right">
+        <el-button>上传表</el-button>
+        <el-button>下载模板</el-button>
+
+      </el-row>
+      <!--生物评价-->
+      <el-row  style="color:#fff; padding: 12px;">生物评价</el-row>
+      <el-table v-if="pjxmval=='khd'"  border :data="biologytabData" height="170" style="width:80%;margin-bottom:0px;background-color: transparent;">
+        <el-table-column
+          prop="swpj"
+          label="评价点"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="swzs"
+          label="指数">
+          <template slot-scope="scope">
+
+            <el-select v-model="scope.row.swzs" >
+              <el-option
+                v-for="(item, index) in swpjOption"
+                :key="item.value+index"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="swzt"
+          label="生物状态">
+        </el-table-column>
+        <el-table-column
+          prop="stnm"
+          label="分值">
+        </el-table-column>
+      </el-table>
+      <el-row style="float: right">
+        <el-button>上传表</el-button>
+        <el-button>下载模板</el-button>
+
+      </el-row>
+      <!--权重配比-->
+      <el-row  style="color:#fff; padding: 12px;">权重配比</el-row>
+
+
+
+      <el-table v-if="pjxmval=='khd'"  border :data="weightData" height="170" style="width:80%;margin-bottom:0px;background-color: transparent;"
+      :cell-class-name="getRowColumn"  @cell-click="handleCellClick"
+
+      >
+        <el-table-column
+          label="项目"
+          prop="project"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="poolweight"
+          label="湖滨点权重">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.poolweight" @blur="inputBlur"></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="centerweight"
+          label="湖心点权重">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.centerweight" @blur="inputBlur"></el-input>
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-row  style="float: right">
+        <el-button @click="showDialog">评价</el-button>
+
+      </el-row>
+
 
       <!--总硬度-->
       <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
         <el-table-column
           label="序号"
           type="index"
-          width="50">
+        >
         </el-table-column>
         <el-table-column
           prop="stcd"
@@ -704,7 +804,7 @@
         <el-table-column
           label="序号"
           type="index"
-          width="50">
+        >
         </el-table-column>
         <el-table-column
           prop="stcd"
@@ -727,12 +827,9 @@
           label="Na+">
         </el-table-column>
         <el-table-column
-
           label="HCO3-">
-
           <template slot-scope="scope">
             {{scope.row.hco3}}
-
           </template>
         </el-table-column>
 
@@ -752,66 +849,63 @@
           label="备注">
           <template slot-scope="scope">
             <!--  {{scope.row.time}}-->
-
             备注
           </template>
         </el-table-column>
-
       </el-table>
-
       <!--地表天然水-->
-      <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-        <el-table-column
-          label="序号"
-          type="index"
-          width="50">
-        </el-table-column>
-        <el-table-column
-          prop="stcd"
-          label="河流编码">
-        </el-table-column>
+      <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )"" style="background-color: transparent;">
+      <el-table-column
+        label="序号"
+        type="index"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="stcd"
+        label="河流编码">
+      </el-table-column>
 
-        <el-table-column
-          prop="stnm"
-          label="测站名称">
-        </el-table-column>
-        <el-table-column
-          prop="f"
-          label="氟">
-        </el-table-column>
-        <el-table-column
-          prop="ars"
-          label="砷">
-        </el-table-column>
-        <el-table-column
-          prop="mndg"
-          label="矿化物">
-        </el-table-column>
+      <el-table-column
+        prop="stnm"
+        label="测站名称">
+      </el-table-column>
+      <el-table-column
+        prop="f"
+        label="氟">
+      </el-table-column>
+      <el-table-column
+        prop="ars"
+        label="砷">
+      </el-table-column>
+      <el-table-column
+        prop="mndg"
+        label="矿化物">
+      </el-table-column>
 
-        <el-table-column
+      <el-table-column
 
-          label="氯化物">
-          <template slot-scope="scope">
-            {{scope.row.cl}}
+        label="氯化物">
+        <template slot-scope="scope">
+          {{scope.row.cl}}
 
-          </template>
-        </el-table-column>
-        <el-table-column
+        </template>
+      </el-table-column>
+      <el-table-column
 
-          label="硫酸盐">
-          <template slot-scope="scope">
-            {{scope.row.so4}}
+        label="硫酸盐">
+        <template slot-scope="scope">
+          {{scope.row.so4}}
 
-          </template>
-        </el-table-column>
+        </template>
+      </el-table-column>
 
-        <el-table-column
-          label="备注">
-          <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
-            备注
-          </template>
-        </el-table-column>
+      <el-table-column
+        label="备注">
+        <template slot-scope="scope">
+          <!--  {{scope.row.time}}-->
+          备注
+        </template>
+      </el-table-column>
 
       </el-table>
 
@@ -822,9 +916,9 @@
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
+          :current-page="currentPage"
           :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :page-size=pageSize
           layout="total, sizes, prev, pager, next, jumper"
           :total="400"
         >
@@ -832,15 +926,32 @@
       </div>
     </div>
 
+    <el-dialog
+      title="table"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :modal=false
+       >
+      <span>table</span>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+    </el-dialog>
+
+
   </div>
 </template>
 
 <script>
 
+
   import  getWater from '../../api/index'
+  import moment from "moment";
   export default {
     data() {
       return {
+        biologytabData:[],//生物评价
         /*评价标准*/
         evaluatiStandarVal:'SL395-2007',
         evaluationOptopn:[{
@@ -855,7 +966,8 @@
         }],
         checkedCities: [],
         checkedCities2: [],
-
+        pageSize:10,
+        currentPage:0,
         currentPage1: 5,
         currentPage2: 5,
         currentPage3: 5,
@@ -898,16 +1010,21 @@
         }
         ],
         /*取值方式*/
-        qzfsval:'average',
+        qzfsval:'avg',
         qzfsOption:[{
           label:"平均值",
-          value:'average',
+          value:'avg',
+        },{
+          label:"最小值",
+          value:'min',
+        },{
+          label:"最大值",
+          value:'max',
         }],
         /*当前水系*/
         cursysval:'river',
         /*水系参数*/
         curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
-
         /*时间选择*/
         selectTimeType:"singletime",
         /*时间段选择*/
@@ -922,11 +1039,72 @@
         /*评价步长*/
         pjbcVal:'month',//评价步长
         pjbcOption:[{value:'month',label:'月份'}],
+        /*生物评价*/
+        swpjVal:'fir',//生物评价
+        swpjOption:[{value:'fir',label:'生物多样性指数'},{value:'sec',label:'生物指数'},{value:'third',label:'生物完整性指数'}],
         /*初始时间*/
         startTime:'2015-07',
         /*截至时间*/
         endTime:'2015-08',
+        /*权重配比*/
+        weightData:[],
+
+        tabRowIndex: null, //单元格横坐标
+        tabColumnIndex: null, //单元格纵坐标
+        dialogVisible:false,
       }
+    },
+    mounted() {
+      this.biologytabData=[
+        {
+          'swpj':1,
+          'swzt':true,
+          "swzs":'fir'
+
+        },
+        {
+          'swpj':2,
+          'swzt':true,
+          "swzs":'sec'
+
+
+        },
+        {
+          'swpj':3,
+          'swzt':true,
+          "swzs":'third'
+
+
+        },
+
+
+
+
+      ]
+      this.weightData=[
+        {
+          'project':'水质评价',
+          'poolweight':0.4,
+          'centerweight':1,
+
+        },
+        {
+          'project':'生境评价',
+          'poolweight':0.2,
+          'centerweight':2,
+
+        },
+        {
+          'project':'生物评价',
+          'poolweight':0.3,
+          'centerweight':3,
+
+        },
+
+
+
+
+      ]
     },
     created() {
 
@@ -935,19 +1113,121 @@
 
     },
     methods: {
+      showDialog(){
+        this.dialogVisible=true
+
+
+      },
+
+      //点击单元格得到横纵坐标
+      handleCellClick(row, column, event, cell) {
+        this.tabRowIndex = row.index;
+        this.tabColumnIndex = column.index;
+        this.tableValue.push(row);
+      },
+      //数据中没有横纵坐标需要加上进行下一步判断
+      getRowColumn({row, column, rowIndex, columnIndex}) {
+        row.index = rowIndex;
+        column.index = columnIndex;
+      },
+      //鼠标失去焦点事件
+      inputBlur() {
+        this.tabRowIndex = null;
+        this.tabColumnIndex = "";
+      },
+
+      handleClick(ele){//选中要素编辑
+        console.log(ele)//选中要编辑的要素
+
+      },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+        console.log(val)
+        this.pageSize=val
+        this.queryTableData()
+
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        console.log(val)
+        this.currentPage=val
+        this.queryTableData()
       },
       queryTableData(){
-        var param={
-          "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
-          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201507-201508"
+
+        /* if(this.selectTimeType=="singletime"){
+           if(this.startTime ){
+             this.$message('请选择时间参数');
+             return
+           }
+         }else{
+           if(this.startTime||this.endTime){
+             this.$message('请选择时间参数');
+             return
+           }
+         }*/
+
+        let checkstartTime = moment(this.startTime).format('YYYYMM');
+        let startyear = moment(this.startTime).format('YYYY');
+        let checkendTime = moment(this.endTime).format('YYYYMM');
+        let endyear = moment(this.endTime).format('YYYY');
+        // console.log(checkstartTime)
+        // console.log(startyear)
+        // console.log(checkstartTime.substring(checkstartTime.length-2))
+        let startMonth=checkstartTime.substring(checkstartTime.length-2)
+        // console.log(checkendTime)
+        // console.log(endyear)
+        // console.log(checkendTime.substring(checkendTime.length-2))
+        let endMonth=checkendTime.substring(checkendTime.length-2)
+
+        // console.log(parseInt(endMonth)-parseInt(startMonth))
+
+        console.log(parseInt(startMonth))
+
+
+        var str=""
+        var count=parseInt(endMonth)-parseInt(startMonth)
+
+        if (count-1>0){
+          for(var i=parseInt(startMonth)-1;i<count;i++)
+          {
+            var tmp=i+1;
+            tmp=tmp<10?String('0'+tmp):(tmp)
+            str=str+startyear+tmp+"-"
+
+          }
+        }else{
+          str=str+checkstartTime+'-'
         }
+
+        str=str+checkendTime
+        console.log(str)
+
+        let tjsj=null;
+        if(this.selectTimeType=="singletime"){
+          tjsj=checkstartTime
+
+
+        }else{
+          tjsj=str
+        }
+
+
+        /*1:获取参数*/
+        /*请求经纬度坐标点*/
+        var param=
+          {
+            "pageNum":this.currentPage,
+            "pageSize":this.pageSize,
+            "qzfs":this.qzfsval,// min max avg
+            "tjsj":tjsj
+          }
+        // var param={
+        //   "pageNum":"0",      // --当前页
+        //   "pageSize":"10",     //--一页显示数量
+        //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+        //   "tjsj":"201507-201508"
+        // }
         this.tableData=[]
         /*矿化度请求*/
         if(this.pjxmval=="khd") {
@@ -1064,12 +1344,13 @@
   #groundWater  .right_menu{
     width: 80%;
     height: calc( 100vh - 80px);
-    padding-top: 50px;
+    /*padding-top: 25px;*/
     background: #031823;
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     right: 0;
+    overflow-y: auto;
   }
 
   #groundWater .singleli_title {
@@ -1192,6 +1473,20 @@
     background: red!important;
     color:#fff!important;
 
+  }
+
+
+  >>>.el-table th:hover, .el-table tr:hover{
+
+background:red ;
+  }
+ >>> .el-table  tr:hover>td {
+    background :transparent;
+
+  }
+
+  >>>.hover_row{
+    background :transparent;
   }
 
 </style>
