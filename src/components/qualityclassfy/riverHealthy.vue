@@ -257,8 +257,8 @@
                            label="指标层"></el-table-column>
       <el-table-column prop="amount2"
                            label="代码"></el-table-column>
-    <el-table-column prop="rowspan"
-                           label="跨行"></el-table-column>
+           <!-- <el-table-column prop="rowspan"
+                                   label="跨行"></el-table-column>-->
 
           <el-table-column
             type="selection"
@@ -378,96 +378,123 @@
             startTime:'2015-07',
             /*截至时间*/
             endTime:'2015-08',
-
-            tableData: [{
-              date: '2016-05-03',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-              date: '2016-05-02',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-              date: '2016-05-04',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-              date: '2016-05-01',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-              date: '2016-05-08',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-              date: '2016-05-06',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-              date: '2016-05-07',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1518 弄'
-            }],
             multipleSelection: [],//多选参数集合
             originData: [{
-              id: '12987122',
+              id: 'llgcbycd',
               name: '水文水资源(HD)',
               amount1: '流量过程变异程度',
               amount2: 'FD',
-              amount3: 10
+              amount3: 10,
+              PID:'HD',
             }, {
-              id: '12987123',
+              id: 'stllmzcd',
               name: '水文水资源(HD)',
               amount1: '生态流量满足程度',
               amount2: 'EF',
-              amount3: 12
+              amount3: 12,
+              PID:'HD',
+
             }, {
-              id: '12987124',
+              id: 'jkll',
               name: '水文水资源(HD)',
               amount1: '健康流量',
               amount2: 'HEF',
-              amount3: 9
+              amount3: 9,
+              PID:'HD',
+
             }, {
-              id: '12987125',
+              id: 'hadzk',
               name: '物理结构(PF)',
               amount1: '河岸带状况',
               amount2: 'RS',
-              amount3: 17
+              amount3: 17,
+              PID:'PF',
             }, {
-              id: '12987126',
+              id: 'hllttgzk',
               name: '物理结构(PF)',
               amount1: '河流连通陶隔状况',
               amount2: 'RC',
-              amount3: 15
+              amount3: 15,
+              PID:'PF',
             }, {
-              id: '12987124',
+              id: 'rjyzk',
               name: '水质(WQ)',
-              amount1: '324',
+              amount1: '溶解氧状况',
+              amount2: 'DO',
+              amount3: 9,
+              PID:'WQ',
+            }, {
+              id: 'hyyjwrzk',
+              name: '水质(WQ)',
+              amount1: '耗氧有机污染状况',
+              amount2: 'OCP',
+              amount3: 17,
+              PID:'WQ',
+            }, {
+              id: 'zjswrzk',
+              name: '水质(WQ)',
+              amount1: '重金属污染状况',
+              amount2: 'HMP',
+              amount3: 9,
+              PID:'WQ',
+            },{
+              id: 'bxw',
+              name: '水质(WQ)',
+              amount1: '苯系物',
               amount2: '1.9',
-              amount3: 9
+              amount3: 9,
+              PID:'WQ',
             }, {
-              id: '12987125',
-              name: '水质(WQ)',
-              amount1: '621',
-              amount2: '2.2',
-              amount3: 17
+              id: 'dxwjzdwwzxzs',
+              name: '生物(AL)',
+              amount1: '大型无脊椎动物生物完整性指数',
+              amount2: 'BMIBI',
+              amount3: 9,
+              PID:'AL',
+            },  {
+              id: 'ylsszs',
+              name: '生物(AL)',
+              amount1: '鱼类损失指数',
+              amount2: 'FOE',
+              amount3: 9,
+              PID:'AL',
             }, {
-              id: '12987124',
-              name: '水质(WQ)',
-              amount1: '324',
-              amount2: '1.9',
-              amount3: 9
+              id: 'fsgz',
+              name: '生物(AL)',
+              amount1: '附生硅藻',
+              amount2: '',
+              amount3: 9,
+              PID:'AL',
             }, {
-              id: '12987124',
-              name: '水质(WQ)',
-              amount1: '324',
-              amount2: '1.9',
-              amount3: 9
-            }]
-
-
-
-
+              id: 'sgnqdbzs',
+              name: '社会服务功能(SS)',
+              amount1: '水功能区达标指标',
+              amount2: 'WFZ',
+              amount3: 9,
+              PID:'SS',
+            }, {
+              id: 'szykflyzb',
+              name: '社会服务功能(SS)',
+              amount1: '水资源开发利用指标',
+              amount2: 'WRU',
+              amount3: 9,
+              PID:'SS',
+            }, {
+              id: 'fhzb',
+              name: '社会服务功能(SS)',
+              amount1: '防洪指标',
+              amount2: 'FLD',
+              amount3: 9,
+              PID:'SS',
+            }, {
+              id: 'gzmydzb',
+              name: '社会服务功能(SS)',
+              amount1: '公众满意度指标',
+              amount2: 'PP',
+              amount3: 9,
+              PID:'SS',
+            },
+            ]
           }
       },
       created() {
@@ -478,10 +505,24 @@
       },
       methods: {
         //选中单元格，跳转路由并且传参数
-        handleEdit(index, row) {
+        handleEdit(index, row){
           console.log(index, row);
           console.log(row.name)
-          this.$router.push({name:'selectriver',params:{}});
+          if(row.PID=='HD'){
+            this.$router.push({name:'HDriver',params:{}});
+          }
+          if(row.PID=='PF'){
+            this.$router.push({name:'PFriver',params:{}});
+          }
+          if(row.PID=='WQ'){
+            this.$router.push({name:'WQriver',params:{}});
+          }
+          if(row.PID=='AL'){
+            this.$router.push({name:'ALriver',params:{}});
+          }
+          if(row.PID=='SS'){
+            this.$router.push({name:'SSriver',params:{}});
+          }
         },
         checkSelectable(row,index){
           let flag = true;
@@ -491,7 +532,6 @@
             }
           }
           return flag
-
           // let isChecked = true;
           // if (row.dealerName === null) { // 判断里面是否存在某个参数
           //   isChecked = true
@@ -501,7 +541,6 @@
           // return isChecked
 
         },
-
         // 传入element-table的合并方法
         mergeStratege ({ row, column, rowIndex, columnIndex }) {
           // 第一层判断控制从哪一列，或多少列合并，
@@ -561,17 +600,8 @@
           let startyear = moment(this.startTime).format('YYYY');
           let checkendTime = moment(this.endTime).format('YYYYMM');
           let endyear = moment(this.endTime).format('YYYY');
-          // console.log(checkstartTime)
-          // console.log(startyear)
-          // console.log(checkstartTime.substring(checkstartTime.length-2))
           let startMonth=checkstartTime.substring(checkstartTime.length-2)
-          // console.log(checkendTime)
-          // console.log(endyear)
-          // console.log(checkendTime.substring(checkendTime.length-2))
           let endMonth=checkendTime.substring(checkendTime.length-2)
-
-          // console.log(parseInt(endMonth)-parseInt(startMonth))
-
           console.log(parseInt(startMonth))
 
 
