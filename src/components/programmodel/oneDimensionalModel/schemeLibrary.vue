@@ -16,18 +16,18 @@
 
         <!-- 河长制 -->
         <div v-show="cursysval == 'chief'">
-        <div class="singleli_title">
+            <div class="singleli_title">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                一级分区：
+                省：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="primaryPartition">
+                <el-select v-model="province">
                   <el-option
-                    v-for="(item, index) in primaryPartitionList"
+                    v-for="(item, index) in provinceList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -41,14 +41,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                二级分区：
+                市：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="secondaryPartition">
+                <el-select v-model="city">
                   <el-option
-                    v-for="(item, index) in secondaryPartitionList"
+                    v-for="(item, index) in cityList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -62,14 +62,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                三级分区：
+                县：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="tertiaryPartition">
+                <el-select v-model="county">
                   <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
+                    v-for="(item, index) in countyList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -83,14 +83,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                四级分区：
+                镇：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="fourstagePartition">
+                <el-select v-model="town">
                   <el-option
-                    v-for="(item, index) in fourstagePartitionList"
+                    v-for="(item, index) in townList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
@@ -104,14 +104,14 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                五级分区：
+                村：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-select v-model="fivestagePartition">
+                <el-select v-model="rustic">
                   <el-option
-                    v-for="(item, index) in fivestagePartitionList"
+                    v-for="(item, index) in rusticList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"

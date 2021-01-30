@@ -3,104 +3,181 @@
   <div id="hydrology">
     <ul style="width:1336px">
       <li class="table">
-        <div style="margin:1% 0 1% 0;color:#fff">
-          流域径流模型
-        </div>
         <div>
-          <el-table border :data="tableData" height="550" style="background-color: transparent;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
-            <el-table-column prop="CatchmentName" label="子流域名称" min-width="100">
+          <el-table border :data="tableData" height="600" style="background-color: transparent;" :cell-class-name="getRowColumn"  @cell-click="handleCellClick">
+            <el-table-column label="Name" min-width="120" align="center">
+            <el-table-column prop="CatchmentName" label="子流域名称" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="RRModelName" label="模型名称" min-width="80">
             </el-table-column>
-            <el-table-column prop="Area" label="子流域面积（km）" min-width="100">
+
+            <el-table-column label="Model" min-width="100" align="center">
+            <el-table-column prop="RRModelName" label="模型名称" min-width="100" align="center">
+            </el-table-column>
+            </el-table-column>
+
+             <el-table-column label="Area" min-width="120" align="center">
+             <el-table-column prop="Area" label="子流域面积" min-width="120" align="center">
               <template slot-scope="scope">
                 <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.Area" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.Area }}</span>
-              </template>
+            </template>
+            <el-table-column label="（km³）" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="Umax" label="地表储水层最大含水量（mm）" min-width="100">
-               <template slot-scope="scope">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="Umax" min-width="120" align="center">
+             <el-table-column prop="Umax" label="地表储水层最大含水量" min-width="100" align="center">
+              <template slot-scope="scope">
                 <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.Umax" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.Umax }}</span>
               </template>
+            <el-table-column label="（mm）" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="Lmax" label="根区储水层最大含水量（mm）" min-width="100" >
-              <template slot-scope="scope">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="Lmax" min-width="120" align="center">
+             <el-table-column prop="Lmax" label="根区储水层最大含水量" min-width="100" align="center">
+               <template slot-scope="scope">
                  <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.Lmax" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.Lmax }}</span>
               </template>
+            <el-table-column label="（mm）" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="CQOF" label="坡面流系数" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="CQOF" min-width="120" align="center">
+             <el-table-column prop="CQOF" label="坡面流系数" min-width="120" align="center">
               <template slot-scope="scope">
                <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.CQOF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.CQOF }}</span>
               </template>
+            <el-table-column label="-" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="CKIF" label="壤中流汇流时间常数（h）" min-width="100">
-              <template slot-scope="scope">
+            </el-table-column>
+            </el-table-column>
+
+             <el-table-column label="CKIF" min-width="120" align="center">
+              <el-table-column prop="CKIF" label="壤中流汇流时间常数" min-width="100" align="center">
+               <template slot-scope="scope">
                  <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.CKIF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.CKIF }}</span>
               </template>
+            <el-table-column label="（h）" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="CK12" label="坡面流汇流时间常数（h）" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="CK12" min-width="120" align="center">
+             <el-table-column prop="CK12" label="坡面流汇流时间常数" min-width="100" align="center">
               <template slot-scope="scope">
                  <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.CK12" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.CK12 }}</span>
               </template>
+            <el-table-column label="（h）" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="TOF" label="产生坡面流的根区土壤含水量阈值" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+             <el-table-column label="TOF" min-width="120" align="center">
+              <el-table-column prop="TOF" label="产生坡面流的根区土壤含水量阈值" min-width="100" align="center">
               <template slot-scope="scope">
                <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.TOF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.TOF }}</span>
               </template>
+            <el-table-column label="-" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="TIF" label="产生壤中流的根区土壤含水量阈值" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="TIF" min-width="120" align="center">
+             <el-table-column prop="TIF" label="产生壤中流的根区土壤含水量阈值" min-width="100" align="center">
               <template slot-scope="scope">
                <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.TIF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.TIF }}</span>
               </template>
+            <el-table-column label="-" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="TG" label="产生地下水的根区土壤含水量阈值" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+             <el-table-column label="TG" min-width="120" align="center">
+             <el-table-column prop="TG" label="产生地下水的根区土壤含水量阈值" min-width="100" align="center">
               <template slot-scope="scope">
                  <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.TG" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.TG }}</span>
               </template>
+            <el-table-column label="-" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="CKBF" label="地底基流汇流时间常数（h）" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="CKBF" min-width="120" align="center">
+             <el-table-column prop="CKBF" label="地底基流汇流时间常数" min-width="100" align="center">
               <template slot-scope="scope">
                <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.CKBF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.CKBF }}</span>
               </template>
+            <el-table-column label="（h）" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="UUmax" label="地表储水量初始含水率" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+             <el-table-column label="U/Umax" min-width="120" align="center">
+              <el-table-column prop="UUmax" label="地表储水量初始含水率" min-width="100" align="center">
               <template slot-scope="scope">
               <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.UUmax" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.UUmax }}</span>
               </template>
+            <el-table-column label="-" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="LLmax" label="地表储水量初始含水率" min-width="100">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="L/Lmax" min-width="120" align="center">
+             <el-table-column prop="LLmax" label="地表储水量初始含水率" min-width="100" align="center">
               <template slot-scope="scope">
               <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.LLmax" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.LLmax }}</span>
               </template>
+            <el-table-column label="-" min-width="120" align="center">
             </el-table-column>
-            <el-table-column prop="QOF" label="坡面流初始值（m³/s）" min-width="180">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="QOF" min-width="180" align="center">
+              <el-table-column prop="QOF" label="坡面流初始值" min-width="180" align="center">
               <template slot-scope="scope">
                 <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.QOF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.QOF }}</span>
               </template>
+            <el-table-column label="（m³/s）" min-width="180" align="center">
             </el-table-column>
-            <el-table-column prop="QIF" label="壤中流初始值（m³/s）" min-width="180">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="QIF" min-width="180" align="center">
+             <el-table-column prop="QIF" label="壤中流初始值" min-width="180" align="center">
               <template slot-scope="scope">
               <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.QIF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.QIF }}</span>
               </template>
+            <el-table-column label="（m³/s）" min-width="180" align="center">
             </el-table-column>
-            <el-table-column prop="BF" label="地下基流初始值（m³/s）" min-width="180">
+            </el-table-column>
+            </el-table-column>
+
+            <el-table-column label="BF" min-width="180" align="center">
+              <el-table-column prop="BF" label="地下基流初始值" min-width="180" align="center">
               <template slot-scope="scope">
                 <el-input v-if=" scope.row.index === tabRowIndex && scope.column.index === tabColumnIndex" v-model="scope.row.BF" @blur="inputBlur"></el-input>
                 <span v-else>{{ scope.row.BF }}</span>
               </template>
+            <el-table-column label="（m³/s）" min-width="180" align="center">
+            </el-table-column>
+            </el-table-column>
             </el-table-column>
           </el-table>
         </div>

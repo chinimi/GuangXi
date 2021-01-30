@@ -11,9 +11,9 @@
           <li :class="[companyType=='4'?'cur':'']" @click="companySwitch(4)">行政</li>
         </ul>
         <div class="searchMain " v-if="companyType=='1'">
-          <ul class="clear-fix">
+             <ul class="clear-fix">
             <li>
-              <div class="searchMain_div">一级分区：</div>
+              <div class="searchMain_div w80">省：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -26,7 +26,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">二级分区：</div>
+              <div class="searchMain_div w80">市：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -39,7 +39,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">三级分区：</div>
+              <div class="searchMain_div w80">县：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -52,7 +52,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">四级分区：</div>
+              <div class="searchMain_div w80">镇：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -65,7 +65,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">五级分区：</div>
+              <div class="searchMain_div w80">村：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -138,7 +138,7 @@
         <div class="searchMain " v-if="companyType=='3'">
           <ul class="clear-fix">
             <li>
-              <div class="searchMain_div">一级分区：</div>
+              <div class="searchMain_div w80">一级分区：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -151,7 +151,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">二级分区：</div>
+              <div class="searchMain_div w80">二级分区：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -164,7 +164,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">三级分区：</div>
+              <div class="searchMain_div w80">三级分区：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -177,7 +177,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">四级分区：</div>
+              <div class="searchMain_div w80">四级分区：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -190,7 +190,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">五级分区：</div>
+              <div class="searchMain_div w80">五级分区：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -207,7 +207,7 @@
         <div class="searchMain " v-if="companyType=='4'">
           <ul class="clear-fix">
             <li>
-              <div class="searchMain_div">省：</div>
+              <div class="searchMain_div w80">省：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -220,7 +220,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">市：</div>
+              <div class="searchMain_div w80">市：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -233,7 +233,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">县：</div>
+              <div class="searchMain_div w80">县：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -246,7 +246,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">镇：</div>
+              <div class="searchMain_div w80">镇：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -259,7 +259,7 @@
               </div>
             </li>
             <li>
-              <div class="searchMain_div">村：</div>
+              <div class="searchMain_div w80">村：</div>
               <div class="searchMain_div">
                 <el-select v-model="one" placeholder="请选择">
                   <el-option
@@ -315,15 +315,15 @@
           </div>
         </div>
         <div class="quality_div">
-          <el-radio-group v-model="radio1">
+          <el-radio-group v-model="evaluate">
             <el-radio :label="1">按单时间段评价</el-radio>
             <el-radio :label="2">按时间序列评价</el-radio>
             <el-radio :label="3">按同时间段评价</el-radio>
           </el-radio-group>
         </div>
-        <div>
+        <div class="step">
           <div class="searchMain_div w80">步长:</div>
-          <div class="searchMain_div ">
+          <div class="searchMain_div">
             <el-select v-model="time" placeholder="请选择">
               <el-option
                 v-for="(item,i) in time_options"
@@ -334,35 +334,71 @@
             </el-select>
           </div>
         </div>
-        <div class="begin">
-          <div class="searchMain_div w80">开始时间:</div>
-          <div class="searchMain_div w120">
-            <el-date-picker
-              v-model="value2"
-              type="month"
-              placeholder="选择年月">
-            </el-date-picker>
-          </div>
-           <div class="searchMain_div w110">
-            <el-select v-model="quarter" placeholder="请选择">
-              <el-option
-                v-for="(item,i) in quarter_options"
-                :key="i"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
-            </el-select>
-          </div>
-          <div class="finish">
-            <div class="searchMain_div w80">结束时间:</div>
-            <div class="searchMain_div w120">
+        <div v-show="evaluate == 1">
+          <div class="begin step">
+            <div class="searchMain_div w80">选择时间:</div>
+            <div class="searchMain_div w110" >
               <el-date-picker
                 v-model="value2"
                 type="month"
                 placeholder="选择年月">
               </el-date-picker>
             </div>
+          </div>
+        </div>
+        <div v-show="evaluate == 2">
+          <div class="begin step">
+            <div class="searchMain_div w80">时间选择:</div>
+            <div class="searchMain_div w110" >
+              <el-date-picker
+                v-model="value2"
+                type="month"
+                placeholder="选择年月">
+              </el-date-picker>
+            </div>
+          </div>
+          <div class="finish step">
+            <div class="searchMain_div w80">截止时间:</div>
             <div class="searchMain_div w110">
+              <el-date-picker
+                v-model="value2"
+                type="month"
+                placeholder="选择年月">
+              </el-date-picker>
+            </div>
+          </div>
+        </div>
+        <div v-show="evaluate == 3">
+          <div class="begin">
+            <div class="searchMain_div w80">选择时间:</div>
+            <div class="searchMain_div w110" >
+              <el-date-picker
+                v-model="value2"
+                type="month"
+                placeholder="选择年月">
+              </el-date-picker>
+            </div>
+           <div class="searchMain_div w110 pl">
+              <el-select v-model="quarter" placeholder="请选择">
+                <el-option
+                  v-for="(item,i) in quarter_options"
+                  :key="i"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </div>
+          <div class="finish">
+            <div class="searchMain_div w80">结束时间:</div>
+            <div class="searchMain_div w110">
+              <el-date-picker
+                v-model="value2"
+                type="month"
+                placeholder="选择年月">
+              </el-date-picker>
+            </div>
+            <div class="searchMain_div w110 pl">
               <el-select v-model="quarter" placeholder="请选择">
                 <el-option
                   v-for="(item,i) in quarter_options"
@@ -377,14 +413,92 @@
       </div>
       <!-- 确定 -->
       <div class="but">
-        <el-button @click="confirm()">确定</el-button>
+        <el-button @click="confirm(radio)">确定</el-button>
       </div>
+    </div>
+    <!-- 第一个弹窗 -->
+    <div class="Mouth" v-show="radio_static == 1">
+      <!-- 切换 -->
+      <dl>
+        <dt>
+          <ul class="clear-fix radio_static">
+            <li :class="[status=='1'?'cures':'']" @click="condition(1)">零维</li>
+            <li :class="[status=='2'?'cures':'']" @click="condition(2)">一维</li>
+            <li :class="[status=='3'?'cures':'']" @click="condition(3)">二维</li>
+            <li @click="close()">
+              <img src="../../../static/images/close.png" alt="">
+            </li>
+          </ul>
+        </dt>
+        <dd>
+          <div class="tableData">
+            <dimension v-if="status==1"></dimension>
+            <onedimension v-if="status==2"></onedimension>
+            <twodimension v-if="status==3"></twodimension>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div class="Mouth" v-show="radio_static == 2">
+      <!-- 切换 -->
+      <dl>
+        <dt>
+          <ul class="clear-fix radio_static">
+            <li class="cures" @click="condition(1)">一维</li>
+            <li @click="close()">
+              <img src="../../../static/images/close.png" alt="">
+            </li>
+          </ul>
+        </dt>
+        <dd>
+          <div class="tableData">
+            <onedimension v-if="status==1"></onedimension>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div class="Mouth" v-show="radio_static == 3">
+      <!-- 切换 -->
+      <dl>
+        <dt>
+          <ul class="clear-fix radio_static">
+            <li :class="[status=='1'?'cures':'']" @click="condition(1)">零维</li>
+            <li :class="[status=='2'?'cures':'']" @click="condition(2)">一维</li>
+            <li :class="[status=='3'?'cures':'']" @click="condition(3)">二维</li>
+            <li :class="[status=='4'?'cures':'']" @click="condition(4)">分层</li>
+            <li :class="[status=='5'?'cures':'']" @click="condition(5)">富营养化</li>
+            <li @click="close()">
+              <img src="../../../static/images/close.png" alt="">
+            </li>
+          </ul>
+        </dt>
+        <dd>
+          <div class="tableData">
+            <dimension v-if="status==1"></dimension>
+            <onedimension v-if="status==2"></onedimension>
+            <twodimension v-if="status==3"></twodimension>
+            <hierarchy v-if="status==4"></hierarchy>
+            <eutrophication v-if="status==5"></eutrophication>
+          </div>
+        </dd>
+      </dl>
     </div>
   </div>
 </template>
 <script>
+import dimension from '@/components/bearcapacity/water/dimension.vue'
+import onedimension from '@/components/bearcapacity/water/one_dimension.vue'
+import twodimension from '@/components/bearcapacity/water/two_dimension.vue'
+import hierarchy from '@/components/bearcapacity/water/hierarchy.vue'
+import eutrophication from '@/components/bearcapacity/water/eutrophication.vue'
 export default {
-  components: {},
+  components: {
+    dimension,//零维
+    onedimension,//一维
+    twodimension,//二维
+    hierarchy,//分层
+    eutrophication,//富营养化
+  },
   data() {
     return {
       companyType: '1', //河长制、流域、水资源、行政
@@ -393,9 +507,7 @@ export default {
         {label:'北京',value:'1'},
         {label:'上海',value:'2'},
       ],
-      //水域
-      radio: 1,
-      radio1:1,
+
       // 步长
       time:'',
       time_options:[
@@ -415,16 +527,31 @@ export default {
         {label:'下旬',value:'3'},
       ],
       // 弹窗1
+      river:false,
+      radio: 1,//水域切换
+      radio_static:0,//显示弹窗
+      status:'1',
+      evaluate:1,//评价切换
+      show:false
     };
   },
   methods: {
-    // tab切换
+    // 河长制切换切换
     companySwitch(id) {
       this.companyType = id;
     },
+
     // 确定
-    confirm(){
-      console.log(this.radio)
+    confirm(id){
+      console.log(id)
+      this.radio_static = id;
+    },
+    // 水域内容切换
+    condition(id){
+      this.status = id;
+    },
+    close(){
+      this.radio_static = false
     }
   },
   computed: {},
@@ -434,20 +561,25 @@ export default {
 </script>
 <style scoped="scoped">
 .content {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: calc(100vh - 80px);
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 1;
-  /* background: #ffffff; */
   color: #ffffff;
 }
 .w80{
   width: 80px;
 }
+.w100{
+  width: 100px;
+}
 .w110{
   width: 110px;
+}
+.w215{
+  width: 215!important;
 }
 .navigation {
   position: relative;
@@ -498,7 +630,6 @@ export default {
   line-height: 35px;
   height: 35px;
   display: inline-block;
-  text-align: right;
 }
 .content /deep/ .el-input__inner {
   padding-left: 24px !important;
@@ -558,13 +689,16 @@ export default {
 .quality_div{
   padding: 10px 0;
 }
+.step .searchMain_div /deep/ .el-input__inner{
+  width: 215px!important;
+}
 .quality /deep/ .el-radio{
    margin-right: 0!important;
   width: 50%;
   height: 25px;
   line-height: 25px;
 }
-.begin /deep/ .el-input__inner {
+.begin /deep/ .el-input__inner,.finish /deep/ .el-input__inner  {
   padding-left: 30px !important;
   border: 1px solid #058cd0;
   background: rgba(21,37,63,0.86);
@@ -574,16 +708,13 @@ export default {
   height: 30px !important;
   width: 100px !important;
 }
-.begin /deep/ .el-date-editor.el-input {
-  width: 100px !important;
+.begin /deep/ .el-input--suffix .el-input__inner,
+.finish /deep/ .el-input--suffix .el-input__inner{
+  padding-right: 0px;
 }
-.begin /deep/ .el-input--suffix .el-input__inner{
-  padding-right: 0px !important;
+.pl /deep/ .el-input--suffix .el-input__inner{
+  padding-left: 15px!important;
 }
-.w110 /deep/ .el-input__inner{
-  padding-left: 10px !important;
-}
-/* 按钮 */
 .but{
   position: relative;
   text-align: center;
@@ -597,5 +728,68 @@ export default {
   border: none;
   color: #ffffff;
   text-align: center;
+}
+/* 弹窗 */
+.Mouth{
+  position: absolute;
+  /* float: left; */
+  width: 550px;
+  height: 350px;
+  left: 25%;
+  top: 25%;
+  transform: translate(0,-50%);
+}
+.Mouth dl{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+.Mouth dl dt ul li{
+  float: left;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  background: #031823;
+  text-align: center;
+  margin-left: 10px;
+}
+.cures{
+  background: #058cd0!important;
+  color: #031823 ;
+}
+.Mouth dl dt ul li:nth-child(1){
+  margin-left: 0;
+}
+.radio_static li:last-child{
+  width: 30px;
+  float:right;
+  background: none;
+}
+.radio_static li:last-child img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.Mouth dl dd{
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: calc(100% - 30px);
+  background: #031823;
+  border:2px  solid #058cd0;
+  box-sizing: border-box;
+}
+.tableData{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.cures{
+  background: #058cd0!important;
+  color: #031823 ;
 }
 </style>

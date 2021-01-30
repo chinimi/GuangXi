@@ -151,9 +151,6 @@ body {
   min-height: 28px!important;
   /* border-radius: 8px!important; */
 }
-.el-tree-node__content:hover {
-    background-color: transparent!important;
-  }
 .el-tree-node:focus>.el-tree-node__content {
       background-color: transparent;
     }
@@ -231,4 +228,9 @@ body {
  .el-pagination .el-select .el-input .el-input__inner {
   color: #ffff;
 }
-
+.el-scrollbar__wrap{
+    overflow: hidden!important;
+    height: 100%;
+    margin-bottom: 0px!important;
+    margin-right: 0px!important;
+  }

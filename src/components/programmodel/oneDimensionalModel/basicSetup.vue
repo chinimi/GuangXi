@@ -12,7 +12,7 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-input v-model="templateName" placeholder="模板1"></el-input>
+                <el-input v-model="templateName" placeholder="模板1" style="width:196px"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -26,7 +26,7 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-                <el-input v-model="ScenarioName" placeholder="请输入内容"></el-input>
+                <el-input v-model="ScenarioName" placeholder="请输入内容" style="width:196px"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -44,6 +44,7 @@
                   v-model="StartTime"
                   type="date"
                   placeholder="选择日期"
+                  style="width:196px"
                 >
                 </el-date-picker>
               </div>
@@ -63,6 +64,7 @@
                   v-model="EndTime"
                   type="date"
                   placeholder="选择日期"
+                  style="width:196px"
                 >
                 </el-date-picker>
               </div>
@@ -76,7 +78,7 @@
                 计算步长：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="10" style="margin-left: -5%;">
               <div>
                 <el-input-number
                   v-model="SimIntervalMinute"
@@ -85,6 +87,11 @@
                   :min="1"
                   :max="10"
                 ></el-input-number>
+              </div>
+            </el-col>
+               <el-col :span="6">
+              <div class="sysfxTit" style="margin-left: 20px;">
+                分钟
               </div>
             </el-col>
           </el-row>
@@ -102,6 +109,7 @@
           <el-button type="primary" size="small" plain @click="saveModel">保存</el-button>
           <el-button type="primary" size="small" plain>计算</el-button>
           <el-button type="primary" size="small" plain>查看结果</el-button>
+          <el-button type="primary" size="small" plain>上传</el-button>
         </div>
       </li>
     </ul>
@@ -212,7 +220,7 @@ export default {
   margin-right: 10px;
 }
 #basicSetup .el-input__inner {
-  /* padding-left: 10px !important; */
+  padding-left: 27px !important;
   color: #058cd0;
   border: 1px solid #058cd0;
   background: #031823;
@@ -222,7 +230,7 @@ export default {
   /* border-radius: 10px !important; */
   /* border: 0px !important; */
   height: 30px !important;
-  width: 196px !important;
+  /* width: 196px !important; */
 }
 #basicSetup .el-pagination__total {
   color: #ffffff !important;
@@ -236,7 +244,7 @@ export default {
 #basicSetup .el-input-number {
   position: relative;
   display: inline-block;
-  width: 196px;
+  width: 130px;
   line-height: 38px;
 }
 #basicSetup .el-textarea__inner{

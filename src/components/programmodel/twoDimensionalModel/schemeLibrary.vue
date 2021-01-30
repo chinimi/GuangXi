@@ -5,11 +5,120 @@
       <li class="left lefts">
         <div style="margin: 10px;">
         <el-radio-group  v-model="cursysval">
-            <el-col :span="8" v-for="item in curWaterSysOption"   :key="item.value">
+            <el-col :span="6" v-for="item in curWaterSysOption"   :key="item.value" style="padding-left: 10px;">
               <el-radio :label="item.value"   >{{item.label}}</el-radio>
             </el-col>
           </el-radio-group>
         </div>
+          <!-- 河长制 -->
+        <div v-show="cursysval == 'chief'">
+            <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                省：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="province">
+                  <el-option
+                    v-for="(item, index) in provinceList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                市：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="city">
+                  <el-option
+                    v-for="(item, index) in cityList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                县：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="county">
+                  <el-option
+                    v-for="(item, index) in countyList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                镇：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="town">
+                  <el-option
+                    v-for="(item, index) in townList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="singleli_title">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                村：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="rustic">
+                  <el-option
+                    v-for="(item, index) in rusticList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        </div>
+
          <!-- 行政分区 -->
         <div v-show="cursysval == 'administrative'">
         <div class="singleli_title">
@@ -432,8 +541,8 @@ export default {
       currentPage3: 5,
       currentPage4: 4,
 
-      cursysval:'administrative',
-      curWaterSysOption:[{label:'行政分区',value:'administrative'},{label:'流域分区',value:'drainagebasin'},{label:'水资源分区',value:'waterResource'}],
+      cursysval:'chief',
+      curWaterSysOption:[{label:'河长制',value:'chief'},{label:'流域',value:'drainagebasin'},{label:'水资源',value:'waterResource'},{label:'行政',value:'administrative'}],
     };
   },
   created() {

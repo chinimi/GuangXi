@@ -7,7 +7,7 @@
       <el-row>
         <el-col :span="8">
           <div class="sysfxTit">
-            纵向扩散系数（㎡/s）
+            缩放倍数
           </div>
         </el-col>
         <el-col :span="14" >
@@ -21,7 +21,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="singleli_title">
+    <!-- <div class="singleli_title">
       <el-row>
         <el-col :span="8">
           <div class="sysfxTit">
@@ -38,8 +38,8 @@
           </div>
         </el-col>
       </el-row>
-    </div>
-     <div class="singleli_title">
+    </div> -->
+     <!-- <div class="singleli_title">
       <el-row>
         <el-col :span="8">
           <div class="sysfxTit">
@@ -56,7 +56,7 @@
           </div>
         </el-col>
       </el-row>
-    </div>
+    </div> -->
         <div>
           <el-table
             border
@@ -77,10 +77,10 @@
         </div>
       </li>
       <li class="container">
-       <el-table :data="convectionTable" style="width: 100%;background-color: transparent;margin-top: 73px;">
+       <el-table :data="convectionTable" style="width: 100%;background-color: transparent;margin-top: -6px;">
             <el-table-column prop="indicator" label="指标"></el-table-column>
-            <el-table-column prop="minmum" label="最小值（I/d）"></el-table-column>
-            <el-table-column prop="maxmum" label="最大值（I/d）"></el-table-column>
+            <el-table-column prop="minmum" label="最大值（I/d）"></el-table-column>
+            <el-table-column prop="maxmum" label="最小值（I/d）"></el-table-column>
           </el-table>
         <div style="position: absolute;top: 588px;right: 102px;">
           <el-button type="primary" size="small" plain>保存</el-button>
@@ -146,7 +146,7 @@ export default {
   line-height: 35px;
   border-radius: 5px;
   font-weight: lighter;
-  margin-left: 3%;
+  margin-left: -30%;
   margin-bottom: 5px;
 }
 
