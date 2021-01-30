@@ -3,11 +3,11 @@
       <div class="left_menu">
 
         <el-menu
-          :router="true"
+          :router="false"
           class="el-menu-vertical-demo"
-
           @open="handleOpen"
           @close="handleClose"
+          @select="handleSelect"
           background-color="rgba(21,37,63,0.86)"
           text-color="#fff"
           active-text-color="#018faf">
@@ -26,10 +26,9 @@
               </template>
               <!-- 遍历二级菜单容器 -->
               <div v-for="(i,index) in item.children" :key="index">
-
                 <!-- 判断二级菜单（没有三级菜单）-->
                 <el-menu-item :index="i.path" v-if="!i.children">
-                  <!--                      <i :class=iconsObj[i.id]></i>-->
+                  <!--<i :class=iconsObj[i.id]></i>-->
                   <i class="el-icon-menu"></i>
                   {{i.authName}}
                 </el-menu-item>
@@ -51,7 +50,8 @@
       </div>
       <!--table表格-->
       <div class="right_menu">
-         <!--矿化度-->
+        <el-row>水文水资源</el-row>
+       <!--  &lt;!&ndash;矿化度&ndash;&gt;
         <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
             <el-table-column
               label="序号"
@@ -83,17 +83,15 @@
             <el-table-column
               label="备注">
               <template slot-scope="scope">
-                <!--  {{scope.row.time}}-->
+                &lt;!&ndash;  {{scope.row.time}}&ndash;&gt;
                 备注
               </template>
             </el-table-column>
 
           </el-table>
-
-
-        <!--分页-->
+        &lt;!&ndash;分页&ndash;&gt;
         <div style="padding-top:30px;">
-          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
+          &lt;!&ndash; <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> &ndash;&gt;
           <el-pagination
             background
             @size-change="handleSizeChange"
@@ -105,7 +103,11 @@
             :total="400"
           >
           </el-pagination>
-        </div>
+        </div>-->
+
+
+        <!--子组件中路由跳转-->
+        <router-view></router-view>
       </div>
 
 	</div>
@@ -121,10 +123,10 @@
       "authName": "河段选择",
       id:'zxpjfxmodelpart',
       children: [
-        { "authName": "桂江上游桂林城区段" ,com:' ', id:'dbszytrs', path:' '},
-        { "authName": "桂江中游桂林景观段",com:" " ,id:'szbhqs',path:' '},
-        { "authName": "桂江中游阳朔开发利用段",com:" ",id:'yysydaq',path:' ' },
-        { "authName": "桂江中游昭平保留段",com:" " ,id:'ssthjfx',path:' '  },
+        { "authName": "桂江上游桂林城区段" , id:'dbszytrs',  path:'groundWater'},
+        { "authName": "桂江中游桂林景观段",id:'szbhqs',path:'groundWater'},
+        { "authName": "桂江中游阳朔开发利用段",id:'yysydaq',  path:'groundWater'},
+        { "authName": "桂江中游昭平保留段",id:'ssthjfx', path:'groundWater' },
       ]
     }
   ]
@@ -243,6 +245,13 @@
 
       },
       methods: {
+        handleSelect(key, keyPath){
+          console.log("选中当前页面要素标签")
+          console.log(key)
+          console.log(keyPath)
+
+
+        },
         handleOpen(key, keyPath){
 
           console.log(key, keyPath)
@@ -409,11 +418,6 @@
             })
 
           }
-
-
-
-
-
 
         }
       },
