@@ -50,8 +50,12 @@
       </div>
       <!--table表格-->
       <div class="right_menu">
-        <el-row>水文水资源(HD)</el-row>
-        <el-row>
+        <el-row style="color:#fff;padding-top:20px;">
+          <el-col :span="20" ><p style="padding-left:30px;">水文水资源(HD)</p></el-col>
+          <el-col :span="2"> <el-button>保存</el-button></el-col>
+          <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
+        </el-row>
+        <el-row style="padding-top:20px;">
           <el-col span="12">
              <el-table    border :data="tableData" height="calc( 100vh - 600px )" style="background-color: transparent;">
 
@@ -102,47 +106,65 @@
                                label="指标层"></el-table-column>
               <el-table-column prop="amount2"
                                label="代码"></el-table-column>
-
-
             </el-table>
 
-
           </el-col>
-
-
 
 
         </el-row>
 
         <el-row>
-
-          <el-table    border :data="tableData" height="calc( 100vh - 600px )" style="background-color: transparent;">
+          <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
 
             <el-table-column  align="center" label="流量过程变异程度(FD)">
 
               <el-table-column
                 prop="stcd"
-                label="月份">
+                label="参照系丰水期水量P25%">
               </el-table-column>
               <el-table-column
                 prop="stnm"
-                label="评估年实测月径流量(qm)">
+                label="参照系丰水期2量P75%">
               </el-table-column>
               <el-table-column
                 prop="mndgMax"
-                label="评估年天然月径流量(Qm)">
+                label="参照系枯水期水量P25%">
               </el-table-column>
               <el-table-column
                 prop="mndgType"
-                label="评估天然月径流量年均值(Ou)">
+                label="参照系最大月水量指标P25%">
               </el-table-column>
-
+              <el-table-column
+                prop="mndgType"
+                label="参照系最大月水量指标P75%">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="参照系量小月水量指标P25%">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="参照系最小月水量指标P75%">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="评估年内丰水期水量">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="评估年内枯水期水量">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="评估年内最大月水量">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="评估年内最小月水量">
+              </el-table-column>
 
             </el-table-column>
           </el-table>
-
-
-
         </el-row>
 
        <!-- <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
@@ -197,8 +219,32 @@
           >
           </el-pagination>
         </div>-->
-
-
+        <el-row>
+          <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
+            <el-table-column  align="center" label="四个表格">
+              <el-table-column
+                prop="stcd"
+                label="参照系列月平均流量">
+              </el-table-column>
+              <el-table-column
+                prop="stnm"
+                label="参照系月流量P1%">
+              </el-table-column>
+              <el-table-column
+                prop="mndgMax"
+                label="参照系月流量P25%">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="参照系月流量P75%">
+              </el-table-column>
+              <el-table-column
+                prop="mndgType"
+                label="评估年月.流量">
+              </el-table-column>
+            </el-table-column>
+          </el-table>
+        </el-row>
 
       </div>
 
@@ -423,8 +469,10 @@
             }],
             /*当前水系*/
             cursysval:'river',
+
             /*水系参数*/
-            curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+            curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
+
             /*时间选择*/
             selectTimeType:"singletime",
             /*时间段选择*/
@@ -462,6 +510,9 @@
 
       },
       methods: {
+        backAgo(){
+          this.$router.push({name:'riverHealthy',params:{}});
+        },
         checkSelectable(row,index){
           let flag = true;
           for (let i = 0; i < this.originData.length; i++) {
@@ -716,12 +767,12 @@
   #groundWater  .right_menu{
     width: 85%;
     height: calc( 100vh - 80px);
-    padding-top: 50px;
     background: #031823;
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     right: 0;
+    overflow-y: auto;
   }
 
   #groundWater .singleli_title {

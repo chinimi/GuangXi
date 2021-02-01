@@ -73,11 +73,124 @@
          </el-checkbox-group>-->
 
         <el-radio-group  v-model="cursysval">
-          <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+          <el-col :span="5" v-for="product in curWaterSysOption"   :key="product.value">
             <el-radio :label="product.value"   >{{product.label}}</el-radio>
           </el-col>
         </el-radio-group>
       </div>
+      <!--河长制-->
+      <!--省-->
+      <div class="singleli_title"    v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              省：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="primaryPartition">
+                <el-option
+                  v-for="(item, index) in primaryPartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--市-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              市：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="secondaryPartition">
+                <el-option
+                  v-for="(item, index) in secondaryPartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--县-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              县：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="tertiaryPartition">
+                <el-option
+                  v-for="(item, index) in tertiaryPartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--镇-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              镇：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="fourstagePartition">
+                <el-option
+                  v-for="(item, index) in fourstagePartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--村-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              村：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="fivestagePartition">
+                <el-option
+                  v-for="(item, index) in fivestagePartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+
+
       <!--流域水系-->
       <!--流域-->
       <div class="singleli_title"  v-if="cursysval=='river'">
@@ -528,14 +641,9 @@
       </div>
       <!--行政区 over-->
 
-
-
-
-
       <div style="margin-left:20px;">
         <!--时间段选择-->
         <div >
-
           <el-radio-group  v-model="selectTimeType">
             <el-col :span="12" v-for="product in timequantumOption"   :key="product.value">
               <el-radio :label="product.value"   >{{product.label}}</el-radio>
@@ -618,6 +726,54 @@
     </div>
     <!--table表格-->
     <div class="right_menu">
+      <el-row  style="padding-bottom: 30px;">
+        <el-col :span="6">
+          <el-select v-model="watVal">
+            <el-option
+              v-for="(item, index) in watOption"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-col>
+
+        <el-col :span="6">
+          <el-select v-model="disVal">
+            <el-option
+              v-for="(item, index) in disOption"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-col>
+
+        <el-col :span="6">
+          <el-select v-model="poolVal">
+            <el-option
+              v-for="(item, index) in poolOption"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-col>
+
+        <el-col :span="3" >
+          <el-button>导入综合库</el-button>
+
+        </el-col>
+        <el-col :span="3" >
+
+          <el-button>导出报表</el-button>
+
+        </el-col>
+
+
+      </el-row >
+
+
       <!--矿化度-->
       <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
         <el-table-column
@@ -635,23 +791,38 @@
         </el-table-column>
         <el-table-column
           prop="mndgMax"
-          label="监测指标">
+          label="检测指标">
         </el-table-column>
         <el-table-column
           prop="mndgType"
-          label="浓度中值">
+          label="浓度中值/ (mg/L)">
         </el-table-column>
 
         <el-table-column
           prop="mndgName"
-          label="浓度变化趋势">
+          label="浓度变化趋势/ (mg/ (L-al)">
         </el-table-column>
 
         <el-table-column
-          label="变化率">
+          label="显著水平">
           <template slot-scope="scope">
             <!--  {{scope.row.time}}-->
             0.3
+          </template>
+        </el-table-column>
+
+        <el-table-column
+          label="结论">
+          <template slot-scope="scope">
+            <!--  {{scope.row.time}}-->
+
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="备注">
+          <template slot-scope="scope">
+            <!--  {{scope.row.time}}-->
+
           </template>
         </el-table-column>
 
@@ -911,7 +1082,8 @@
         /*当前水系*/
         cursysval:'river',
         /*水系参数*/
-        curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+        curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
+
 
         /*时间选择*/
         selectTimeType:"ordertime",
@@ -927,6 +1099,22 @@
         /*评价步长*/
         pjbcVal:'year',//评价步长
         pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+
+        /*水资源区统计*/
+        watVal:'1',//评价步长
+        watOption:[{value:'1',label:'一级水资源分区'},{value:'2',label:'2级水资源分区'},{value:'3',label:'3级水资源分区'},{value:'4',label:'4级水资源分区'},{value:'5',label:'水资源区统计'} ],
+
+        /*行政区划统计*/
+        disVal:'year',//评价步长
+        disOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+
+        /*流域水系统计*/
+       poolVal:'year',//评价步长
+        poolOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+
+
+
+
 
         /*初始时间*/
         startTime:'2015-07',

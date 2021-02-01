@@ -1,7 +1,6 @@
 <template>
     <div  id="groundWater">
-      <div class="left_menu">
-
+     <!-- <div class="left_menu">
         <el-menu
           :router="false"
           class="el-menu-vertical-demo"
@@ -12,27 +11,27 @@
           text-color="#fff"
           active-text-color="#018faf">
           <div  v-for="(item,index) in menulist" :key="index">
-            <!--一级菜单（没有任何子级菜单）-->
+            &lt;!&ndash;一级菜单（没有任何子级菜单）&ndash;&gt;
             <el-menu-item :index="item.id" v-if="!item.children">
-              <!--                  <i class="el-icon-menu"></i>-->
+              &lt;!&ndash;                  <i class="el-icon-menu"></i>&ndash;&gt;
               <i :class=iconsObj[item.id]></i>
               {{item.authName}}</el-menu-item>
-            <!-- 一级菜单（有子级菜单）-->
+            &lt;!&ndash; 一级菜单（有子级菜单）&ndash;&gt;
             <el-submenu :index="item.path" v-else>
               <template slot="title">
-                <!--                    <i class="el-icon-menu"></i>-->
+                &lt;!&ndash;                    <i class="el-icon-menu"></i>&ndash;&gt;
                 <i :class=iconsObj[item.id]></i>
                 {{item.authName}}
               </template>
-              <!-- 遍历二级菜单容器 -->
+              &lt;!&ndash; 遍历二级菜单容器 &ndash;&gt;
               <div v-for="(i,index) in item.children" :key="index">
-                <!-- 判断二级菜单（没有三级菜单）-->
+                &lt;!&ndash; 判断二级菜单（没有三级菜单）&ndash;&gt;
                 <el-menu-item :index="i.path" v-if="!i.children">
-                  <!--<i :class=iconsObj[i.id]></i>-->
+                  &lt;!&ndash;<i :class=iconsObj[i.id]></i>&ndash;&gt;
                   <i class="el-icon-menu"></i>
                   {{i.authName}}
                 </el-menu-item>
-                <!-- 判断二级菜单（有三级菜单）-->
+                &lt;!&ndash; 判断二级菜单（有三级菜单）&ndash;&gt;
                 <el-submenu :index="i.path" v-if="i.children">
                   <template slot="title">{{i.authName}}</template>
                   <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>
@@ -43,71 +42,105 @@
 
           </div>
         </el-menu>
-
-
-
-
-      </div>
+      </div>-->
       <!--table表格-->
       <div class="right_menu">
-        <el-row>水文水资源</el-row>
-       <!--  &lt;!&ndash;矿化度&ndash;&gt;
-        <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
+        <el-row style="color:#fff;padding-top:20px;">
+          <el-col :span="20" ><p style="padding-left:30px;">水质状况指标(WQ)</p></el-col>
+          <el-col :span="2"> <el-button>保存</el-button></el-col>
+          <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
+        </el-row>
+
+        <el-table v-if="pjxmval=='khd'"  border :data="tableData"  height="calc( 100vh - 300px )" style="background-color: transparent;">
+          <el-table-column
+            prop="date"
+            label="河段名称"
+            width="150">
+          </el-table-column>
+          <!--第1列-->
+          <el-table-column label="溶解氧状况(DO)">
             <el-table-column
-              label="序号"
-              type="index"
-              width="50">
+              prop="name"
+              label="汛期DO平均值"
+              width="120">
             </el-table-column>
             <el-table-column
-              prop="stcd"
-              label="测站编码">
+              prop="name"
+              label="非汛期DO平均值"
+              width="120">
+            </el-table-column>
+          </el-table-column>
+          <!--第2列-->
+          <el-table-column label="耗氧有机物(OCP)">
+            <el-table-column
+              prop="name"
+              label="高锰酸盐指数CODMN"
+              width="120">
             </el-table-column>
             <el-table-column
-              prop="stnm"
-              label="测站名称">
+              prop="name"
+              label="化学需拿量BOD"
+              width="120">
             </el-table-column>
             <el-table-column
-              prop="mndgMax"
-              label="矿化度指标">
-            </el-table-column>
-            <el-table-column
-              prop="mndgType"
-              label="级别">
+              prop="name"
+              label="五日生化需氧量NH3-N"
+              width="120">
             </el-table-column>
 
+          </el-table-column>
+          <!--第3列-->
+
+          <el-table-column label="重金属污染状况">
             <el-table-column
-              prop="mndgName"
-              label="类型">
+              prop="name"
+              label="砷"
+              width="120">
             </el-table-column>
-
             <el-table-column
-              label="备注">
-              <template slot-scope="scope">
-                &lt;!&ndash;  {{scope.row.time}}&ndash;&gt;
-                备注
-              </template>
+              prop="name"
+              label="汞"
+              width="120">
             </el-table-column>
+            <el-table-column
+              prop="name"
+              label="镉"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="铬(六价)"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="铅"
+              width="120">
+            </el-table-column>
+          </el-table-column>
 
-          </el-table>
-        &lt;!&ndash;分页&ndash;&gt;
-        <div style="padding-top:30px;">
-          &lt;!&ndash; <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> &ndash;&gt;
-          <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size=pageSize
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
-          >
-          </el-pagination>
-        </div>-->
+          <!--第4列-->
+          <el-table-column label="苯类有机物(BCP)">
+            <el-table-column
+              prop="name"
+              label="苯"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="甲苯"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="二甲苯"
+              width="120">
+            </el-table-column>
+          </el-table-column>
 
 
-        <!--子组件中路由跳转-->
-        <router-view></router-view>
+        </el-table>
+
       </div>
 
 	</div>
@@ -207,7 +240,9 @@
             /*当前水系*/
             cursysval:'river',
             /*水系参数*/
-            curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+            // curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+            curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
+
             /*时间选择*/
             selectTimeType:"singletime",
             /*时间段选择*/
@@ -245,6 +280,9 @@
 
       },
       methods: {
+        backAgo(){
+          this.$router.push({name:'riverHealthy',params:{}});
+        },
         handleSelect(key, keyPath){
           console.log("选中当前页面要素标签")
           console.log(key)
@@ -456,14 +494,15 @@
     border-left: #fff solid 1px;
   }
   #groundWater  .right_menu{
-    width: 80%;
+    width: 100%;
     height: calc( 100vh - 80px);
-    padding-top: 50px;
+    padding-left:50px;
     background: #031823;
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     right: 0;
+    overflow-y: auto;
   }
 
   #groundWater .singleli_title {

@@ -21,14 +21,14 @@
             </el-col>
             <el-col  :span="8">
               <div  class="bluesquare">
-                <p>Ⅲ类水以上断面（个）</p>
-                <p>1982</p>
+                <p>Ⅵ类水断面（个）</p>
+                <p>544</p>
               </div>
             </el-col>
             <el-col  :span="8">
               <div  class="bluesquare">
-                <p>Ⅲ类水以上断面（个）</p>
-                <p>1982</p>
+                <p>Ⅴ类水断面（个）</p>
+                <p>456</p>
               </div>
             </el-col>
           </el-row>
@@ -52,7 +52,7 @@
           </el-col>
           <el-col  :span="12">
             <div  class="bluesquare">
-              <p>国家控断面水质优良比例（%）</p>
+              <p>国控断面水质考核指标(%)</p>
               <p style="font-size: 20px;
     font-weight: 800;
     color: greenyellow;">98.9</p>
