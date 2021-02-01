@@ -1,6 +1,6 @@
 <template>
     <div  id="groundWater">
-      <div class="left_menu">
+    <!--  <div class="left_menu">
 
         <el-menu
           :router="false"
@@ -12,27 +12,27 @@
           text-color="#fff"
           active-text-color="#018faf">
           <div  v-for="(item,index) in menulist" :key="index">
-            <!--一级菜单（没有任何子级菜单）-->
+            &lt;!&ndash;一级菜单（没有任何子级菜单）&ndash;&gt;
             <el-menu-item :index="item.id" v-if="!item.children">
-              <!--                  <i class="el-icon-menu"></i>-->
+              &lt;!&ndash;                  <i class="el-icon-menu"></i>&ndash;&gt;
               <i :class=iconsObj[item.id]></i>
               {{item.authName}}</el-menu-item>
-            <!-- 一级菜单（有子级菜单）-->
+            &lt;!&ndash; 一级菜单（有子级菜单）&ndash;&gt;
             <el-submenu :index="item.path" v-else>
               <template slot="title">
-                <!--                    <i class="el-icon-menu"></i>-->
+                &lt;!&ndash;                    <i class="el-icon-menu"></i>&ndash;&gt;
                 <i :class=iconsObj[item.id]></i>
                 {{item.authName}}
               </template>
-              <!-- 遍历二级菜单容器 -->
+              &lt;!&ndash; 遍历二级菜单容器 &ndash;&gt;
               <div v-for="(i,index) in item.children" :key="index">
-                <!-- 判断二级菜单（没有三级菜单）-->
+                &lt;!&ndash; 判断二级菜单（没有三级菜单）&ndash;&gt;
                 <el-menu-item :index="i.path" v-if="!i.children">
-                  <!--<i :class=iconsObj[i.id]></i>-->
+                  &lt;!&ndash;<i :class=iconsObj[i.id]></i>&ndash;&gt;
                   <i class="el-icon-menu"></i>
                   {{i.authName}}
                 </el-menu-item>
-                <!-- 判断二级菜单（有三级菜单）-->
+                &lt;!&ndash; 判断二级菜单（有三级菜单）&ndash;&gt;
                 <el-submenu :index="i.path" v-if="i.children">
                   <template slot="title">{{i.authName}}</template>
                   <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>
@@ -47,51 +47,156 @@
 
 
 
-      </div>
+      </div>-->
       <!--table表格-->
       <div class="right_menu">
-        <el-row>水文水资源</el-row>
-       <!--  &lt;!&ndash;矿化度&ndash;&gt;
-        <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-            <el-table-column
-              label="序号"
-              type="index"
-              width="50">
-            </el-table-column>
-            <el-table-column
-              prop="stcd"
-              label="测站编码">
-            </el-table-column>
-            <el-table-column
-              prop="stnm"
-              label="测站名称">
-            </el-table-column>
-            <el-table-column
-              prop="mndgMax"
-              label="矿化度指标">
-            </el-table-column>
-            <el-table-column
-              prop="mndgType"
-              label="级别">
-            </el-table-column>
+        <el-row style="color:#fff;padding-top:20px;">
+          <el-col :span="20" ><p style="padding-left:30px;">物理结构(PF)</p></el-col>
+          <el-col :span="2"> <el-button>保存</el-button></el-col>
+          <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
+        </el-row>
+        <el-table v-if="pjxmval=='khd'"  border :data="tableData"  height="calc( 100vh - 300px )" style="background-color: transparent;">
+          <el-table-column
+            prop="date"
+            label="河段名称"
+            width="150">
+          </el-table-column>
+          <!--第1列-->
+          <el-table-column label="岸坡稳定性指数(BKS)">
+
 
             <el-table-column
-              prop="mndgName"
-              label="类型">
+              prop="name"
+              label="斜坡倾角(SA) (度)"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="植被覆盖度(SC) (%)"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="岸坡高度(SH) (米)"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="河岸基质(SM)(类别)"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="坡脚冲刷强度(ST)"
+              width="120">
             </el-table-column>
 
+            <!--  <el-table-column label="地址">
+                <el-table-column
+                  prop="province"
+                  label="省份"
+                  width="120">
+                </el-table-column>
+                <el-table-column
+                  prop="city"
+                  label="市区"
+                  width="120">
+                </el-table-column>
+                <el-table-column
+                  prop="address"
+                  label="地址"
+                  width="300">
+                </el-table-column>
+                <el-table-column
+                  prop="zip"
+                  label="邮编"
+                  width="120">
+                </el-table-column>
+              </el-table-column>-->
+          </el-table-column>
+          <!--第2列-->
+          <el-table-column label="岸坡稳定性指数(BKS)">
             <el-table-column
-              label="备注">
-              <template slot-scope="scope">
-                &lt;!&ndash;  {{scope.row.time}}&ndash;&gt;
-                备注
-              </template>
+              prop="name"
+              label="植被覆盖度(乔木)"
+              width="120">
             </el-table-column>
+            <el-table-column
+              prop="name"
+              label="植被覆盖度(灌木)"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="植被覆盖度(草本)"
+              width="120">
+            </el-table-column>
+
+          </el-table-column>
+          <!--第3列-->
+
+          <el-table-column label="河岸带人工干扰程度(RD)">
+            <el-table-column
+              prop="name"
+              label="河岸硬主砌护"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="采砂"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="沿岸建筑物（房屋）"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="公路(或铁路)"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="垃圾填埋场或垃圾堆放"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="河滨公园"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="管道"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="农业耕种"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="畜牧养殖"
+              width="120">
+            </el-table-column>
+          </el-table-column>
+          <!--第4列-->
+          <el-table-column label="河流连通阻隔状况">
+            <el-table-column
+              prop="name"
+              label="鱼类迁移阻隔特征"
+              width="120">
+            </el-table-column>
+          </el-table-column>
+
 
           </el-table>
-        &lt;!&ndash;分页&ndash;&gt;
+
+        <!--分页-->
         <div style="padding-top:30px;">
-          &lt;!&ndash; <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> &ndash;&gt;
+          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
           <el-pagination
             background
             @size-change="handleSizeChange"
@@ -103,11 +208,10 @@
             :total="400"
           >
           </el-pagination>
-        </div>-->
+        </div>
 
 
-        <!--子组件中路由跳转-->
-        <router-view></router-view>
+
       </div>
 
 	</div>
@@ -165,7 +269,7 @@
             fourstagePartitionList: [],
             fivestagePartition: "",
             fivestagePartitionList: [],
-            tableData: [],
+
             cities:['流域水系', '水资源分区', '行政区划'],
             cities2:['按单时间段评价', '按时间序列评价'],
 
@@ -188,7 +292,7 @@
               label:"水化学类型",
               value:'shxlx',
             },{
-              label:"地表天然水",
+              label:"天然劣质水",
               value:'dbtrs',
             }
           ],
@@ -207,7 +311,9 @@
             /*当前水系*/
             cursysval:'river',
             /*水系参数*/
-            curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+
+            curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
+            // curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
             /*时间选择*/
             selectTimeType:"singletime",
             /*时间段选择*/
@@ -228,7 +334,7 @@
             /*截至时间*/
             endTime:'2015-08',
 
-
+            tableData: [],
             menulist: menulist,
             iconsObj:{
               // "generalwaterevaluate":"iconfont icon-shuidi3",
@@ -240,11 +346,16 @@
       },
       created() {
 
+
+
       },
       computed: {
 
       },
       methods: {
+        backAgo(){
+          this.$router.push({name:'riverHealthy',params:{}});
+        },
         handleSelect(key, keyPath){
           console.log("选中当前页面要素标签")
           console.log(key)
@@ -341,12 +452,6 @@
               "qzfs":this.qzfsval,// min max avg
               "tjsj":tjsj
             }
-          // var param={
-          //   "pageNum":"0",      // --当前页
-          //   "pageSize":"10",     //--一页显示数量
-          //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          //   "tjsj":"201507-201508"
-          // }
           this.tableData=[]
           /*矿化度请求*/
         if(this.pjxmval=="khd") {
@@ -456,11 +561,13 @@
     border-left: #fff solid 1px;
   }
   #groundWater  .right_menu{
-    width: 80%;
+    width: 100%;
+
     height: calc( 100vh - 80px);
-    padding-top: 50px;
+    /*padding-top:50px;*/
+    padding-left:50px;
     background: #031823;
-    /*background: rgba(21, 37, 63,1);*/
+    /*background: rgb(144, 237, 247);*/
     position: absolute;
     top: 0;
     right: 0;

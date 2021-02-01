@@ -73,7 +73,7 @@
            </el-checkbox-group>-->
 
           <el-radio-group  v-model="cursysval">
-            <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+            <el-col :span="5" v-for="product in curWaterSysOption"   :key="product.value">
               <el-radio :label="product.value"   >{{product.label}}</el-radio>
             </el-col>
           </el-radio-group>
@@ -102,6 +102,119 @@
             </el-col>
           </el-row>
         </div>
+        <!--河长制-->
+        <!--省-->
+        <div class="singleli_title"    v-if="cursysval=='longriver'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                省：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="primaryPartition">
+                  <el-option
+                    v-for="(item, index) in primaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--市-->
+        <div class="singleli_title"  v-if="cursysval=='longriver'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                市：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="secondaryPartition">
+                  <el-option
+                    v-for="(item, index) in secondaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--县-->
+        <div class="singleli_title"  v-if="cursysval=='longriver'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                县：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="tertiaryPartition">
+                  <el-option
+                    v-for="(item, index) in tertiaryPartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--镇-->
+        <div class="singleli_title"  v-if="cursysval=='longriver'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                镇：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fourstagePartition">
+                  <el-option
+                    v-for="(item, index) in fourstagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <!--村-->
+        <div class="singleli_title"  v-if="cursysval=='longriver'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                村：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <div>
+                <el-select v-model="fivestagePartition">
+                  <el-option
+                    v-for="(item, index) in fivestagePartitionList"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+
         <!--水系-->
         <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
@@ -546,7 +659,7 @@
           </div>
 
         </div>
-
+        <!--评价步长-->
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -568,29 +681,225 @@
             </el-col>
           </el-row>
         </div>
-
-        <div class="singleli_title" >
+        <!--年份-->
+        <div class="singleli_title">
           <el-row>
+            <!--起始-->
             <el-col :span="8">
               <div class="sysfxTit">
-                时间选择：
+                时间选择:</div>
+            </el-col>
+            <!--起始年-->
+            <el-col :span="7"  style="margin-left: -5%;" >
+              <div>
+                <el-select v-model="startyearVal">
+                  <el-option
+                    v-for="(item, index) in startyearOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <el-date-picker
-                v-model="startTime"
-                format="yyyy-MM"
-                type="month"
-                align="right"
-                size="mini"
-                @change="getstartTime"
-                placeholder="选择日期时间">
-              </el-date-picker>
+            <el-col :span="1" style="color:#fff;text-align: center;">-</el-col>
+
+            <!--终止年-->
+
+            <el-col :span="7"  >
+              <div>
+                <el-select v-model="endyearVal">
+                  <el-option
+                    v-for="(item, index) in endyearOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
             </el-col>
           </el-row>
         </div>
+        <!--单月-->
+        <div class="singleli_title" v-if="selectTimeType=='ordertime'&&pjbcVal=='month'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              月：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;"   >
+            <div>
+              <el-select v-model="singleMonth">
+                <el-option
+                  v-for="(item, index) in singleMonthOption"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+
+        <!--双月-->
+        <div class="singleli_title"  v-if="selectTimeType=='singletime'&&pjbcVal=='month'">
+          <el-row>
+            <!--第一个月-->
+            <el-col :span="8">
+              <div class="sysfxTit">
+                双月:</div>
+            </el-col>
+
+            <el-col :span="7"  style="margin-left: -5%;" >
+              <div>
+                <el-select v-model="firmonthVal">
+                  <el-option
+                    v-for="(item, index) in firmonthOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+            <el-col :span="1" style="color:#fff;text-align: center;">-</el-col>
+
+            <!--第二个月-->
+
+            <el-col :span="7"  >
+              <div>
+                <el-select v-model="secmonthVal">
+                  <el-option
+                    v-for="(item, index) in secmonthOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <!--旬-->
+        <div class="singleli_title" v-if=" pjbcVal=='xun'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                旬：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;"   >
+              <div>
+                <el-select v-model="xunVal">
+                  <el-option
+                    v-for="(item, index) in xunOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <!--汛期-->
+        <div class="singleli_title" v-if=" pjbcVal=='xq'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                汛期：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;"   >
+              <div>
+                <el-select v-model="xqVal">
+                  <el-option
+                    v-for="(item, index) in xqOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+             <!--非汛期-->
+        <div class="singleli_title" v-if=" pjbcVal=='fxq'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                非汛期：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;"   >
+              <div>
+                <el-select v-model="fxqVal">
+                  <el-option
+                    v-for="(item, index) in fxqOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <!--半年-->
+        <div class="singleli_title" v-if="  pjbcVal=='halfyear'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                半年：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;"   >
+              <div>
+                <el-select v-model="halfyVal">
+                  <el-option
+                    v-for="(item, index) in halfyOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+
+
+
+        <!--  <div class="singleli_title" >
+            <el-row>
+              <el-col :span="8">
+                <div class="sysfxTit">
+                  时间选择：
+                </div>
+              </el-col>
+              <el-col :span="14" style="margin-left: -5%;">
+                <el-date-picker
+                  v-model="startTime"
+                  format="yyyy-MM"
+                  type="month"
+                  align="right"
+                  size="mini"
+                  @change="getstartTime"
+                  placeholder="选择日期时间">
+                </el-date-picker>
+              </el-col>
+            </el-row>
+          </div>-->
         <!--时间序列-->
-        <div class="singleli_title" v-if="selectTimeType=='ordertime'">
+       <!-- <div class="singleli_title" v-if="selectTimeType=='ordertime'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -609,7 +918,10 @@
               </el-date-picker>
             </el-col>
           </el-row>
-        </div>
+        </div>-->
+
+
+
         <div class="singleli_title" >
           <el-row>
             <el-col :span="20" style="text-align: center">
@@ -621,136 +933,170 @@
       </div>
       <!--table表格-->
       <div class="right_menu">
+
+
+<!--表单名称以及字段选择筛选条件-->
+        <el-cascader
+          v-model="selectedOptions"
+          :change="handchangeSelOpt"
+
+          :options="options"
+          :props="props"
+          :checkStrictly="false"
+          collapse-tags
+          clearable></el-cascader>
          <!--水质基础评价-->
+<!--        <el-table v-if="pjxmval=='szjcpj'"  border :data="tableData" height="100px" style="background-color: transparent;">-->
+<!--            <el-table-column-->
+<!--              label="序号"-->
+<!--              type="index"-->
+<!--              width="50">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column-->
+<!--              prop="stcd"-->
+<!--              label="测站编码">-->
+<!--            </el-table-column>-->
+<!--&lt;!&ndash;            <el-table-column&ndash;&gt;-->
+<!--&lt;!&ndash;              label="评价时间">&ndash;&gt;-->
+<!--&lt;!&ndash;              <template slot-scope="scope">&ndash;&gt;-->
+<!--&lt;!&ndash;                {{scope.row.wqWqsinfBDTO.mnag}}&ndash;&gt;-->
+
+<!--&lt;!&ndash;              </template>&ndash;&gt;-->
+<!--&lt;!&ndash;            </el-table-column>&ndash;&gt;-->
+
+<!--          <el-table-column-->
+<!--            label="监测频次">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.mNFRQ}}-->
+
+<!--            </template>-->
+<!--          </el-table-column>-->
+
+<!--          <el-table-column-->
+<!--            label="ASDR">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.aSDR}}-->
+
+<!--            </template>-->
+<!--          </el-table-column>-->
+
+<!--          <el-table-column-->
+<!--            label="ASOT">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.asot}}-->
+
+<!--            </template>-->
+<!--          </el-table-column>-->
+<!--&lt;!&ndash;            <el-table-column&ndash;&gt;-->
+
+<!--&lt;!&ndash;              label="评价时段">&ndash;&gt;-->
+<!--&lt;!&ndash;              <template slot-scope="scope">&ndash;&gt;-->
+<!--&lt;!&ndash;                {{scope.row.wqWqsinfBDTO.mnag}}&ndash;&gt;-->
+
+<!--&lt;!&ndash;              </template>&ndash;&gt;-->
+<!--&lt;!&ndash;            </el-table-column>&ndash;&gt;-->
+<!--            <el-table-column-->
+
+<!--              label="水质类别">-->
+<!--              <template slot-scope="scope">-->
+<!--                {{scope.row.wQG}}-->
+
+<!--              </template>-->
+<!--            </el-table-column>-->
+
+<!--            <el-table-column-->
+
+<!--              label="超标项目与倍数">-->
+<!--              <template slot-scope="scope">-->
+<!--                {{scope.row.wQG}}-->
+
+<!--              </template>-->
+<!--            </el-table-column>-->
+
+<!--          <el-table-column-->
+
+<!--              label="测站备注">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.wqWqsinfBDTO.stlc}}-->
+
+<!--            </template>-->
+<!--            </el-table-column>-->
+
+<!--          <el-table-column-->
+
+<!--              label="WQEI">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.wqWqsinfBDTO.mnag}}-->
+
+<!--            </template>-->
+<!--            </el-table-column>-->
+
+<!--           <el-table-column-->
+
+<!--              label="总磷评价参照值">-->
+<!--             <template slot-scope="scope">-->
+<!--               {{scope.row.wqWqsinfBDTO.mnfrq}}-->
+
+<!--             </template>-->
+<!--            </el-table-column>-->
+
+<!--          <el-table-column-->
+
+<!--              label="总氮评价参照值">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.wqWqsinfBDTO.stgrd}}-->
+
+<!--            </template>-->
+<!--            </el-table-column>-->
+
+<!--          <el-table-column-->
+<!--            label="叶绿素">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.wqWqsinfBDTO.stwqt}}-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+<!--          <el-table-column-->
+<!--            label="高锰酸盐指数">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.wqWqsinfBDTO.mnag}}-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+<!--          <el-table-column-->
+<!--            label="透明度指数">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.wqWqsinfBDTO.atmn}}-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+<!--          <el-table-column-->
+<!--              label="备注">-->
+<!--              <template slot-scope="scope">-->
+<!--                  {{scope.row.stlc}}-->
+<!--              </template>-->
+<!--            </el-table-column>-->
+<!--          </el-table>-->
         <el-table v-if="pjxmval=='szjcpj'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-            <el-table-column
-              label="序号"
-              type="index"
-              width="50">
-            </el-table-column>
-            <el-table-column
-              prop="stcd"
-              label="测站编码">
-            </el-table-column>
-<!--            <el-table-column-->
-<!--              label="评价时间">-->
-<!--              <template slot-scope="scope">-->
-<!--                {{scope.row.wqWqsinfBDTO.mnag}}-->
+        <!--循环创建这个标签-->
+        <!--  <el-table-column
+            v-for="info in renderTab" :key="info.key"     &lt;!&ndash; 设置表头数据源，并循环渲染出来，property对应列内容的字段名，详情见下面的数据源格式 &ndash;&gt;
+          :property="info.key"
+          :label="info.label"
+           >
 
-<!--              </template>-->
-<!--            </el-table-column>-->
-
-          <el-table-column
-            label="监测频次">
-            <template slot-scope="scope">
-              {{scope.row.mNFRQ}}
-
-            </template>
           </el-table-column>
+-->
 
           <el-table-column
-            label="ASDR">
-            <template slot-scope="scope">
-              {{scope.row.aSDR}}
-
-            </template>
+            v-for="info in renderTab" :key="info.key"
+          :prop="info.key"
+          :label="info.label"
+          >
+          <template slot-scope="scope">
+            {{scope.row[scope.column.property]}}  <!-- 渲染对应表格里面的内容 -->
+          </template>
           </el-table-column>
+        </el-table>
 
-          <el-table-column
-            label="ASOT">
-            <template slot-scope="scope">
-              {{scope.row.asot}}
-
-            </template>
-          </el-table-column>
-<!--            <el-table-column-->
-
-<!--              label="评价时段">-->
-<!--              <template slot-scope="scope">-->
-<!--                {{scope.row.wqWqsinfBDTO.mnag}}-->
-
-<!--              </template>-->
-<!--            </el-table-column>-->
-            <el-table-column
-
-              label="水质类别">
-              <template slot-scope="scope">
-                {{scope.row.wQG}}
-
-              </template>
-            </el-table-column>
-
-            <el-table-column
-
-              label="超标项目与倍数">
-              <template slot-scope="scope">
-                {{scope.row.wQG}}
-
-              </template>
-            </el-table-column>
-
-          <el-table-column
-
-              label="测站备注">
-            <template slot-scope="scope">
-              {{scope.row.wqWqsinfBDTO.stlc}}
-
-            </template>
-            </el-table-column>
-
-          <el-table-column
-
-              label="WQEI">
-            <template slot-scope="scope">
-              {{scope.row.wqWqsinfBDTO.mnag}}
-
-            </template>
-            </el-table-column>
-
-           <el-table-column
-
-              label="总磷评价参照值">
-             <template slot-scope="scope">
-               {{scope.row.wqWqsinfBDTO.mnfrq}}
-
-             </template>
-            </el-table-column>
-
-          <el-table-column
-
-              label="总氮评价参照值">
-            <template slot-scope="scope">
-              {{scope.row.wqWqsinfBDTO.stgrd}}
-
-            </template>
-            </el-table-column>
-
-          <el-table-column
-            label="叶绿素">
-            <template slot-scope="scope">
-              {{scope.row.wqWqsinfBDTO.stwqt}}
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="高锰酸盐指数">
-            <template slot-scope="scope">
-              {{scope.row.wqWqsinfBDTO.mnag}}
-            </template>
-          </el-table-column>
-          <el-table-column
-            label="透明度指数">
-            <template slot-scope="scope">
-              {{scope.row.wqWqsinfBDTO.atmn}}
-            </template>
-          </el-table-column>
-          <el-table-column
-              label="备注">
-              <template slot-scope="scope">
-                  {{scope.row.stlc}}
-              </template>
-            </el-table-column>
-          </el-table>
-        <!--总硬度-->
+          <!--总硬度-->
         <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
           <el-table-column
             label="序号"
@@ -773,7 +1119,6 @@
             prop="thrd"
             label="总硬度指标">
           </el-table-column>
-
           <el-table-column
             prop="thrdType"
             label="级别">
@@ -923,6 +1268,9 @@
   export default {
       data() {
           return {
+
+            renderTab:[],//渲染表格数组元素
+
             checkedCities: [],
             checkedCities2: [],
             currentPage:1,
@@ -940,10 +1288,10 @@
             fourstagePartitionList: [],
             fivestagePartition: "",
             fivestagePartitionList: [],
-            tableData: [],
+            tableData: [{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田222东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田333东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田444东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田555东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田666东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田11东"}],
             customdefine:'默认分组',
             customdefineList:[],
-            cities:['流域水系', '水资源分区', '行政区划'],
+            cities:['河长制','流域', '水资源', '行政区'],
             cities2:['按单时间段评价', '按时间序列评价'],
 
             pageSize:10,
@@ -958,10 +1306,10 @@
             pjxmOption:[{
               label:"水质基础评价",
               value:'szjcpj',
-            },{
+            },/*{
               label:"地表天然水",
               value:'dbtrs',
-            }
+            }*/
           ],
             /*取值方式*/
             qzfsval:'avg',
@@ -978,7 +1326,7 @@
             /*当前水系*/
             cursysval:'river',
             /*水系参数*/
-            curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+            curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
             /*时间选择*/
             selectTimeType:"singletime",
             /*时间段选择*/
@@ -992,12 +1340,185 @@
             }],
             /*评价步长*/
             pjbcVal:'year',//评价步长
-            pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+            pjbcOption:[
+             {value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+
+            /*起始年*/
+            startyearVal:'2015',//评价步长
+            startyearOption:[
+              {value:'2010',label:'2010'},
+              {value:'2011',label:'2011'},
+              {value:'2012',label:'2012'},
+              {value:'2013',label:'2013'},
+              {value:'2014',label:'2014'},
+              {value:'2015',label:'2015'},
+              {value:'2016',label:'2016'},
+              {value:'2017',label:'2017'},
+              {value:'2018',label:'2018'},
+              {value:'2019',label:'2019'},
+              {value:'2020',label:'2020'},
+              {value:'2021',label:'2021'},
+              ],
+            /*终止年*/
+            endyearVal:'2020',//
+            endyearOption:[
+              {value:'2010',label:'2010'},
+              {value:'2011',label:'2011'},
+              {value:'2012',label:'2012'},
+              {value:'2013',label:'2013'},
+              {value:'2014',label:'2014'},
+              {value:'2015',label:'2015'},
+              {value:'2016',label:'2016'},
+              {value:'2017',label:'2017'},
+              {value:'2018',label:'2018'},
+              {value:'2019',label:'2019'},
+              {value:'2020',label:'2020'},
+              {value:'2021',label:'2021'},
+            ],
+            /*12月*/
+            singleMonth:'01',
+            singleMonthOption:[
+              {value:'01',label:'1'},
+              {value:'02',label:'2'},
+              {value:'03',label:'3'},
+              {value:'04',label:'4'},
+              {value:'05',label:'5'},
+              {value:'06',label:'6'},
+              {value:'07',label:'7'},
+              {value:'08',label:'8'},
+              {value:'09',label:'9'},
+              {value:'10',label:'10'},
+              {value:'11',label:'11'},
+              {value:'12',label:'12'},
+            ],
+            /*旬*/
+            xunVal:'upxun',
+            xunOption:[
+              {value:'upxun',label:'上旬'},
+              {value:'middlexun',label:'中旬'},
+              {value:'downxun',label:'下旬'},
+
+            ],
+            /*汛期*/
+            xqVal:'04',
+            xqOption:[
+              // {value:'01',label:'1'},
+              // {value:'02',label:'2'},
+              // {value:'03',label:'3'},
+              {value:'04',label:'4'},
+              {value:'05',label:'5'},
+              {value:'06',label:'6'},
+              {value:'07',label:'7'},
+              {value:'08',label:'8'},
+              {value:'09',label:'9'},
+              // {value:'10',label:'10'},
+              // {value:'11',label:'11'},
+              // {value:'12',label:'12'},
+            ],
+            /*非汛期*/
+            fxqVal:'03',
+            fxqOption:[
+              {value:'01',label:'1'},
+              {value:'02',label:'2'},
+              {value:'03',label:'3'},
+              // {value:'04',label:'4'},
+              // {value:'05',label:'5'},
+              // {value:'06',label:'6'},
+              // {value:'07',label:'7'},
+              // {value:'08',label:'8'},
+              // {value:'09',label:'9'},
+              {value:'10',label:'10'},
+              {value:'11',label:'11'},
+              {value:'12',label:'12'},
+            ],
+
+            /*半年*/
+            halfyVal:'upyear',
+            halfyOption:[
+              {value:'upyear',label:'上半年'},
+              {value:'downyear',label:'下半年'},
+
+
+
+            ],
+
+            /*双月*/
+            /*第一个月*/
+            firmonthVal:'01',//双月  1
+            firmonthOption:[
+              {value:'01',label:'1'},
+              {value:'02',label:'2'},
+              {value:'03',label:'3'},
+              {value:'04',label:'4'},
+              {value:'05',label:'5'},
+              {value:'06',label:'6'},
+              {value:'07',label:'7'},
+              {value:'08',label:'8'},
+              {value:'09',label:'9'},
+              {value:'10',label:'10'},
+              {value:'11',label:'11'},
+              {value:'12',label:'12'},
+            ],
+            /*第二个月*/
+            secmonthVal:'03',//双月  2
+            secmonthOption:[
+              {value:'01',label:'1'},
+              {value:'02',label:'2'},
+              {value:'03',label:'3'},
+              {value:'04',label:'4'},
+              {value:'05',label:'5'},
+              {value:'06',label:'6'},
+              {value:'07',label:'7'},
+              {value:'08',label:'8'},
+              {value:'09',label:'9'},
+              {value:'10',label:'10'},
+              {value:'11',label:'11'},
+              {value:'12',label:'12'},
+            ],
 
             /*初始时间*/
             startTime:'2015-07',
             /*截至时间*/
             endTime:'2015-08',
+
+            /*表明以及字段筛选*/
+            props: { multiple: true },
+            options: [{
+              value: 'szjcStation',
+              label: '水质监测站',
+              children: [{
+                value: 'stcd',
+                label: '测站代码',
+
+              }, {
+                value: 'stnm',
+                label: '水域类型',
+
+              }, {
+                value: 'mndgMax',
+                label: '流域名称',
+
+              }]
+            }, {
+              value: 'surfaceWaterStation',
+              label: '地表水水质监测',
+              children: [{
+                value: 'mndgType',
+                label: '水系名称',
+
+              }, {
+                value: 'mndgName',
+                label: '河流名称',
+
+              }]
+            },
+
+
+
+
+            ],
+            selectedOptions:null,//获取cascader参数
+
           }
       },
       created() {
@@ -1007,6 +1528,12 @@
 
       },
       methods: {
+        handchangeSelOpt(val){
+          console.log("获取选中的参数")
+          console.log(val)
+
+
+        },
         getstartTime(date){
 
           let checkstartTime = moment(this.startTime).format('YYYYMM');
@@ -1137,6 +1664,46 @@
 
 
 
+        },
+        selectedOptions(newValue){
+
+          let data=[{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,mndgMax:807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田222东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田333东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田444东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田555东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田666东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田11东"}]
+
+
+
+          this.tabledata=data
+          console.log(newValue)
+
+          /*rightHeader: [
+        {
+          label: '编码',
+          key: 'code'
+        },
+        {
+          label: '姓名',
+          key: 'name'
+        },
+        {
+          label: '权限描述',
+          key: 'description'
+        }
+      ],*/
+          var arr=[]
+          for(var i=0;i<newValue.length;i++){
+            console.log(newValue[i])
+            var obj={}
+            obj.key=newValue[i][1]
+            obj.label=newValue[i][1]
+            arr.push(obj)
+
+          }
+          console.log(arr)//渲染表头
+          this.renderTab=arr
+          /*每次切换数据table表格清空重新渲染*/
+
+
+
+
         }
 
 
@@ -1178,7 +1745,7 @@
   #groundWater .singleli_title {
     font-size: 13px;
     height: 35px;
-    line-height: 50px;
+    /*line-height: 50px;*/
     border-radius: 5px;
     font-weight: lighter;
     margin-left: 3%;

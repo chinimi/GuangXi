@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import {createEnvironmentSelectByClick} from '../../utils/commonUtils';
+  // import {createEnvironmentSelectByClick} from '../../utils/commonUtils';
 
 
   export default {
