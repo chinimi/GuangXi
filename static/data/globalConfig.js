@@ -12,8 +12,8 @@ var modelURL = "http://112.26.122.200:8082/RiverChiefWQWebServer"
 var baseMap = "http://112.26.122.200:6080/arcgis/rest/services/guangxiwgs84/MapServer"
 // var baseMap = "http://112.26.122.200:6080/arcgis/rest/services/guangxi3/MapServer"
 
-// window.ol = ol;
-// window.map = map;
+ window.ol = ol;
+ window.map = map;
 
 /*
 在文件的开始先定义一个对象

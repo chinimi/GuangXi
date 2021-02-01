@@ -989,7 +989,7 @@
 <script>
 
   import moment from 'moment'
-
+ 
   export default {
     data() {
       return {
@@ -1257,10 +1257,11 @@
       /*请求当前评价项目参数*/
       ajaxPointSource(param,pointLayer){//传请求参数
 
+        debugger
         var  that=this
 
         /*矿化度请求*/
-        debugger
+        //debugger
         if(that.pjxmval=="khd") {
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
           /*http请求*/
@@ -1273,7 +1274,8 @@
             console.log(data)
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
-              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              //debugger
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:4326");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
@@ -1341,7 +1343,7 @@
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
 
-              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:4326");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
@@ -1386,10 +1388,6 @@
 
 
 
-
-
-
-
           }).catch(function (res) {
 
             // alert("请求失败")
@@ -1412,7 +1410,7 @@
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
 
-              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:4326");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
@@ -1478,7 +1476,7 @@
               let coord = data[i]
               console.log(coord.lgtd)
               console.log(coord.lttd)
-              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
+              var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:4326");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
@@ -1575,7 +1573,9 @@
 
 
       drawPoint(){//绘制点要素图层
+      if (map==null) return
         var that=this
+       // debugger
         /*if(this.selectTimeType=="singletime"){
           if(this.startTime ){
             this.$message('请选择时间参数');
@@ -1620,7 +1620,7 @@
         console.log(map)
 
 
-          this.activeLayerEvent(map)
+         // this.activeLayerEvent(map)
 
 
 
@@ -1735,6 +1735,41 @@
           }
         }).catch(function(res){})*/
 
+      var that = this;
+      window.map.on('singleclick', mapClick);
+        debugger
+       function mapClick(e){
+          //点击的坐标
+         // var coordinate = e.coordinate;
+          //添加地图点击标记,创建标记feature
+       
+          debugger
+          var pixel = map.getEventPixel(e.originalEvent);
+
+          var feature = map.forEachFeatureAtPixel(pixel,
+                  function (feature, layer) {
+                      return {feature:feature};
+                  });
+          if (feature!==undefined&&feature!==null)
+          {
+            
+            console.log(feature);
+
+            var element;
+
+            that.OverlayPopup=that.createPopupOverlay();
+            element= that.OverlayPopup.getElement();
+            element.innerHTML=that.GetPopupContent(featureInfo);
+
+            this.OverlayPopup.setPosition(features[0].getGeometry().getCoordinates());
+            map.addOverlay(this.OverlayPopup);
+
+
+          }
+
+       }
+       //this.activeLayerEvent();
+
       },
 
 
@@ -1838,6 +1873,7 @@
 
 
       drawPolygon(){
+        debugger
         /*请求经纬度坐标点*/
         var param={
           "pageNum":"0",      // --当前页
@@ -1902,54 +1938,14 @@
 
 
       },
-      createVectorLayer(){
-        var coordinates = [[91.1865234375,40.80322265625],[91.494140625,36.05712890625],[98.0859375,40.58349609375],[91.1865234375,40.80322265625]]
-        //声明一个新的数组
-        var coordinatesPolygon = new Array();
-        //循环遍历将经纬度转到"EPSG:4326"投影坐标系下
-        for (var i = 0; i < coordinates.length; i++) {
-          var pointTransform = ol.proj.fromLonLat([coordinates[i][0], coordinates[i][1]], "EPSG:4326");
-          coordinatesPolygon.push(pointTransform);
-        }
-        //多边形此处注意一定要是[坐标数组]
-        var plygon = new ol.geom.Polygon([coordinatesPolygon])
-        var source = new ol.source.Vector();
 
-        console.log(plygon)
-        console.log(source)
-        //多边形要素类
-        var feature = new ol.Feature({
-          geometry: plygon,
-        });
-        source.addFeature(feature);
-        //矢量图层  vectorLayer
-        var vectorLayer = new ol.layer.Vector({
-          source: source,
-          zIndex:9999,
-          style: new ol.style.Style({
-            fill: new ol.style.Fill({
-              color: 'rgba(200, 255, 255, 0.7)'
-            }),
-            stroke: new ol.style.Stroke({
-              color: 'red',
-              width: 2
-            }),
-            image: new ol.style.Circle({
-              radius: 10,
-              fill: new ol.style.Fill({
-                color: '#ffcc33'
-              })
-            })
-          })
-        });
-        console.log("111111111111111111111111")
-        console.log(vectorLayer)
-        map.addLayer(vectorLayer) 
-      },
 
       /*点击地图查询功能20210131*/
 
       GetPopupContent(features){
+        debugger
+
+        ////////edit songmingming///////////////////////////
         let property=features[0].getProperties();
         console.log("获取当前选中要素的属性")
         let attribute=property.attribute
@@ -1973,6 +1969,7 @@
         })
       },
       createPopupOverlay(){
+        debugger
         var elediv_popup=document.createElement('div');
         // elediv_popup.setAttribute(id,'environmentpop');
         elediv_popup.className="environmentFeaturePopup";
@@ -1985,8 +1982,14 @@
         });
         return elediv_popup;
       },
-      activeLayerEvent(){
 
+
+      activeLayerEvent(){
+        debugger
+        if (this.pointLayer==null)
+        {
+          return
+        }
         let that=this;
 
         console.log(that.pointLayer)
@@ -2003,7 +2006,7 @@
             })
           })
         });
-debugger
+        debugger
         that.selectClick = new ol.interaction.Select({
           condition:ol.events.condition.click,
           layers:[that.pointLayer],   //默认不加，会对地图中的所有图层执行单机选中事件
@@ -2018,14 +2021,13 @@ debugger
         });
 
         // map.on('pointermove',onPointerMove);
-        map.addInteraction(that.selectClick);
+      //  window.map.addInteraction(that.selectClick);
         that.selectClick.on('select', function(e) {
-
           // alert(2)
           console.log("获取当前选中的要素")
           console.log(e)
 
-         /* if(that.OverlayPopup){
+          if(that.OverlayPopup){
             that.removeAllOverlay(map)
             // map.removeOverlay(that.OverlayPopup);
           }
@@ -2041,7 +2043,7 @@ debugger
             that.OverlayPopup.setPosition(features[0].getGeometry().getCoordinates());
             map.addOverlay(that.OverlayPopup);
 
-          }*/
+          }
 
         })
       },
@@ -2050,16 +2052,27 @@ debugger
     },
 
     mounted(){
+
+      //debugger
+      map = window.map
       console.log("水质专题中")
       console.log('获取地图全局变量')
       console.log(this.$store.state.map)
+    
       console.log(map)
+      
+      //drawPoint();
 
-      this.activeLayerEvent()
+     
+    
+     
+
+
 
 
     },
     watch: {
+      
       pjxmval() {
         if (this.pointLayer) {
           this.source = this.pointLayer.getSource()
@@ -2068,8 +2081,7 @@ debugger
 
         },
 
-
-
+      
 
     },
     created() {
