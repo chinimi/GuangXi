@@ -503,28 +503,7 @@
           </el-col>
         </el-row>
       </div>
-      <!--自定义-->
-      <div class="singleli_title" v-if="cursysval=='watersource'">
-        <el-row>
-          <el-col :span="8">
-            <div class="sysfxTit">
-              自定义：
-            </div>
-          </el-col>
-          <el-col :span="14" style="margin-left: -5%;">
-            <div>
-              <el-select v-model="customdefine">
-                <el-option
-                  v-for="(item, index) in customdefineList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
+
       <!--水资源分区 over-->
 
 
@@ -640,7 +619,6 @@
         </el-row>
       </div>
       <!--行政区 over-->
-
       <div style="margin-left:20px;">
         <!--时间段选择-->
         <div >
@@ -649,9 +627,32 @@
               <el-radio :label="product.value"   >{{product.label}}</el-radio>
             </el-col>
           </el-radio-group>
-
         </div>
 
+      </div>
+
+      <!--评价标准-->
+      <!--自定义-->
+      <div class="singleli_title" >
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              评价标准：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="pjbzmodel">
+                <el-option
+                  v-for="(item, index) in pjbzmodelOpt"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
       </div>
 
       <div class="singleli_title">
@@ -794,12 +795,12 @@
           label="检测指标">
         </el-table-column>
         <el-table-column
-          prop="mndgType"
+          prop="alpha"
           label="浓度中值/ (mg/L)">
         </el-table-column>
 
         <el-table-column
-          prop="mndgName"
+          prop="qs"
           label="浓度变化趋势/ (mg/ (L-al)">
         </el-table-column>
 
@@ -993,7 +994,7 @@
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
+          :current-page="currentPage"
           :page-sizes="[100, 200, 300, 400]"
           :page-size="100"
           layout="total, sizes, prev, pager, next, jumper"
@@ -1009,9 +1010,11 @@
 <script>
 
   import  getWater from '../../api/index'
+  import moment from "moment";
   export default {
     data() {
       return {
+        pageSize:10,
         /*评价标准*/
         evaluatiStandarVal:'SL395-2007',
         evaluationOptopn:[{
@@ -1026,7 +1029,7 @@
         }],
         checkedCities: [],
         checkedCities2: [],
-
+        currentPage:0,
         currentPage1: 5,
         currentPage2: 5,
         currentPage3: 5,
@@ -1046,10 +1049,16 @@
         cities2:['按单时间段评价', '按时间序列评价'],
 
         /*评价指标*/
-        pjzblevel:'COD',
+        pjzblevel:'TP',
         pjzbleveloption:[{
           label:"COD",
           value:'COD',
+        },{
+          label:"TP",
+          value:'TP',
+        },{
+          label:"NH3N",
+          value:'NH3N',
         }],
         /*评价标准*/
         pjbzval:'SL395-2007',
@@ -1062,15 +1071,6 @@
         pjxmOption:[{
           label:"水质变化趋势",
           value:'khd',
-        },{
-          label:"总硬度",
-          value:'zyd',
-        },{
-          label:"水化学类型",
-          value:'shxlx',
-        },{
-          label:"地表天然水",
-          value:'dbtrs',
         }
         ],
         /*取值方式*/
@@ -1105,14 +1105,15 @@
         watOption:[{value:'1',label:'一级水资源分区'},{value:'2',label:'2级水资源分区'},{value:'3',label:'3级水资源分区'},{value:'4',label:'4级水资源分区'},{value:'5',label:'水资源区统计'} ],
 
         /*行政区划统计*/
-        disVal:'year',//评价步长
-        disOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+        disVal:'sheng',//评价步长
+        disOption:[{value:'sheng',label:'省'},{value:'shi',label:'市'},{value:'xian',label:'县'},{value:'xiang',label:'乡'},{value:'cun',label:'村'}],
 
         /*流域水系统计*/
-       poolVal:'year',//评价步长
-        poolOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+       poolVal:'fir',//评价步长
+        poolOption:[{value:'fir',label:'一级河流'},{value:'sec',label:'二级河流'},{value:'thir',label:'三级河流'},{value:'four',label:'四级河流'},{value:'fif',label:'五级河流'}],
 
-
+        pjbzmodel:'TP',/*评价标准*/
+        pjbzmodelOpt:[{label:'CODCR ',value:'CODCR '},{label:'TP ',value:'TP '},{label:'NH3N ',value:'NH3N'}],
 
 
 
@@ -1136,20 +1137,85 @@
         console.log(`当前页: ${val}`);
       },
       queryTableData(){
+
+
+        let checkstartTime = moment(this.startTime).format('YYYYMM');
+        let startyear = moment(this.startTime).format('YYYY');
+        let checkendTime = moment(this.endTime).format('YYYYMM');
+        let endyear = moment(this.endTime).format('YYYY');
+        // console.log(checkstartTime)
+        // console.log(startyear)
+        // console.log(checkstartTime.substring(checkstartTime.length-2))
+        let startMonth=checkstartTime.substring(checkstartTime.length-2)
+        // console.log(checkendTime)
+        // console.log(endyear)
+        // console.log(checkendTime.substring(checkendTime.length-2))
+        let endMonth=checkendTime.substring(checkendTime.length-2)
+
+        // console.log(parseInt(endMonth)-parseInt(startMonth))
+
+        console.log(parseInt(startMonth))
+
+        var str=""
+        var count=parseInt(endMonth)-parseInt(startMonth)
+
+        if (count-1>0){
+          for(var i=parseInt(startMonth)-1;i<count;i++)
+          {
+            var tmp=i+1;
+            tmp=tmp<10?String('0'+tmp):(tmp)
+            str=str+startyear+tmp+"-"
+
+          }
+        }else{
+          str=str+checkstartTime+'-'
+        }
+
+        str=str+checkendTime
+        console.log(str)
+
+        let tjsj=null;
+        if(this.selectTimeType=="singletime"){
+          tjsj=checkstartTime
+
+
+        }else{
+          tjsj=str
+        }
+
+
+        /*1:获取参数*/
+        /*请求经纬度坐标点*/
+        var param1=
+          {
+            "pageNum":this.currentPage,
+            "pageSize":this.pageSize,
+            "qzfs":this.qzfsval,// min max avg
+            "tjsj":tjsj,
+            "tjys":this.pjzblevel
+          }
+
+          console.log(param1)
+
+
         var param={
-          "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
-          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201507-201508"
+          "pageNum":"0",
+          "pageSize":"10",
+          "qzfs":"avg",
+          "tjsj":"201601-201602-201603-201604-201605",
+          "tjys":"TP" //  ---这里是统计要素，支持三种--  CODCR NH3N TP
         }
         this.tableData=[]
         /*矿化度请求*/
         if(this.pjxmval=="khd") {
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listdbs"
+
+
           /*http请求*/
-          this.$http.post(khdurl, JSON.stringify(param), {
+          this.$http.post(khdurl, JSON.stringify(param1), {
             emulateJSON: true,
           }).then(function(res) {
+            console.log(111111111111111)
             console.log(res)
 
             this.tableData=res.body.data.pageResultList
@@ -1269,11 +1335,11 @@
   #groundWater .singleli_title {
     font-size: 13px;
     height: 35px;
-    line-height: 50px;
+    line-height: 26px;
     border-radius: 5px;
     font-weight: lighter;
     margin-left: 3%;
-    margin-top: 20px;
+    margin-top: 16px;
   }
 
   #groundWater .singleli_title .sysfxTit {

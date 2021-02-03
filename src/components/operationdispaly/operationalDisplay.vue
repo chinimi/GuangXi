@@ -989,7 +989,7 @@
 <script>
 
   import moment from 'moment'
- 
+
   export default {
     data() {
       return {
@@ -1274,11 +1274,14 @@
             console.log(data)
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
+              console.log(data[i])
               //debugger
               var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:4326");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
+              point.set('attribute',data[i])
+
               points.push(point)
             }
 
@@ -1337,19 +1340,15 @@
 
             let data=res.body.data.pageResultList
             console.log(data)
-
             let points=[]
-
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
-
               var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:4326");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
               });//构点
               points.push(point)
             }
-
             //实例化一个矢量图层Vector作为绘制层
             var source = new ol.source.Vector({
               features: points
@@ -1575,7 +1574,7 @@
       drawPoint(){//绘制点要素图层
       if (map==null) return
         var that=this
-       // debugger
+
         /*if(this.selectTimeType=="singletime"){
           if(this.startTime ){
             this.$message('请选择时间参数');
@@ -1614,16 +1613,7 @@
         }else{
           tjsj=str
         }
-
-
-        // alert(1)
-        console.log(map)
-
-
          // this.activeLayerEvent(map)
-
-
-
         /*1:获取参数*/
         /*请求经纬度坐标点*/
         var param=
@@ -1650,7 +1640,7 @@
         }
 
 
-        /*  if(this.pointLayer){//有图层，清空所有几何要素
+       /*  if(this.pointLayer){//有图层，清空所有几何要素
              let lastsource =  this.pointLayer.getSource()
                  lastsource.clear();
              let source=this.PlotPointSource(pointData)//当前数据绘制的图层
@@ -1742,7 +1732,10 @@
           //点击的坐标
          // var coordinate = e.coordinate;
           //添加地图点击标记,创建标记feature
-       
+         if(that.OverlayPopup){
+           that.removeAllOverlay(map)
+           // map.removeOverlay(that.OverlayPopup);
+         }
           debugger
           var pixel = map.getEventPixel(e.originalEvent);
 
@@ -1752,17 +1745,26 @@
                   });
           if (feature!==undefined&&feature!==null)
           {
-            
-            console.log(feature);
 
+            console.log(feature);
+            console.log(feature.feature.values_.attribute)
+            console.log(feature.feature.getGeometry().getCoordinates())
+
+            let popPosition=feature.feature.getGeometry().getCoordinates()
+
+
+            let  featureInfo=feature.feature.values_.attribute//获取所有属性值信息
             var element;
 
             that.OverlayPopup=that.createPopupOverlay();
             element= that.OverlayPopup.getElement();
             element.innerHTML=that.GetPopupContent(featureInfo);
 
-            this.OverlayPopup.setPosition(features[0].getGeometry().getCoordinates());
-            map.addOverlay(this.OverlayPopup);
+            console.log(that.OverlayPopup)
+
+            // this.OverlayPopup.setPosition(feature.feature.getGeometry().getCoordinates());
+            that.OverlayPopup.setPosition(popPosition);
+            map.addOverlay(that.OverlayPopup);
 
 
           }
@@ -1873,7 +1875,7 @@
 
 
       drawPolygon(){
-        debugger
+
         /*请求经纬度坐标点*/
         var param={
           "pageNum":"0",      // --当前页
@@ -1942,22 +1944,22 @@
 
       /*点击地图查询功能20210131*/
 
-      GetPopupContent(features){
+      GetPopupContent(attr){
         debugger
 
         ////////edit songmingming///////////////////////////
-        let property=features[0].getProperties();
-        console.log("获取当前选中要素的属性")
-        let attribute=property.attribute
+
+
+        let attribute=attr
         console.log(attribute)
 
         var hdms="";
 
         hdms = hdms+"<span class='Popup_p_title'>"+attribute["SecName"]+"</span>"+
-          "<div><span class='Popup_p'><span class='Popup_span'>经度:</span>"+attribute["Long"]+'°</span>'+
-          "<span class='Popup_p'><span class='Popup_span'>纬度:</span>"+attribute["Lat"]+'°</span>'+
-          "<span class='Popup_p'><span class='Popup_span'>地址:</span>"+attribute["SecAddress"]+'</span>'+
-          "<span class='Popup_p'><span class='Popup_span'>编码:</span>"+attribute["SecCode"]+'</span>';
+          "<div><span class='Popup_p'><span class='Popup_span'>经度:</span>"+attribute["lgtd"]+'°</span>'+
+          "<span class='Popup_p'><span class='Popup_span'>纬度:</span>"+attribute["lttd"]+'°</span>'+
+          "<span class='Popup_p'><span class='Popup_span'>地址:</span>"+attribute["lttd"]+'</span>'+
+          "<span class='Popup_p'><span class='Popup_span'>编码:</span>"+attribute["lttd"]+'</span>';
         hdms=hdms+"</div>";
 
 
@@ -2052,27 +2054,13 @@
     },
 
     mounted(){
-
       //debugger
       map = window.map
-      console.log("水质专题中")
       console.log('获取地图全局变量')
-      console.log(this.$store.state.map)
-    
-      console.log(map)
-      
-      //drawPoint();
-
-     
-    
-     
-
-
-
+      console.log(window.map)
 
     },
     watch: {
-      
       pjxmval() {
         if (this.pointLayer) {
           this.source = this.pointLayer.getSource()
@@ -2080,8 +2068,6 @@
         }
 
         },
-
-      
 
     },
     created() {
@@ -2285,44 +2271,47 @@
     color: #fff;
   }
 
-.environmentFeaturePopup{
-  background: #252424d1 !important;
-  font-size: 13px;
-  font-family: sans-serif;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  padding-left: 20px;
-  border-radius: 10px;
-  border: 2px solid #24948b;
-  width: 200px;
-  color: #dcdbdb;
-  height: 180px;
-  overflow-y: auto;
-}
-.environmentFeaturePopup .Popup_p{
-  float:left;
-  display:block;
-  width:150px;
-  line-height: 25px;
-  /*height: 25px;*/
-  padding: 0;
-  margin: 0;
-  font-weight: lighter;
-  font-size: 12px;
-}
-.environmentFeaturePopup .Popup_p_title{
-  display:block;
-  padding:5px 0;
-  color:#00fbfb;
-  text-align: center;
-  font-size:15px;
-}
-.environmentFeaturePopup .Popup_span{
-  font-weight: 500;
 
-
-
-}
 
 </style>
+<!--<style>
+  .environmentFeaturePopup{
+    background: #252424d1 !important;
+    font-size: 13px;
+    font-family: sans-serif;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    padding-left: 20px;
+    border-radius: 10px;
+    border: 2px solid #24948b;
+    width: 200px;
+    color: #dcdbdb;
+    height: 180px;
+    overflow-y: auto;
+  }
+  .environmentFeaturePopup .Popup_p{
+    float:left;
+    display:block;
+    width:150px;
+    line-height: 25px;
+    /*height: 25px;*/
+    padding: 0;
+    margin: 0;
+    font-weight: lighter;
+    font-size: 12px;
+  }
+  .environmentFeaturePopup .Popup_p_title{
+    display:block;
+    padding:5px 0;
+    color:#00fbfb;
+    text-align: center;
+    font-size:15px;
+  }
+  .environmentFeaturePopup .Popup_span{
+    font-weight: 500;
+
+
+
+  }
+</style>-->
 
