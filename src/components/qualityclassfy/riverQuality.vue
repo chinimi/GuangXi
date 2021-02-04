@@ -745,7 +745,7 @@
         </el-table-column>
       </el-table>
       <el-row  style="color:#fff; padding: 12px;">
-        <el-row style="float: right">
+        <el-row style="float: right;padding-right:30px;">
         <el-button>上传表</el-button>
         <el-button>下载模板</el-button>
 
@@ -791,7 +791,7 @@
         </el-table-column>
 
       </el-table>
-      <el-row style="float: right">
+      <el-row style="float: right;padding-right:30px;">
         <el-button>上传表</el-button>
         <el-button>下载模板</el-button>
 
@@ -828,7 +828,7 @@
           label="分值">
         </el-table-column>
       </el-table>
-      <el-row style="float: right">
+      <el-row style="float: right;padding-right:30px;">
         <el-button>上传表</el-button>
         <el-button>下载模板</el-button>
 
@@ -862,7 +862,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-row  style="float: right">
+      <el-row  style="float: right;padding-right:30px;">
         <el-button @click="showDialog">评价</el-button>
 
       </el-row>
@@ -965,7 +965,7 @@
         </el-table-column>
       </el-table>
       <!--地表天然水-->
-      <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )"" style="background-color: transparent;">
+      <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
       <el-table-column
         label="序号"
         type="index"
@@ -1038,16 +1038,47 @@
     </div>
 
     <el-dialog
-      title="table"
+      title="评价结果"
       :visible.sync="dialogVisible"
-      width="30%"
+      width="50%"
+      heigit="800px"
       :modal=false
        >
-      <span>table</span>
-      <span slot="footer" class="dialog-footer">
+
+      <el-table   border :data="pjbtableData"   style="margin-bottom:20px;height:300px;border:solid 1px #ccc;background-color: transparent;">
+
+
+
+        <el-table-column
+          prop="pjd"
+          label="评价点">
+        </el-table-column>
+        <el-table-column
+          prop="sthjzl"
+          label="水生志环量状况">
+        </el-table-column>
+        <el-table-column
+          prop="zhzs"
+          label="综合指数">
+        </el-table-column>
+
+      </el-table>
+      <el-row>
+        <el-col :span="17">&nbsp;</el-col>
+        <el-col :span="3">
+          <el-button>保存至数据库</el-button>
+        </el-col>
+        <el-col :span="1">&nbsp;</el-col>
+        <el-col :span="3">
+          <el-button>导出结果</el-button>
+
+        </el-col>
+      </el-row>
+
+      <!--<span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
+  </span>-->
     </el-dialog>
 
 
@@ -1062,6 +1093,19 @@
   export default {
     data() {
       return {
+        pjbtableData: [{
+          pjd: '平价点1',
+          sthjzl: '非常健康',
+          zhzs: '5'
+        }, {
+          pjd: '平价点2',
+          sthjzl: '非常健康',
+          zhzs: '5'
+        }, {
+          pjd: '平价点3',
+          sthjzl: '非常健康',
+          zhzs: '5'
+        }],//基础评价表data
         biologytabData:[],//生物评价
         /*评价标准*/
         evaluatiStandarVal:'SL395-2007',
@@ -1166,27 +1210,31 @@
         tabRowIndex: null, //单元格横坐标
         tabColumnIndex: null, //单元格纵坐标
         dialogVisible:false,
+
       }
     },
     mounted() {
       this.biologytabData=[
         {
           'swpj':1,
-          'swzt':true,
-          "swzs":'fir'
+          'swzt':"优",
+          "swzs":'fir',
+          "stnm":20,
 
         },
         {
           'swpj':2,
-          'swzt':true,
-          "swzs":'sec'
+          'swzt':"优",
+          "swzs":'sec',
+          "stnm":20,
 
 
         },
         {
           'swpj':3,
-          'swzt':true,
-          "swzs":'third'
+          'swzt':"优",
+          "swzs":'third',
+          "stnm":20,
 
 
         },
@@ -1602,6 +1650,12 @@ background:red ;
 
   >>>.hover_row{
     background :transparent;
+  }
+
+  >>>.el-dialog{
+    height: 450px;
+
+
   }
 
 </style>

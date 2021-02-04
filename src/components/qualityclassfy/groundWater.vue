@@ -72,11 +72,11 @@
              <el-checkbox v-for="item in curWaterSysOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>
            </el-checkbox-group>-->
 
-          <el-radio-group  v-model="cursysval">
+          <el-radiohttp-group  v-model="cursysval">
             <el-col :span="5" v-for="product in curWaterSysOption"   :key="product.value">
               <el-radio :label="product.value"   >{{product.label}}</el-radio>
             </el-col>
-          </el-radio-group>
+          </el-radiohttp-group>
         </div>
 
         <!--河长制-->

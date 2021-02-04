@@ -137,20 +137,13 @@
               width="120">
             </el-table-column>
           </el-table-column>
-
-
         </el-table>
-
       </div>
-
 	</div>
 </template>
-
 <script>
-
   var menulist =[
     /*一级菜单*/
-
     {
       /*切换对应组件*/
       "authName": "河段选择",
@@ -201,8 +194,6 @@
             tableData: [],
             cities:['流域水系', '水资源分区', '行政区划'],
             cities2:['按单时间段评价', '按时间序列评价'],
-
-
             /*评价标准*/
             pjbzval:'all',
             pjbzOption:[{
@@ -242,7 +233,6 @@
             /*水系参数*/
             // curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
             curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
-
             /*时间选择*/
             selectTimeType:"singletime",
             /*时间段选择*/
@@ -252,8 +242,12 @@
             },{
               value:'ordertime',
               label:'按单时序列评价',
+            },{
+              value:'sametime',
+              label:'按同时间段评价',
+            }
 
-            }],
+            ],
             /*评价步长*/
             pjbcVal:'year',//评价步长
             pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],

@@ -3724,8 +3724,6 @@
 
 
       },
-
-
     watch: {
       checkedLayer:{
         handler(newValue , oldValue) {

@@ -228,9 +228,9 @@ body {
  .el-pagination .el-select .el-input .el-input__inner {
   color: #ffff;
 }
-.el-scrollbar__wrap{
-    overflow: hidden!important;
-    height: 100%;
-    margin-bottom: 0px!important;
-    margin-right: 0px!important;
+  .el-scrollbar__wrap{
+    height: 100%!important;
+    margin-bottom: 0px!important;
+    margin-right:0px!important;
+    overflow: hidden!important;
   }

@@ -286,11 +286,11 @@ export default {
   height: 100%;
 }
 .table_data{
-  position: absolute;
+  position: fixed;
   width: 700px;
   height: 400px;
   left: 700px;
-  top: 0px;
+  top: 100px;
 }
 .calculate{
   position: relative;

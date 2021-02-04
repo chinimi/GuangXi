@@ -1,17 +1,17 @@
 <template>
-<!-- 零维 -->
+<!-- 分层 -->
   <div class="dimension">
     <template>
       <el-table
         :data="tableData"
         style="width:100%;background-color: transparent;text-align:center;"
       >
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-        <el-table-column prop="name" label="排放流量"></el-table-column>
-        <el-table-column prop="address" label="排放浓度"></el-table-column>
-        <el-table-column prop="max" label="进水流量"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度"></el-table-column>
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        <el-table-column prop="date" label="指定方案" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="指定评价位置" min-width="150"></el-table-column>
+        <el-table-column prop="address" label="河" min-width="150"></el-table-column>
+        <el-table-column prop="date" label="里程" min-width="100"></el-table-column>
+        <el-table-column prop="date" label="返回" min-width="100"></el-table-column>
+        <el-table-column prop="date" label="计算" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -119,7 +119,7 @@
 </template>
 <script>
 export default {
-  name: "dimension",
+  name: "one_dimensionMIKE",
   props: {},
   components: {},
   data() {
@@ -154,6 +154,7 @@ export default {
             //  执行echarts方法
               this.drawLine();
             })
+
         }else if(id == 1){
            this.table_show = true;
         }

@@ -1,17 +1,22 @@
 <template>
-<!-- 零维 -->
+<!-- 一维 -->
   <div class="dimension">
     <template>
       <el-table
         :data="tableData"
         style="width:100%;background-color: transparent;text-align:center;"
       >
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-        <el-table-column prop="name" label="排放流量"></el-table-column>
-        <el-table-column prop="address" label="排放浓度"></el-table-column>
-        <el-table-column prop="max" label="进水流量"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度"></el-table-column>
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
+        <el-table-column prop="date" label="排放流量" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="排放浓度" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="距下断面位置" min-width="120"></el-table-column>
+        <el-table-column prop="address" label="进度流量" min-width="100"></el-table-column>
+        <el-table-column prop="max" label="进度浓度" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="降解系数" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="流速" min-width="80"></el-table-column>
+        <el-table-column prop="mix" label="河长" min-width="80"></el-table-column>
+        <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column>
+        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -119,7 +124,7 @@
 </template>
 <script>
 export default {
-  name: "dimension",
+  name: "one_dimension",
   props: {},
   components: {},
   data() {
@@ -154,6 +159,7 @@ export default {
             //  执行echarts方法
               this.drawLine();
             })
+
         }else if(id == 1){
            this.table_show = true;
         }
@@ -286,11 +292,11 @@ export default {
   height: 100%;
 }
 .table_data{
-  position: absolute;
+  position: fixed;
   width: 700px;
   height: 400px;
   left: 700px;
-  top: 0px;
+  top: 100px;
 }
 .calculate{
   position: relative;

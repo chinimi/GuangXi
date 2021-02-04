@@ -773,6 +773,9 @@
           let endMonth=checkendTime.substring(checkendTime.length-2)
 
           console.log(parseInt(endMonth)-parseInt(startMonth))
+
+
+
           var str=""
           var count=parseInt(endMonth)-parseInt(startMonth)
           for(var i=parseInt(startMonth);i<count;i++)
@@ -780,15 +783,21 @@
             var tmp=i+1;
             tmp=tmp<10?String('0'+tmp):(tmp)
             str=str+startyear+tmp+"-"
+
           }
           str=str+checkendTime
           console.log(str)
+
           let tjsj=null;
           if(this.selectTimeType=="singletime"){
             tjsj=checkstartTime
+
+
           }else{
             tjsj=str
           }
+
+
           var param=
           {
             "pageNum":this.currentPage,
@@ -805,17 +814,29 @@
           }).then(function(res) {
             // alert("chenggong")
             console.log(res)
+
             this.tableData=res.body.data.pageResultList
           }).catch(function(res){
+
+
           })
+
         }
       },
       watch:{
         pjxmval(newValue){
 
           this.tableData=[]
+
+
+
         }
+
+
+
       },
+
+
   }
 </script>
 
@@ -824,9 +845,6 @@
     margin:0;
     padding:0;
     background: #fff;
-    position: relative;
-    width: 100%;
-    height: 100%;
   }
   .informationLnquiry .left_menu{
     width: 20%;

@@ -682,7 +682,7 @@
           </el-row>
         </div>
         <!--年份-->
-        <div class="singleli_title">
+        <div class="singleli_title"  v-if="selectTimeType=='sametime'">
           <el-row>
             <!--起始-->
             <el-col :span="8">
@@ -702,7 +702,7 @@
                 </el-select>
               </div>
             </el-col>
-            <el-col :span="1" style="color:#fff;text-align: center;">-</el-col>
+            <el-col :span="1" style="color:#fff;text-align: center;"> &nbsp;</el-col>
 
             <!--终止年-->
 
@@ -721,7 +721,7 @@
           </el-row>
         </div>
         <!--单月-->
-        <div class="singleli_title" v-if="selectTimeType=='ordertime'&&pjbcVal=='month'">
+        <div class="singleli_title" v-if="selectTimeType=='sametime'&&pjbcVal=='month'">
         <el-row>
           <el-col :span="8">
             <div class="sysfxTit">
@@ -744,7 +744,7 @@
       </div>
 
         <!--双月-->
-        <div class="singleli_title"  v-if="selectTimeType=='singletime'&&pjbcVal=='month'">
+        <div class="singleli_title"  v-if="selectTimeType=='sametime'&&pjbcVal=='doublemonth'">
           <el-row>
             <!--第一个月-->
             <el-col :span="8">
@@ -764,7 +764,7 @@
                 </el-select>
               </div>
             </el-col>
-            <el-col :span="1" style="color:#fff;text-align: center;">-</el-col>
+            <el-col :span="1" style="color:#fff;text-align: center;"> &nbsp;</el-col>
 
             <!--第二个月-->
 
@@ -784,7 +784,7 @@
         </div>
 
         <!--旬-->
-        <div class="singleli_title" v-if=" pjbcVal=='xun'">
+        <div class="singleli_title"   v-if="selectTimeType=='sametime' && pjbcVal=='xun'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -807,7 +807,7 @@
         </div>
 
         <!--汛期-->
-        <div class="singleli_title" v-if=" pjbcVal=='xq'">
+       <!-- <div class="singleli_title" v-if=" selectTimeType=='sametime' &&pjbcVal=='xq'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -827,17 +827,38 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div>-->
 
-             <!--非汛期-->
-        <div class="singleli_title" v-if=" pjbcVal=='fxq'">
+         <!--非汛期-->
+        <div class="singleli_title" v-if="selectTimeType=='sametime' && pjbcVal=='fxq'">
           <el-row>
-            <el-col :span="8">
+            <!--汛期-->
+            <el-col :span="5">
+              <div class="sysfxTit">
+                汛期：
+              </div>
+            </el-col>
+            <el-col :span="6" style="margin-left: -5%;"   >
+              <div>
+                <el-select v-model="xqVal">
+                  <el-option
+                    v-for="(item, index) in xqOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+            <el-col :span="1" style="color:#fff;text-align: center;"> &nbsp;</el-col>
+
+            <!--非汛期-->
+            <el-col :span="6">
               <div class="sysfxTit">
                 非汛期：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;"   >
+            <el-col :span="6" style="margin-left: -5%;"   >
               <div>
                 <el-select v-model="fxqVal">
                   <el-option
@@ -853,7 +874,7 @@
         </div>
 
         <!--半年-->
-        <div class="singleli_title" v-if="  pjbcVal=='halfyear'">
+        <div class="singleli_title" v-if=" selectTimeType=='sametime' && pjbcVal=='halfyear'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -875,10 +896,33 @@
           </el-row>
         </div>
 
+        <!--季-->
+        <div class="singleli_title" v-if=" selectTimeType=='sametime' && pjbcVal=='season'">
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                季：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;"   >
+              <div>
+                <el-select v-model="seasonVal">
+                  <el-option
+                    v-for="(item, index) in seasonOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
 
 
 
-        <!--  <div class="singleli_title" >
+
+        <div class="singleli_title"  v-if="selectTimeType !=='sametime'" >
             <el-row>
               <el-col :span="8">
                 <div class="sysfxTit">
@@ -897,9 +941,9 @@
                 </el-date-picker>
               </el-col>
             </el-row>
-          </div>-->
-        <!--时间序列-->
-       <!-- <div class="singleli_title" v-if="selectTimeType=='ordertime'">
+          </div>
+       <!-- 时间序列-->
+        <div class="singleli_title" v-if="selectTimeType=='ordertime'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -918,7 +962,7 @@
               </el-date-picker>
             </el-col>
           </el-row>
-        </div>-->
+        </div>
 
 
 
@@ -1337,11 +1381,14 @@
               value:'ordertime',
               label:'按单时序列评价',
 
-            }],
+            },{
+                value:'sametime',
+                label:'按同时间段评价',
+              }],
             /*评价步长*/
             pjbcVal:'year',//评价步长
             pjbcOption:[
-             {value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+             {value:'xun',label:'旬'},{value:'month',label:'月'},{value:'doublemonth',label:'双月'},{value:'season',label:'季'},{value:'fxq',label:'汛期/非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
 
             /*起始年*/
             startyearVal:'2015',//评价步长
@@ -1441,7 +1488,14 @@
 
 
             ],
-
+            /*季*/
+            seasonVal:'firseason',
+            seasonOption:[
+              {value:'firseason',label:'第一季度'},
+              {value:'secseason',label:'第二季度'},
+              {value:'thirdseason',label:'第三季度'},
+              {value:'fourseason',label:'第四季度'},
+            ],
             /*双月*/
             /*第一个月*/
             firmonthVal:'01',//双月  1
