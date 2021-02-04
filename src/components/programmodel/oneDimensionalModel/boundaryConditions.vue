@@ -176,26 +176,32 @@ export default {
       WaterQualityItems:[],//水质边界
       RainfallItems:[],//降雨站
       PollutionSourceItems:[],//污染源
+      componentName:'',
     };
   },
   methods: {
     tap(item, index) {
       if(item.name == '流量边界'){
         this.data[index].data_name = this.DischargeItems;
-        this.unit = '流量（m³/s）'
+        this.unit = '流量（m³/s）';
+        this.componentName = '';
       }else if(item.name == '水位边界'){
         this.data[index].data_name = this.WaterLevelItems;
-        this.unit = '水位（m）'
+        this.unit = '水位（m）';
+        this.componentName = '';
       }else if(item.name == '水质边界'){
         this.data[index].data_name = this.WaterQualityItems;
-        this.unit = '氨氮（mg/L）'
+        this.unit = '氨氮（mg/L）';
+        this.componentName = 'NH3N';
       }else if(item.name == '降雨站'){
         this.data[index].data_name = this.RainfallItems;
-        this.unit = '降雨量（mm）'
+        this.unit = '降雨量（mm）';
+        this.componentName = '';
       }else if(item.name == '污染源'){
         this.data[index].data_name = this.PollutionSourceItems;
         this.water = false;
         this.sourcePollution = true;
+        this.componentName = '';
       }
       if(item.name != '污染源'){
         this.water = true;
@@ -212,7 +218,19 @@ export default {
     },
     tap_info(item,index,e){
       console.log(item)
+      var boundaryId = item.BoundaryId
       this.active = index
+      var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetBoundaryTSData?scenarioCode=DHJKTXRCFA&boundaryId="+boundaryId+"&componentName="+this.componentName;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          console.log(data)
+
+        });
 
     },
   //获取数据

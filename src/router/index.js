@@ -26,10 +26,10 @@ import ALriver from '../components/qualityclassfy/ALriver.vue'
 import SSriver from '../components/qualityclassfy/SSriver.vue'
 
 /*信息综合管理*/
-import informationAggregation from '../components/infosys/informationAggregation.vue'//信息汇总
-import informationLnquiry from '../components/infosys/informationLnquiry.vue'//信息查询
-import waterQualityReport from '../components/infosys/waterQualityReport.vue'//水质报告
-import authorityManagement from '../components/infosys/authorityManagement.vue'//权限管理
+// import informationAggregation from '../components/infosys/informationAggregation.vue'//信息汇总
+// import informationLnquiry from '../components/infosys/informationLnquiry.vue'//信息查询
+// import waterQualityReport from '../components/infosys/waterQualityReport.vue'//水质报告
+// import authorityManagement from '../components/infosys/authorityManagement.vue'//权限管理
 
 
 
@@ -119,26 +119,26 @@ export default new Router({
         },
           /*水质评价 路由配置*/
           /*信息综合管理 路由配置*/
-        {
-          path: '/informationAggregation',
-          name: 'informationAggregation',
-          component:informationAggregation,
-        },
-        {
-          path: '/informationLnquiry',
-          name: 'informationLnquiry',
-          component:informationLnquiry,
-        },
-        {
-          path: '/waterQualityReport',
-          name: 'waterQualityReport',
-          component:waterQualityReport,
-        },
-        {
-          path: '/authorityManagement',
-          name: 'authorityManagement',
-          component:authorityManagement,
-        },
+        // {
+        //   path: '/informationAggregation',
+        //   name: 'informationAggregation',
+        //   component:informationAggregation,
+        // },
+        // {
+        //   path: '/informationLnquiry',
+        //   name: 'informationLnquiry',
+        //   component:informationLnquiry,
+        // },
+        // {
+        //   path: '/waterQualityReport',
+        //   name: 'waterQualityReport',
+        //   component:waterQualityReport,
+        // },
+        // {
+        //   path: '/authorityManagement',
+        //   name: 'authorityManagement',
+        //   component:authorityManagement,
+        // },
       ]
     },
 

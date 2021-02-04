@@ -1,17 +1,31 @@
 <template>
-<!-- 零维 -->
+<!-- 河口一维 -->
   <div class="dimension">
     <template>
       <el-table
         :data="tableData"
         style="width:100%;background-color: transparent;text-align:center;"
       >
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-        <el-table-column prop="name" label="排放流量"></el-table-column>
-        <el-table-column prop="address" label="排放浓度"></el-table-column>
-        <el-table-column prop="max" label="进水流量"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度"></el-table-column>
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="进水流量" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="进水浓度" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="排放流量" min-width="100"></el-table-column>
+        <el-table-column prop="address" label="排放浓度" min-width="100"></el-table-column>
+        <el-table-column prop="max" label="排放口距评价断面距离" min-width="180"></el-table-column>
+        <el-table-column prop="mix" label="纵向扩散系数" min-width="140">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="handleEdit(scope.$index, scope.row)">编辑
+            </el-button>
+          </template>
+        </el-table-column>
+        <el-table-column prop="mix" label="流速" min-width="80"></el-table-column>
+        <el-table-column prop="mix" label="涨潮流量" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="落潮流量" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="涨潮承载能力" min-width="120"></el-table-column>
+        <el-table-column prop="mix" label="落潮承载能力" min-width="120"></el-table-column>
+        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -115,11 +129,41 @@
             </div>
         </div>
     </div>
+    <div class="compile" v-if="compile_show">
+      <div style="position: relative;width:100%;height:100%">
+        <p>
+          <img src="../../../../static/images/close.png" alt="" @click="claos2()">
+        </p>
+        <h4>纵向扩散系数</h4>
+        <div class="form_data">
+          <el-form ref="form" :model="form" label-width="100px">
+            <el-form-item label="平均水深">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="平均流速">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="水力坡度">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="河宽">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="最大潮速">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">确定</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name: "dimension",
+  name: "one_dimension",
   props: {},
   components: {},
   data() {
@@ -142,7 +186,11 @@ export default {
         echarts_show:false,
         table_show:false,
         companyType:1,
-        buttontype:1
+        buttontype:1,
+        compile_show:false,
+        form:{
+          name:""
+        },
     };
   },
   methods: {
@@ -154,6 +202,7 @@ export default {
             //  执行echarts方法
               this.drawLine();
             })
+
         }else if(id == 1){
            this.table_show = true;
         }
@@ -170,6 +219,15 @@ export default {
       },
       buttontabbar(id){
         this.buttontype = id
+      },
+       handleEdit(){
+        this.compile_show = true
+      },
+      claos2(){
+        this.compile_show = false
+      },
+        onSubmit(){
+        this.compile_show = false
       },
       drawLine(){
             var myChart = this.$echarts.init(document.getElementById('echarts_bar'));
@@ -239,6 +297,9 @@ export default {
     padding: 5px 0;
     color: #fff;
 }
+.dimension /deep/ .el-button--mini, .el-button--mini.is-round{
+  padding: 2px 15px!important;
+}
 .dimension_button{
     text-align: right;
     position: relative;
@@ -266,7 +327,7 @@ export default {
   width: 400px;
   height: 300px;
   top: 350px;
-  left: 75px;
+  left: 0px;
 }
 .close{
   position: relative;
@@ -342,5 +403,51 @@ export default {
 }
 .calculate_content /deep/ .el-table .cell {
     font-size: 14px;
+}
+/* 编辑弹窗 */
+.compile{
+  position:absolute;
+  width: 400px;
+  height: 300px;
+  top: 420px;
+  left: 420px;
+  background: #031823;
+  text-align: center;
+  box-sizing: border-box;
+}
+.compile p{
+  text-align: right;
+  margin: 0;
+}
+.compile h4{
+  margin: 0;
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 5px  ;
+}
+.form_data {
+  margin-top: 10px;
+  padding: 0 40px;
+  color: #FFF;
+}
+.compile /deep/ .el-form-item__content{
+    line-height: 35px;
+    position: relative;
+    font-size: 14px;
+    text-align: left;
+}
+.compile /deep/ .el-form-item__label{
+  line-height: 35px;
+  color: #FFF;
+}
+.compile /deep/ .el-form-item{
+  margin-bottom: 2px;
+}
+.compile /deep/ .el-input__inner{
+  width: 180px!important;
+}
+.compile /deep/ .el-button{
+  margin-top: 5px;
+  width: 120px!important;
 }
 </style>

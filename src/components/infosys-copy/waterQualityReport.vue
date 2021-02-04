@@ -245,7 +245,6 @@
   import moment from 'moment'
   import  getWater from '../../api/index'
   export default {
-    name:'waterQualityReport',
       data() {
           return {
             currentPage:1,//当前页
@@ -455,9 +454,6 @@
     margin:0;
     padding:0;
     background: #fff;
-    position: relative;
-    width: 100%;
-    height: 100%;
   }
   .waterQualityReport .left_menu{
     width: 20%;

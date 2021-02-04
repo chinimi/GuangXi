@@ -1,16 +1,23 @@
 <template>
+<!-- 二维 -->
   <div class="dimension">
     <template>
       <el-table
         :data="tableData"
         style="width:100%;background-color: transparent;text-align:center;"
       >
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-        <el-table-column prop="name" label="排放流量"></el-table-column>
-        <el-table-column prop="address" label="排放浓度"></el-table-column>
-        <el-table-column prop="max" label="进水流量"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度"></el-table-column>
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="排放流量" min-width="100"></el-table-column>
+        <el-table-column prop="address" label="排放浓度" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="距下断面位置" min-width="120"></el-table-column>
+        <el-table-column prop="name" label="距岸边" min-width="90"></el-table-column>
+        <el-table-column prop="name" label="速率" min-width="80"></el-table-column>
+        <el-table-column prop="max" label="进水流量" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="进水浓度" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="流速" min-width="80"></el-table-column>
+        <el-table-column prop="mix" label="系数横向扩散系数" min-width="170"></el-table-column>
+        <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column>
+        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -286,11 +293,11 @@ export default {
   height: 100%;
 }
 .table_data{
-  position: fixed;
+  position: absolute;
   width: 700px;
   height: 400px;
   left: 700px;
-  top: 100px;
+  top: 0px;
 }
 .calculate{
   position: relative;

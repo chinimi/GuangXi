@@ -1,17 +1,24 @@
 <template>
-<!-- 零维 -->
-  <div class="dimension">
+<!-- 河口一维 -->
+  <div class="estuary_one-dimensional">
     <template>
       <el-table
         :data="tableData"
         style="width:100%;background-color: transparent;text-align:center;"
       >
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-        <el-table-column prop="name" label="排放流量"></el-table-column>
-        <el-table-column prop="address" label="排放浓度"></el-table-column>
-        <el-table-column prop="max" label="进水流量"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度"></el-table-column>
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="进水流量" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="进水浓度" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="排放流量" min-width="100"></el-table-column>
+        <el-table-column prop="address" label="排放浓度" min-width="100"></el-table-column>
+        <el-table-column prop="max" label="排放口距评价断面距离" min-width="180"></el-table-column>
+        <el-table-column prop="mix" label="纵向扩散系数" min-width="140"></el-table-column>
+        <el-table-column prop="mix" label="流速" min-width="80"></el-table-column>
+        <el-table-column prop="mix" label="涨潮流量" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="落潮流量" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="涨潮承载能力" min-width="120"></el-table-column>
+        <el-table-column prop="mix" label="落潮承载能力" min-width="120"></el-table-column>
+        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -119,7 +126,7 @@
 </template>
 <script>
 export default {
-  name: "dimension",
+  name: "one_dimension",
   props: {},
   components: {},
   data() {
@@ -154,6 +161,7 @@ export default {
             //  执行echarts方法
               this.drawLine();
             })
+
         }else if(id == 1){
            this.table_show = true;
         }
@@ -224,16 +232,16 @@ export default {
 </script>
 
 <style scoped>
-.dimension  /deep/ .el-table .cell{
+.estuary_one-dimensional  /deep/ .el-table .cell{
     font-size: 16px;
 }
-.dimension  /deep/ .el-table th.is-leaf{
+.estuary_one-dimensional  /deep/ .el-table th.is-leaf{
     border:0px!important;
 }
 .el-table::before{
     height: 0px!important;
 }
-.dimension  /deep/ .el-table td{
+.estuary_one-dimensional  /deep/ .el-table td{
     text-align: center;
     border: 1px solid #01bdf5;
     padding: 5px 0;
@@ -286,11 +294,11 @@ export default {
   height: 100%;
 }
 .table_data{
-  position: absolute;
+  position: fixed;
   width: 700px;
   height: 400px;
   left: 700px;
-  top: 0px;
+  top: 100px;
 }
 .calculate{
   position: relative;

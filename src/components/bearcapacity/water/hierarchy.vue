@@ -1,16 +1,24 @@
 <template>
+<!-- 分层 -->
   <div class="dimension">
     <template>
       <el-table
         :data="tableData"
         style="width:100%;background-color: transparent;text-align:center;"
       >
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-        <el-table-column prop="name" label="排放流量"></el-table-column>
-        <el-table-column prop="address" label="排放浓度"></el-table-column>
-        <el-table-column prop="max" label="进水流量"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度"></el-table-column>
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="上层排放浓度" min-width="150"></el-table-column>
+        <el-table-column prop="address" label="上层排放流量" min-width="150"></el-table-column>
+        <el-table-column prop="date" label="上层体积" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="下层排放浓度" min-width="150"></el-table-column>
+        <el-table-column prop="address" label="下层排放流量" min-width="150"></el-table-column>
+        <el-table-column prop="date" label="下层体积" min-width="100"></el-table-column>
+        <el-table-column prop="max" label="现状浓度" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="分层期天数" min-width="120"></el-table-column>
+        <el-table-column prop="name" label="分层至非分层" min-width="150"></el-table-column>
+        <el-table-column prop="mix" label="降解系数" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="库容" min-width="80"></el-table-column>
+        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -286,11 +294,11 @@ export default {
   height: 100%;
 }
 .table_data{
-  position: fixed;
+  position: absolute;
   width: 700px;
   height: 400px;
   left: 700px;
-  top: 100px;
+  top: 0px;
 }
 .calculate{
   position: relative;
