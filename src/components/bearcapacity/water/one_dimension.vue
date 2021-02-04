@@ -7,11 +7,11 @@
         style="width:100%;background-color: transparent;text-align:center;"
       >
         <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
-        <el-table-column prop="date" label="排放流量" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="排放浓度" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="距下断面位置" min-width="120"></el-table-column>
-        <el-table-column prop="address" label="进度流量" min-width="100"></el-table-column>
-        <el-table-column prop="max" label="进度浓度" min-width="100"></el-table-column>
+        <el-table-column prop="date" label="进水流量" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="进水浓度" min-width="100"></el-table-column>
+        <el-table-column prop="address" label="排放流量" min-width="100"></el-table-column>
+        <el-table-column prop="max" label="排放浓度" min-width="100"></el-table-column>
+        <el-table-column prop="name" label="排放口距评价断面位置" min-width="180"></el-table-column>
         <el-table-column prop="mix" label="降解系数" min-width="100">
           <template slot-scope="scope">
             <el-button
@@ -20,8 +20,8 @@
             </el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="mix" label="流速" min-width="80"></el-table-column>
         <el-table-column prop="mix" label="河长" min-width="80"></el-table-column>
+        <el-table-column prop="mix" label="流速" min-width="80"></el-table-column>
         <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column>
         <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
