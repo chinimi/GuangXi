@@ -1,7 +1,7 @@
 <template>
   <div  id="groundWater">
     <div class="left_menu">
-      <div class="singleli_title">
+<!--      <div class="singleli_title">
         <el-row>
           <el-col :span="8">
             <div class="sysfxTit">
@@ -65,7 +65,7 @@
             </div>
           </el-col>
         </el-row>
-      </div>
+      </div>-->
       <!--水系参数-->
       <div style="width: 100%;padding-left:20px;">
         <!-- <el-checkbox-group v-model="pjbzval" @change="">
@@ -73,7 +73,7 @@
          </el-checkbox-group>-->
 
         <el-radio-group  v-model="cursysval">
-          <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+          <el-col :span="5" v-for="product in curWaterSysOption"   :key="product.value">
             <el-radio :label="product.value"   >{{product.label}}</el-radio>
           </el-col>
         </el-radio-group>
@@ -259,6 +259,117 @@
       </div>
       <!--流域水系  over-->
 
+      <!--河长制-->
+      <!--省-->
+      <div class="singleli_title"    v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              省：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="primaryPartition">
+                <el-option
+                  v-for="(item, index) in primaryPartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--市-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              市：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="secondaryPartition">
+                <el-option
+                  v-for="(item, index) in secondaryPartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--县-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              县：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="tertiaryPartition">
+                <el-option
+                  v-for="(item, index) in tertiaryPartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--镇-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              镇：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="fourstagePartition">
+                <el-option
+                  v-for="(item, index) in fourstagePartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <!--村-->
+      <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <el-row>
+          <el-col :span="8">
+            <div class="sysfxTit">
+              村：
+            </div>
+          </el-col>
+          <el-col :span="14" style="margin-left: -5%;">
+            <div>
+              <el-select v-model="fivestagePartition">
+                <el-option
+                  v-for="(item, index) in fivestagePartitionList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
+              </el-select>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
 
 
 
@@ -634,7 +745,7 @@
         </el-table-column>
       </el-table>
       <el-row  style="color:#fff; padding: 12px;">
-        <el-row style="float: right">
+        <el-row style="float: right;padding-right:30px;">
         <el-button>上传表</el-button>
         <el-button>下载模板</el-button>
 
@@ -680,7 +791,7 @@
         </el-table-column>
 
       </el-table>
-      <el-row style="float: right">
+      <el-row style="float: right;padding-right:30px;">
         <el-button>上传表</el-button>
         <el-button>下载模板</el-button>
 
@@ -717,7 +828,7 @@
           label="分值">
         </el-table-column>
       </el-table>
-      <el-row style="float: right">
+      <el-row style="float: right;padding-right:30px;">
         <el-button>上传表</el-button>
         <el-button>下载模板</el-button>
 
@@ -751,7 +862,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-row  style="float: right">
+      <el-row  style="float: right;padding-right:30px;">
         <el-button @click="showDialog">评价</el-button>
 
       </el-row>
@@ -854,7 +965,7 @@
         </el-table-column>
       </el-table>
       <!--地表天然水-->
-      <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )"" style="background-color: transparent;">
+      <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
       <el-table-column
         label="序号"
         type="index"
@@ -927,16 +1038,47 @@
     </div>
 
     <el-dialog
-      title="table"
+      title="评价结果"
       :visible.sync="dialogVisible"
-      width="30%"
+      width="50%"
+      heigit="800px"
       :modal=false
        >
-      <span>table</span>
-      <span slot="footer" class="dialog-footer">
+
+      <el-table   border :data="pjbtableData"   style="margin-bottom:20px;height:300px;border:solid 1px #ccc;background-color: transparent;">
+
+
+
+        <el-table-column
+          prop="pjd"
+          label="评价点">
+        </el-table-column>
+        <el-table-column
+          prop="sthjzl"
+          label="水生志环量状况">
+        </el-table-column>
+        <el-table-column
+          prop="zhzs"
+          label="综合指数">
+        </el-table-column>
+
+      </el-table>
+      <el-row>
+        <el-col :span="17">&nbsp;</el-col>
+        <el-col :span="3">
+          <el-button>保存至数据库</el-button>
+        </el-col>
+        <el-col :span="1">&nbsp;</el-col>
+        <el-col :span="3">
+          <el-button>导出结果</el-button>
+
+        </el-col>
+      </el-row>
+
+      <!--<span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
+  </span>-->
     </el-dialog>
 
 
@@ -951,6 +1093,19 @@
   export default {
     data() {
       return {
+        pjbtableData: [{
+          pjd: '平价点1',
+          sthjzl: '非常健康',
+          zhzs: '5'
+        }, {
+          pjd: '平价点2',
+          sthjzl: '非常健康',
+          zhzs: '5'
+        }, {
+          pjd: '平价点3',
+          sthjzl: '非常健康',
+          zhzs: '5'
+        }],//基础评价表data
         biologytabData:[],//生物评价
         /*评价标准*/
         evaluatiStandarVal:'SL395-2007',
@@ -1024,7 +1179,8 @@
         /*当前水系*/
         cursysval:'river',
         /*水系参数*/
-        curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+        curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
+
         /*时间选择*/
         selectTimeType:"singletime",
         /*时间段选择*/
@@ -1054,27 +1210,31 @@
         tabRowIndex: null, //单元格横坐标
         tabColumnIndex: null, //单元格纵坐标
         dialogVisible:false,
+
       }
     },
     mounted() {
       this.biologytabData=[
         {
           'swpj':1,
-          'swzt':true,
-          "swzs":'fir'
+          'swzt':"优",
+          "swzs":'fir',
+          "stnm":20,
 
         },
         {
           'swpj':2,
-          'swzt':true,
-          "swzs":'sec'
+          'swzt':"优",
+          "swzs":'sec',
+          "stnm":20,
 
 
         },
         {
           'swpj':3,
-          'swzt':true,
-          "swzs":'third'
+          'swzt':"优",
+          "swzs":'third',
+          "stnm":20,
 
 
         },
@@ -1087,19 +1247,19 @@
         {
           'project':'水质评价',
           'poolweight':0.4,
-          'centerweight':1,
+          'centerweight':0.5,
 
         },
         {
           'project':'生境评价',
           'poolweight':0.2,
-          'centerweight':2,
+          'centerweight':0,
 
         },
         {
           'project':'生物评价',
           'poolweight':0.3,
-          'centerweight':3,
+          'centerweight':0.5,
 
         },
 
@@ -1342,6 +1502,7 @@
     left: 0;
     border-right: #fff dashed 2px;
     border-left: #fff solid 1px;
+    padding-top:20px;
   }
   #groundWater  .right_menu{
     width: 80%;
@@ -1489,6 +1650,12 @@ background:red ;
 
   >>>.hover_row{
     background :transparent;
+  }
+
+  >>>.el-dialog{
+    height: 450px;
+
+
   }
 
 </style>

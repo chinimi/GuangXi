@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import {createEnvironmentSelectByClick} from '../../utils/commonUtils';
+  // import {createEnvironmentSelectByClick} from '../../utils/commonUtils';
 
 
   export default {
@@ -3817,7 +3817,7 @@
            for (let i=0;i<data.length;i++) {
              let coord = data[i].geometry.coordinates
 
-             var labelCoords = ol.proj.transform([coord[0], coord[1]], "EPSG:4326", "EPSG:3857");
+             var labelCoords = ol.proj.transform([coord[0], coord[1]], "EPSG:4326", "EPSG:4326");
              var point = new ol.Feature({
                geometry: new ol.geom.Point(labelCoords)
              });//构点
