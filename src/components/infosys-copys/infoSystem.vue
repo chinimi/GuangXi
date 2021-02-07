@@ -71,17 +71,19 @@
       </div>
       <!-- 信息汇总 -->
       <div class="content" v-if="Type == 1">
+        <div v-if="nonelist">
           <!-- 行政区 -->
-        <div v-if="TapType == '1' &&  nonelist" class="orientation">
-          <administrative></administrative>
-        </div>
-        <!-- 流域 -->
-        <div v-if="TapType == '2' && nonelist" class="orientation">
-          222222222222222
-        </div>
-        <!-- 河长治 -->
-        <div v-if="TapType == '3' && nonelist" class="orientation">
-          3333333333333333
+          <div v-if="TapType == '1'">
+
+          </div>
+          <!-- 流域 -->
+          <div v-if="TapType == '2'">
+            222222222222222
+          </div>
+          <!-- 河长治 -->
+          <div v-if="TapType == '3'">
+            3333333333333333
+          </div>
         </div>
       </div>
       <!-- 信息查询 -->
@@ -97,16 +99,14 @@
 </template>
 
 <script>
-import administrative from '../infosys/administrative.vue'//信息汇总行政区
-import informationLnquiry from '../infosys/informationLnquiry.vue'//信息报告
-import waterQualityReport from '../infosys/waterQualityReport.vue'//水质报告
+import informationLnquiry from '../infosys/informationLnquiry.vue'
+import waterQualityReport from '../infosys/waterQualityReport.vue'
 export default {
-  name: "infoSystem",
+  name: "",
   props: {},
   components: {
-    administrative,//信息汇总行政区
-    informationLnquiry,//信息报告
-    waterQualityReport,//水质报告
+    informationLnquiry,
+    waterQualityReport,
   },
   data() {
     return {
@@ -275,6 +275,7 @@ export default {
     },
     // 获取属性图
     handleNodeClick(data) {
+      console.log(data.children);
       if(data.children == undefined){
         this.nonelist = true
       }else{
@@ -308,7 +309,7 @@ export default {
 }
 .treeform {
   float: left;
-  width: 15%;
+  width: 300px;
   height: 100%;
   background: rgb(21, 37, 63);
   padding-top: 30px;
@@ -367,7 +368,7 @@ export default {
 }
 .content {
   float: left;
-  width: 85%;
+  width: calc(100% - 300px);
   height: 100%;
 }
 /* tab切换 */
@@ -413,11 +414,5 @@ export default {
 .filter /deep/ .el-tree-node__content{
   height: 50px!important;
   line-height: 50px!important;
-}
-/* 定位 */
-.orientation{
-  position: relative;
-  width: 100%;
-  height: 100%;
 }
 </style>
