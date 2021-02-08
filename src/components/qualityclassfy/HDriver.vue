@@ -13,7 +13,7 @@
           active-text-color="#018faf">
           <div  v-for="(item,index) in menulist" :key="index">
             <!--一级菜单（没有任何子级菜单）-->
-            <el-menu-item :index="item.id" v-if="!item.children">
+            <el-menu-item  :index="item.path"  v-if="!item.children">
               <!--                  <i class="el-icon-menu"></i>-->
               <i :class=iconsObj[item.id]></i>
               {{item.authName}}</el-menu-item>
@@ -27,16 +27,16 @@
               <!-- 遍历二级菜单容器 -->
               <div v-for="(i,index) in item.children" :key="index">
                 <!-- 判断二级菜单（没有三级菜单）-->
-                <el-menu-item :index="i.path" v-if="!i.children">
+                <el-menu-item  :index="item.path"   v-if="!i.children">
                   <!--<i :class=iconsObj[i.id]></i>-->
                   <i class="el-icon-menu"></i>
                   {{i.authName}}
                 </el-menu-item>
                 <!-- 判断二级菜单（有三级菜单）-->
-                <el-submenu :index="i.path" v-if="i.children">
-                  <template slot="title">{{i.authName}}</template>
-                  <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>
-                </el-submenu>
+<!--                <el-submenu   v-if="i.children">-->
+<!--                  <template slot="title">{{i.authName}}</template>-->
+<!--                  <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>-->
+<!--                </el-submenu>-->
               </div>
 
             </el-submenu>
@@ -56,11 +56,9 @@
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
         <el-row style="padding-top:20px;">
-          <el-col span="12">
+          <el-col :span="12">
              <el-table    border :data="tableData" height="calc( 100vh - 600px )" style="background-color: transparent;">
-
                <el-table-column  align="center" label="流量过程变异程度(FD)">
-
             <el-table-column
               prop="stcd"
               label="月份">
@@ -77,16 +75,10 @@
               prop="mndgType"
               label="评估天然月径流量年均值(Ou)">
             </el-table-column>
-
-
            </el-table-column>
           </el-table>
-
-
-
           </el-col>
-          <el-col span="12" style="padding-left:20px;">
-
+          <el-col :span="12" style="padding-left:20px;">
             <el-table
               height="calc( 100vh - 600px )"
               ref="multipleTable"
@@ -96,24 +88,18 @@
               style="background-color: transparent;"
               :span-method="mergeStratege"
               @selection-change="handleSelectionChange">
-
               <el-table-column
                 prop="name"
                 label="准则层">
-
               </el-table-column>
-              <el-table-column prop="amount1"
-                               label="指标层"></el-table-column>
-              <el-table-column prop="amount2"
-                               label="代码"></el-table-column>
+              <el-table-column prop="amount1"   label="指标层"></el-table-column>
+              <el-table-column prop="amount2"   label="代码"></el-table-column>
             </el-table>
-
           </el-col>
-
 
         </el-row>
 
-        <el-row>
+        <el-row   v-if="showhealthyTable">
           <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
 
             <el-table-column  align="center" label="流量过程变异程度(FD)">
@@ -167,59 +153,9 @@
           </el-table>
         </el-row>
 
-       <!-- <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-            <el-table-column
-              label="序号"
-              type="index"
-              width="50">
-            </el-table-column>
-            <el-table-column
-              prop="stcd"
-              label="测站编码">
-            </el-table-column>
-            <el-table-column
-              prop="stnm"
-              label="测站名称">
-            </el-table-column>
-            <el-table-column
-              prop="mndgMax"
-              label="矿化度指标">
-            </el-table-column>
-            <el-table-column
-              prop="mndgType"
-              label="级别">
-            </el-table-column>
 
-            <el-table-column
-              prop="mndgName"
-              label="类型">
-            </el-table-column>
 
-            <el-table-column
-              label="备注">
-              <template slot-scope="scope">
-                &lt;!&ndash;  {{scope.row.time}}&ndash;&gt;
-                备注
-              </template>
-            </el-table-column>
-
-          </el-table>
-        &lt;!&ndash;分页&ndash;&gt;
-        <div style="padding-top:30px;">
-          &lt;!&ndash; <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> &ndash;&gt;
-          <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size=pageSize
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
-          >
-          </el-pagination>
-        </div>-->
-        <el-row>
+        <el-row v-if="showhealthyTable">
           <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
             <el-table-column  align="center" label="四个表格">
               <el-table-column
@@ -259,7 +195,7 @@
       /*切换对应组件*/
       "authName": "河段选择",
       id:'zxpjfxmodelpart',
-
+      path:'zxpjfxmodelpart',
       children: [
         { "authName": "桂江上游兴安源头段" ,id:'syxaytd',path:'syxaytd'},
         { "authName": "桂江上游桂林城区段",id:'syglcqd',path:'syglcqd'},
@@ -279,7 +215,7 @@
   export default {
       data() {
           return {
-
+            showhealthyTable:false,//健康流量表是否显示
             originData: [{
               id: 'llgcbycd',
               name: '水文水资源(HD)',
@@ -504,6 +440,23 @@
           }
       },
       created() {
+
+      },
+      mounted() {
+        console.log("获取当前跳转传过来的参数")
+
+        var checkParam=this.$route.params
+        var currentPath=this.$route.path
+        var currentRouter=currentPath.substr(1,currentPath.length-1)
+        console.log(checkParam)
+        let selectCheck=checkParam.selectCheck
+        for( var i=0;i<selectCheck.length;i++){
+          console.log(selectCheck[i])
+          if(selectCheck[i].PID==currentRouter){
+            this.showhealthyTable=true
+          }
+        }
+
 
       },
       computed: {

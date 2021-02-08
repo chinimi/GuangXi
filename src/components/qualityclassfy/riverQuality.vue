@@ -1470,6 +1470,25 @@
       }
     },
     watch:{
+      cursysval(newValue){
+        console.log("切换分级类别")
+        console.log(newValue)
+
+        if(newValue=='longriver'){//河长制参数
+
+          this.fjoption= [{value:'first',label:'省'},{value:'second',label:'市'},{value:'third',label:'县'},{value:'fourth',label:'镇'},{value:'fifth',label:'村'}]
+        }
+        if(newValue=='river'){//流域
+          this.fjoption= [{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'},{value:'fifth',label:'五级'},{value:'sixth',label:'六级'}]
+        }
+        if(newValue=='watersource'){//水资源
+          this.fjoption= [{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'}]
+        }
+
+        if(newValue=='distriction'){//行政区
+          this.fjoption= [{value:'first',label:'省'},{value:'second',label:'市'},{value:'third',label:'县'},{value:'fourth',label:'镇'},{value:'fifth',label:'村'}]
+        }
+      },
       pjxmval(newValue){
 
         this.tableData=[]

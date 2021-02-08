@@ -1,73 +1,6 @@
 <template>
     <div  id="groundWater">
       <div class="left_menu">
-       <!-- <div class="singleli_title">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                评价标准：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="pjbzval">
-                  <el-option
-                    v-for="(item, index) in pjbzOption"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-
-        <div class="singleli_title">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                评价项目：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="pjxmval">
-                  <el-option
-                    v-for="(item, index) in pjxmOption"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-
-        <div class="singleli_title">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                取值方式：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="qzfsval">
-                  <el-option
-                    v-for="(item, index) in qzfsOption"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>-->
-
-
         <!--流域选择-->
         <div class="singleli_title">
           <el-row>
@@ -90,7 +23,6 @@
             </el-col>
           </el-row>
         </div>
-
         <!--划分河段依据-->
         <div style="width: 100%;padding-left:20px;">
          <el-radio-group  v-model="cursysval">
@@ -99,8 +31,7 @@
             </el-col>
           </el-radio-group>
         </div>
-
-               <!--河长制-->
+        <!--河长制-->
         <!--省-->
         <div class="singleli_title"    v-if="cursysval=='longriver'">
           <el-row>
@@ -483,7 +414,7 @@
           </el-row>
         </div>
         <!--测站级别-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
+       <!-- <div class="singleli_title" v-if="cursysval=='watersource'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -503,9 +434,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div>-->
         <!--测站名称-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
+       <!-- <div class="singleli_title" v-if="cursysval=='watersource'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -525,9 +456,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div>-->
         <!--自定义-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
+      <!--  <div class="singleli_title" v-if="cursysval=='watersource'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -547,7 +478,7 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div>-->
         <!--水资源分区 over-->
 
 
@@ -829,10 +760,11 @@
   export default {
       data() {
           return {
+            selectCheckbox:[],//选中的checkbox参数，路由传参
             /*分级选择*/
             fjxzVal:'first',
-            fjoption:[{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'}],
-
+            // fjoption:[{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'}],
+            fjoption:[],//分级选择
             /*流域选择*/
             lyxzVal:'gjly',
             lyxzOption:[{value:'gjly',label:'桂江流域'},{value:'hhly',label:'黄河流域'}],
@@ -867,9 +799,6 @@
             fivestagePartition: "",
             fivestagePartitionList: [],
             tableData: [],
-            cities:['流域水系', '水资源分区', '行政区划'],
-            cities2:['按单时间段评价', '按时间序列评价'],
-
 
             /*评价标准*/
             pjbzval:'hbjlpg',
@@ -923,7 +852,8 @@
             }],
             /*评价步长*/
             pjbcVal:'year',//评价步长
-            pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+            // pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
+            pjbcOption:[{value:'year',label:'年'}],
             /*初始时间*/
             startTime:'2015-07',
             /*截至时间*/
@@ -935,7 +865,7 @@
               amount1: '流量过程变异程度',
               amount2: 'FD',
               amount3: 10,
-              PID:'HD',
+              PID:'HDriver',
               state:false
             }, {
               id: 'stllmzcd',
@@ -943,7 +873,7 @@
               amount1: '生态流量满足程度',
               amount2: 'EF',
               amount3: 12,
-              PID:'HD',
+              PID:'HDriver',
               state:false
 
             }, {
@@ -952,7 +882,7 @@
               amount1: '健康流量',
               amount2: 'HEF',
               amount3: 9,
-              PID:'HD',
+              PID:'HDriver',
               state:true
 
             }, {
@@ -961,7 +891,7 @@
               amount1: '河岸带状况',
               amount2: 'RS',
               amount3: 17,
-              PID:'PF',
+              PID:'PFriver',
               state:false
 
             }, {
@@ -970,7 +900,7 @@
               amount1: '河流连通陶隔状况',
               amount2: 'RC',
               amount3: 15,
-              PID:'PF',
+              PID:'PFriver',
               state:false
 
             }, {
@@ -979,7 +909,7 @@
               amount1: '溶解氧状况',
               amount2: 'DO',
               amount3: 9,
-              PID:'WQ',
+              PID:'WQriver',
               state:false
 
             }, {
@@ -988,7 +918,7 @@
               amount1: '耗氧有机污染状况',
               amount2: 'OCP',
               amount3: 17,
-              PID:'WQ',
+              PID:'WQriver',
               state:false
 
             }, {
@@ -997,7 +927,7 @@
               amount1: '重金属污染状况',
               amount2: 'HMP',
               amount3: 9,
-              PID:'WQ',
+              PID:'WQriver',
               state:true
 
             },{
@@ -1006,7 +936,7 @@
               amount1: '苯系物',
               amount2: ' ',
               amount3: 9,
-              PID:'WQ',
+              PID:'WQriver',
               state:true
 
             }, {
@@ -1015,7 +945,7 @@
               amount1: '大型无脊椎动物生物完整性指数',
               amount2: 'BMIBI',
               amount3: 9,
-              PID:'AL',
+              PID:'ALriver',
               state:false
 
             },  {
@@ -1024,7 +954,7 @@
               amount1: '鱼类损失指数',
               amount2: 'FOE',
               amount3: 9,
-              PID:'AL',
+              PID:'ALriver',
               state:false
 
             }, {
@@ -1033,7 +963,7 @@
               amount1: '附生硅藻',
               amount2: '',
               amount3: 9,
-              PID:'AL',
+              PID:'ALriver',
               state:true
 
             }, {
@@ -1042,7 +972,7 @@
               amount1: '水功能区达标指标',
               amount2: 'WFZ',
               amount3: 9,
-              PID:'SS',
+              PID:'SSriver',
               state:false
 
             }, {
@@ -1051,7 +981,7 @@
               amount1: '水资源开发利用指标',
               amount2: 'WRU',
               amount3: 9,
-              PID:'SS',
+              PID:'SSriver',
               state:false
 
             }, {
@@ -1060,7 +990,7 @@
               amount1: '防洪指标',
               amount2: 'FLD',
               amount3: 9,
-              PID:'SS',
+              PID:'SSriver',
               state:false
 
             }, {
@@ -1069,7 +999,7 @@
               amount1: '公众满意度指标',
               amount2: 'PP',
               amount3: 9,
-              PID:'SS',
+              PID:'SSriver',
               state:false
 
             },
@@ -1090,45 +1020,31 @@
         handleEdit(index, row){
           console.log(index, row);
           console.log(row.name)
-          if(row.PID=='HD'){
-            this.$router.push({name:'HDriver',params:{}});
+          if(row.PID=='HDriver'){
+            this.$router.push({name:'HDriver',params:{selectCheck:this.selectCheckbox}});
           }
-          if(row.PID=='PF'){
-            this.$router.push({name:'PFriver',params:{}});
+          if(row.PID=='PFriver'){
+            this.$router.push({name:'PFriver',params:{selectCheck:this.selectCheckbox}});
           }
-          if(row.PID=='WQ'){
-            this.$router.push({name:'WQriver',params:{}});
+          if(row.PID=='WQriver'){
+            this.$router.push({name:'WQriver',params:{selectCheck:this.selectCheckbox}});
           }
-          if(row.PID=='AL'){
-            this.$router.push({name:'ALriver',params:{}});
+          if(row.PID=='ALriver'){
+            this.$router.push({name:'ALriver',params:{selectCheck:this.selectCheckbox}});
           }
-          if(row.PID=='SS'){
-            this.$router.push({name:'SSriver',params:{}});
+          if(row.PID=='SSriver'){
+            this.$router.push({name:'SSriver',params:{selectCheck:this.selectCheckbox}});
           }
         },
         checkSelectable(row,index){
-
           let flag = true;
           for (let i = 0; i < this.originData.length; i++) {
-             console.log(row.amount2)
-             console.log(this.originData[i].amount2)
             if(row.state  !==true ){
-
-
-              console.log("不可选")
-
+              // console.log("不可选")
               flag=false
             }
-           //  else if(row.amount2  !==' '){
-           //    flag=false
-           //  }
-           // else  if(row.amount2  !=='HMP'){
-           //    flag=false
-           //  }
           }
           return flag
-
-
         },
         // 传入element-table的合并方法
         mergeStratege ({ row, column, rowIndex, columnIndex }) {
@@ -1152,6 +1068,7 @@
         handleSelectionChange(val){
           console.log("获取选中的行要素数组集合")
           console.log(val)
+          this.selectCheckbox=val
 
         },
         handleClick(ele){//选中要素编辑
@@ -1317,12 +1234,27 @@
         }
       },
       watch:{
+        cursysval(newValue){
+          console.log("切换分级类别")
+          console.log(newValue)
+
+          if(newValue=='longriver'){//河长制参数
+
+           this.fjoption= [{value:'first',label:'省'},{value:'second',label:'市'},{value:'third',label:'县'},{value:'fourth',label:'镇'},{value:'fifth',label:'村'}]
+          }
+          if(newValue=='river'){//流域
+            this.fjoption= [{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'},{value:'fifth',label:'五级'},{value:'sixth',label:'六级'}]
+          }
+          if(newValue=='watersource'){//水资源
+            this.fjoption= [{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'}]
+          }
+
+          if(newValue=='distriction'){//行政区
+            this.fjoption= [{value:'first',label:'省'},{value:'second',label:'市'},{value:'third',label:'县'},{value:'fourth',label:'镇'},{value:'fifth',label:'村'}]
+          }
+        },
         pjxmval(newValue){
-
           this.tableData=[]
-
-
-
         },
         originData: {
           // 数据处理函数，可以在此处设置从哪一行开始合并

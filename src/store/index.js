@@ -9,8 +9,6 @@ Vue.use(Vuex)
 const state={
   map:null,//全局变量地图
 
-
-
 }
 
 export default new Vuex.Store({

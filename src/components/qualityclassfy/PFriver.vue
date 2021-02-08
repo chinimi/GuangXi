@@ -349,6 +349,23 @@
 
 
       },
+    mounted() {
+      console.log("获取当前跳转传过来的参数")
+
+      // var checkParam=this.$route.params
+      // var currentPath=this.$route.path
+      // var currentRouter=currentPath.substr(1,currentPath.length-1)
+      // console.log(checkParam)
+      // let selectCheck=checkParam.selectCheck
+      // for( var i=0;i<selectCheck.length;i++){
+      //   console.log(selectCheck[i])
+      //   if(selectCheck[i].PID==currentRouter){
+      //     this.showhealthyTable=true
+      //   }
+      // }
+
+
+    },
       computed: {
 
       },

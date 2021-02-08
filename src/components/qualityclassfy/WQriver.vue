@@ -91,7 +91,7 @@
           </el-table-column>
           <!--第3列-->
 
-          <el-table-column label="重金属污染状况">
+          <el-table-column v-if="zjswrwtable" label="重金属污染状况">
             <el-table-column
               prop="name"
               label="砷"
@@ -120,7 +120,7 @@
           </el-table-column>
 
           <!--第4列-->
-          <el-table-column label="苯类有机物(BCP)">
+          <el-table-column v-if="blyjwtable" label="苯类有机物(BCP)">
             <el-table-column
               prop="name"
               label="苯"
@@ -161,6 +161,8 @@
   export default {
       data() {
           return {
+            zjswrwtable:false,//重金属污染物
+            blyjwtable:false,//苯类有机物
             /*评价标准*/
             evaluatiStandarVal:'SL395-2007',
             evaluationOptopn:[{
@@ -270,6 +272,26 @@
       created() {
 
       },
+    mounted() {
+      console.log("获取当前跳转传过来的参数")
+
+      var checkParam=this.$route.params
+      var currentPath=this.$route.path
+      var currentRouter=currentPath.substr(1,currentPath.length-1)
+      console.log(checkParam)
+      let selectCheck=checkParam.selectCheck
+      for( var i=0;i<selectCheck.length;i++){
+        console.log(selectCheck[i])
+        if(selectCheck[i].amount2=='HMP'){
+          this.zjswrwtable=true
+        }
+        if(selectCheck[i].amount2==' '){
+          this.blyjwtable=true
+        }
+      }
+
+
+    },
       computed: {
 
       },
