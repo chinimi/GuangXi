@@ -1144,6 +1144,7 @@
       }
     },
     watch:{
+
       pjxmval(newValue){
 
         this.tableData=[]

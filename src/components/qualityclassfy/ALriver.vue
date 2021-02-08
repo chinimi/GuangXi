@@ -111,7 +111,7 @@
         </el-col>
       </el-row>
 
-      <el-row style="padding:20px  0 30px  30px;">
+      <el-row   v-if="fsgzTable"  style="padding:20px  0 30px  30px;">
         <el-col span="20">
           <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
 
@@ -398,9 +398,26 @@
           // "ssthjfx":"iconfont icon-shuidi3",
 
         },
+        fsgzTable:false,//浮生硅藻table
       }
     },
     created() {
+
+    },
+    mounted() {
+      var checkParam=this.$route.params
+      var currentPath=this.$route.path
+      var currentRouter=currentPath.substr(1,currentPath.length-1)
+      console.log(checkParam)
+      let selectCheck=checkParam.selectCheck
+      for( var i=0;i<selectCheck.length;i++){
+        console.log(selectCheck[i])
+        if(selectCheck[i].id=="fsgz"){
+          this.fsgzTable=true
+        }
+
+      }
+
 
     },
     computed: {
