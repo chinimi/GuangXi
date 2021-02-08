@@ -762,9 +762,9 @@
           return {
             selectCheckbox:[],//选中的checkbox参数，路由传参
             /*分级选择*/
-            fjxzVal:'first',
-            // fjoption:[{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'}],
-            fjoption:[],//分级选择
+            fjxzVal:'',
+            fjoption:[{value:'first',label:'一级'},{value:'second',label:'二级'},{value:'third',label:'三级'},{value:'fourth',label:'四级'}],
+            // fjoption:[],//分级选择
             /*流域选择*/
             lyxzVal:'gjly',
             lyxzOption:[{value:'gjly',label:'桂江流域'},{value:'hhly',label:'黄河流域'}],
@@ -835,7 +835,7 @@
               value:'max',
             }],
             /*当前水系*/
-            cursysval:'river',
+            cursysval:'watersource',
             /*水系参数*/
             curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
 

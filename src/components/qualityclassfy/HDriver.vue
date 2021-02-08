@@ -57,23 +57,35 @@
         </el-row>
         <el-row style="padding-top:20px;">
           <el-col :span="12">
-             <el-table    border :data="tableData" height="calc( 100vh - 600px )" style="background-color: transparent;">
+             <el-table   :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="weightData" height="calc( 100vh - 600px )" style="background-color: transparent;">
                <el-table-column  align="center" label="流量过程变异程度(FD)">
             <el-table-column
               prop="stcd"
               label="月份">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.stcd" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
               prop="stnm"
               label="评估年实测月径流量(qm)">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.stnm" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
               prop="mndgMax"
               label="评估年天然月径流量(Qm)">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.mndgMax" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
               prop="mndgType"
               label="评估天然月径流量年均值(Ou)">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.mndgType" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
            </el-table-column>
           </el-table>
@@ -151,6 +163,9 @@
 
             </el-table-column>
           </el-table>
+
+
+
         </el-row>
 
 
@@ -437,12 +452,39 @@
               // "ssthjfx":"iconfont icon-shuidi3",
 
             },
+            /*权重配比*/
+            weightData:[],
           }
       },
       created() {
 
       },
       mounted() {
+
+        this.weightData=[
+          {
+            'project':'水质评价',
+            'poolweight':"",
+            'centerweight':"",
+
+          },
+          {
+            'project':'生境评价',
+            'poolweight':"",
+            'centerweight':"",
+
+          },
+          {
+            'project':'生物评价',
+            'poolweight':"",
+            'centerweight':"",
+
+          },
+
+
+
+
+        ]
         console.log("获取当前跳转传过来的参数")
 
         var checkParam=this.$route.params
@@ -463,6 +505,23 @@
 
       },
       methods: {
+        //鼠标失去焦点事件
+        inputBlur() {
+          this.tabRowIndex = null;
+          this.tabColumnIndex = "";
+        },
+
+        //点击单元格得到横纵坐标
+        handleCellClick(row, column, event, cell) {
+          this.tabRowIndex = row.index;
+          this.tabColumnIndex = column.index;
+          this.tableValue.push(row);
+        },
+        //数据中没有横纵坐标需要加上进行下一步判断
+        getRowColumn({row, column, rowIndex, columnIndex}) {
+          row.index = rowIndex;
+          column.index = columnIndex;
+        },
         backAgo(){
           this.$router.push({name:'riverHealthy',params:{}});
         },
