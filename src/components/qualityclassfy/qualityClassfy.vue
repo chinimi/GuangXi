@@ -4,54 +4,7 @@
     <!--水质评价质量监测-->
       <!--左侧递归标题目录树-->
     <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,1);padding-top: 25px;">
-<!--      <el-menu
-          :router="true"
-          class="el-menu-vertical-demo"
 
-          @open="handleOpen"
-          @close="handleClose"
-          background-color="rgba(21,37,63,0.86)"
-          text-color="#fff"
-          active-text-color="#018faf">
-        &lt;!&ndash;一级菜单&ndash;&gt;
-        <el-submenu :index=item.id  v-for="item in menulist" :key="item.id+''">
-          <template slot="title">
-            <i :class=iconsObj[item.id]></i>
-            <span>{{item.authName}}</span>
-          </template>
-
-          &lt;!&ndash;二级菜单&ndash;&gt;
-
-          <el-menu-item  v-for="subitem  in item.children"   :index="'/'+subitem.path" :key="subitem.id">
-            <template slot="title">
-&lt;!&ndash;              <i class="el-icon-menu"></i>&ndash;&gt;
-              <i class="el-icon-menu"></i>
-              <span>{{subitem.authName}}</span>
-            </template>
-            <el-submenu :index="subitem.path" v-if="subitem.children">
-&lt;!&ndash;              <i class="el-icon-menu"></i>&ndash;&gt;
-
-              <template slot="title">
-                <i class="el-icon-menu"></i>
-                <span>{{subitem.authName}}</span>
-              </template>
-              <el-menu-item :index="j.path" v-for="(j,index) in subitem.children" :key="index">
-                {{j.authName}}
-              </el-menu-item>
-            </el-submenu>
-
-&lt;!&ndash;            <el-submenu :index="subitem.path" v-else>&ndash;&gt;
-&lt;!&ndash;              <template slot="title">&ndash;&gt;
-&lt;!&ndash;                <i class="el-icon-menu"></i>&ndash;&gt;
-&lt;!&ndash;                <span>{{subitem.authName}}</span>&ndash;&gt;
-&lt;!&ndash;              </template>&ndash;&gt;
-&lt;!&ndash;            </el-submenu>&ndash;&gt;
-
-
-          </el-menu-item>
-        </el-submenu>
-
-      </el-menu>-->
             <el-menu
                 :router="true"
                 class="el-menu-vertical-demo"

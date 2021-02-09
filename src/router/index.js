@@ -31,6 +31,12 @@ import SSriver from '../components/qualityclassfy/SSriver.vue'
 // import waterQualityReport from '../components/infosys/waterQualityReport.vue'//水质报告
 // import authorityManagement from '../components/infosys/authorityManagement.vue'//权限管理
 
+/*预测预警组件*/
+import qualityPrediction from "../components/qualitypredict/qualityPrediction"
+import qualityClassfy from "../components/qualityclassfy/qualityClassfy";
+import waterPrediction from "../components/qualityclassfy/waterPrediction";
+import underWater from "../components/qualityclassfy/underWater";
+import waterWarn from "../components/qualityclassfy/waterWarn";
 
 
 
@@ -44,79 +50,125 @@ export default new Router({
       name: 'login',
       component: login
     },
+
+    // {
+    //   path: '/qualityPrediction',
+    //   name: 'qualityPrediction',
+    //   component: qualityPrediction
+    // },
     // 首页
     {
       path:'/',//一级路由
       name: 'home',
       component:home,
-      children:[
+      children:[//二级路由配置
+        { /*预警预测组件*/
+          path: '/qualityPrediction',
+          name: 'qualityPrediction',
+          component: qualityPrediction,
+          children:[{
+            path: '/waterPrediction',
+            name: 'waterPrediction',
+            component:waterPrediction,//水质预测
+          },
+            {
+              path: '/underWater',
+              name: 'underWater',
+              component:underWater,//地下水质量
+
+            },
+           /* {
+              path: '/waterWarn',
+              name: 'waterWarn',
+              component:waterWarn,//水质预警
+
+            },*/
+
+          ]
+
+        },
+        /*水质预警监测*/
         {
-          path: '/groundWater',
-          name: 'groundWater',
-          component:groundWater,
-
-
-        },
-
-        {
-          path: '/changeWater',
-          name: 'changeWater',
-          component:changeWater,
+          path: '/waterWarn',
+          name: 'waterWarn',
+          component:waterWarn,//水质预警
 
         },
-        {
-          path: '/drinkWater',
-          name: 'drinkWater',
-          component:drinkWater,
 
-        },
-        {
-          path: '/environWater',
-          name: 'environWater',
-          component:environWater,
 
-        },
-        {//水质基础评价
-          path: '/generalwaterevaluate',
-          name: 'generalwaterevaluate',
-          component:generalwaterevaluate,
+        { /*水质分类评价*/
+          path: '/qualityClassfy',
+          name: 'qualityClassfy',
+          component: qualityClassfy,
+          children:[
+            {
+              path: '/groundWater',
+              name: 'groundWater',
+              component:groundWater,
+            },
+            {
+              path: '/changeWater',
+              name: 'changeWater',
+              component:changeWater,
 
+            },
+            {
+              path: '/drinkWater',
+              name: 'drinkWater',
+              component:drinkWater,
+
+            },
+            {
+              path: '/environWater',
+              name: 'environWater',
+              component:environWater,
+
+            },
+            {//水质基础评价
+              path: '/generalwaterevaluate',
+              name: 'generalwaterevaluate',
+              component:generalwaterevaluate,
+
+            },
+            {//江河湖库水生态质量评价
+              path: '/riverQuality',
+              name: 'riverQuality',
+              component:riverQuality,
+            },
+            {//江河湖库水体健康评价
+              path: '/riverHealthy',//二级路由
+              name: 'riverHealthy',
+              component:riverHealthy,
+            },
+            {/*水文水资源(HD)*/
+              path: '/HDriver',
+              name: 'HDriver',
+              component:HDriver,
+            },
+            { /*物理结构(PF)*/
+              path: '/PFriver',
+              name: 'PFriver',
+              component:PFriver,
+            },
+            { /*水质(WQ)*/
+              path: '/WQriver',
+              name: 'WQriver',
+              component:WQriver,
+            },
+            { /*生物(AL)*/
+              path: '/ALriver',
+              name: 'ALriver',
+              component:ALriver,
+            },
+            {/*社会服务功能(SS)*/
+              path: '/SSriver',
+              name: 'SSriver',
+              component:SSriver,
+            },
+
+          ]
         },
-        {//江河湖库水生态质量评价
-          path: '/riverQuality',
-          name: 'riverQuality',
-          component:riverQuality,
-        },
-        {//江河湖库水体健康评价
-          path: '/riverHealthy',//二级路由
-          name: 'riverHealthy',
-          component:riverHealthy,
-        },
-        {/*水文水资源(HD)*/
-          path: '/HDriver',
-          name: 'HDriver',
-          component:HDriver,
-        },
-        { /*物理结构(PF)*/
-          path: '/PFriver',
-          name: 'PFriver',
-          component:PFriver,
-        },
-        { /*水质(WQ)*/
-          path: '/WQriver',
-          name: 'WQriver',
-          component:WQriver,
-        },
-        { /*生物(AL)*/
-          path: '/ALriver',
-          name: 'ALriver',
-          component:ALriver,
-        },
-        {/*社会服务功能(SS)*/
-          path: '/SSriver',
-          name: 'SSriver',
-          component:SSriver,
-        },
+
           /*水质评价 路由配置*/
           /*信息综合管理 路由配置*/
         // {

@@ -730,212 +730,88 @@
       </div>
       <!--table表格-->
       <div class="right_menu">
-         <!--矿化度-->
-        <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-            <el-table-column
-              label="序号"
-              type="index"
-              width="50">
-            </el-table-column>
-            <el-table-column
-              prop="stcd"
-              label="测站编码">
-            </el-table-column>
-            <el-table-column
-              prop="stnm"
-              label="测站名称">
-            </el-table-column>
-            <el-table-column
-              prop="mndgMax"
-              label="矿化度指标">
-            </el-table-column>
-            <el-table-column
-              prop="mndgType"
-              label="级别">
-            </el-table-column>
 
-            <el-table-column
-              prop="mndgName"
-              label="类型">
-            </el-table-column>
 
-            <el-table-column
-              label="备注">
-              <template slot-scope="scope">
-                <!--  {{scope.row.time}}-->
-                备注
-              </template>
-            </el-table-column>
+        <el-row style="padding-top:20px;padding-left:30px;">
+          <el-col span="20">
+            <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
 
-          </el-table>
+              <el-table-column  align="center" label="上游水">
 
-        <!--总硬度-->
-        <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-          <el-table-column
-            label="序号"
-            type="index"
-            width="50">
-          </el-table-column>
-          <el-table-column
-            prop="stcd"
-            label="河流编码">
-          </el-table-column>
-          <el-table-column
-            prop="stnm"
-            label="河段名称">
-          </el-table-column>
-          <el-table-column
-            prop="stnm"
-            label="测站名称">
-          </el-table-column>
-          <el-table-column
-            prop="thrd"
-            label="总硬度指标">
-          </el-table-column>
-
-          <el-table-column
-            prop="thrdType"
-            label="级别">
-          </el-table-column>
+                <el-table-column
+                  prop="stcd"
+                  label="站点1">
+                </el-table-column>
+                <el-table-column
+                  prop="stnm"
+                  label="站点2">
+                </el-table-column>
 
 
 
-          <el-table-column
-            label="备注">
-            <template slot-scope="scope">
-              <!--  {{scope.row.time}}-->
-              备注
-            </template>
-          </el-table-column>
+              </el-table-column>
+            </el-table>
 
-        </el-table>
 
-        <!--水化学类型-->
-        <el-table v-if="pjxmval=='shxlx'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
 
-        <el-table-column
-            label="序号"
-            type="index"
-            width="50">
-          </el-table-column>
-          <el-table-column
-            prop="stcd"
-            label="河流编码">
-          </el-table-column>
-          <el-table-column
-            prop="stnm"
-            label="河段名称">
-          </el-table-column>
-          <el-table-column
-            prop="ca"
-            label="Ca2+">
-          </el-table-column>
-          <el-table-column
-            prop="mg"
-            label="Mg2+">
-          </el-table-column>
-          <el-table-column
-            prop="na"
-            label="Na+">
-          </el-table-column>
-          <el-table-column
-            label="HCO3-">
-            <template slot-scope="scope">
-              {{scope.row.hco3}}
-            </template>
-          </el-table-column>
+          </el-col>
+        </el-row>
 
-          <el-table-column
-            label="SO42-">
-            <template slot-scope="scope">
-                {{scope.row.so4}}
+        <el-row style="padding:20px  0 30px  30px;">
+          <el-col span="20">
+            <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
 
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="cl"
-            label="Cl-">
-          </el-table-column>
+              <el-table-column  align="center" label="中游水">
 
-          <el-table-column
-            label="备注">
-            <template slot-scope="scope">
-              <!--  {{scope.row.time}}-->
-              备注
-            </template>
-          </el-table-column>
-        </el-table>
-        <!--地表天然水-->
-        <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )"" style="background-color: transparent;">
-          <el-table-column
-            label="序号"
-            type="index"
-            width="50">
-          </el-table-column>
-          <el-table-column
-            prop="stcd"
-            label="河流编码">
-          </el-table-column>
+                <el-table-column
+                  prop="stcd"
+                  label="站点1">
+                </el-table-column>
+                <el-table-column
+                  prop="stnm"
+                  label="站点1">
+                </el-table-column>
+                <el-table-column
+                  prop="stnm"
+                  label="站点1">
+                </el-table-column>
+                <el-table-column
+                  prop="stnm"
+                  label="站点1">
+                </el-table-column>
 
-          <el-table-column
-            prop="stnm"
-            label="测站名称">
-          </el-table-column>
-          <el-table-column
-            prop="f"
-            label="氟">
-          </el-table-column>
-          <el-table-column
-            prop="ars"
-            label="砷">
-          </el-table-column>
-          <el-table-column
-            prop="mndg"
-            label="矿化物">
-          </el-table-column>
 
-          <el-table-column
 
-            label="氯化物">
-            <template slot-scope="scope">
-              {{scope.row.cl}}
+              </el-table-column>
+            </el-table>
+          </el-col>
+        </el-row>
 
-            </template>
-          </el-table-column>
-          <el-table-column
+        <el-row  style="padding:30px 0 0 30px;" >
+          <el-col span="20">
+            <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
 
-            label="硫酸盐">
-            <template slot-scope="scope">
-                {{scope.row.so4}}
+              <el-table-column  align="center" label="下游水">
 
-            </template>
-          </el-table-column>
+                <el-table-column
+                  prop="stcd"
+                  label="站点1">
+                </el-table-column>
+                <el-table-column
+                  prop="stnm"
+                  label="站点1">
+                </el-table-column>
+                <el-table-column
+                  prop="mndgMax"
+                  label="站点1">
+                </el-table-column>
 
-          <el-table-column
-            label="备注">
-            <template slot-scope="scope">
-              <!--  {{scope.row.time}}-->
-              备注
-            </template>
-          </el-table-column>
 
-        </el-table>
+              </el-table-column>
+            </el-table>
+          </el-col>
+        </el-row>
 
-        <!--分页-->
-        <div style="padding-top:30px;">
-          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
-          <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size=pageSize
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
-          >
-          </el-pagination>
-        </div>
       </div>
 
 	</div>
@@ -1257,12 +1133,13 @@
   #groundWater  .right_menu{
     width: 80%;
     height: calc( 100vh - 80px);
-    padding-top: 50px;
+
     background: #031823;
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     right: 0;
+    overflow-y: auto;
   }
 
   #groundWater .singleli_title {
@@ -1272,7 +1149,7 @@
     border-radius: 5px;
     font-weight: lighter;
     margin-left: 3%;
-    margin-top: 20px;
+
   }
 
   #groundWater .singleli_title .sysfxTit {
@@ -1386,5 +1263,6 @@
    color:#fff!important;
 
   }
+
 
 </style>
