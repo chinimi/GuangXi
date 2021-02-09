@@ -77,11 +77,11 @@
         </div>
         <!-- 流域 -->
         <div v-if="TapType == '2' && nonelist" class="orientation">
-          222222222222222
+          <drainageBasin></drainageBasin>
         </div>
         <!-- 河长治 -->
         <div v-if="TapType == '3' && nonelist" class="orientation">
-          3333333333333333
+          <riverChiefSystem></riverChiefSystem>
         </div>
       </div>
       <!-- 信息查询 -->
@@ -98,6 +98,8 @@
 
 <script>
 import administrative from '../infosys/administrative.vue'//信息汇总行政区
+import drainageBasin from '../infosys/drainageBasin.vue'//信息汇总流域
+import riverChiefSystem from '../infosys/riverChiefSystem.vue'//信息汇总河长制
 import informationLnquiry from '../infosys/informationLnquiry.vue'//信息报告
 import waterQualityReport from '../infosys/waterQualityReport.vue'//水质报告
 export default {
@@ -105,6 +107,8 @@ export default {
   props: {},
   components: {
     administrative,//信息汇总行政区
+    drainageBasin,//信息汇总流域
+    riverChiefSystem,//信息汇总河长制
     informationLnquiry,//信息报告
     waterQualityReport,//水质报告
   },
