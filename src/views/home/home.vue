@@ -65,11 +65,17 @@
         </div>
 
         <div v-show="currentComp=='qualityClassfy'">
-          <qualityClassfy></qualityClassfy>
+<!--          <qualityClassfy></qualityClassfy>-->
+          <!--路由配置-->
+          <router-view></router-view>
+
         </div>
 
         <div v-show="currentComp=='qualityPrediction'">
-          <qualityPrediction></qualityPrediction>
+          <!-- <qualityPrediction></qualityPrediction>-->
+          <!--路由配置-->
+
+          <router-view></router-view>
         </div>
         <div v-show="currentComp=='bearingCapacity'">
           <bearingCapacity></bearingCapacity>
@@ -104,29 +110,24 @@ import qualityClassfy from "../../components/qualityclassfy/qualityClassfy"
 import qualityPrediction from "../../components/qualitypredict/qualityPrediction"
 import bearingCapacity from "../../components/bearcapacity/bearingCapacity"
 import operationalDisplay from "../../components/operationdispaly/operationalDisplay"
-
 /*toolbar*/
 import layercontrol from "../../components/toolbar/layercontrol"
-
 
 
 export default {
     name: 'Map',
     components:{
-
-    indexlefttop,
-    indexleftbottom,
-    indexright,
-    infoSystem,
-    programModel,
-    qualityClassfy,
-    qualityPrediction,
-    bearingCapacity,
-   
-    layercontrol,//图层控制
-    operationalDisplay,
-
-  },
+        indexlefttop,
+        indexleftbottom,
+        indexright,
+        infoSystem,
+        programModel,
+        qualityClassfy,
+        qualityPrediction,
+        bearingCapacity,
+        layercontrol,//图层控制
+        operationalDisplay,
+    },
     data () {
         return {
           toolbarVisible:true,//toobar显引
@@ -191,10 +192,8 @@ export default {
               value: 'operationalDisplay',
               comp: 'operationalDisplay'
             }
-
           ],
           toollist:[
-
             {
               icon:"magnifying",
               name: 'magnifying',
@@ -225,12 +224,7 @@ export default {
               value: 'set',
               // comp: '4'
             }
-
-
-
           ]
-
-
         }
     },
 
@@ -273,6 +267,19 @@ export default {
       },
 
     },
+  watch: {
+
+    currentComp(newValue) {
+      console.log(newValue)
+      if(newValue=="qualityPrediction"){
+        this.$router.push({name:'qualityPrediction',params:{}});
+      }
+      if(newValue=="qualityClassfy"){
+        this.$router.push({name:'qualityClassfy',params:{}});
+      }
+    }
+  }
+
 }
 </script>
 

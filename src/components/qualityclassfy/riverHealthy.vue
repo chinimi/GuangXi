@@ -721,10 +721,10 @@
 
                 label="准则层">
                 <template slot-scope="scope">
-              <span @click="handleEdit(scope.$index, scope.row)">
+              <a  style='text-decoration:underline;color:#fff;cursor: pointer;'  @click="handleEdit(scope.$index, scope.row)">
                  {{ scope.row.name }}
 
-              </span>
+              </a>
 
                 </template>
               </el-table-column>
