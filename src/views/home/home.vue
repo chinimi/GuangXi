@@ -3,7 +3,11 @@
       <!--navHeader-->
       <div class="nav_header">
         <div class="nav_logo">
-          <img src="../../../static/images/logo.png"  width="400"   alt="logo">
+          <i  :class="['iconfont', 'icon-shuidi3','nav-icon']"></i>
+          <span >
+            河长制水质水量评价服务系统
+          </span>
+<!--          <img src="../../../static/images/logo.png"  width="400"   alt="logo">-->
         </div>
         <ul  class="nav_title">
           <li
@@ -147,7 +151,7 @@ export default {
           // isActive: 'operationalDisplay',
           menu: [
             {
-              // icon:"icon-home",
+              icon:"icon-home",
               // li标签的内容
               name: '首页',
               // 当前li标签是否选中的标识
@@ -156,7 +160,7 @@ export default {
               comp: 'index'
             },
             {
-              // icon:"icon-home",
+              icon:"icon-baocun",
               // li标签的内容
               name: '信息综合管理',
               // 当前li标签是否选中的标识
@@ -165,29 +169,29 @@ export default {
               comp: 'infoSystem'
             },
             {
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-fuhao-tuceng",
               name: '方案模型管理',
               value: 'programModel',
               comp: 'programModel'
             },
             {
-              // icon:"icon-home",
+              icon:"icon-home",
               name: '水质分类评价',
               value: 'qualityClassfy',
               comp: 'qualityClassfy'
             },
             {
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-fuhao-tuceng",
               name: '水质预测预警',
               value: 'qualityPrediction',
               comp: 'qualityPrediction'
             },{
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-fuhao-tuceng",
               name: '承载能力分析',
               value: 'bearingCapacity',
               comp: 'bearingCapacity'
             },{
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-fuhao-tuceng",
               name: '综合运算与展示',
               value: 'operationalDisplay',
               comp: 'operationalDisplay'
@@ -301,18 +305,30 @@ export default {
 }
 .nav_logo{
   position: absolute;
-  top: 15px;
+  top: 20px;
   left: 12px;
   z-index: 1;
 }
+.nav_logo  span{
+  font-size: 25px;
+  color: #fff;
+  font-weight: 800;
+}
+.nav_logo .nav-icon{
+  font-size: 25px;
+  color: #fff;
+  font-weight: 800;
 
+
+}
 .nav_header{
   z-index:999;
   position: relative;
   width: 100%;
   height: 80px;
   background-size:contain;
-  background: url("../../../static/images/headerbg.png") no-repeat;
+  background: #1a51ff;
+  /*background: url("../../../static/images/headerbg.png") no-repeat;*/
 }
 .nav_title{
   position: absolute;
@@ -335,7 +351,7 @@ export default {
 
 .sliderMenuClass{
   cursor: pointer;
-  color: #333;
+  color: #fff;
   list-style: none;
   font-size: 15px;
   text-align: center;
@@ -344,12 +360,12 @@ export default {
   float: left;
   line-height: 32px;
   padding: 5px 0;
-  background: url("../../../static/images/nav_title_bg.png") no-repeat;
+  /*background: url("../../../static/images/nav_title_bg.png") no-repeat;*/
 }
 .active{
-
+  color: #fae808!important;
   /*background-color: #d49500!important;*/
-  color: #fff!important;
+  /*color: #fff!important;*/
   /*border: 1px solid #d49500!important;*/
 }
 
