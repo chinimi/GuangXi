@@ -13,6 +13,7 @@
       </div>
     </div>
     <div class="sheet">
+      <!-- 河流 -->
       <div class="table" v-if="TapType == '1'">
         <el-table
           :data="outsideData"
@@ -20,23 +21,24 @@
           style="background-color: transparent;"
           height="600"
         >
-          <el-table-column label="序号" type="index" width="50">
+          <el-table-column label="序号" type="index" min-width="50">
             <template slot-scope="scope">{{scope.$index+(pageIndex - 1) * pageSize + 1}}</template>
           </el-table-column>
-          <el-table-column prop="PersonName" label="河流编码"></el-table-column>
-          <el-table-column prop="IDCard" label="河流名称"></el-table-column>
-          <el-table-column prop="CorpName" label="河流备注"></el-table-column>
-          <el-table-column prop="SpecialtyTypeName" label="河流级别" ></el-table-column>
-          <el-table-column prop="Zhuanye" label="上一级河流编码"></el-table-column>
-          <el-table-column prop="EndDate" label="上一级河流名称"></el-table-column>
-          <el-table-column prop="CertNum" label="河流长度(km)"></el-table-column>
-          <el-table-column prop="PublishDateTime" label="流域面积(km2"></el-table-column>
-          <el-table-column prop="Nat" label="流经"></el-table-column>
-          <el-table-column prop="Nat" label="所属市"></el-table-column>
-          <el-table-column prop="Nat" label="所属水系"></el-table-column>
-          <el-table-column prop="Nat" label="备注"></el-table-column>
+          <el-table-column prop="PersonName" label="河流编码" min-width="100"></el-table-column>
+          <el-table-column prop="IDCard" label="河流名称" min-width="100"></el-table-column>
+          <el-table-column prop="CorpName" label="河流备注" min-width="100"></el-table-column>
+          <el-table-column prop="SpecialtyTypeName" label="河流级别" min-width="100"></el-table-column>
+          <el-table-column prop="Zhuanye" label="上一级河流编码" min-width="150"></el-table-column>
+          <el-table-column prop="EndDate" label="上一级河流名称" min-width="150"></el-table-column>
+          <el-table-column prop="CertNum" label="河流长度(km)" min-width="130"></el-table-column>
+          <el-table-column prop="PublishDateTime" label="流域面积(km²)" min-width="140"></el-table-column>
+          <el-table-column prop="Nat" label="流经" min-width="80"></el-table-column>
+          <el-table-column prop="Nat" label="所属市" min-width="90"></el-table-column>
+          <el-table-column prop="Nat" label="所属水系" min-width="100"></el-table-column>
+          <el-table-column prop="Nat" label="备注" min-width="80"></el-table-column>
         </el-table>
       </div>
+      <!-- 河道 -->
       <div class="table" v-if="TapType == '2'">
         <el-table
           :data="outsideData"
@@ -44,23 +46,23 @@
           style="background-color: transparent;"
           height="600"
         >
-          <el-table-column label="序号" type="index" width="50">
+          <el-table-column label="序号" type="index" min-width="50">
             <template slot-scope="scope">{{scope.$index+(pageIndex - 1) * pageSize + 1}}</template>
           </el-table-column>
-          <el-table-column prop="PersonName" label="河道编码"></el-table-column>
-          <el-table-column prop="IDCard" label="河道名称 "></el-table-column>
-          <el-table-column prop="CorpName" label="河道级别"></el-table-column>
-          <el-table-column prop="SpecialtyTypeName" label="上一段河道编码" ></el-table-column>
-          <el-table-column prop="Zhuanye" label="上一段河道名称 "></el-table-column>
-          <el-table-column prop="EndDate" label="河道长度(km)"></el-table-column>
-          <el-table-column prop="CertNum" label="水面面积(km2)"></el-table-column>
-          <el-table-column prop="CertNum" label="流经"></el-table-column>
-          <el-table-column prop="CertNum" label="所属市"></el-table-column>
-          <el-table-column prop="CertNum" label="所属水系"></el-table-column>
-          <el-table-column prop="Nat" label="备注"></el-table-column>
+          <el-table-column prop="PersonName" label="河道编码" min-width="100"></el-table-column>
+          <el-table-column prop="IDCard" label="河道名称" min-width="100"></el-table-column>
+          <el-table-column prop="CorpName" label="河道级别" min-width="100"></el-table-column>
+          <el-table-column prop="SpecialtyTypeName" label="上一段河道编码" min-width="150"></el-table-column>
+          <el-table-column prop="Zhuanye" label="上一段河道名称" min-width="150"></el-table-column>
+          <el-table-column prop="EndDate" label="河道长度(km)" min-width="130"></el-table-column>
+          <el-table-column prop="CertNum" label="水面面积(km²)" min-width="150"></el-table-column>
+          <el-table-column prop="CertNum" label="流经" min-width="80"></el-table-column>
+          <el-table-column prop="CertNum" label="所属市" min-width="80"></el-table-column>
+          <el-table-column prop="CertNum" label="所属水系" min-width="100"></el-table-column>
+          <el-table-column prop="Nat" label="备注" min-width="80"></el-table-column>
         </el-table>
       </div>
-      <!-- 字段未修改 -->
+      <!-- 水库 -->
       <div class="table" v-if="TapType == '3'"><div class=""></div>
         <el-table
           :data="outsideData"
@@ -68,20 +70,22 @@
           style="background-color: transparent;"
           height="600"
         >
-          <el-table-column label="序号" type="index" width="50">
+          <el-table-column label="序号" type="index" min-width="50">
             <template slot-scope="scope">{{scope.$index+(pageIndex - 1) * pageSize + 1}}</template>
           </el-table-column>
-          <el-table-column prop="PersonName" label="测站编码"></el-table-column>
-          <el-table-column prop="IDCard" label="测站名称"></el-table-column>
-          <el-table-column prop="CorpName" label="测站类别"></el-table-column>
-          <el-table-column prop="SpecialtyTypeName" label="测站等级" ></el-table-column>
-          <el-table-column prop="Zhuanye" label="管理单位"></el-table-column>
-          <el-table-column prop="EndDate" label="测站位置（经纬度）"></el-table-column>
-          <el-table-column prop="CertNum" label="监测单位"></el-table-column>
-          <el-table-column prop="PublishDateTime" label="检测频次"></el-table-column>
-          <el-table-column prop="Nat" label="备注"></el-table-column>
+          <el-table-column prop="PersonName" label="水库编码" min-width="100"></el-table-column>
+          <el-table-column prop="IDCard" label="水库名称" min-width="100"></el-table-column>
+          <el-table-column prop="CorpName" label="所在地" min-width="80"></el-table-column>
+          <el-table-column prop="SpecialtyTypeName" label="建成年月" min-width="100"></el-table-column>
+          <el-table-column prop="Zhuanye" label="工程规模" min-width="100"></el-table-column>
+          <el-table-column prop="EndDate" label="集水面积（Km²）" min-width="150"></el-table-column>
+          <el-table-column prop="CertNum" label="总库容（Km³）" min-width="130"></el-table-column>
+          <el-table-column prop="PublishDateTime" label="管理单位" min-width="100"></el-table-column>
+          <el-table-column prop="PublishDateTime" label="运行状况" min-width="100"></el-table-column>
+          <el-table-column prop="Nat" label="备注" min-width="80"></el-table-column>
         </el-table>
       </div>
+      <!-- 湖泊 -->
       <div class="table" v-if="TapType == '4'">
         <el-table
           :data="outsideData"
@@ -89,20 +93,21 @@
           style="background-color: transparent;"
           height="600"
         >
-          <el-table-column label="序号" type="index" width="50">
+          <el-table-column label="序号" type="index" min-width="50">
             <template slot-scope="scope">{{scope.$index+(pageIndex - 1) * pageSize + 1}}</template>
           </el-table-column>
-          <el-table-column prop="PersonName" label="测站编码"></el-table-column>
-          <el-table-column prop="IDCard" label="测站名称"></el-table-column>
-          <el-table-column prop="CorpName" label="测站类别"></el-table-column>
-          <el-table-column prop="SpecialtyTypeName" label="测站等级" ></el-table-column>
-          <el-table-column prop="Zhuanye" label="管理单位"></el-table-column>
-          <el-table-column prop="EndDate" label="测站位置（经纬度）"></el-table-column>
-          <el-table-column prop="CertNum" label="监测单位"></el-table-column>
-          <el-table-column prop="PublishDateTime" label="检测频次"></el-table-column>
-          <el-table-column prop="Nat" label="备注"></el-table-column>
+          <el-table-column prop="PersonName" label="湖泊编码" min-width="100"></el-table-column>
+          <el-table-column prop="IDCard" label="湖泊名称" min-width="100"></el-table-column>
+          <el-table-column prop="CorpName" label="湖泊名备注" min-width="130"></el-table-column>
+          <el-table-column prop="SpecialtyTypeName" label="水面面积（km²）" min-width="150"></el-table-column>
+          <el-table-column prop="Zhuanye" label="咸淡水属性" min-width="150"></el-table-column>
+          <el-table-column prop="EndDate" label="平均水深（m）" min-width="150"></el-table-column>
+          <el-table-column prop="CertNum" label="最大水深（m）" min-width="150"></el-table-column>
+          <el-table-column prop="PublishDateTime" label="湖泊容积（m³）" min-width="150"></el-table-column>
+          <el-table-column prop="Nat" label="备注" min-width="80"></el-table-column>
         </el-table>
       </div>
+      <!-- 水文测站 -->
       <div class="table" v-if="TapType == '5'">
         <el-table
           :data="outsideData"
@@ -110,18 +115,18 @@
           style="background-color: transparent;"
           height="600"
         >
-          <el-table-column label="序号" type="index" width="50">
+          <el-table-column label="序号" type="index" min-width="50">
             <template slot-scope="scope">{{scope.$index+(pageIndex - 1) * pageSize + 1}}</template>
           </el-table-column>
-          <el-table-column prop="PersonName" label="测站编码"></el-table-column>
-          <el-table-column prop="IDCard" label="测站名称"></el-table-column>
-          <el-table-column prop="CorpName" label="测站类别"></el-table-column>
-          <el-table-column prop="SpecialtyTypeName" label="测站等级" ></el-table-column>
-          <el-table-column prop="Zhuanye" label="管理单位"></el-table-column>
-          <el-table-column prop="EndDate" label="测站位置（经纬度）"></el-table-column>
-          <el-table-column prop="CertNum" label="监测单位"></el-table-column>
-          <el-table-column prop="PublishDateTime" label="检测频次"></el-table-column>
-          <el-table-column prop="Nat" label="备注"></el-table-column>
+          <el-table-column prop="PersonName" label="测站编码" min-width="100"></el-table-column>
+          <el-table-column prop="IDCard" label="测站名称" min-width="100"></el-table-column>
+          <el-table-column prop="CorpName" label="测站类别" min-width="100"></el-table-column>
+          <el-table-column prop="SpecialtyTypeName" label="所在地" min-width="80"></el-table-column>
+          <el-table-column prop="Zhuanye" label="测站岸别" min-width="100"></el-table-column>
+          <el-table-column prop="EndDate" label="水流流向" min-width="100"></el-table-column>
+          <el-table-column prop="CertNum" label="设站年月" min-width="100"></el-table-column>
+          <el-table-column prop="PublishDateTime" label="运行状况" min-width="100"></el-table-column>
+          <el-table-column prop="Nat" label="备注" min-width="80"></el-table-column>
         </el-table>
       </div>
       <div class="pages">
