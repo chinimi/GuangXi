@@ -236,7 +236,7 @@ export default {
       target:'map',
       layers: [
         new ol.layer.Tile({
-          // source: new OSM()
+         // source: new OSM()
           source: new ol.source.OSM()
         }),
         new ol.layer.Tile({

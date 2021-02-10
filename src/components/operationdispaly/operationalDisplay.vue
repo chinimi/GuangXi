@@ -2040,6 +2040,8 @@
             var element;
             that.OverlayPopup=that.createPopupOverlay();
             element= that.OverlayPopup.getElement();
+
+            
             element.innerHTML=that.GetPopupContent(features);
 
             that.OverlayPopup.setPosition(features[0].getGeometry().getCoordinates());

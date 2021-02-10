@@ -24,7 +24,7 @@
           </el-row>
         </div>
         <!--划分河段依据-->
-        <div style="width: 100%;padding-left:20px;">
+        <div style="width: 110%;padding-left:20px;">
          <el-radio-group  v-model="cursysval">
             <el-col :span="5" v-for="product in curWaterSysOption"   :key="product.value">
               <el-radio :label="product.value">{{product.label}}</el-radio>
@@ -33,7 +33,7 @@
         </div>
         <!--河长制-->
         <!--省-->
-        <div class="singleli_title"    v-if="cursysval=='longriver'">
+        <!-- <div class="singleli_title"    v-if="cursysval=='longriver'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -53,9 +53,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--市-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='longriver'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -75,9 +75,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--县-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='longriver'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -97,9 +97,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--镇-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='longriver'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -119,9 +119,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--村-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='longriver'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -141,13 +141,13 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--河长制  over-->
 
 
         <!--流域水系-->
         <!--流域-->
-        <div class="singleli_title"  v-if="cursysval=='river'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -167,9 +167,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--水系-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -189,9 +189,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--一级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -211,9 +211,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--二级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -233,9 +233,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--三级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -257,7 +257,7 @@
           </el-row>
         </div>
         <!--四级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'"  >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'"  >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -277,9 +277,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--五级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -299,9 +299,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> --> 
         <!--六级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -321,13 +321,13 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--流域水系  over-->
 
         <!--水资源分区-->
         <!--1级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
+        <!--<div class="singleli_title" v-if="cursysval=='watersource'">
+           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
                 一级分区：
@@ -345,11 +345,11 @@
                 </el-select>
               </div>
             </el-col>
-          </el-row>
-        </div>
+          </el-row> 
+        </div>-->
         <!--2级-->
-        <div class="singleli_title"  v-if="cursysval=='watersource'">
-          <el-row>
+       <!-- <div class="singleli_title"  v-if="cursysval=='watersource'">
+           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
                 二级分区：
@@ -367,11 +367,11 @@
                 </el-select>
               </div>
             </el-col>
-          </el-row>
-        </div>
+          </el-row> 
+        </div> -->
         <!--3级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
+        <!--<div class="singleli_title" v-if="cursysval=='watersource'">
+           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
                 三级分区：
@@ -389,11 +389,11 @@
                 </el-select>
               </div>
             </el-col>
-          </el-row>
-        </div>
+          </el-row> 
+        </div>-->
         <!--4级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
+       <!-- <div class="singleli_title" v-if="cursysval=='watersource'">
+          <!-- <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
                 四级分区：
@@ -411,8 +411,8 @@
                 </el-select>
               </div>
             </el-col>
-          </el-row>
-        </div>
+          </el-row> 
+        </div>-->
         <!--测站级别-->
        <!-- <div class="singleli_title" v-if="cursysval=='watersource'">
           <el-row>
@@ -481,10 +481,9 @@
         </div>-->
         <!--水资源分区 over-->
 
-
         <!--行政区-->
         <!--省-->
-        <div class="singleli_title"    v-if="cursysval=='distriction'">
+        <!-- <div class="singleli_title"    v-if="cursysval=='distriction'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -504,9 +503,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--市-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='distriction'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -526,9 +525,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--县-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='distriction'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -548,9 +547,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--镇-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='distriction'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -570,9 +569,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--村-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
+        <!-- <div class="singleli_title"  v-if="cursysval=='distriction'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -592,7 +591,7 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--行政区 over-->
 
 
@@ -620,8 +619,6 @@
             </el-col>
           </el-row>
         </div>
-
-
 
 <!--        <div style="margin-left:20px;">-->
 <!--          &lt;!&ndash;时间段选择&ndash;&gt;-->
@@ -666,8 +663,8 @@
             <el-col :span="14" style="margin-left: -5%;">
               <el-date-picker
                 v-model="startTime"
-                format="yyyy-MM"
-                type="month"
+                format="yyyy"
+                type="year"
                 align="right"
                 size="mini"
                 placeholder="选择日期时间">
@@ -675,6 +672,28 @@
             </el-col>
           </el-row>
         </div>
+
+        <div class="singleli_title" >
+          <el-row>
+            <el-col :span="8">
+              <div class="sysfxTit">
+                评价时间：
+              </div>
+            </el-col>
+            <el-col :span="14" style="margin-left: -5%;">
+              <el-date-picker
+                v-model="endTime"
+                format="yyyy"
+                type="year"
+                align="right"
+                size="mini"
+                placeholder="选择日期时间">
+              </el-date-picker>
+            </el-col>
+          </el-row>
+        </div>
+
+
         <!--时间序列-->
         <div class="singleli_title" v-if="selectTimeType=='ordertime'">
           <el-row>
@@ -686,8 +705,8 @@
             <el-col :span="14" style="margin-left: -5%;">
               <el-date-picker
                 v-model="endTime"
-                format="yyyy-MM"
-                type="month"
+                format="yyyy"
+                type="year"
                 align="right"
                 size="mini"
                 placeholder="选择日期时间">
@@ -698,7 +717,7 @@
         <div class="singleli_title" >
           <el-row>
             <el-col :span="20" style="text-align: center">
-              <el-button @click="queryTableData">确定</el-button>
+               <el-button @click="queryTableData">查看评价结果</el-button>
             </el-col>
 
           </el-row>
@@ -718,7 +737,7 @@
               @selection-change="handleSelectionChange">
 
               <el-table-column
-
+              
                 label="准则层">
                 <template slot-scope="scope">
               <a  style='text-decoration:underline;color:#fff;cursor: pointer;'  @click="handleEdit(scope.$index, scope.row)">
@@ -855,9 +874,9 @@
             // pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
             pjbcOption:[{value:'year',label:'年'}],
             /*初始时间*/
-            startTime:'2015-07',
+            startTime:'2015',
             /*截至时间*/
-            endTime:'2015-08',
+            endTime:'2015',
             multipleSelection: [],//多选参数集合
             originData: [{
               id: 'llgcbycd',
@@ -1080,7 +1099,6 @@
           console.log(val)
           this.pageSize=val
           this.queryTableData()
-
         },
         handleCurrentChange(val) {
           console.log(`当前页: ${val}`);
@@ -1089,7 +1107,6 @@
           this.queryTableData()
         },
         queryTableData(){
-
          /* if(this.selectTimeType=="singletime"){
             if(this.startTime ){
               this.$message('请选择时间参数');
@@ -1102,136 +1119,131 @@
             }
           }*/
 
-          let checkstartTime = moment(this.startTime).format('YYYYMM');
-          let startyear = moment(this.startTime).format('YYYY');
-          let checkendTime = moment(this.endTime).format('YYYYMM');
-          let endyear = moment(this.endTime).format('YYYY');
-          let startMonth=checkstartTime.substring(checkstartTime.length-2)
-          let endMonth=checkendTime.substring(checkendTime.length-2)
-          console.log(parseInt(startMonth))
+        //   let checkstartTime = moment(this.startTime).format('YYYYMM');
+        //   let startyear = moment(this.startTime).format('YYYY');
+        //   let checkendTime = moment(this.endTime).format('YYYYMM');
+        //   let endyear = moment(this.endTime).format('YYYY');
+        //   let startMonth=checkstartTime.substring(checkstartTime.length-2)
+        //   let endMonth=checkendTime.substring(checkendTime.length-2)
+        //   console.log(parseInt(startMonth))
 
 
-          var str=""
-          var count=parseInt(endMonth)-parseInt(startMonth)
+        //   var str=""
+        //   var count=parseInt(endMonth)-parseInt(startMonth)
 
-          if (count-1>0){
-            for(var i=parseInt(startMonth)-1;i<count;i++)
-            {
-              var tmp=i+1;
-              tmp=tmp<10?String('0'+tmp):(tmp)
-              str=str+startyear+tmp+"-"
+        //   if (count-1>0){
+        //     for(var i=parseInt(startMonth)-1;i<count;i++)
+        //     {
+        //       var tmp=i+1;
+        //       tmp=tmp<10?String('0'+tmp):(tmp)
+        //       str=str+startyear+tmp+"-"
 
-            }
-          }else{
-            str=str+checkstartTime+'-'
-          }
+        //     }
+        //   }else{
+        //     str=str+checkstartTime+'-'
+        //   }
 
-          str=str+checkendTime
-          console.log(str)
+        //   str=str+checkendTime
+        //   console.log(str)
 
-          let tjsj=null;
-          if(this.selectTimeType=="singletime"){
-            tjsj=checkstartTime
-
-
-          }else{
-            tjsj=str
-          }
+        //   let tjsj=null;
+        //   if(this.selectTimeType=="singletime"){
+        //     tjsj=checkstartTime
 
 
-          /*1:获取参数*/
-          /*请求经纬度坐标点*/
-          var param=
-            {
-              "pageNum":this.currentPage,
-              "pageSize":this.pageSize,
-              "qzfs":this.qzfsval,// min max avg
-              "tjsj":tjsj
-            }
-          // var param={
-          //   "pageNum":"0",      // --当前页
-          //   "pageSize":"10",     //--一页显示数量
-          //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          //   "tjsj":"201507-201508"
-          // }
-          this.tableData=[]
-          /*矿化度请求*/
-        if(this.pjxmval=="khd") {
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-          /*http请求*/
-          this.$http.post(khdurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function(res) {
-            console.log(res)
-
-            this.tableData=res.body.data.pageResultList
-          }).catch(function(res){
+        //   }else{
+        //     tjsj=str
+        //   }
 
 
-          })
+        //   /*1:获取参数*/
+        //   /*请求经纬度坐标点*/
+        //   var param=
+        //     {
+        //       "pageNum":this.currentPage,
+        //       "pageSize":this.pageSize,
+        //       "qzfs":this.qzfsval,// min max avg
+        //       "tjsj":tjsj
+        //     }
+        //   // var param={
+        //   //   "pageNum":"0",      // --当前页
+        //   //   "pageSize":"10",     //--一页显示数量
+        //   //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+        //   //   "tjsj":"201507-201508"
+        //   // }
+        //   this.tableData=[]
+        //   /*矿化度请求*/
+        // if(this.pjxmval=="khd") {
+        //   let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+        //   /*http请求*/
+        //   this.$http.post(khdurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function(res) {
+        //     console.log(res)
+
+        //     this.tableData=res.body.data.pageResultList
+        //   }).catch(function(res){
 
 
-        }
-
-        /*水化学类型*/
-          if(this.pjxmval=="shxlx") {
-            let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
-            /*http请求*/
-            this.$http.post(chemistryurl, JSON.stringify( param), {
-              emulateJSON: true,
-            }).then(function (res) {
-              console.log(res)
-
-              this.tableData = res.body.data.pageResultList
-            }).catch(function (res) {
-
-              // alert("请求失败")
-            })
-
-          }
-
-          /*总硬度*/
-          if(this.pjxmval=="zyd") {
-            let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
-            /*http请求*/
-            this.$http.post(zydurl, JSON.stringify(param), {
-              emulateJSON: true,
-            }).then(function (res) {
-
-              console.log(res)
-
-              this.tableData = res.body.data.pageResultList
-            }).catch(function (res) {
-              console.log(res)
-
-            })
-
-          }
+        //   })
 
 
-          /*地表天然水*/
-          if(this.pjxmval=="dbtrs") {
+        // }
 
-            let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
-            /*http请求*/
-            this.$http.post(dbtrsurl, JSON.stringify(param), {
-              emulateJSON: true,
-            }).then(function (res) {
-              console.log(res)
-              this.tableData = res.body.data.pageResultList
-            }).catch(function (res) {
+        // /*水化学类型*/
+        //   if(this.pjxmval=="shxlx") {
+        //     let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
+        //     /*http请求*/
+        //     this.$http.post(chemistryurl, JSON.stringify( param), {
+        //       emulateJSON: true,
+        //     }).then(function (res) {
+        //       console.log(res)
+
+        //       this.tableData = res.body.data.pageResultList
+        //     }).catch(function (res) {
+
+        //       // alert("请求失败")
+        //     })
+
+        //   }
+
+        //   /*总硬度*/
+        //   if(this.pjxmval=="zyd") {
+        //     let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
+        //     /*http请求*/
+        //     this.$http.post(zydurl, JSON.stringify(param), {
+        //       emulateJSON: true,
+        //     }).then(function (res) {
+
+        //       console.log(res)
+
+        //       this.tableData = res.body.data.pageResultList
+        //     }).catch(function (res) {
+        //       console.log(res)
+
+        //     })
+
+        //   }
 
 
-            })
+        //   /*地表天然水*/
+        //   if(this.pjxmval=="dbtrs") {
 
-          }
+        //     let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
+        //     /*http请求*/
+        //     this.$http.post(dbtrsurl, JSON.stringify(param), {
+        //       emulateJSON: true,
+        //     }).then(function (res) {
+        //       console.log(res)
+        //       this.tableData = res.body.data.pageResultList
+        //     }).catch(function (res) {
 
 
+        //     })
 
+        //   }
 
-
-
-        }
+         }
       },
       watch:{
         cursysval(newValue){
@@ -1500,5 +1512,8 @@
   .el-date-table td.today span {
     color: #0085ba;
   }
+  
+  .divcss5-x5{ padding-bottom:5px; border-bottom:1px solid #0085ba}
+  .divcss5-x10{ padding-bottom:10px; border-bottom:1px solid #0085ba}
   /*table表格样式*/
 </style>
