@@ -43,48 +43,42 @@
 
           </div>
         </el-menu>
-
-
-
-
       </div>
       <!--table表格-->
       <div class="right_menu">
         <el-row style="color:#fff;padding-top:20px;">
           <el-col :span="20" ><p style="padding-left:30px;">水文水资源(HD)</p></el-col>
-          <el-col :span="2"> <el-button>保存</el-button></el-col>
+          <el-col :span="2"> <el-button @click="Savetable">保存</el-button></el-col>
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
         <el-row style="padding-top:20px;">
           <el-col :span="12">
-             <el-table   :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="weightData" height="calc( 100vh - 600px )" style="background-color: transparent;">
+             <el-table   :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="FD_table" height="calc( 100vh - 600px )" style="background-color: transparent;">
                <el-table-column  align="center" label="流量过程变异程度(FD)">
             <el-table-column
-              prop="stcd"
-              label="月份">
-              <template slot-scope="scope">
-                <el-input   v-model="scope.row.stcd" @blur="inputBlur"></el-input>
-              </template>
+              prop="Month"
+              label="月份"     
+              width="100">
             </el-table-column>
             <el-table-column
-              prop="stnm"
+              prop="PG_Mon_SC_qm"
               label="评估年实测月径流量(qm)">
               <template slot-scope="scope">
-                <el-input   v-model="scope.row.stnm" @blur="inputBlur"></el-input>
+                <el-input   v-model="scope.row.PG_Mon_SC_qm" @blur="inputBlur"></el-input>
               </template>
             </el-table-column>
             <el-table-column
-              prop="mndgMax"
+              prop="PG_Mon_TR_Qm"
               label="评估年天然月径流量(Qm)">
               <template slot-scope="scope">
-                <el-input   v-model="scope.row.mndgMax" @blur="inputBlur"></el-input>
+                <el-input   v-model="scope.row.PG_Mon_TR_Qm" @blur="inputBlur"></el-input>
               </template>
             </el-table-column>
             <el-table-column
-              prop="mndgType"
+              prop="PG_Mon_TR_Ou"
               label="评估天然月径流量年均值(Ou)">
               <template slot-scope="scope">
-                <el-input   v-model="scope.row.mndgType" @blur="inputBlur"></el-input>
+                <el-input   v-model="scope.row.PG_Mon_TR_Ou" @blur="inputBlur"></el-input>
               </template>
             </el-table-column>
            </el-table-column>
@@ -113,9 +107,7 @@
 
         <el-row   v-if="showhealthyTable">
           <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
-
             <el-table-column  align="center" label="流量过程变异程度(FD)">
-
               <el-table-column
                 prop="stcd"
                 label="参照系丰水期水量P25%">
@@ -230,6 +222,78 @@
   export default {
       data() {
           return {
+            // 来自后台传入也可以手动输入
+            tableValue:[],
+            FD_table:
+              [{
+            Month: '1月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          }, {
+            Month: '2月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          }, {
+            Month: '3月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          }, {
+            Month: '4月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '5月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '6月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '7月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '8月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '9月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '10月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '11月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          },
+          {
+            Month: '12月',
+            PG_Mon_SC_qm: '',
+            PG_Mon_TR_Qm: '',
+            PG_Mon_TR_Ou:'',
+          }],
             showhealthyTable:false,//健康流量表是否显示
             originData: [{
               id: 'llgcbycd',
@@ -453,7 +517,9 @@
 
             },
             /*权重配比*/
-            weightData:[],
+            weightData:[
+              
+            ],
           }
       },
       created() {
@@ -512,18 +578,35 @@
         },
 
         //点击单元格得到横纵坐标
-        handleCellClick(row, column, event, cell) {
+        handleCellClick(row, column, event, cell) {      
           this.tabRowIndex = row.index;
           this.tabColumnIndex = column.index;
-          this.tableValue.push(row);
+          this.tableValue.push(row);  
         },
         //数据中没有横纵坐标需要加上进行下一步判断
         getRowColumn({row, column, rowIndex, columnIndex}) {
+         // debugger
           row.index = rowIndex;
           column.index = columnIndex;
         },
         backAgo(){
           this.$router.push({name:'riverHealthy',params:{}});
+        },
+        Savetable(){
+          debugger
+          var arrList =[];
+          
+          this.FD_table.map(e =>{
+            var flag = this.tableValue.some(el =>{
+              if (e===el || JSON.stringfy(e)===JSON.stringfy(el)){
+                return arrList.push(e)
+              }
+            })
+          })
+          // var ss = this.scope.row.PG_Mon_SC_qm;
+          // var ssmon = this.scope.row.Month;
+          // var QM = this.scope.row.PG_Mon_TR_Qm;
+
         },
         checkSelectable(row,index){
           let flag = true;
