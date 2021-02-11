@@ -169,7 +169,7 @@ export default {
         children: 'children',
         label: 'label'
       },
-      value:0
+      value:5
     }
   },
   created() {
