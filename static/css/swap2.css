@@ -213,7 +213,7 @@ body {
   padding-left: 10px !important;
   color: #058cd0;
   border: 1px solid #058cd0;
-  background: #031823;
+  /*background: #031823;*/
   -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
   font-size: 16px !important;
