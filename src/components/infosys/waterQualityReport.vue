@@ -462,13 +462,15 @@
   .waterQualityReport .left_menu{
     width: 20%;
     height: calc( 100vh - 80px);
-    background: #031823;
+    background: #fff;
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     left: 0;
     border-right: #fff dashed 2px;
     border-left: #fff solid 1px;
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
   }
   .waterQualityReport  .right_menu{
     width: 80%;
@@ -519,7 +521,7 @@
     color:#ffffff !important;
   }
   .waterQualityReport >>>.el-pagination .el-select .el-input .el-input__inner{
-    color: #ffff;
+    /*color: #ffff;*/
   }
 
   >>>.el-main{

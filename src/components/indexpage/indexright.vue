@@ -230,8 +230,8 @@
   z-index: 9;
   height: calc(100vh - 184px);
   background-size: 100% 100%;
-  background: url("../../../static/images/right_tt.png") center center no-repeat;
 
+  background: #fff;
 }
 
 </style>
