@@ -121,12 +121,12 @@ body {
 }
 
 .content_table{
-  border:solid 1px  #01ddff;
+  /*border:solid 1px  #01ddff;*/
   margin-top: 10px;
 }
 
 .border-right{
-  border-right: solid 1px  #01ddff;;
+  /*border-right: solid 1px  #01ddff;;*/
 }
 .el-table th,  .el-table tr {
   background-color: transparent !important;

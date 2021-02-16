@@ -68,8 +68,56 @@
             </el-option>
           </el-select>
           </el-col>
+          <!--时间轴-->
+          <el-col :span="5">
 
-          <el-col :span="5"><span>时间控件</span></el-col>
+            <el-row>
+              <el-col :span="3">
+
+                <!--播放按钮-->
+                <div class="playbutton" @click="play">
+                  <i class="iconfont icon-zanting"  v-if="isTimerPlaying" ></i>
+                  <i class="iconfont icon-bofang1"  v-else ></i>
+                </div>
+
+              </el-col>
+              <el-col :span="20">
+                <!--进度条-->
+               <!-- <div class="progress__bar" >
+                  <div class="progress__current" :style="{ width : barWidth }" >
+
+                  </div>
+
+                </div>-->
+
+
+
+
+                <div class="Progress">
+                  <div class="jindu"
+                       :style="{
+	        width:jindu+'%',
+	    }">
+                  </div>
+                  <div class="ball"
+                       :style="{
+	        left:jindu+'%',
+	    }">
+                  </div>
+                </div>
+
+              </el-col>
+
+
+            </el-row>
+
+
+
+
+
+
+          </el-col>
+          <!--时间轴  over-->
 
 
           <el-col :span="2"><span>当前播放时间:</span></el-col>
@@ -216,11 +264,11 @@
 
       </div>
 
-      <!--echart表-->
-      <div class="chartPanel">
+      <!--echart表  动态收缩弹窗-->
+      <div   ref='transitionChart' class="chartPanel">
+        <div class="trigger_btn"  @click="transitionChartPanel" ></div>
         <el-row>
           <el-col :span="8">
-
             <el-select v-model="value" placeholder="请选择">
               <el-option-group
                 v-for="group in options"
@@ -259,17 +307,11 @@
 
           <!--创建echart表-->
 <!--          <button @click="createChart">创建echart表</button>-->
-
-
-        </el-row>
-        <div ref="firstchart"  class='firstchart' >
-
-        </div>
-        <div ref="secondchart"  class='firstchart'>
-
-        </div>
-
-
+          </el-row>
+          <div ref="firstchart"  class='firstchart' >
+          </div>
+          <div ref="secondchart"  class='firstchart'>
+          </div>
       </div>
 
 
@@ -305,6 +347,67 @@
   export default {
       data(){
           return {
+            jindu:0,
+            percentage:0,
+            clearInt:null,
+            /*时间轴参数*/
+            timer:null,
+            barWidth: null,
+            duration: null,
+            totalDuration:30,//设置多久走完所有进度条时间
+            currentTime: null,//当前播放时间
+            eachDuration:null,//每一步长走的时间
+            currentIndex:0,//当前播放第几个产品
+            isTimerPlaying: false,//暂停
+            tracks: [//时间轴切换图层
+              {
+                name: "layer1",
+                artist: "Leonard Cohen",
+                cover: "../t1.png",
+                source: "../jq22.mp3",
+                url: "#",
+                favorited: true
+              },
+              {
+                name: "layer2",
+                artist: "Norm Ender",
+                cover: "../t2.png",
+                source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
+                url: "#",
+                favorited: false
+              },
+              {
+                name: "layer3",
+                artist: "Norm Ender",
+                cover: "../t2.png",
+                source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
+                url: "#",
+                favorited: false
+              },
+              {
+                name: "layer4",
+                artist: "Norm Ender",
+                cover: "../t2.png",
+                source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
+                url: "#",
+                favorited: false
+              },
+              {
+                name: "layer5",
+                artist: "Norm Ender",
+                cover: "../t2.png",
+                source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
+                url: "#",
+                favorited: false
+              }
+
+            ],
+
+
+            /*时间轴参数over*/
+
+
+            chartaPanelFlag:false,//判断echart展开折叠参数
             currentPlayTime:'',//当前播放时间
             startTime:'',
             menulist: menulist,
@@ -506,7 +609,9 @@
         this.startTime=moment().utc(8).format("YYYY-MM-DD hh:mm")//注意时间格式
         this.currentPlayTime=this.startTime//初始化当前播放时间
 
-      this.createChart()
+        this.createChart()
+
+        // this.progress();
 
 
       },
@@ -517,6 +622,84 @@
 
       },
       methods: {
+        /*时间轴功能*/
+        play(){
+          if (this.isTimerPlaying) {
+            this.isTimerPlaying = false;
+            this.stop()
+          } else {
+            this.isTimerPlaying = true;
+            this.progress()
+          }
+
+
+        },
+        clickProgress(){
+
+
+
+        },
+        generateTime(){
+          debugger
+
+          let vm=this
+          let width = (100 / this.tracks.length)*this.currentIndex
+          console.log(width)//步长
+          this.barWidth = width + "%";
+          this.circleLeft = width + "%";
+          this.eachDuration=this.totalDuration/this.tracks.length
+          this.timer=setInterval(function(){
+            vm.currentIndex++
+            console.log(vm.currentIndex)
+            let percentage= width* vm.currentIndex
+            if (percentage > 100) {
+              percentage = 100;
+            }
+            if (percentage < 0) {
+              percentage = 0;
+            }
+            vm.barWidth= percentage + "%";
+            vm.circleLeft = percentage + "%";
+
+            console.log(   vm.barWidth )
+
+          },this.eachDuration)
+
+
+        },
+        /*进度条*/
+        progress(){
+          let _this=this;
+          _this.clearInt=setInterval(function(){
+            _this.jindu++;
+            if(_this.jindu==100){
+              clearInterval(_this.clearInt);
+            }
+          },3000/5);
+        },
+        stop(){
+          clearInterval(this.clearInt);
+        },
+
+
+        /*时间轴功能*/
+
+
+
+        transitionChartPanel(){
+          if(this.chartaPanelFlag){
+
+            this.$refs.transitionChart.style.top = 'calc(100vh - 400px)'
+            this.chartaPanelFlag=false
+          }else{
+
+            this.$refs.transitionChart.style.top = 'calc(100vh - 80px)'
+            this.chartaPanelFlag=true
+
+          }
+
+
+        },
         createChart(){
 
         /*  this.chart1 = this.$echarts.init(document.getElementById('firstchart'))
@@ -922,7 +1105,17 @@
 
   }
   /*echart表*/
+.trigger_btn{
+  cursor:pointer;
+  width: 100px;
+  height: 30px;
+  border: solid 1px purple;
+  position: absolute;
+  top: -32px;
+  left: 232px;
+  background: #fff;
 
+}
   .chartPanel{
     width: 40%;
     position: absolute;
@@ -980,6 +1173,55 @@
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  /*时间轴样式*/
+
+  .progress__bar {
+    height: 6px;
+    width: 90%;
+    cursor: pointer;
+    background-color: #d0d8e6;
+    display: inline-block;
+    border-radius: 10px;
+  }
+  .progress__current {
+    height: inherit;
+    width: 0%;
+    background-color: #a3b3ce;
+    border-radius: 10px;
+  }
+  .playbutton{
+    padding-left:7px;
+
+
+  }
+  /*时间轴样式over*/
+  .Progress {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin: 0 auto;
+    /*margin-top: 50px;*/
+    border: 1px solid gray;
+    box-shadow: -1px -1px 1px #000;
+    background: rgb(177, 174, 174);
+  }
+  .jindu{
+
+    height: 100%;
+    background: #3165c5;
+    overflow: hidden;
+  }
+  .ball{
+    position: absolute;
+    top: 0;
+  left:0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3165c5;
+    overflow: hidden;
   }
 
 

@@ -1,45 +1,49 @@
 <template>
   <div  id="index_right">
-    <div class="index_right_model">
-      <div class="model_title">
-        <span>实时水情</span>
-      </div>
+    <div class="r_module_title">
+      <span>实时水情</span>
+    </div>
 
-      <div class="model_content">
-        <el-row  class="first_line">
+
+
+      <div class="r_model_content">
+        <el-row  class="th_bg">
         <el-col :span="4" >站名</el-col>
-        <el-col :span="10" > 时间</el-col>
-        <el-col :span="5" >水位（m）</el-col>
-        <el-col :span="5" >流量(m3)</el-col>
+        <el-col :span="7" > 时间</el-col>
+        <el-col :span="7" >水位（m）</el-col>
+        <el-col :span="6" >流量(m3)</el-col>
         </el-row>
 
+        <!--table表格-->
+
         <div  class="content_table">
-          <el-row  class="first_line">
+          <el-row     class="on">
             <el-col :span="4" class="border-right">田东</el-col>
             <el-col :span="12" class="border-right">2021-01-03  </el-col>
             <el-col :span="4" class="border-right">30</el-col>
             <el-col :span="4" class="border-right">5000</el-col>
           </el-row>
-          <el-row  class="first_line">
+          <el-row  class="off">
             <el-col :span="4"   class="border-right" >隆安</el-col>
             <el-col :span="12"  class="border-right">2021-01-03  </el-col>
             <el-col :span="4"   class="border-right">35</el-col>
             <el-col :span="4"   class="border-right">4563</el-col>
           </el-row>
-          <el-row  class="first_line">
+          <el-row    class="on">
             <el-col :span="4"  class="border-right">太平</el-col>
             <el-col :span="12" class="border-right">2021-01-03</el-col>
             <el-col :span="4"  class="border-right">44</el-col>
             <el-col :span="4"  class="border-right">2564</el-col>
           </el-row>
-          <el-row  class="first_line">
+          <el-row    class="off">
             <el-col :span="4"  class="border-right" >英竹</el-col>
             <el-col :span="12" class="border-right">2021-01-03 </el-col>
             <el-col :span="4"  class="border-right">35.3</el-col>
             <el-col :span="4"  class="border-right">2235</el-col>
           </el-row>
 
-          <el-row  class="first_line">
+          <!--循环 奇数偶数行样式不一致  -->
+          <el-row   class="on">
             <el-col :span="4"  class="border-right" >东华</el-col>
             <el-col :span="12" class="border-right">2021-01-03  </el-col>
             <el-col :span="4"  class="border-right">44</el-col>
@@ -55,12 +59,12 @@
 
       <!--2-->
 
-      <div class="model_title">
+      <div class="r_module_title">
         <span>实时水质</span>
       </div>
 
-      <div class="model_content">
-        <el-row  class="first_line">
+      <div class="r_model_content">
+        <el-row  class="th_bg">
           <el-col :span="6" >河流</el-col>
           <el-col :span="12" > 站点名称</el-col>
           <el-col :span="6" >水质类别</el-col>
@@ -68,28 +72,28 @@
         </el-row>
 
         <div  class="content_table">
-          <el-row  class="first_line">
+          <el-row  class="on">
             <el-col :span="6" class="border-right">郁江</el-col>
             <el-col :span="12" class="border-right">田东</el-col>
             <el-col :span="6" class="border-right">Ⅲ</el-col>
           </el-row>
 
-          <el-row  class="first_line">
+          <el-row  class="off">
             <el-col :span="6" class="border-right">郁江</el-col>
             <el-col :span="12" class="border-right">隆安</el-col>
             <el-col :span="6" class="border-right">Ⅲ</el-col>
           </el-row>
-          <el-row  class="first_line">
+          <el-row  class="on">
             <el-col :span="6" class="border-right">郁江</el-col>
             <el-col :span="12" class="border-right">太平</el-col>
             <el-col :span="6" class="border-right">Ⅲ</el-col>
           </el-row>
-          <el-row  class="first_line">
+          <el-row  class="off">
             <el-col :span="6" class="border-right">英竹河</el-col>
             <el-col :span="12" class="border-right">英竹</el-col>
             <el-col :span="6" class="border-right">Ⅲ</el-col>
           </el-row>
-          <el-row  class="first_line">
+          <el-row  class="on">
             <el-col :span="6" class="border-right">秦川河</el-col>
             <el-col :span="12" class="border-right">东华</el-col>
             <el-col :span="6" class="border-right">Ⅲ</el-col>
@@ -103,11 +107,11 @@
 
       <!--3:-->
 
-      <div class="model_title">
+      <div class="r_module_title">
         <span>水质报告</span>
       </div>
 
-      <div class="model_content">
+      <div class="r_model_content">
 <!--        <el-row  class="first_line">-->
 <!--          <el-col :span="5" >站名</el-col>-->
 <!--          <el-col :span="9" > 时间</el-col>-->
@@ -116,7 +120,7 @@
 <!--        </el-row>-->
 
         <div   >
-          <el-row  class="first_line">
+          <el-row  class="lion">
             <el-col :span="20">
               2020年桂江流域水质报告54期(20201205)
             </el-col>
@@ -125,7 +129,7 @@
             </el-col>
           </el-row>
 
-          <el-row  class="first_line">
+          <el-row  class="lioff">
             <el-col :span="20">
               2020年桂江流域水质报告53期(20201201)
             </el-col>
@@ -134,7 +138,7 @@
             </el-col>
           </el-row>
 
-          <el-row  class="first_line">
+          <el-row  class="lion">
             <el-col :span="20">
               2020邕江流域水质报告54期(20201205)
             </el-col>
@@ -143,7 +147,7 @@
             </el-col>
           </el-row>
 
-          <el-row  class="first_line">
+          <el-row  class="lioff">
             <el-col :span="20">
               2020年邕江流域水质报告53期(20201201)
             </el-col>
@@ -158,7 +162,7 @@
 
       </div>
 
-    </div>
+
 
 
   </div>
@@ -228,10 +232,55 @@
   top: 74px;
   right: 10px;
   z-index: 9;
-  height: calc(100vh - 184px);
+  height: calc(100vh - 300px);
   background-size: 100% 100%;
-
   background: #fff;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(22 119 255);
+  box-shadow: 0px 0px 4px 0px rgb(22 119 255);
 }
 
+.th_bg{
+  font-size:16px;
+  background: #caebff;
+  color: #235d9a;
+  font-weight: 900;
+}
+.r_module_title{
+  font-weight: 800;
+  color: #fff;
+ border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
+  background: #457ff5;
+  line-height: 39px;
+  padding-left: 19px;
+  font-size: 16px;
+  border-bottom: solid 1px #01c3e4;
+
+}
+
+  .r_model_content{
+    color: #7b7e7f;
+    width:90%;
+    margin:5px auto;
+
+  }
+  .on {
+    background: #f5f5f5;
+  }
+  .off {
+    background: #fefdff;
+  }
+
+  .lion{
+    cursor: pointer;
+    padding: 5px 0px;
+    background: #fff;
+  }
+
+  .lioff{
+    cursor: pointer;
+    padding: 5px 0px;
+    background: #eaf7ff;
+  }
 </style>

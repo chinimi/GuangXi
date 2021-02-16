@@ -9,7 +9,7 @@
             <span>水质专题</span>
           </div>
           <!--内容部分-->
-          <div class="analyze_content">
+          <div class="analyze_content"  style="overflow-y: auto;">
             <ul >
               <li
                 v-for="item  in subjectProducts"
@@ -2041,7 +2041,7 @@
             that.OverlayPopup=that.createPopupOverlay();
             element= that.OverlayPopup.getElement();
 
-            
+
             element.innerHTML=that.GetPopupContent(features);
 
             that.OverlayPopup.setPosition(features[0].getGeometry().getCoordinates());
@@ -2089,7 +2089,7 @@
 }
 #associativeOperate{
   width: 30%;
-  background: rgba(21,37,63,0.86);
+  background: #fff;
   /*width:800px;*/
   height:calc( 100vh - 290px);
   -webkit-box-shadow: 0 0 2px #1e88ef, 0 0 12px #1e88ef;
@@ -2102,9 +2102,11 @@
 .associateRight{
   border-right:dashed 1px rgba(255,249,229,0.5);
   padding:0;
+  overflow: hidden;
  }
 .associateLeft{
   padding:0;
+  overflow: hidden;
 }
 
 #associativeOperate .singleli_title {
@@ -2118,7 +2120,7 @@
 }
 
 #associativeOperate .singleli_title .sysfxTit {
-  color: #fff;
+  color: #333;
   letter-spacing: 1px;
   font-size: 13px;
 }
@@ -2140,15 +2142,16 @@
   }
   >>>.el-input__inner {
     padding-left: 30px;
-    color: #058cd0;
-    border: 1px solid #058cd0;
-    background: #031823;
-    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    color: #333;
+    border: 1px solid #ccc;
+    /*background: #031823;*/
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     font-size: 14px;
     height: 30px ;
 
-}
+
+  }
   >>>.el-pagination__total{
     color:#ffffff !important;
   }
@@ -2167,19 +2170,20 @@
     color: #fff;
     border-color: #3a8ee6;
     outline: 0;
-    background: rgba(21,37,63,0.86);
+    background: #1677ff;
   }
   >>>.el-button:focus, .el-button:hover {
     color: #fff;
     border-color: #c6e2ff;
-    background-color: rgba(21,37,63,0.86);
+    /*background-color: rgba(21,37,63,0.86);*/
+    background: #1677ff;
   }
 
   >>>.el-radio-group{
     width:100%;
   }
   >>>.el-radio {
-    color: #fff;
+    color: #333;
   }
   >>>.el-date-editor.el-input, .el-date-editor.el-input__inner {
     width:100%;
@@ -2189,23 +2193,24 @@
   }
 
   >>>.el-radio__label {
+    color: #333;
   font-size: 14px;
   padding-left: 4px;
 }
 /* 滚动样式修改*/
 >>> ::-webkit-scrollbar {
-  background-color: transparent !important;
-  height: 0 !important;
-  width: 0 !important;
+  /*background-color: transparent !important;*/
+  /*height: 0 !important;*/
+  /*width: 0 !important;*/
 }
 
 >>> ::-webkit-scrollbar-thumb {
-  background-color: transparent !important;
+  /*background-color: transparent !important;*/
 }
 
 /* 修改边框颜色*/
 >>> ::-webkit-scrollbar-thumb {
-  background-color: transparent !important;
+  /*background-color: transparent !important;*/
 }
 >>>.el-container{
   height: 100%;
@@ -2213,7 +2218,7 @@
 
 .sliderClass{
   cursor: pointer;
-  color: #fff;
+  /*color: #fff;*/
   list-style: none;
   font-size: 15px;
   line-height: 30px;
@@ -2222,7 +2227,7 @@
 }
 .activeLi{
   /*background-color: #ffdb61 !important;*/
-  color: #ffdb61 !important;
+  color: #2784ff !important;
   /*border: 1px solid #d49500!important;*/
 }
 /*middle part*/
@@ -2247,7 +2252,6 @@
   .analyze_content{
     width:98%;
     height: calc(100% - 30px);
-    overflow-y: auto;
     margin:0 auto;
 
   }
@@ -2255,7 +2259,7 @@
     padding-left:20px;
     line-height: 30px;
     color:#fff;
-    background: #042c64;
+    background: #2784ff;
     text-align: left;
     font-weight: 700;
   }
@@ -2276,44 +2280,5 @@
 
 
 </style>
-<!--<style>
-  .environmentFeaturePopup{
-    background: #252424d1 !important;
-    font-size: 13px;
-    font-family: sans-serif;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    padding-left: 20px;
-    border-radius: 10px;
-    border: 2px solid #24948b;
-    width: 200px;
-    color: #dcdbdb;
-    height: 180px;
-    overflow-y: auto;
-  }
-  .environmentFeaturePopup .Popup_p{
-    float:left;
-    display:block;
-    width:150px;
-    line-height: 25px;
-    /*height: 25px;*/
-    padding: 0;
-    margin: 0;
-    font-weight: lighter;
-    font-size: 12px;
-  }
-  .environmentFeaturePopup .Popup_p_title{
-    display:block;
-    padding:5px 0;
-    color:#00fbfb;
-    text-align: center;
-    font-size:15px;
-  }
-  .environmentFeaturePopup .Popup_span{
-    font-weight: 500;
 
-
-
-  }
-</style>-->
 
