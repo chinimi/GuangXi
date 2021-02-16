@@ -1,6 +1,8 @@
 <template>
     <div  id="groundWater">
       <div class="left_menu">
+
+        <p style="padding-left:10px;font-size:20px; ">河段选择</p>
         <el-menu
           :router="false"
           class="el-menu-vertical-demo"
@@ -8,9 +10,7 @@
           @close="handleClose"
           @select="handleSelect"
           :default-openeds="openeds"
-          background-color="rgba(21,37,63,0.86)"
-          text-color="#fff"
-          active-text-color="#018faf">
+         >
           <div  v-for="(item,index) in menulist" :key="index">
             <!--一级菜单（没有任何子级菜单）-->
             <el-menu-item  :index="item.path"  v-if="!item.children">
@@ -53,11 +53,11 @@
         </el-row>
         <el-row style="padding-top:20px;">
           <el-col :span="12">
-             <el-table   :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="FD_table" height="calc( 100vh - 600px )" style="background-color: transparent;">
+             <el-table  :span-method="objectSpanMethod" :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="FD_table" height="calc( 100vh - 600px )" style="background-color: transparent;">
                <el-table-column  align="center" label="流量过程变异程度(FD)">
             <el-table-column
               prop="Month"
-              label="月份"     
+              label="月份"
               width="100">
             </el-table-column>
             <el-table-column
@@ -155,12 +155,7 @@
 
             </el-table-column>
           </el-table>
-
-
-
         </el-row>
-
-
 
         <el-row v-if="showhealthyTable">
           <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
@@ -196,10 +191,11 @@
 
 <script>
 
-  var menulist =[
-    /*一级菜单*/
+
+  /*var menulist =[
+    /!*一级菜单*!/
     {
-      /*切换对应组件*/
+      /!*切换对应组件*!/
       "authName": "河段选择",
       id:'zxpjfxmodelpart',
       path:'zxpjfxmodelpart',
@@ -216,6 +212,23 @@
 
       ]
     }
+  ]*/
+
+  var menulist =[
+    /*一级菜单*/
+
+
+        { "authName": "桂江上游兴安源头段" ,id:'syxaytd',path:'syxaytd'},
+        { "authName": "桂江上游桂林城区段",id:'syglcqd',path:'syglcqd'},
+        { "authName": "桂江中游桂林景观段",id:'zygljgd',path:'zygljgd'},
+        { "authName": "桂江中游阳朔开发利用段",id:'zyyskflyd',path:'zyyskflyd' },
+        { "authName": "桂江中游昭平保留段",id:'zyzpbld',path:'zyzpbld' },
+        { "authName": "挂江下游昭平保留段",id:'xyzpbld',path:'xyzpbld' },
+        { "authName": "桂江下游苍梧保留段",id:'xycwbld',path:'xycwbld' },
+        { "authName": "恭城河开发利用段",id:'gchkflyd',path:'gchkflyd' },
+        { "authName": "荔浦河开发利用段",id:'lphkflyd',path:'lphkflyd'},
+
+
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
@@ -227,72 +240,72 @@
             FD_table:
               [{
             Month: '1月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '15',
+            PG_Mon_TR_Qm: '14',
+            PG_Mon_TR_Ou:'20.5',
           }, {
             Month: '2月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '16',
+            PG_Mon_TR_Qm: '15',
+            PG_Mon_TR_Ou:'20.5',
           }, {
             Month: '3月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '17',
+            PG_Mon_TR_Qm: '15',
+            PG_Mon_TR_Ou:'20.5',
           }, {
             Month: '4月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '18',
+            PG_Mon_TR_Qm: '19',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '5月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '19',
+            PG_Mon_TR_Qm: '20',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '6月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '20',
+            PG_Mon_TR_Qm: '19',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '7月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '21',
+            PG_Mon_TR_Qm: '15',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '8月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '22',
+            PG_Mon_TR_Qm: '28',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '9月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '23',
+            PG_Mon_TR_Qm: '22',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '10月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '24',
+            PG_Mon_TR_Qm: '30',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '11月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '25',
+            PG_Mon_TR_Qm: '24',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '12月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '26',
+            PG_Mon_TR_Qm: '25',
+            PG_Mon_TR_Ou:'20.5',
           }],
             showhealthyTable:false,//健康流量表是否显示
             originData: [{
@@ -518,7 +531,7 @@
             },
             /*权重配比*/
             weightData:[
-              
+
             ],
           }
       },
@@ -578,10 +591,10 @@
         },
 
         //点击单元格得到横纵坐标
-        handleCellClick(row, column, event, cell) {      
+        handleCellClick(row, column, event, cell) {
           this.tabRowIndex = row.index;
           this.tabColumnIndex = column.index;
-          this.tableValue.push(row);  
+          this.tableValue.push(row);
         },
         //数据中没有横纵坐标需要加上进行下一步判断
         getRowColumn({row, column, rowIndex, columnIndex}) {
@@ -595,7 +608,7 @@
         Savetable(){
           debugger
           var arrList =[];
-          
+
           this.FD_table.map(e =>{
             var flag = this.tableValue.some(el =>{
               if (e===el || JSON.stringfy(e)===JSON.stringfy(el)){
@@ -603,9 +616,8 @@
               }
             })
           })
-          // var ss = this.scope.row.PG_Mon_SC_qm;
-          // var ssmon = this.scope.row.Month;
-          // var QM = this.scope.row.PG_Mon_TR_Qm;
+       
+        
 
         },
         checkSelectable(row,index){
@@ -626,9 +638,29 @@
 
         },
         // 传入element-table的合并方法
+
+
+        // 合并第四列所有相当数据的行  edit by smm
+      objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+        if (columnIndex === 3) {
+          if (rowIndex % 12 === 0) {
+            return {
+              rowspan: 1,
+              colspan: 1
+            };
+          } else {
+            return {
+              rowspan: 0,
+              colspan: 0
+            };
+          }
+        }
+      },
+
         mergeStratege ({ row, column, rowIndex, columnIndex }) {
           // 第一层判断控制从哪一列，或多少列合并，
-          if (columnIndex === 0) { // 此处表示第一列合并
+          //debugger
+          if (columnIndex === 3) { // 此处表示第三列合并
             // if (columnIndex < 2) { // 此处表示前两列合并
             if (row.isStartMerge) {
               return {
@@ -849,31 +881,34 @@
     background: #fff;
   }
   #groundWater .left_menu{
-    width: 15%;
+    background: #fff;
+    width: 20%;
     height: calc( 100vh - 80px);
-    background: #031823;
-    /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     left: 0;
     border-right: #fff dashed 2px;
     border-left: #fff solid 1px;
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
   }
   #groundWater  .right_menu{
-    width: 85%;
+    width: 80%;
     height: calc( 100vh - 80px);
-    background: #031823;
+    padding-top: 50px;
+    /*background: #031823;*/
+    background: #fff;
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     right: 0;
-    overflow-y: auto;
+
   }
 
   #groundWater .singleli_title {
     font-size: 13px;
     height: 35px;
-    line-height: 50px;
+    /*line-height: 50px;*/
     border-radius: 5px;
     font-weight: lighter;
     margin-left: 3%;
@@ -881,46 +916,34 @@
   }
 
   #groundWater .singleli_title .sysfxTit {
-    color: white;
+    color: #333;
     letter-spacing: 1px;
     font-size: 16px;
     /* text-align: right; */
     margin-right: 10px;
   }
-  #groundWater >>>.el-input__inner {
-    padding-left: 23px !important;
-    color: #058cd0;
-    border: 1px solid #058cd0;
-    background: #031823;
-    /*background: rgba(21,37,63,0.86);*/
-    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    font-size: 16px !important;
-    /* border-radius: 10px !important; */
-    /* border: 0px !important; */
-    height: 30px !important;
-     /*width: 190px !important;*/
-  }
+
   #groundWater >>>.el-pagination__total{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   #groundWater >>>.el-pagination__jump{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
-    color: #ffff;
+    /*color: #ffff;*/
   }
+
 
   >>>.el-main{
     padding:0;
   }
   >>>.el-input__inner {
     padding-left: 30px;
-    color: #058cd0;
-    border: 1px solid #058cd0;
-    background: #031823;
-    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    color: #333;
+    border: 1px solid #ccc;
+    /*background: #031823;*/
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     font-size: 14px;
     height: 30px ;
 
@@ -933,7 +956,6 @@
   }
   >>>.el-pagination .el-select .el-input .el-input__inner{
     color: #ffff;
-
   }
 
   >>>.el-button{
@@ -943,19 +965,20 @@
     color: #fff;
     border-color: #3a8ee6;
     outline: 0;
-    background: rgba(21,37,63,0.86);
+    background: #1677ff;
   }
   >>>.el-button:focus, .el-button:hover {
     color: #fff;
     border-color: #c6e2ff;
-    background-color: rgba(21,37,63,0.86);
+    /*background-color: rgba(21,37,63,0.86);*/
+    background: #1677ff;
   }
 
   >>>.el-radio-group{
     width:100%;
   }
   >>>.el-radio {
-    color: #fff;
+    color: #333;
   }
   >>>.el-date-editor.el-input, .el-date-editor.el-input__inner {
     width:86%;
@@ -965,6 +988,7 @@
   }
 
   >>>.el-radio__label {
+    color: #333;
     font-size: 14px;
     padding-left: 4px;
   }
@@ -986,10 +1010,7 @@
   >>>.el-container{
     height: 100%;
   }
- >>>.el-menu-item:focus, .el-menu-item:hover{
-   background: transparent!important;
-   color:#fff!important;
 
-  }
+
 
 </style>

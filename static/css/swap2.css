@@ -56,23 +56,21 @@ body {
 }*/
 /*通用样式文件*/
 .model_title{
+  font-weight: 800;
+
+  color: #fff;
+  border-top-left-radius:19px;
+  border-top-right-radius:19px;
+  background: #457ff5;
   line-height: 57px;
   padding-left: 19px;
   font-size: 16px;
   border-bottom:solid 1px   #01c3e4;
 }
 .index_model{
-  width: 231px;
-  /*border: solid 1px pink;*/
-  margin: 0 auto;
-  position: relative;
-  top: 23px;
-  color: #01ddff;
-}
-.model_title{
-  line-height: 57px;
-  padding-left: 10px;
-  font-size:16px;
+  width:90%;
+  margin:5px auto;
+
 }
 
 .clear {
@@ -89,10 +87,12 @@ body {
   clear: both;
   visibility: hidden;
 }
-.model_content{
-  font-size: 14px;
-  padding:15px 10px 10px 10px;
-  text-align: center;
+
+.clear{
+  clear: both;
+  font-size:0;
+  line-height: 0;
+  height: 0;
 }
 
 .second_line{
@@ -111,12 +111,12 @@ body {
 }
 
 .content_table{
-  border:solid 1px  #01ddff;
+  /*border:solid 1px  #01ddff;*/
   margin-top: 10px;
 }
 
 .border-right{
-  border-right: solid 1px  #01ddff;;
+  /*border-right: solid 1px  #01ddff;;*/
 }
 
  .el-table--enable-row-hover .el-table__body tr:hover>td {
@@ -136,7 +136,7 @@ body {
   color: #ffffff !important;
 }
  .el-pagination .el-select .el-input .el-input__inner {
-  color: #ffff;
+  /*color: #ffff;*/
 }
   .el-scrollbar__wrap{
     height: 100%!important;
@@ -155,7 +155,7 @@ body {
   background-color: #a1a3a9;
   border-radius: 3px;
 }
-  
+
 
 
 .el-checkbox{

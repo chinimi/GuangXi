@@ -1770,26 +1770,30 @@
 
 <style scoped>
   #groundWater{
-    margin:0;
-    padding:0;
-    background: #fff;
-  }
+     margin:0;
+     padding:0;
+     background: #fff;
+   }
   #groundWater .left_menu{
+    background: #fff;
     width: 20%;
     height: calc( 100vh - 80px);
-    background: #031823;
+    /*background: #031823;*/
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     left: 0;
     border-right: #fff dashed 2px;
     border-left: #fff solid 1px;
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
   }
   #groundWater  .right_menu{
     width: 80%;
     height: calc( 100vh - 80px);
     padding-top: 50px;
-    background: #031823;
+    /*background: #031823;*/
+    background: #fff;
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
@@ -1807,46 +1811,34 @@
   }
 
   #groundWater .singleli_title .sysfxTit {
-    color: white;
+    color: #333;
     letter-spacing: 1px;
     font-size: 16px;
     /* text-align: right; */
     margin-right: 10px;
   }
-  #groundWater >>>.el-input__inner {
-    padding-left: 24px !important;
-    color: #058cd0;
-    border: 1px solid #058cd0;
-    background: #031823;
-    /*background: rgba(21,37,63,0.86);*/
-    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    font-size: 16px !important;
-    /* border-radius: 10px !important; */
-    /* border: 0px !important; */
-    height: 30px !important;
-     /*width: 190px !important;*/
-  }
+
   #groundWater >>>.el-pagination__total{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   #groundWater >>>.el-pagination__jump{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
-    color: #ffff;
+    /*color: #ffff;*/
   }
+
 
   >>>.el-main{
     padding:0;
   }
   >>>.el-input__inner {
     padding-left: 30px;
-    color: #058cd0;
-    border: 1px solid #058cd0;
-    background: #031823;
-    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    color: #333;
+    border: 1px solid #ccc;
+    /*background: #031823;*/
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     font-size: 14px;
     height: 30px ;
 
@@ -1859,7 +1851,6 @@
   }
   >>>.el-pagination .el-select .el-input .el-input__inner{
     color: #ffff;
-
   }
 
   >>>.el-button{
@@ -1869,19 +1860,20 @@
     color: #fff;
     border-color: #3a8ee6;
     outline: 0;
-    background: rgba(21,37,63,0.86);
+    background: #1677ff;
   }
   >>>.el-button:focus, .el-button:hover {
     color: #fff;
     border-color: #c6e2ff;
-    background-color: rgba(21,37,63,0.86);
+    /*background-color: rgba(21,37,63,0.86);*/
+    background: #1677ff;
   }
 
   >>>.el-radio-group{
     width:100%;
   }
   >>>.el-radio {
-    color: #fff;
+    color: #333;
   }
   >>>.el-date-editor.el-input, .el-date-editor.el-input__inner {
     width:86%;
@@ -1891,6 +1883,7 @@
   }
 
   >>>.el-radio__label {
+    color: #333;
     font-size: 14px;
     padding-left: 4px;
   }
@@ -1912,10 +1905,11 @@
   >>>.el-container{
     height: 100%;
   }
- >>>.el-menu-item:focus, .el-menu-item:hover{
-   background: red!important;
-   color:#fff!important;
+  >>>.el-menu-item:focus, .el-menu-item:hover{
+    background: red!important;
+    color:#fff!important;
 
   }
+
 
 </style>
