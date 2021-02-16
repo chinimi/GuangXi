@@ -21,16 +21,43 @@
     <!-- 内容 -->
     <div class="content">
       <hydrological v-if="value == 4"></hydrological>
+      <waterResourceInformation v-if="value == 5"></waterResourceInformation>
+      <waterPollutionInformation v-if="value == 6"></waterPollutionInformation>
+      <waterEnvironmentInformation v-if="value == 7"></waterEnvironmentInformation>
+      <waterEcologicalInformation v-if="value == 8"></waterEcologicalInformation>
+      <nationalExaminationWaterQualitySection v-if="value == 9"></nationalExaminationWaterQualitySection>
+      <provincialExaminationWaterQualitySection v-if="value == 10"></provincialExaminationWaterQualitySection>
+      <rainfallMonitoringStation v-if="value == 11"></rainfallMonitoringStation>
+      <hydrologicalStation v-if="value == 12"></hydrologicalStation>
+      <waterQualityMonitoringStation></waterQualityMonitoringStation>
     </div>
   </div>
 </template>
 
 <script>
 import hydrological from '../infosys/administrative/hydrology.vue'
+import waterResourceInformation from '../infosys/administrative/waterResourceInformation.vue'
+import waterPollutionInformation from '../infosys/administrative/waterPollutionInformation.vue'
+import waterEnvironmentInformation from '../infosys/administrative/waterEnvironmentInformation.vue'
+import waterEcologicalInformation from '../infosys/administrative/waterEcologicalInformation.vue'
+import nationalExaminationWaterQualitySection from '../infosys/administrative/nationalExaminationWaterQualitySection.vue'
+import provincialExaminationWaterQualitySection from '../infosys/administrative/provincialExaminationWaterQualitySection.vue'
+import rainfallMonitoringStation from '../infosys/administrative/rainfallMonitoringStation.vue'
+import hydrologicalStation from '../infosys/administrative/hydrologicalStation.vue'
+import waterQualityMonitoringStation from '../infosys/administrative/waterQualityMonitoringStation.vue'
 export default {
   name:'administrative',
    components: {
-     hydrological
+     hydrological,
+     waterResourceInformation,
+     waterPollutionInformation,
+     waterEnvironmentInformation,
+     waterEcologicalInformation,
+     nationalExaminationWaterQualitySection,
+     provincialExaminationWaterQualitySection,
+     rainfallMonitoringStation,
+     hydrologicalStation,
+     waterQualityMonitoringStation
   },
   data() {
     return {
@@ -100,7 +127,7 @@ export default {
         children: 'children',
         label: 'label'
       },
-      value:0
+      value:4
     }
   },
   created() {

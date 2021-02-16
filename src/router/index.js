@@ -8,7 +8,7 @@ import groundWater from '../components/qualityclassfy/groundWater.vue'
 import changeWater from '../components/qualityclassfy/changeWater.vue'
 import drinkWater from '../components/qualityclassfy/drinkWater.vue'
 import environWater from '../components/qualityclassfy/environWater.vue'
-/*水质基础评价*/
+/**/
 import generalwaterevaluate from '../components/qualityclassfy/generalwaterevaluate.vue'
 
 /*江河湖库*/

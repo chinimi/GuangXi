@@ -67,16 +67,16 @@
           </el-row>
         </div>
         <!--水系参数-->
-        <div style="width: 100%;padding-left:20px;">
+        <div style="width: 100%;padding-left:20px;" >
           <!-- <el-checkbox-group v-model="pjbzval" @change="">
              <el-checkbox v-for="item in curWaterSysOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>
            </el-checkbox-group>-->
 
-          <el-radiohttp-group  v-model="cursysval">
+          <el-radio-group  v-model="cursysval">
             <el-col :span="5" v-for="product in curWaterSysOption"   :key="product.value">
-              <el-radio :label="product.value"   >{{product.label}}</el-radio>
+              <el-radio :label="product.value">{{product.label}}</el-radio>
             </el-col>
-          </el-radiohttp-group>
+          </el-radio-group>
         </div>
 
         <!--河长制-->
@@ -190,9 +190,6 @@
             </el-col>
           </el-row>
         </div>
-
-
-
         <!--流域水系-->
         <!--流域-->
         <div class="singleli_title"  v-if="cursysval=='river'">
@@ -371,10 +368,6 @@
           </el-row>
         </div>
         <!--流域水系  over-->
-
-
-
-
         <!--水资源分区-->
         <!--1级-->
         <div class="singleli_title" v-if="cursysval=='watersource'">
@@ -464,75 +457,8 @@
             </el-col>
           </el-row>
         </div>
-        <!--测站级别-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                测站级别：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--测站名称-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                测站名称：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--自定义-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                自定义：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="customdefine">
-                  <el-option
-                    v-for="(item, index) in customdefineList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
+
         <!--水资源分区 over-->
-
-
         <!--行政区-->
         <!--省-->
         <div class="singleli_title"    v-if="cursysval=='distriction'">
@@ -645,8 +571,6 @@
           </el-row>
         </div>
         <!--行政区 over-->
-
-
         <div style="margin-left:20px;">
           <!--时间段选择-->
           <div >
@@ -657,7 +581,6 @@
             </el-radio-group>
           </div>
         </div>
-
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -679,7 +602,6 @@
             </el-col>
           </el-row>
         </div>
-
         <div class="singleli_title" >
           <el-row>
             <el-col :span="8">
@@ -895,9 +817,9 @@
               value:'max',
             }],
             /*当前水系*/
-            cursysval:'river',
+            cursysval:'longriver',
             /*水系参数*/
-            curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
+            curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'水资源',value:'watersource'},{label:'流域',value:'river'},{label:'行政区',value:'distriction'}],
 
             // curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
             /*时间选择*/
@@ -1120,21 +1042,25 @@
     background: #fff;
   }
   #groundWater .left_menu{
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     width: 20%;
     height: calc( 100vh - 80px);
-    background: #031823;
+    background: #fff;
+    /*background: #031823;*/
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
     left: 0;
-    border-right: #fff dashed 2px;
-    border-left: #fff solid 1px;
+    border-right: rgb(22, 119, 255) solid 2px;
+    /*border-right: rgb(22, 119, 255) dashed 2px;*/
+    /*border-left: rgb(22, 119, 255) solid 1px;*/
   }
   #groundWater  .right_menu{
     width: 80%;
     height: calc( 100vh - 80px);
-
-    background: #031823;
+    background: #fff;
+    /*background: #031823;*/
     /*background: rgba(21, 37, 63,1);*/
     position: absolute;
     top: 0;
@@ -1153,26 +1079,13 @@
   }
 
   #groundWater .singleli_title .sysfxTit {
-    color: white;
+    color: #333;
     letter-spacing: 1px;
     font-size: 16px;
     /* text-align: right; */
     margin-right: 10px;
   }
-  #groundWater >>>.el-input__inner {
-    padding-left: 23px !important;
-    color: #058cd0;
-    border: 1px solid #058cd0;
-    background: #031823;
-    /*background: rgba(21,37,63,0.86);*/
-    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    font-size: 16px !important;
-    /* border-radius: 10px !important; */
-    /* border: 0px !important; */
-    height: 30px !important;
-     /*width: 190px !important;*/
-  }
+
   #groundWater >>>.el-pagination__total{
     color:#ffffff !important;
   }
@@ -1188,24 +1101,23 @@
   }
   >>>.el-input__inner {
     padding-left: 30px;
-    color: #058cd0;
-    border: 1px solid #058cd0;
-    background: #031823;
-    -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+    color: #333;
+    border: 1px solid #ccc;
+    /*background: #031823;*/
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     font-size: 14px;
     height: 30px ;
 
   }
   >>>.el-pagination__total{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   >>>.el-pagination__jump{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   >>>.el-pagination .el-select .el-input .el-input__inner{
-    color: #ffff;
-
+    /*color: #ffff;*/
   }
 
   >>>.el-button{
@@ -1215,19 +1127,20 @@
     color: #fff;
     border-color: #3a8ee6;
     outline: 0;
-    background: rgba(21,37,63,0.86);
+    background: #1677ff;
   }
   >>>.el-button:focus, .el-button:hover {
     color: #fff;
     border-color: #c6e2ff;
-    background-color: rgba(21,37,63,0.86);
+    /*background-color: rgba(21,37,63,0.86);*/
+    background: #1677ff;
   }
 
   >>>.el-radio-group{
     width:100%;
   }
   >>>.el-radio {
-    color: #fff;
+    color: #333;
   }
   >>>.el-date-editor.el-input, .el-date-editor.el-input__inner {
     width:86%;
@@ -1237,6 +1150,7 @@
   }
 
   >>>.el-radio__label {
+    color: #333;
     font-size: 14px;
     padding-left: 4px;
   }

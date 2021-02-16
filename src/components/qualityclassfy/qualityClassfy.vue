@@ -3,17 +3,13 @@
   <div  id="waterQuality" >
     <!--水质评价质量监测-->
       <!--左侧递归标题目录树-->
-    <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,1);padding-top: 25px;">
-
+    <el-aside  class="sub_menu">
             <el-menu
                 :router="true"
                 class="el-menu-vertical-demo"
-
                 @open="handleOpen"
                 @close="handleClose"
-                background-color="rgba(21,37,63,0.86)"
-                text-color="#fff"
-                active-text-color="#018faf">
+              >
               <div  v-for="(item,index) in menulist" :key="index">
                 <!--一级菜单（没有任何子级菜单）-->
                 <el-menu-item :index="item.id" v-if="!item.children">
@@ -150,7 +146,19 @@
   /*border: solid 1px red;*/
 
 }
-
+.sub_menu{
+  border-right:rgb(22, 119, 255) solid 1px;
+  /*border-left: rgb(22, 119, 255) solid 1px;*/
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+  box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+  width: 14.97%;
+  height: calc( 100vh - 80px);
+  background: #fff;
+  padding-top: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
   .tree_tab_content{
     width: 85%;
@@ -163,14 +171,14 @@
   }
 
 >>>.el-menu-item:focus, .el-menu-item:hover{
-  background: rgba(25, 17, 28, 0.2) !important;
+  /*background: rgba(25, 17, 28, 0.2) !important;*/
   /*color:#fff!important;*/
 
 }
 
   >>>.el-submenu__title:hover {
     /*background-color: #ecf5ff;*/
-    background: rgba(25, 17, 28, 0.2) !important;
+    /*background: rgba(25, 17, 28, 0.2) !important;*/
 
   }
 </style>

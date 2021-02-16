@@ -20,17 +20,32 @@
     </div>
     <!-- 内容 -->
     <div class="content">
-      <hydrological v-if="value == 4"></hydrological>
+      <publicBoardInformation v-if="value == 4"></publicBoardInformation>
+      <HCZriverTourRecord v-if="value == 5"></HCZriverTourRecord>
+      <IssueReceipt v-if="value == 6"></IssueReceipt>
+      <HCZrainfallMonitoringStation v-if="value == 7"></HCZrainfallMonitoringStation>
+      <HCZhydrologicalStation v-if="value == 8"></HCZhydrologicalStation>
+      <HCZwaterQualityMonitoringStation v-if="value == 9"></HCZwaterQualityMonitoringStation>
     </div>
   </div>
 </template>
 
 <script>
-import hydrological from '../infosys/administrative/hydrology.vue'
+import publicBoardInformation from '../infosys/riverChiefSystem/publicBoardInformation.vue'
+import HCZriverTourRecord from '../infosys/riverChiefSystem/HCZriverTourRecord.vue'
+import IssueReceipt from '../infosys/riverChiefSystem/IssueReceipt.vue'
+import HCZrainfallMonitoringStation from '../infosys/riverChiefSystem/HCZrainfallMonitoringStation.vue'
+import HCZhydrologicalStation from '../infosys/riverChiefSystem/HCZhydrologicalStation.vue'
+import HCZwaterQualityMonitoringStation from '../infosys/riverChiefSystem/HCZwaterQualityMonitoringStation.vue'
 export default {
   name:'administrative',
    components: {
-     hydrological
+     publicBoardInformation,
+     HCZriverTourRecord,
+     IssueReceipt,
+     HCZrainfallMonitoringStation,
+     HCZhydrologicalStation,
+     HCZwaterQualityMonitoringStation
   },
   data() {
     return {
@@ -42,11 +57,7 @@ export default {
           children: [
             {
               id: 4,
-              label: '基础信息',
-            },
-            {
-              id: 5,
-              label: '信息记录',
+              label: '河长制公示牌信息',
             },
           ]
         },
@@ -56,11 +67,11 @@ export default {
           icon: 'el-icon-menu',
           children: [
             {
-              id: 6,
+              id: 5,
               label: '巡河记录',
             },
              {
-              id: 7,
+              id: 6,
               label: '问题回执',
             },
           ]
@@ -71,15 +82,15 @@ export default {
           icon: 'el-icon-menu',
           children: [
             {
-              id: 8,
+              id: 7,
               label: '雨量监测站',
             },
             {
-              id: 9,
+              id: 8,
               label: '水文监测站',
             },
             {
-              id: 10,
+              id: 9,
               label: '水质监测站',
             },
           ]
@@ -88,7 +99,7 @@ export default {
         children: 'children',
         label: 'label'
       },
-      value:0
+      value:4
     }
   },
   created() {

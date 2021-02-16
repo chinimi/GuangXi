@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "605928",
+      "name": "竖",
+      "font_class": "shu",
+      "unicode": "e6ec",
+      "unicode_decimal": 59116
+    },
+    {
+      "icon_id": "730388",
+      "name": "设置",
+      "font_class": "hj3",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "1983065",
+      "name": "业绩统计图添加",
+      "font_class": "yejitongjitutianjia",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "2761284",
+      "name": "水质监测站",
+      "font_class": "shuizhijiancezhan",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "8630052",
+      "name": "水质",
+      "font_class": "shuizhi",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "12548043",
+      "name": "信息",
+      "font_class": "xinxi-",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "15816244",
+      "name": "041四叶草",
+      "font_class": "041siyecao",
+      "unicode": "e7be",
+      "unicode_decimal": 59326
+    },
+    {
+      "icon_id": "17247689",
+      "name": "每月趋势",
+      "font_class": "meiyuequshi",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "17347465",
+      "name": "管理",
+      "font_class": "guanli",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
       "icon_id": "14478390",
       "name": "关  闭",
       "font_class": "guanbi1",

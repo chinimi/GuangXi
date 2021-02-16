@@ -3,7 +3,11 @@
       <!--navHeader-->
       <div class="nav_header">
         <div class="nav_logo">
-          <img src="../../../static/images/logo.png"  width="400"   alt="logo">
+          <i  :class="['iconfont', 'icon-shuizhi','nav-icon']"></i>
+          <span >
+            河长制水质水量评价服务系统
+          </span>
+<!--          <img src="../../../static/images/logo.png"  width="400"   alt="logo">-->
         </div>
         <ul  class="nav_title">
           <li
@@ -26,13 +30,15 @@
           <li
             v-for="(item,index) in toollist"
             :key="index"
-            :class="['toolbtn', item.icon,{activeTool : ( currentTool == item.value ? true : false )}]"
+            :class="['toolbtn',{activeTool : ( currentTool == item.value ? true : false )}]"
             @click="currentTool= item.value;execute(item.value);"
 
           >
-<!--            @mouseover="selectStyle (item.value),currentTool= item.value "-->
+            <i  :class="['iconfont', item.iconfit]"></i>
+              <span>{{item.name}}</span>
+
+            <!--            @mouseover="selectStyle (item.value),currentTool= item.value "-->
 <!--            @mouseout="outStyle(item.value),currentTool=''"-->
-<!--          <span>{{item.name}}</span>-->
           </li>
         </ul>
       </div>
@@ -147,7 +153,7 @@ export default {
           // isActive: 'operationalDisplay',
           menu: [
             {
-              // icon:"icon-home",
+              icon:"icon-home",
               // li标签的内容
               name: '首页',
               // 当前li标签是否选中的标识
@@ -156,7 +162,7 @@ export default {
               comp: 'index'
             },
             {
-              // icon:"icon-home",
+              icon:"icon-xinxi-",
               // li标签的内容
               name: '信息综合管理',
               // 当前li标签是否选中的标识
@@ -165,29 +171,29 @@ export default {
               comp: 'infoSystem'
             },
             {
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-meiyuequshi",
               name: '方案模型管理',
               value: 'programModel',
               comp: 'programModel'
             },
             {
-              // icon:"icon-home",
+              icon:"icon-041siyecao",
               name: '水质分类评价',
               value: 'qualityClassfy',
               comp: 'qualityClassfy'
             },
             {
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-shuizhijiancezhan",
               name: '水质预测预警',
               value: 'qualityPrediction',
               comp: 'qualityPrediction'
             },{
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-yejitongjitutianjia",
               name: '承载能力分析',
               value: 'bearingCapacity',
               comp: 'bearingCapacity'
             },{
-              // icon:"icon-fuhao-tuceng",
+              icon:"icon-chenxin-dianeliantubiaohuizhi_shezhi",
               name: '综合运算与展示',
               value: 'operationalDisplay',
               comp: 'operationalDisplay'
@@ -195,32 +201,41 @@ export default {
           ],
           toollist:[
             {
+              iconfit:'icon-quanping',
               icon:"magnifying",
-              name: 'magnifying',
+              name: '全屏',
               value: 'magnifying',
               // comp: '2'
             },
             {
+              iconfit:'icon-yaosu',
+
               icon:"layer",
-              name: 'layer',
+              name: '图层',
               value: 'layer',
               // comp: '3'
             },
             {
+              iconfit:'icon-juli',
+
               icon:"measure",
-              name: 'measure',
+              name: '测距',
               value: 'measure',
               // comp: '3'
             },
             {
+              iconfit:'icon-jietu',
+
               icon:"screentool",
-              name: 'screentool',
+              name: '截屏',
               value: 'screentool',
               // comp: '4'
             },
             {
+              iconfit:'icon-shezhi1',
+
               icon:"set",
-              name: 'set',
+              name: '设置',
               value: 'set',
               // comp: '4'
             }
@@ -301,18 +316,30 @@ export default {
 }
 .nav_logo{
   position: absolute;
-  top: 15px;
+  top: 20px;
   left: 12px;
   z-index: 1;
 }
+.nav_logo  span{
+  font-size: 25px;
+  color: #fff;
+  font-weight: 800;
+}
+.nav_logo .nav-icon{
+  font-size: 25px;
+  color: #fff;
+  font-weight: 800;
 
+
+}
 .nav_header{
   z-index:999;
   position: relative;
   width: 100%;
   height: 80px;
   background-size:contain;
-  background: url("../../../static/images/headerbg.png") no-repeat;
+  background: #1a51ff;
+  /*background: url("../../../static/images/headerbg.png") no-repeat;*/
 }
 .nav_title{
   position: absolute;
@@ -335,7 +362,7 @@ export default {
 
 .sliderMenuClass{
   cursor: pointer;
-  color: #333;
+  color: #fff;
   list-style: none;
   font-size: 15px;
   text-align: center;
@@ -344,12 +371,12 @@ export default {
   float: left;
   line-height: 32px;
   padding: 5px 0;
-  background: url("../../../static/images/nav_title_bg.png") no-repeat;
+  /*background: url("../../../static/images/nav_title_bg.png") no-repeat;*/
 }
 .active{
-
+  color: #fae808!important;
   /*background-color: #d49500!important;*/
-  color: #fff!important;
+  /*color: #fff!important;*/
   /*border: 1px solid #d49500!important;*/
 }
 
@@ -597,14 +624,15 @@ export default {
     position: absolute;
     top: 86px;
     right: 9px;
+    border: solid 1px #dddddd;
+    background: #fff;
+    border-radius: 5px;
 
   }
   #toolbar .toolbtn{
     float: left;
-    width: 70px;
-    height: 62px;
-    /*border: solid 1px red;*/
     cursor: pointer;
+    padding: 10px;
 
     }
    /*放大*/
@@ -635,7 +663,7 @@ export default {
 
 
   .activeTool{
-    color: red;
+    color: #6890b5;
   }
   #toolbar_tab{
     /*border:solid 1px pink;*/
