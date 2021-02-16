@@ -53,7 +53,7 @@
         </el-row>
         <el-row style="padding-top:20px;">
           <el-col :span="12">
-             <el-table   :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="FD_table" height="calc( 100vh - 600px )" style="background-color: transparent;">
+             <el-table  :span-method="objectSpanMethod" :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="FD_table" height="calc( 100vh - 600px )" style="background-color: transparent;">
                <el-table-column  align="center" label="流量过程变异程度(FD)">
             <el-table-column
               prop="Month"
@@ -155,12 +155,7 @@
 
             </el-table-column>
           </el-table>
-
-
-
         </el-row>
-
-
 
         <el-row v-if="showhealthyTable">
           <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
@@ -227,72 +222,72 @@
             FD_table:
               [{
             Month: '1月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '15',
+            PG_Mon_TR_Qm: '14',
+            PG_Mon_TR_Ou:'20.5',
           }, {
             Month: '2月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '16',
+            PG_Mon_TR_Qm: '15',
+            PG_Mon_TR_Ou:'20.5',
           }, {
             Month: '3月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '17',
+            PG_Mon_TR_Qm: '15',
+            PG_Mon_TR_Ou:'20.5',
           }, {
             Month: '4月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '18',
+            PG_Mon_TR_Qm: '19',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '5月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '19',
+            PG_Mon_TR_Qm: '20',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '6月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '20',
+            PG_Mon_TR_Qm: '19',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '7月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '21',
+            PG_Mon_TR_Qm: '15',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '8月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '22',
+            PG_Mon_TR_Qm: '28',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '9月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '23',
+            PG_Mon_TR_Qm: '22',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '10月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '24',
+            PG_Mon_TR_Qm: '30',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '11月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '25',
+            PG_Mon_TR_Qm: '24',
+            PG_Mon_TR_Ou:'20.5',
           },
           {
             Month: '12月',
-            PG_Mon_SC_qm: '',
-            PG_Mon_TR_Qm: '',
-            PG_Mon_TR_Ou:'',
+            PG_Mon_SC_qm: '26',
+            PG_Mon_TR_Qm: '25',
+            PG_Mon_TR_Ou:'20.5',
           }],
             showhealthyTable:false,//健康流量表是否显示
             originData: [{
@@ -603,9 +598,8 @@
               }
             })
           })
-          // var ss = this.scope.row.PG_Mon_SC_qm;
-          // var ssmon = this.scope.row.Month;
-          // var QM = this.scope.row.PG_Mon_TR_Qm;
+       
+        
 
         },
         checkSelectable(row,index){
@@ -626,9 +620,29 @@
 
         },
         // 传入element-table的合并方法
+
+
+        // 合并第四列所有相当数据的行  edit by smm
+      objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+        if (columnIndex === 3) {
+          if (rowIndex % 12 === 0) {
+            return {
+              rowspan: 1,
+              colspan: 1
+            };
+          } else {
+            return {
+              rowspan: 0,
+              colspan: 0
+            };
+          }
+        }
+      },
+
         mergeStratege ({ row, column, rowIndex, columnIndex }) {
           // 第一层判断控制从哪一列，或多少列合并，
-          if (columnIndex === 0) { // 此处表示第一列合并
+          //debugger
+          if (columnIndex === 3) { // 此处表示第三列合并
             // if (columnIndex < 2) { // 此处表示前两列合并
             if (row.isStartMerge) {
               return {
