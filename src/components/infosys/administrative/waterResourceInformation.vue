@@ -1,11 +1,10 @@
 <template>
   <div class="hydrology">
     <div class="title">
-      <div class="text">水资源信息</div>
       <div class="tab">
         <ul class="clear-fix">
-          <li :class="[TapType == '1' ? 'cur' : '']" @click="TapSwitch(1)">取水口</li>
-          <li :class="[TapType == '2' ? 'cur' : '']" @click="TapSwitch(2)">地表水国家重点水质站区域</li>
+          <li :class="[TapType == '1' ? 'curs' : '']" @click="TapSwitch(1)">取水口</li>
+          <li :class="[TapType == '2' ? 'curs' : '']" @click="TapSwitch(2)">地表水国家重点水质站区域</li>
         </ul>
       </div>
     </div>
@@ -72,7 +71,7 @@
 
 <script>
 export default {
-  name:'hydrology',
+  name:'waterResourceInformation',
   data() {
     return {
       TapType:1,
@@ -150,66 +149,11 @@ export default {
 </script>
 
 <style scoped>
-.hydrology{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgb(21, 37, 63);
-  padding: 25px;
-  box-sizing: border-box;
-  color: #ffffff;
+@import '../../../../static/css/public.css';
+.hydrology .title .tab ul li{
+  width: 80px;
 }
-/* 头部切换 */
-.title{
-  position: relative;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-}
-.title .text{
-  float: left;
-  width: 20%;
-  font-size: 16px;
-}
-.title .tab{
-  float: left;
-  width: 80%;
-}
-.title .tab ul{
-  position: relative;
-  width: 100%;
-    height: 30px!important;
-  line-height: 30px!important;
-  top: 10px;
-}
-.title .tab ul li{
-  float: left;
-  -webkit-box-sizing: border-box;
-  width: 198px;
-  box-sizing: border-box;
-  background: #01ddff;
-  box-sizing: border-box;
-  text-align: center;
-  margin-left: 10px;
-  height: 30px!important;
-  line-height: 30px!important;
-  border-radius: 5px;
-  padding: 0!important;
-}
-.cur {
-  color: rgb(1, 143, 175) !important;
-}
-.title .tab ul li:nth-child(1) {
-    margin-left: 0px;
-}
-/* 内容 */
-.sheet{
-  position: relative;
-  width: 100%;
-  height: calc(100% - 50px);
-}
-.table{
-  width: 100%;
-  height: 90%;
+.hydrology .title .tab ul li:nth-child(2){
+  width: 200px;
 }
 </style>

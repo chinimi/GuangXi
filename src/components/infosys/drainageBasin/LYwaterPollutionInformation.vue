@@ -1,13 +1,12 @@
 <template>
   <div class="hydrology">
     <div class="title">
-      <div class="text">水污染信息</div>
       <div class="tab">
         <ul class="clear-fix">
-          <li :class="[TapType == '1' ? 'cur' : '']" @click="TapSwitch(1)">入河排污口</li>
-          <li :class="[TapType == '2' ? 'cur' : '']" @click="TapSwitch(2)">采（冶）矿区</li>
-          <li :class="[TapType == '3' ? 'cur' : '']" @click="TapSwitch(3)">工业园区</li>
-          <li :class="[TapType == '4' ? 'cur' : '']" @click="TapSwitch(4)">规模化养殖区</li>
+          <li :class="[TapType == '1' ? 'curs' : '']" @click="TapSwitch(1)">入河排污口</li>
+          <li :class="[TapType == '2' ? 'curs' : '']" @click="TapSwitch(2)">采（冶）矿区</li>
+          <li :class="[TapType == '3' ? 'curs' : '']" @click="TapSwitch(3)">工业园区</li>
+          <li :class="[TapType == '4' ? 'curs' : '']" @click="TapSwitch(4)">规模化养殖区</li>
         </ul>
       </div>
     </div>
@@ -122,7 +121,7 @@
 
 <script>
 export default {
-  name:'hydrology',
+  name:'LYwaterPollutionInformation',
   data() {
     return {
       TapType:1,
@@ -200,66 +199,8 @@ export default {
 </script>
 
 <style scoped>
-.hydrology{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgb(21, 37, 63);
-  padding: 25px;
-  box-sizing: border-box;
-  color: #ffffff;
-}
-/* 头部切换 */
-.title{
-  position: relative;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-}
-.title .text{
-  float: left;
-  width: 20%;
-  font-size: 16px;
-}
-.title .tab{
-  float: left;
-  width: 80%;
-}
-.title .tab ul{
-  position: relative;
-  width: 100%;
-    height: 30px!important;
-  line-height: 30px!important;
-  top: 10px;
-}
-.title .tab ul li{
-  float: left;
-  -webkit-box-sizing: border-box;
+@import '../../../../static/css/public.css';
+.hydrology .title .tab ul li{
   width: 120px;
-  box-sizing: border-box;
-  background: #01ddff;
-  box-sizing: border-box;
-  text-align: center;
-  margin-left: 10px;
-  height: 30px!important;
-  line-height: 30px!important;
-  border-radius: 5px;
-  padding: 0!important;
-}
-.cur {
-  color: rgb(1, 143, 175) !important;
-}
-.title .tab ul li:nth-child(1) {
-    margin-left: 0px;
-}
-/* 内容 */
-.sheet{
-  position: relative;
-  width: 100%;
-  height: calc(100% - 50px);
-}
-.table{
-  width: 100%;
-  height: 90%;
 }
 </style>

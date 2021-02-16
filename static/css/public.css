@@ -1,0 +1,1584 @@
+/* 信息综合查询 */
+#infoSystem {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 80px);
+  z-index: 1;
+  color: #333333;
+}
+
+/* 内容 */
+.sidebar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 左侧侧边栏 */
+.tree_form {
+  float: left;
+  width: 15%;
+  height: 100%;
+  padding-top: 30px;
+  background: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(0, 17, 12, 0.33);
+}
+
+/* 一级导航 */
+.stair {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.stair ul {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.stair_ui li {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  color: #333333;
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: bold;
+}
+
+.cur {
+  background: rgba(22, 119, 255, 0.1) !important;
+  border-left: 5px solid #2784FF;
+  box-sizing: border-box;
+  padding-left: 15px !important;
+  /* color: #2784FF !important; */
+}
+
+.icon-shuidi1:before {
+  content: "\E703";
+}
+
+.icon-shuidi2:before {
+  content: "\E686";
+}
+
+.icon-shuidi3:before {
+  content: "\E685";
+}
+
+.icon-shuidi4:before {
+  content: "\E683";
+}
+
+/* 一级下拉内容 */
+.stair .list {
+  position: relative;
+  width: 100%;
+  padding: 10px 40px;
+  box-sizing: border-box;
+}
+
+/* 搜索框 */
+.stair .list /deep/ .el-input {
+  box-sizing: border-box;
+}
+
+.stair .list /deep/ .el-input--prefix .el-input__inner {
+  padding-left: 30px !important;
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  box-shadow: 0 0 0 0;
+}
+
+.stair .list /deep/ .el-input__prefix {
+  left: 5px;
+  top: -5px;
+}
+
+/* 一级下内容 */
+.DataPage {
+  float: left;
+  width: 85%;
+  height: 100%;
+}
+
+/* tab切换 */
+.tree_form_ui {
+  position: relative;
+  width: 100%;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+
+.stair_ui .tree_form_ui li {
+  float: left;
+  width: 30%;
+  box-sizing: border-box;
+  margin-left: 5%;
+  box-sizing: border-box;
+  text-align: center;
+  height: 30px !important;
+  line-height: 30px !important;
+  padding: 0 !important;
+  color: #666666;
+  font-size: 14px;
+}
+
+.curer {
+  padding-bottom: 5px !important;
+  border-bottom: 2px solid #2784FF !important;
+  color: #1677FF !important;
+}
+
+.tree_form_ui li:nth-child(1) {
+  margin-left: 0px;
+}
+
+/* 树形图 */
+.filter {
+  position: relative;
+  padding-top: 20px;
+}
+
+.filter /deep/ .el-tree {
+  font-size: 14px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #666666;
+}
+
+.filter /deep/ .el-tree-node:focus>.el-tree-node__content {
+  background-color: rgba(22, 119, 255, 0.1) !important;
+  color: #1677FF !important;
+}
+
+.filter /deep/ .el-tree-node__content:hover {
+  background-color: rgba(22, 119, 255, 0.1) !important;
+}
+
+
+.filter /deep/ .el-tree-node__content {
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+/* 定位 */
+.orientation {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 信息汇总 --  行政区 */
+
+.administrative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 8px 0px rgba(0, 17, 12, 0.33);
+
+}
+
+.administrative_title {
+  height: 49px;
+  line-height: 49px;
+  background: #FFFFFF;
+  border-radius: 0px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.administrative_title div {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #1677FF;
+  padding: 0 20px;
+  height: 50px;
+  line-height: 50px;
+  width: 160px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.administrative_content {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+/* 侧边栏 */
+.sidebar_data {
+  width: 15%;
+  float: left;
+  height: 100%;
+  padding-top: 25px;
+  box-sizing: border-box;
+  color: #666666;
+  background: #F7FBFF;
+
+}
+
+.sidebar_data /deep/ .el-tree {
+  position: relative;
+  cursor: default;
+  color: #666666;
+  background: none;
+  font-size: 14px;
+}
+
+.sidebar_data /deep/ .el-tree-node:focus>.el-tree-node__content {
+  background-color: rgba(22, 119, 255, 0.1) !important;
+  color: #1677FF !important;
+}
+
+.sidebar_data /deep/ .el-tree-node__content:hover {
+  background-color: rgba(22, 119, 255, 0.1) !important;
+}
+
+.sidebar_data /deep/ .el-tree-node__content {
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+/* 内容 */
+.content_name {
+  width: 85%;
+  float: left;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* 右侧内容表格 */
+.hydrology {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  color: #666;
+}
+
+/* 头部切换 */
+.hydrology .title {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+}
+
+.hydrology .title .tab {
+  float: left;
+  width: 80%;
+}
+
+.hydrology .title .tab ul {
+  position: relative;
+  width: 100%;
+  height: 30px !important;
+  line-height: 30px !important;
+  top: 10px;
+}
+
+.hydrology .title .tab ul li {
+  float: left;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* background: #01ddff; */
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: 10px;
+  height: 30px !important;
+  line-height: 30px !important;
+  padding: 0 !important;
+  padding-bottom: 7px;
+}
+
+.curs {
+  color: #1677FF !important;
+  border-bottom: 2px solid #1677FF;
+}
+
+.hydrology .title .tab ul li:nth-child(1) {
+  margin-left: 0px;
+}
+
+/* 内容 */
+.hydrology .sheet {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+.hydrology .table {
+  width: 100%;
+  height: 90%;
+}
+
+.hydrology /deep/ .el-table th,
+.hydrology /deep/ .el-table tr {
+  background-color: transparent !important;
+  color: #666 !important;
+}
+
+/* 分页 */
+.pages {
+  position: relative;
+  text-align: center;
+  color: #666 !important;
+}
+
+.pages /deep/ .el-pagination__total {
+  color: #666 !important;
+}
+
+.pages /deep/ .el-input__inner {
+  background: none !important;
+  color: #666 !important;
+  padding-left: 0px !important;
+}
+
+
+
+/* 信息查询 */
+.informationLnquiry {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 2px 8px 0px rgba(0, 17, 12, 0.33);
+}
+
+.informationLnquiry_title {
+  height: 49px;
+  line-height: 49px;
+  background: #FFFFFF;
+  border-radius: 0px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.informationLnquiry_title div {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #1677FF;
+  padding: 0 20px;
+  height: 50px;
+  line-height: 50px;
+  width: 160px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.informationLnquiry_content {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+/* 左侧侧边栏 */
+.informationLnquiry .left_menu {
+  width: 20%;
+  float: left;
+  height: 100%;
+  padding-top: 25px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #666666;
+  background: #F7FBFF;
+}
+
+.informationLnquiry .singleli_title {
+  font-size: 13px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 5px;
+  font-weight: lighter;
+  margin-left: 3%;
+  margin-top: 20px;
+  color: #666666;
+}
+
+.informationLnquiry .singleli_title:nth-child(1) {
+  margin-top: 0;
+}
+
+.informationLnquiry .singleli_title .sysfxTit {
+  letter-spacing: 1px;
+  font-size: 14px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.informationLnquiry /deep/ .el-input__inner {
+  padding-left: 24px !important;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 14px !important;
+  height: 35px !important;
+  background: none !important;
+  color: #666 !important;
+}
+
+/* 水系参数 */
+.informationLnquiry_ui {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.informationLnquiry_ui li {
+  float: left;
+  width: 33%;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.informationLnquiry_ui li:nth-child(1) {
+  padding-left: 0;
+}
+
+.informationLnquiry_ui li span {
+  padding-bottom: 5px;
+}
+
+.couser {
+  border-bottom: 2px solid #1677FF;
+}
+
+.product {
+  /* margin: 10px 0;
+  margin-left: 20px; */
+  box-sizing: border-box;
+  padding: 0 20px;
+  padding-top: 20px;
+}
+
+.informationLnquiry /deep/ .el-radio-group {
+  width: 100%;
+}
+
+.informationLnquiry /deep/ .el-radio {
+  color: #666 !important;
+}
+
+.informationLnquiry /deep/ .el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+  width: 100%;
+}
+
+.informationLnquiry /deep/ .el-button {
+  background: #1677FF;
+  color: #fff;
+}
+
+/* 滚动条样式 */
+.informationLnquiry /deep/ ::-webkit-scrollbar-track-piece {
+  background-color: #f1f1f1 !important;
+}
+
+.informationLnquiry /deep/ ::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.informationLnquiry /deep/ ::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1 !important;
+  background-clip: padding-box !important;
+  min-height: 28px !important;
+}
+
+.informationLnquiry /deep/ ::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8 !important;
+}
+
+/* 右侧内容 */
+.informationLnquiry .right_menu {
+  width: 80%;
+  height: 100%;
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  padding: 25px;
+}
+
+.informationLnquiry /deep/ .el-table th,
+.informationLnquiry /deep/ .el-table tr {
+  background-color: transparent !important;
+  color: #666 !important;
+}
+
+.informationLnquiry .pages /deep/ .el-input__inner {
+  padding-left: 0 !important;
+  height: 30px !important;
+  line-height: 30px !important;
+}
+/* 承载能力分析 */
+
+.Bearing{
+  position: absolute;
+  left: 20px;
+  top: 25px;
+  box-sizing: border-box;
+}
+.w80{
+  width: 80px;
+}
+.w100{
+  width: 100px;
+}
+.w110{
+  width: 110px;
+}
+.w215{
+  width: 215!important;
+}
+/* 侧边栏 */
+.navigation {
+  position: relative;
+  float: left;
+  width: 350px;
+  height: 800px;
+  padding: 20px 10px;
+  color: #ffffff;
+  border-top: 4px solid #1677FF;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 9px 0px rgba(28, 28, 28, 0.26);
+  color: #666;
+}
+/* tab切换 */
+.nav {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #DFE9F4;
+}
+.nav_ui{
+  border-bottom: 1px solid #DFE9F4;
+}
+.nav_ui li {
+  width: 25%;
+  float: left;
+  text-align: center;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+  color: #666;
+}
+.csour{
+  color: #1677FF!important;
+  border-bottom: 2px solid #1677FF;
+}
+.Bearing /deep/ .el-input__inner{
+  padding-left: 24px !important;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 14px !important;
+  height: 30px !important;
+  background: none !important;
+  color: #666 !important;
+  width: 160px !important;
+}
+.searchMain{
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.searchMain ul{
+  text-align: center;
+  padding: 10px 0;
+}
+.searchMain ul li{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+.searchMain_div{
+  line-height: 35px;
+  height: 35px;
+  display: inline-block;
+}
+
+/* 水域 */
+.water{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #DFE9F4;
+  box-sizing: border-box;
+}
+
+.water_p{
+  color: #1677FF;
+  text-align: left;
+  margin: 0;
+  height: 30px;
+  line-height: 30px;
+}
+.water_div,.quality{
+  padding: 5px 0;
+}
+.el-radio-group{
+  width: 100%;
+}
+.water_div /deep/ .el-radio{
+  margin-right: 0!important;
+  width: 33.3%;
+  height: 25px;
+  line-height: 25px;
+  color: #666!important;
+}
+.water_div /deep/ .el-radio__input.is-checked+.el-radio__label{
+  color: #1677FF!important;
+}
+/* 评价 */
+.evaluation{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  color: #1677FF;
+  border-bottom: 1px solid #DFE9F4;
+  box-sizing: border-box;
+}
+
+/* 水质类别 */
+.quality{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #DFE9F4;
+  box-sizing: border-box;
+}
+.quality_div{
+  padding: 10px 0;
+}
+.step .searchMain_div /deep/ .el-input__inner{
+  width: 215px!important;
+}
+.quality /deep/ .el-radio{
+  margin-right: 0!important;
+  width: 50%;
+  height: 35px;
+  line-height: 35px;
+  color: #666!important;
+}
+
+.begin /deep/ .el-input__inner,.finish /deep/ .el-input__inner  {
+  padding-left: 30px !important;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 14px !important;
+  height: 30px !important;
+  width: 100px !important;
+}
+.begin /deep/ .el-input--suffix .el-input__inner,
+.finish /deep/ .el-input--suffix .el-input__inner{
+  padding-right: 0px;
+}
+.pl /deep/ .el-input--suffix .el-input__inner{
+  padding-left: 15px!important;
+}
+/* 按钮确定 */
+.but{
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.but button{
+  background: #1677FF;
+  width: 150px;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* 一级弹窗 */
+.Mouth{
+  position: absolute;
+  width: 900px;
+  height: 400px;
+  left: 400px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 9px 0px rgba(28, 28, 28, 0.26);
+}
+.Mouth dl{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+.Mouth dl dt ul{
+  padding-left: 20px;
+  box-sizing: border-box;
+  height: 50px;
+  line-height: 50px;
+}
+.Mouth dl dt ul li{
+  float: left;
+  width: 90px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.radio_static{
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.Mouth dl dt ul li:nth-child(1){
+  margin-left: 0;
+}
+.radio_static li:last-child{
+  width: 30px;
+  float:right;
+  background: none;
+}
+/* .radio_static li:last-child img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+} */
+/* 表格 */
+.Mouth dl dd{
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+  box-sizing: border-box;
+}
+.tableData{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.dimension  /deep/ .el-table .cell{
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;  
+}
+.dimension /deep/ .el-table th,
+.dimension /deep/ .el-table tr {
+  background-color: transparent !important;
+  color: #666 !important;
+  padding: 10px 0;
+}
+.dimension  /deep/ .el-table td{
+  text-align: center;
+  padding: 10px 0;
+  color: #fff;
+}
+/* 按钮 */
+.dimension_button{
+  text-align: right;
+  position: relative;
+  padding: 0;
+  width: 100%;
+  padding: 10px 0;
+  bottom: 0px!important;
+  border-bottom: 1px solid #ddd;
+}
+.dimension_button /deep/ .el-button{
+  padding: 0;
+}
+.dimension_button button{
+  width: 80px;
+  height: 30px;
+  background: #1677FF;
+  color: #FFFFFF;
+  border: 0;
+}
+/* 背景层 */
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99999!important;
+}
+.echarts{
+  position: absolute;
+  background: #fff;
+  width: 400px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 5px;
+}
+.close{
+  position: relative;
+  text-align: right;
+}
+.close img{
+  width: 25px;
+}
+.echarts_data{
+  position: relative;
+  width: 100%;
+  height: calc(100% - 25px);
+}
+.echarts_bar{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* 计算方法表格 */
+.table_data{
+  position: absolute;
+  width: 700px;
+  height: 450px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #FFFFFF;
+  border-radius: 5px;
+}
+.calculate{
+  position: relative;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  border-bottom: 1px solid #EEEEEE;
+}
+.calculate ul{
+  padding-left: 20px!important;
+  box-sizing: border-box;
+}
+.calculate ul li{
+  float: left;
+  width: 90px;
+  height: 43px;
+  line-height: 43px;
+  text-align: center;
+  margin-left: 10px;
+}
+.calculate ul li:nth-child(1){
+  margin: 0;
+}
+.calculate li:last-child{
+  width: 30px;
+  float:right;
+  background: none;
+}
+.calculate li:last-child img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.cures{
+  border-bottom: 2px solid #1677FF;
+  color: #031823 ;
+}
+.calculate_content{
+  position: relative;
+  width: 100%;
+  height: calc(100% - 45px);
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.calculate_content /deep/ .el-table__body{
+  margin-bottom: 10px;
+}
+.calculate_content /deep/ .el-table th.is-leaf {
+    text-align: center;
+}
+.calculate_content /deep/ .el-table .cell {
+    font-size: 14px;
+    text-align: center;
+}
+/* 编辑弹窗 */
+
+/* 编辑弹窗 */
+.compile{
+  position:absolute;
+  width: 400px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.compile_title{
+  height: 49px;
+  line-height: 49px;
+  border-bottom: 1px solid #DFE9F4;
+}
+.compile_title span{
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  border-left: 3px solid #1677FF;
+  height: 30px;
+  line-height: 30px;
+  top: 10px;
+  padding-left: 10px;
+}
+.compile_title p{
+  float: right;
+  margin: 0;
+}
+.compile_title p img{
+  position: relative;
+  width: 30px;
+  top: 10px;
+}
+.redact label{
+  height: 35px;
+  line-height: 35px;
+}
+
+.form_data {
+  padding: 0 40px;
+  color: #666;
+}
+.compile /deep/ .el-form-item__content{
+    line-height: 35px;
+    position: relative;
+    font-size: 14px;
+    text-align: left;
+}
+.compile /deep/ .el-form-item__label{
+  line-height: 35px;
+  color: #666;
+}
+.compile /deep/ .el-form-item{
+  margin-bottom: 2px;
+}
+.compile /deep/ .el-input__inner{
+  width: 180px!important;
+}
+.compile /deep/ .el-button{
+  margin-top: 10px;
+  width: 120px!important;
+}
+/* 关闭样式 */
+.butt_close{
+  position: relative;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+.butt_close img{
+  position: relative;
+  width: 30px;
+}
+
+/* 方案模型 */
+
+#programModel{
+  position: absolute;
+}
+#programModel .programModel_title{
+  float: left;
+  width: 260px;
+  height: 890px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 8px 0px rgba(0, 86, 58, 0.33);
+  padding-top: 30px;
+  box-sizing: border-box;
+}
+#programModel .programModelClass {
+    cursor: pointer;
+    color: #333333;
+    list-style: none;
+    font-size: 16px;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 20px;
+}
+#programModel .programModel_active {
+    background: #E7F1FF!important;
+    border-left: 5px solid #0718fa;
+    padding-left:15px!important;
+}
+.programModel_content{
+  position: absolute;
+}
+.Model_content{
+  position: absolute;
+}
+.oneDimensionalModel{
+  position: absolute;
+}
+/* 方案弹出 */
+.Model{
+  position: absolute;
+  width: 1360px;
+  height: 650px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 9px 0px rgba(28, 28, 28, 0.26);
+  left: 350px;
+  top: 100px;
+}
+.Model_ul{
+  position: relative;
+  width: 100%;
+  height: 49px;
+  line-height: 49px;
+  border-bottom: 1px solid #EEEEEE;
+}
+.Model_ul li{
+  float: left;
+  width: 120px;
+  height: 48px;
+  line-height: 48px;
+  color: #666;
+  text-align: center;
+}
+.Model_ul li:last-child{
+  width: 30px;
+  float: right;
+  background: none;
+}
+.csourer{
+  color: #1677FF!important;
+}
+.header_true{
+  position: absolute;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  left:950px;
+  top: 800px;
+  text-align: center;
+  border-radius: 5px;
+}
+.header_shangla_div{
+  position: relative;
+  width: 80px;
+  height: 30px;
+  border: 1px solid #058cd0;
+  border-radius: 20px;
+  background: #031823;
+}
+.header_true .shangla_img{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+/* 方案库 */
+.schemeLibrary{
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+.schemeLibrary_left{
+  position: relative;
+  float: left;
+  width: 20%;
+  height: 100%;
+  background: #F7FBFF;
+}
+.schemeLibrary_ul{
+  border-bottom:1px solid #DFE9F4;
+  width: 100%;
+  box-sizing: border-box;
+}
+.schemeLibrary_ul li{
+  float: left;
+  width: 24%;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  margin-left: 1%;
+  color: #666;
+  font-size: 14px;
+}
+.schemeLibrary_div{
+  position: relative;
+  width: 100%;
+  height: 540px;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+.schemeLibrary_div /deep/  .el-input__inner {
+  padding-left: 10px !important;
+  color: #058cd0;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 16px !important;
+  height: 30px !important;
+}
+.schemeLibrary_div /deep/ .el-input__icon{
+  line-height: 30px;
+}
+.sysfxTit{
+  text-align: center;
+  font-size: 14px;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+}
+.schemeLibrary_button{
+  position: relative;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  bottom: 20px;
+  box-sizing: border-box;
+  
+}
+.schemeLibrary_right{
+  float: left;
+  position: relative;
+  width: 80%;
+  background: #FFFFFF;
+  padding: 18px;
+  box-sizing: border-box;
+}
+.singleli_title{
+  padding-bottom: 20px;
+}
+/* 方案编制 */
+.programmePreparation{
+  position: relative;
+  height: 600px;
+}
+.programmePreparation_ul{
+  position: relative;
+  width: 100%;
+} 
+.programmePreparation_ul li{
+  float: left;
+  box-sizing: border-box;
+  color: #666;
+  list-style: none;
+  font-size: 14px;
+  text-align: center;
+  line-height: 40px;
+  width: 100px;
+  height: 40px;
+  margin-right: 10px;
+}
+.programmePreparation_text{
+  position: relative;
+  width: 100%;
+  height: 560px;
+}
+/* 基本设置 */
+.basicSetup{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+.basicSetup_left{
+  float: left;
+  width: 20%;
+  height: 100%;
+  background: #F7FBFF;
+  position: relative;
+}
+.basicSetup_right{
+  float: left;
+  width: 80%;
+  height: 100%;
+  background: #fff;
+}
+.basicSetup_left /deep/ .el-input__inner{
+  padding-left: 10px !important;
+  color: #058cd0;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 16px !important;
+  height: 30px !important;
+}
+.basicSetup_left /deep/ .el-input__inner {
+  padding-left: 10px !important;
+  color: #058cd0;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 16px !important;
+  height: 30px !important;
+  width: 160px!important;
+}
+.StartTime /deep/ .el-input__inner{
+  padding-left: 30px!important;
+}
+.StartTime /deep/ .el-input__icon{
+  line-height: 30px!important;
+}
+.singleli_title /deep/ .el-input-number {
+  position: relative;
+  display: inline-block;
+  width: 120px!important;
+  line-height: 30px!important;
+}
+.SimIntervalMinute /deep/ .el-input__inner {
+  width: 120px!important;
+}
+.singleli_title /deep/ .el-input-number.is-controls-right .el-input-number__decrease, .el-input-number.is-controls-right .el-input-number__increase{
+  height: auto;
+  line-height: 15px!important;
+}
+.basicSetup_right /deep/ .el-textarea__inner {
+  height: 480px;
+  background-color: transparent !important;
+  border: 1px solid #01bdf5 !important;
+}
+.basicSetup_textarea{
+  padding:0 10px;
+}
+/* 模型参数 */
+.modelParameter{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.modelParameter_left{
+  float: left;
+  width: 10%;
+  height: 100%;
+  position: relative;
+}
+.modelParameter_left_ul{
+  position: relative;
+  width: 100%;
+}
+.modelParameter_left_ul li{
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  list-style: none;
+  font-size: 14px;
+  text-align: center;
+  width: 95px;
+  margin-right: 10px;
+  padding: 7px 0;
+  background: rgba(5, 160, 236, 0.58);
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 50px;
+}
+.modelParameter_left_ul li:nth-child(1){
+  margin-top: 0px!important;
+}
+.actve{
+  color: #fff!important;
+  background: #01ddff!important;
+}
+.modelParameter_right{
+  float: left;
+  width: 90%;
+  height: 100%;
+  position: relative;
+}
+/* 水文 */
+.hydrology_content{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hydrology_table{
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.hydrology_pages{
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  height: 40px;
+  line-height: 40px;
+}
+.hydrology_pages .pages{
+  text-align: left!important;
+}
+
+/* 水动力 */
+.hydrodynamicForce{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hydrodynamicForce_left{
+  float: left;
+  width: 40%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.hydrodynamicForce_left .sysfxTit{
+  width: 160px;
+}
+.hydrodynamicForce_left /deep/ .el-input__inner{
+  position: relative;
+  display: inline-block;
+  width: 180px!important;
+  line-height: 30px!important;
+  height: 30px;
+}
+.hydrodynamicForce_right{
+  float: left;
+  width: 60%;
+  height: 100%;
+  padding: 10px;
+  padding-top: 0px!important;
+  box-sizing: border-box;
+}
+.hydrodynamicForce_right .title{
+  border-bottom: 1px solid #fff;
+  color: #058cd0;
+  text-align: center;
+  margin-bottom: 19px;
+  font-size: 18px;
+  height: 30px;
+  line-height: 30px;
+}
+.hydrodynamicForce_right /deep/ .el-table td,
+.hydrodynamicForce_right /deep/ .el-table th{
+  padding: 3px 0!important;
+}
+.hydrodynamicForce_right .pages{
+  margin-top: 5px!important;
+  text-align: right!important;
+}
+.container_table{
+  margin-top: 10px;
+}
+.hydrodynamicForce_top{
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+  text-align: center;
+  padding: 10px;
+  padding-top: 0px!important;
+  box-sizing: border-box;
+}
+.hydrodynamicForce_top .sysfxTit{
+  width: 100%!important;
+  text-align: right!important;
+}
+.hydrodynamicForce_top /deep/ .el-input__inner{
+  line-height: 30px!important;
+  height: 30px;
+}
+
+.hydrodynamicForce_bottom{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding:0 10px;
+  box-sizing: border-box;
+}
+/* 对流扩散 */
+.convectiveDiffusion{
+  position: relative;
+  width: 100%;
+  height:100%;
+}
+.convectiveDiffusion_left{
+  float: left;
+  width: 40%;
+  height: 100%;
+}
+.convectiveDiffusion_right{
+  float: right;
+  width: 60%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-top: 0px!important;
+}
+.convectiveDiffusion_left .sysfxTit{
+  width: 160px!important;
+}
+.convectiveDiffusion_left /deep/ .el-input__inner{
+  position: relative;
+  display: inline-block;
+  width: 180px!important;
+  line-height: 30px!important;
+  height: 30px;
+}
+.convectiveDiffusion_right .pages{
+  margin-top: 5px!important;
+  text-align: right!important;
+}
+/* 生态 */
+.zoology{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-top: 0px!important;
+}
+.zoology /deep/ .el-table td,
+.zoology /deep/ .el-table th{
+  padding: 10px 0!important;
+}
+
+/* 边界条件 */
+.boundaryConditions{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #1677FF;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.boundaryConditions_top{
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+.boundaryConditions_bottom{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
+}
+
+.boundaryConditions_left{
+  float: left;
+  width: 20%;
+  height: 100%;
+  position: relative;
+  border: 1px solid #EBEEF5;
+  box-sizing: border-box;
+}
+.boundaryConditions_content{
+  float: left;
+  width: 28%;
+  height: 100%;
+  position: relative;
+  margin: 0 1%;
+  box-sizing: border-box;
+}
+.boundaryConditions_right{
+  float: left;
+  width: 50%;
+  height: 100%;
+  position: relative;
+  border: 1px solid #EBEEF5;
+  box-sizing: border-box;
+}
+
+.boundaryConditions_left .data_info {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+}
+.boundaryConditions_left .data_info img {
+  width: 15px;
+  height: 10px;
+  position: relative;
+  top: 15px;
+  float: right;
+  right: 10px;
+}
+.boundaryConditions_left .list {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.boundaryConditions_left .info {
+  height: 40px;
+  line-height: 40px;
+  color: #1677FF ;
+}
+.boundaryConditions_name{
+  margin-top: 10px;
+  text-align: right;
+}
+.boundaryConditions_content /deep/ .el-input__inner{
+  position: relative;
+  display: inline-block;
+  width: 180px!important;
+  line-height: 30px!important;
+  height: 30px;
+}
+.isactive {
+    color: #fff!important;
+    background: #01ddff!important;
+}
+/* 模板管理 */
+.administrativeDivisions{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.administrativeDivisions_left{
+  float: left;
+  width: 20%;
+  height: 100%;
+  position: relative;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+.Divisions{
+  position: relative;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.Divisions /deep/ .el-button--small, .el-button--small.is-round{
+  padding: 7px 15px;
+}
+.Divisions /deep/ .el-checkbox {
+  color: #666!important;
+}
+.administrativeDivisions_left /deep/ .el-input__inner {
+  padding-left: 10px !important;
+  color: #058cd0;
+  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
+  font-size: 16px !important;
+  height: 30px !important;
+}
+.administrativeDivisions_left /deep/ .el-input__icon {
+  height: 100%;
+  width: 25px;
+  text-align: center;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  line-height: 30px;
+}
+
+.administrativeDivisions_right{
+  float: left;
+  position: relative;
+  width: 80%;
+  background: #FFFFFF;
+  padding: 9px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}

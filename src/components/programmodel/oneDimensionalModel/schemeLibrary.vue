@@ -1,29 +1,23 @@
 <template>
   <!--方案库主页面-->
-  <div id="schemeLibrary">
-    <ul class="clear-fix">
-      <li class="left lefts">
-        <div style="margin: 10px;">
-          <!-- <el-button type="primary" size="small" plain @click="showTypeClick(1)">行政分区</el-button>
-          <el-button type="primary" size="small" plain @click="showTypeClick(2)">流域分区</el-button>
-          <el-button type="primary" size="small" plain @click="showTypeClick(3)">水资源分区</el-button> -->
-          <el-radio-group  v-model="cursysval">
-            <el-col :span="6" v-for="item in curWaterSysOption"  :key="item.value" style="padding-left: 10px;">
-              <el-radio :label="item.value"   >{{item.label}}</el-radio>
-            </el-col>
-          </el-radio-group>
-        </div>
-
-        <!-- 河长制 -->
-        <div v-show="cursysval == 'chief'">
-            <div class="singleli_title">
+  <div class="schemeLibrary clear-fix">
+    <!-- 左侧 -->
+    <div class="schemeLibrary_left ">
+      <ul class="clear-fix schemeLibrary_ul">
+        <li :class="[TapType == '1' ? 'csour' : '']" @click="TapSwitch(1)">河长制</li>
+        <li :class="[TapType == '2' ? 'csour' : '']" @click="TapSwitch(2)">流域</li>
+        <li :class="[TapType == '3' ? 'csour' : '']" @click="TapSwitch(3)">水资源</li>
+        <li :class="[TapType == '4' ? 'csour' : '']" @click="TapSwitch(4)">行政</li>
+      </ul>
+      <div class="schemeLibrary_div" v-show="TapType == '1'">
+        <div class="singleli_title">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
                 省：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="province">
                   <el-option
@@ -44,7 +38,7 @@
                 市：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="city">
                   <el-option
@@ -65,7 +59,7 @@
                 县：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="county">
                   <el-option
@@ -86,7 +80,7 @@
                 镇：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="town">
                   <el-option
@@ -107,7 +101,7 @@
                 村：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="rustic">
                   <el-option
@@ -121,10 +115,8 @@
             </el-col>
           </el-row>
         </div>
-        </div>
-
-        <!-- 行政分区 -->
-        <div v-show="cursysval == 'administrative'">
+      </div>
+      <div class="schemeLibrary_div" v-show="TapType == '2'">
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -132,7 +124,7 @@
                 省：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="province">
                   <el-option
@@ -153,7 +145,7 @@
                 市：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="city">
                   <el-option
@@ -174,7 +166,7 @@
                 县：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="county">
                   <el-option
@@ -195,7 +187,7 @@
                 镇：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="town">
                   <el-option
@@ -216,7 +208,7 @@
                 村：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="rustic">
                   <el-option
@@ -230,10 +222,8 @@
             </el-col>
           </el-row>
         </div>
-        </div>
-
-        <!-- 流域分区 -->
-        <div v-show="cursysval == 'drainagebasin'">
+      </div>
+      <div  class="schemeLibrary_div" v-show="TapType == '3'">
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -241,7 +231,7 @@
                 流域：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="drainageBasin">
                   <el-option
@@ -262,7 +252,7 @@
                 水系：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="basin">
                   <el-option
@@ -283,7 +273,7 @@
                 一级河流：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="firstOrderStream">
                   <el-option
@@ -304,7 +294,7 @@
                 二级河流：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="secondOrderStream">
                   <el-option
@@ -318,11 +308,8 @@
             </el-col>
           </el-row>
         </div>
-        </div>
-
-
-        <!-- 水资源 -->
-        <div v-show="cursysval == 'waterResource'">
+      </div>
+      <div class="schemeLibrary_div" v-show="TapType == '4'">
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -330,7 +317,7 @@
                 一级分区：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="primaryPartition">
                   <el-option
@@ -351,7 +338,7 @@
                 二级分区：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="secondaryPartition">
                   <el-option
@@ -372,7 +359,7 @@
                 三级分区：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="tertiaryPartition">
                   <el-option
@@ -393,7 +380,7 @@
                 四级分区：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="fourstagePartition">
                   <el-option
@@ -414,7 +401,7 @@
                 五级分区：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="fivestagePartition">
                   <el-option
@@ -428,27 +415,23 @@
             </el-col>
           </el-row>
         </div>
-        </div>
-        <div>
+      </div>
+      <div class="schemeLibrary_button">
           <el-button
             type="primary"
             size="small"
-            plain
-            style="float:right;right: 20px;position: relative;"
-            >查找</el-button
-          >
-        </div>
-      </li>
-      <li class=" right">
-        <div style="margin:10px 0;">
-          <el-button type="primary" size="small" plain>新增方案</el-button>
-        </div>
+            plain>查找</el-button>
+      </div>
+    </div>
+    <!-- 右侧 -->
+    <div class="schemeLibrary_right">
+      <el-button type="primary" size="small" plain>新增方案</el-button>
         <div>
           <el-table
             border
             :data="tableData"
-            height="600"
-            style="background-color: transparent;"
+            height="480"
+            style="background-color: transparent;margin:10px 0;"
           >
             <el-table-column prop="tab1" label="序号" min-width="50">
             </el-table-column>
@@ -493,7 +476,7 @@
             </el-table-column>
           </el-table>
         </div>
-        <div>
+        <div class="pages">
           <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
           <el-pagination
             background
@@ -507,8 +490,7 @@
           >
           </el-pagination>
         </div>
-      </li>
-    </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -516,6 +498,8 @@ export default {
   components: {},
   data() {
     return {
+      TapType:1,
+
       //行政分区
       province:'',
       provinceList:[],
@@ -556,9 +540,6 @@ export default {
       currentPage2: 5,
       currentPage3: 5,
       currentPage4: 4,
-
-      cursysval:'chief',
-      curWaterSysOption:[{label:'河长制',value:'chief'},{label:'流域',value:'drainagebasin'},{label:'水资源',value:'waterResource'},{label:'行政',value:'administrative'}],
     };
   },
   created() {
@@ -640,6 +621,9 @@ export default {
     // })
   },
   methods: {
+    TapSwitch(id){
+      this.TapType = id;
+    },
     showTypeClick(index){
       this.showType = index;
     },
@@ -665,60 +649,6 @@ export default {
   watch: {}
 };
 </script>
-<style>
-#schemeLibrary .left {
-  border-right: 2px dashed royalblue;
-  border-right: 2px dashed royalblue;
-  float: left;
-  left: 0px;
-  position: absolute;
-  width: 21%;
-}
-#schemeLibrary .right {
-  float: left;
-  left: 22%;
-  height: 100%;
-  position: absolute;
-  width: 77%;
-}
-#schemeLibrary .singleli_title {
-  font-size: 13px;
-  height: 35px;
-  line-height: 65px;
-  border-radius: 5px;
-  font-weight: lighter;
-  margin-left: 3%;
-  margin-top: 20px;
-}
-
-#schemeLibrary .singleli_title .sysfxTit {
-  color: white;
-  letter-spacing: 1px;
-  font-size: 16px;
-  margin-right: 10px;
-  text-align: right;
-}
-#schemeLibrary .el-input__inner {
-  padding-left: 10px !important;
-  color: #058cd0;
-  border: 1px solid #058cd0;
-  background: #031823;
-  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  font-size: 16px !important;
-  height: 30px !important;
-}
-#schemeLibrary .el-pagination__total {
-  color: #ffffff !important;
-}
-#schemeLibrary .el-pagination__jump {
-  color: #ffffff !important;
-}
-#schemeLibrary .el-pagination .el-select .el-input .el-input__inner {
-  color: #ffff;
-}
-#schemeLibrary ul {
-  position: relative;
-  height: 100%;
-}
+<style scoped>
+@import '../../../../static/css/public.css';
 </style>

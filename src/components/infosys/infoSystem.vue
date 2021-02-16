@@ -1,9 +1,9 @@
 <template>
   <div id="infoSystem">
     <div class="sidebar clear-fix">
-      <div class="treeform">
+      <div class="tree_form">
         <div class="stair">
-          <ul class="clear-fix">
+          <ul class="clear-fix stair_ui">
             <li :class="[Type == '1' ? 'cur' : '']" @click=" Switch(1);contraction(statse);">
               <i class="iconfont icon-shuidi1"></i>
               信息汇总
@@ -15,10 +15,10 @@
                 v-model="filterText"
               >
               </el-input>
-              <ul class="clear-fix treeform_ul">
-                <li :class="[TapType == '1' ? 'cur' : '']" @click="TapSwitch(1)">行政区</li>
-                <li :class="[TapType == '2' ? 'cur' : '']" @click="TapSwitch(2)">流域</li>
-                <li :class="[TapType == '3' ? 'cur' : '']" @click="TapSwitch(3)">河长制</li>
+              <ul class="clear-fix tree_form_ui">
+                <li :class="[TapType == '1' ? 'curer' : '']" @click="TapSwitch(1)">行政区</li>
+                <li :class="[TapType == '2' ? 'curer' : '']" @click="TapSwitch(2)">流域</li>
+                <li :class="[TapType == '3' ? 'curer' : '']" @click="TapSwitch(3)">河长制</li>
               </ul>
               <div class="filter" v-if="TapType == '1'">
                 <el-tree
@@ -70,7 +70,7 @@
         </div>
       </div>
       <!-- 信息汇总 -->
-      <div class="content" v-if="Type == 1">
+      <div class="DataPage" v-if="Type == 1">
           <!-- 行政区 -->
         <div v-if="TapType == '1' &&  nonelist" class="orientation">
           <administrative></administrative>
@@ -85,11 +85,11 @@
         </div>
       </div>
       <!-- 信息查询 -->
-      <div class="content" v-if="Type == 2">
+      <div class="DataPage" v-if="Type == 2">
         <informationLnquiry></informationLnquiry>
       </div>
       <!-- 水质报告 -->
-      <div class="content" v-if="Type == 3">
+      <div class="DataPage" v-if="Type == 3">
         <waterQualityReport></waterQualityReport>
       </div>
     </div>
@@ -255,6 +255,7 @@ export default {
             label: '公示牌GX00011'
           }]
       }],
+      label:null,
     };
   },
   methods: {
@@ -296,132 +297,6 @@ export default {
   filters: {}
 };
 </script>
-
 <style scoped>
-#infoSystem {
-  position: absolute;
-  width: 100%;
-  height: calc(100vh - 80px);
-  background: rgba(25, 17, 28, 0.57);
-  z-index: 1;
-}
-.sidebar {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.treeform {
-  float: left;
-  width: 15%;
-  height: 100%;
-  background: rgb(21, 37, 63);
-  padding-top: 30px;
-}
-/* 一级导航 */
-.stair {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.stair ul {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.stair ul li {
-  height: 40px;
-  line-height: 40px;
-  padding: 0 20px;
-  box-sizing: border-box;
-  color: #fff;
-}
-.cur {
-  color: rgb(1, 143, 175) !important;
-}
-
-.icon-shuidi1:before {
-  content: "\E703";
-}
-.icon-shuidi2:before {
-  content: "\E686";
-}
-.icon-shuidi3:before {
-  content: "\E685";
-}
-.icon-shuidi4:before {
-  content: "\E683";
-}
-/* 一级下拉内容 */
-.list {
-  position: relative;
-  width: 100%;
-  padding: 0 40px;
-  box-sizing: border-box;
-}
-/* 搜索框 */
-.list /deep/ .el-input {
-  box-sizing: border-box;
-}
-.list /deep/ .el-input--prefix .el-input__inner {
-  padding-left: 30px !important;
-}
-.list /deep/ .el-input__prefix {
-  left: 5px;
-  top: -5px;
-}
-.content {
-  float: left;
-  width: 85%;
-  height: 100%;
-}
-/* tab切换 */
-.treeform_ul{
-  position: relative;
-  width: 100%;
-  padding-top: 20px;
-  box-sizing: border-box;
-
-}
-.treeform_ul li{
-  float: left;
-  width: 30%;
-  box-sizing: border-box;
-  background: #01ddff;
-  margin-left: 5%;
-  box-sizing: border-box;
-  text-align: center;
-  height: 30px!important;
-  line-height: 30px!important;
-  border-radius: 5px;
-  padding: 0!important;
-}
-.treeform_ul li:nth-child(1){
-  margin-left: 0px;
-}
-/* 树形图 */
-.filter{
-  position: relative;
-  padding-top: 20px;
-}
-.filter /deep/ .el-tree{
-  background: rgb(21, 37, 63);
-  color: #fff;
-}
-.filter /deep/ .el-tree-node:focus>.el-tree-node__content{
-  background-color: rgba(25, 17, 28, 0.2) !important;
-  color: rgb(1, 143, 175)!important;
-}
-.filter /deep/ .el-tree-node__content:hover {
-  background-color: rgba(25, 17, 28, 0.2) !important;
-}
-.filter /deep/ .el-tree-node__content{
-  height: 50px!important;
-  line-height: 50px!important;
-}
-/* 定位 */
-.orientation{
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-</style>
+@import '../../../static/css/public.css';
+</style>>

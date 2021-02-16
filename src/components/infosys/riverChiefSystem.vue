@@ -1,31 +1,38 @@
 <template>
   <div class="administrative clear-fix">
-    <!-- 侧边栏 -->
-    <div class="sidebar">
-      <!-- 树形图 -->
-      <el-tree :data="data"
-        node-key="id"
-        :props="defaultProps"
-        icon-class="1"
-        accordion
-        @node-click="handleNodeClick">
-      >
-      <!-- <span class="custom-tree-node" slot-scope="{ node , data }"> -->
-        <span class="custom-tree-node" slot-scope="{ data }">
-          <span>
-            <i :class="data.icon"></i>{{ data.label }}
-          </span>
-        </span>
-      </el-tree>
+    <!-- 标题 -->
+    <div class="administrative_title">
+      <div>{{this.name}}</div>
     </div>
-    <!-- 内容 -->
-    <div class="content">
-      <publicBoardInformation v-if="value == 4"></publicBoardInformation>
-      <HCZriverTourRecord v-if="value == 5"></HCZriverTourRecord>
-      <IssueReceipt v-if="value == 6"></IssueReceipt>
-      <HCZrainfallMonitoringStation v-if="value == 7"></HCZrainfallMonitoringStation>
-      <HCZhydrologicalStation v-if="value == 8"></HCZhydrologicalStation>
-      <HCZwaterQualityMonitoringStation v-if="value == 9"></HCZwaterQualityMonitoringStation>
+    <!-- 内容页 -->
+    <div class="administrative_content">
+      <!-- 侧边栏 -->
+      <div class="sidebar_data">
+        <!-- 树形图 -->
+        <el-tree :data="data"
+          node-key="id"
+          :props="defaultProps"
+          icon-class="1"
+          accordion
+          @node-click="handleNodeClick">
+        >
+        <!-- <span class="custom-tree-node" slot-scope="{ node , data }"> -->
+          <span class="custom-tree-node" slot-scope="{ data }">
+            <span>
+              <i :class="data.icon"></i>{{ data.label }}
+            </span>
+          </span>
+        </el-tree>
+      </div>
+      <!-- 内容 -->
+      <div class="content_name">
+        <publicBoardInformation v-if="value == 4"></publicBoardInformation>
+        <HCZriverTourRecord v-if="value == 5"></HCZriverTourRecord>
+        <IssueReceipt v-if="value == 6"></IssueReceipt>
+        <HCZrainfallMonitoringStation v-if="value == 7"></HCZrainfallMonitoringStation>
+        <HCZhydrologicalStation v-if="value == 8"></HCZhydrologicalStation>
+        <HCZwaterQualityMonitoringStation v-if="value == 9"></HCZwaterQualityMonitoringStation>
+      </div>
     </div>
   </div>
 </template>
@@ -99,7 +106,8 @@ export default {
         children: 'children',
         label: 'label'
       },
-      value:4
+      value:4,
+      name:'河长制公示牌信息',
     }
   },
   created() {
@@ -110,56 +118,15 @@ export default {
   },
   methods: {
     handleNodeClick(data) {
-      // console.log(data)
       if(data.children == undefined){
         this.value = data.id
+        this.name = data.label
       }
-      console.log(this.value)
     }
   }
 };
 </script>
 
 <style scoped>
-.administrative{
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-/* 侧边栏 */
-.sidebar{
-  width: 15%;
-  float: left;
-  height: 100%;
-  border-left:1px solid #ffffff;
-  background: rgb(21, 37, 63);
-  padding-top: 25px;
-  box-sizing: border-box;
-}
-.sidebar /deep/ .el-tree{
-  position: relative;
-  cursor: default;
-  color: #ffffff;
-  background: none;
-  font-size: 14px;
-}
-.sidebar /deep/ .el-tree-node:focus>.el-tree-node__content{
-  background-color: rgba(25, 17, 28, 0.2) !important;
-  color: rgb(1, 143, 175)!important;
-}
-.sidebar /deep/ .el-tree-node__content:hover {
-  background-color: rgba(25, 17, 28, 0.2) !important;
-}
-.sidebar /deep/ .el-tree-node__content{
-  height: 50px!important;
-  line-height: 50px!important;
-}
-/* 内容 */
-.content{
-  width: 85%;
-  float: left;
-  height: 100%;
-  box-sizing: border-box;
-}
-
+@import '../../../static/css/public.css';
 </style>

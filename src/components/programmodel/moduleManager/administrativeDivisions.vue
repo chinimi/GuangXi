@@ -1,18 +1,15 @@
 <template>
 <!--行政分区主页面-->
-  <div id="administrativeDivisions">
-    <ul>
-      <li class="left lefts">
-
-
-    <div class="singleli_title">
+  <div class="administrativeDivisions">
+    <div class="administrativeDivisions_left">
+              <div class="singleli_title">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
                 省：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="province">
                   <el-option
@@ -33,7 +30,7 @@
                 市：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="city">
                   <el-option
@@ -54,7 +51,7 @@
                 县：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="county">
                   <el-option
@@ -75,7 +72,7 @@
                 镇：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="town">
                   <el-option
@@ -96,7 +93,7 @@
                 村：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="14" >
               <div>
                 <el-select v-model="rustic">
                   <el-option
@@ -110,28 +107,26 @@
             </el-col>
           </el-row>
         </div>
-
-
         <div>
           <el-button style="float:right;right: 20px;position: relative;" type="primary" size="small" plain>查找</el-button>
         </div>
-      </li>
-      <li class=" clear-fix left right">
-        <div style="margin:1% 0 1% 0;">
+    </div>
+    <div class="administrativeDivisions_right">
+        <div class="Divisions">
           <el-button type="primary" size="small" plain>上传模板</el-button>
-          <div style="margin-left: 11%;margin-top: -2%;">
-          <el-checkbox-group v-model="checkList">
-            <el-checkbox label="一维"></el-checkbox>
-            <el-checkbox label="二维"></el-checkbox>
-          </el-checkbox-group>
-        </div>
+          <div style="display: inline-block;margin-left:20px">
+            <el-checkbox-group v-model="checkList">
+              <el-checkbox label="一维"></el-checkbox>
+              <el-checkbox label="二维"></el-checkbox>
+            </el-checkbox-group>
+          </div>
         </div>
         <div>
           <el-table
             border
             :data="tableData"
-            height="600"
-            style="background-color: transparent;"
+            height="460"
+            style="background-color: transparent;margin: 10px 0px"
           >
             <el-table-column prop="tab1" label="序号" min-width="70">
             </el-table-column>
@@ -176,8 +171,7 @@
             </el-table-column>
           </el-table>
         </div>
-        <div>
-          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
+        <div class="pages">
           <el-pagination
             background
             @size-change="handleSizeChange"
@@ -190,8 +184,7 @@
           >
           </el-pagination>
         </div>
-      </li>
-    </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -321,55 +314,6 @@ export default {
   watch: {}
 };
 </script>
-<style>
-#administrativeDivisions .left {
-  float: left;
-  margin-right: 10px;
-  height: 50%;
-  margin-top: -6px;
-}
-#administrativeDivisions .lefts {
-  width: 311px;
-  border-right: 2px dashed royalblue;
-}
-#administrativeDivisions .right {
-  width: 77%;
-  margin-top: -2%;
-}
-#administrativeDivisions .singleli_title {
-  font-size: 13px;
-  height: 35px;
-  line-height: 65px;
-  border-radius: 5px;
-  font-weight: lighter;
-  margin-left: 3%;
-  margin-top: 20px;
-}
-
-#administrativeDivisions .singleli_title .sysfxTit {
-  color: white;
-  letter-spacing: 1px;
-  font-size: 16px;
-  text-align: right;
-  margin-right: 10px;
-}
-#administrativeDivisions .el-input__inner {
-  padding-left: 10px !important;
-  color: #058cd0;
-  border: 1px solid #058cd0;
-  background: #031823;
-  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  font-size: 16px !important;
-  height: 30px !important;
-}
-#administrativeDivisions .el-pagination__total {
-  color: #ffffff !important;
-}
-#administrativeDivisions .el-pagination__jump {
-  color: #ffffff !important;
-}
-#administrativeDivisions .el-pagination .el-select .el-input .el-input__inner {
-  color: #ffff;
-}
+<style scoped>
+@import '../../../../static/css/public.css';
 </style>

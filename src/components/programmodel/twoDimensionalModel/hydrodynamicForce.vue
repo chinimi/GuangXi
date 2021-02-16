@@ -1,55 +1,59 @@
 <template>
 <!--水动力主页面-->
-  <div class="hydrodynamicForces">
-    <div class="singleli_title">
-      <el-row>
-        <el-col :span="8">
-          <div class="sysfxTit">
-            糙率全局值（n）
-          </div>
-        </el-col>
-        <el-col :span="14" style="margin-left: -22%;">
-          <div>
+  <div class="hydrodynamicForce">
+    <div class="hydrodynamicForce_top">
+      <div class="singleli_title">
+        <el-row>
+          <el-col :span="12" style="text-align: right;">
+            <div class="sysfxTit">
+              糙率全局值（n）
+            </div>
+          </el-col>
+          <el-col :span="12" style="text-align: left;">
             <el-input
               style="width:196px"
-              v-model="input"
+              v-model="ResistanceNumber"
               placeholder="请输入内容"
             ></el-input>
-          </div>
-        </el-col>
-      </el-row>
+          </el-col>
+        </el-row>
+      </div>
+            <div class="container_table">
+        <el-table
+        border  
+          :data="roughnessTable"
+          style="width: 100%;background-color: transparent;height:425px;"
+        >
+          <el-table-column
+            prop="date"
+            label="河槽类型及情况"
+          ></el-table-column>
+          <el-table-column
+            prop="name"
+            label="最小值"
+            width="80"
+          ></el-table-column>
+          <el-table-column
+            prop="address"
+            label="正常值"
+            width="80"
+          ></el-table-column>
+          <el-table-column
+            prop="max"
+            label="最大值"
+            width="80"
+          ></el-table-column>
+        </el-table>
+      </div>
     </div>
-    <ul>
-      <li class="container">
-        <div class="container_table">
-          <el-table
-            :data="tableData"
-            style="width:60%;background-color: transparent;margin-left: 13%;"
-            height="400px;"
-          >
-            <el-table-column prop="date" label="河槽类型及情况">
-            </el-table-column>
-            <el-table-column prop="name" label="最小值" width="100">
-            </el-table-column>
-            <el-table-column
-              prop="address"
-              label="正常值"
-              width="100"
-            ></el-table-column>
-            <el-table-column
-              prop="max"
-              label="最大值"
-              width="100"
-            ></el-table-column>
-          </el-table>
-        </div>
-        <div style="    position: absolute;top: 428px;right: 102px;">
-          <el-button type="primary" size="small" plain>保存</el-button>
-          <el-button type="primary" size="small" plain>计算</el-button>
-          <el-button type="primary" size="small" plain>查看结果</el-button>
-        </div>
-      </li>
-    </ul>
+    <div class="hydrodynamicForce_bottom">
+
+      <div class="pages" style="text-align: right;">
+        <el-button type="primary" size="small" plain @click="saveClick">保存</el-button>
+        <el-button type="primary" size="small" plain>计算</el-button>
+        <el-button type="primary" size="small" plain>查看结果</el-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -111,54 +115,6 @@ export default {
   }
 };
 </script>
-
-<style>
-.hydrodynamicForces {
-  position: absolute;
-  color: #fff;
-  left: 170px;
-  top: 10px;
-  width: 1300px;
-}
-.hydrodynamicForces .container {
-  width: 100%;
-  /* background: lightcoral; */
-}
-.hydrodynamicForces .singleli_title {
-  font-size: 13px;
-  height: 35px;
-  line-height: 35px;
-  border-radius: 5px;
-  font-weight: lighter;
-  margin-left: 13%;
-  margin-top: 20px;
-}
-
-.hydrodynamicForces .singleli_title .sysfxTit {
-  color: white;
-  letter-spacing: 1px;
-  font-size: 16px;
-  /* text-align: right; */
-  margin-right: 10px;
-}
-.hydrodynamicForces .el-input__inner {
-  /* padding-left: 10px !important; */
-  color: #058cd0;
-  border: 1px solid #058cd0;
-  background: #031823;
-  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  font-size: 16px !important;
-  /* border-radius: 10px !important; */
-  /* border: 0px !important; */
-  height: 30px !important;
-  /* width: 196px !important; */
-}
-.hydrodynamicForces .container_table .el-table .cell {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  white-space: normal;
-  word-break: break-all;
-  line-height: 17px;
-}
+<style scoped>
+@import "../../../../static/css/public.css";
 </style>

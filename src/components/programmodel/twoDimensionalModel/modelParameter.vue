@@ -1,38 +1,23 @@
 <template>
 <!--模型参数主页面-->
-  <div class="modelParameter">
-    <ul class="clear-fix title">
-      <li
-        v-for="(item, index) in menu"
-        :key="index"
-        :class="[
-          'Class',
-          { active: isActive == item.value ? true : false }
-        ]"
-        @click="
-          isActive = item.value;
-          currentComp = item.comp;
-        "
-      >
-        <i :class="['iconfont', item.icon]"></i>
-        <span>{{ item.name }}</span>
-      </li>
-    </ul>
-    <!--切换组件-->
-    <div>
-      <!--組件跳轉-->
-
-      <div v-show="currentComp == 'hydrodynamicForce'">
-        <hydrodynamicForce></hydrodynamicForce>
+  <div class="modelParameter clear-fix">
+      <div class="modelParameter_left">
+        <ul class="clear-fix modelParameter_left_ul">
+          <li :class="[TapType == '1' ? 'actve' : '']" @click="TapSwitch(1)">水动力</li>
+          <li :class="[TapType == '2' ? 'actve' : '']" @click="TapSwitch(2)">对流扩散</li>
+          <li :class="[TapType == '3' ? 'actve' : '']" @click="TapSwitch(3)">生态</li>
+        </ul>
       </div>
-      <div v-show="currentComp == 'convectiveDiffusion'">
-        <convectiveDiffusion></convectiveDiffusion>
+      <div class="modelParameter_right" v-show="TapType == '1'">
+          <hydrodynamicForce></hydrodynamicForce>
       </div>
-      <div v-show="currentComp == 'zoology'">
-        <zoology></zoology>
+      <div class="modelParameter_right" v-show="TapType == '2'">
+          <convectiveDiffusion></convectiveDiffusion>
+      </div>
+      <div class="modelParameter_right" v-show="TapType == '3'">
+          <zoology></zoology>
       </div>
     </div>
-  </div>
 </template>
 <script>
 import hydrodynamicForce from "./hydrodynamicForce.vue";
@@ -47,59 +32,19 @@ export default {
   },
   data() {
     return {
-      currentComp: "hydrodynamicForce",
-      isActive: "hydrodynamicForce",
-      menu: [
-        {
-          name: "水动力",
-          value: "hydrodynamicForce",
-          comp: "hydrodynamicForce"
-        },
-        {
-          name: "对流扩散",
-          value: "convectiveDiffusion",
-          comp: "convectiveDiffusion"
-        },
-        {
-          name: "生态",
-          value: "zoology",
-          comp: "zoology"
-        }
-      ]
+      TapType:1,
     };
   },
-  methods: {},
+  methods: {
+    TapSwitch(id){
+      this.TapType = id;
+    }
+  },
   computed: {},
   mounted() {},
   watch: {}
 };
 </script>
-<style>
-.modelParameter {
-position: relative;
-    z-index: 9;
-    top: 50px;
-}
-.modelParameter .title{
-  position: absolute;
-}
-.modelParameter .Class {
-    cursor: pointer;
-    color: #fff;
-    list-style: none;
-    font-size: 14px;
-    text-align: center;
-    width: 95px;
-    margin-right: 10px;
-    padding: 7px 0;
-    background: rgba(5, 160, 236, 0.58);
-        margin-top: 20px;
-    border-radius: 50px;
-
-}
-.modelParameter .active {
-    color: #fff!important;
-    background: #01ddff!important;
-}
-
+<style scoped>
+@import '../../../../static/css/public.css';
 </style>

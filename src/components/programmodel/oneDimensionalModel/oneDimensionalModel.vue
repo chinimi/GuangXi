@@ -1,136 +1,63 @@
 <template>
-<!--一维模型主页面-->
-  <div >
-      <!-- 增加显示隐藏 -->
-      <div class="header_true">
-        <div class="header_xiala_div" @click="header(1)" v-if="slideDown">
-          <img class="xiala_img" src="static/images/xiala.png" alt="">
-        </div>
-        <div class="header_shangla_div" @click="header(2)" v-if="!slideDown">
-          <img class="shangla_img" src="static/images/shangla.png" alt="">
-        </div>
+  <!--一维模型主页面-->
+  <div class="oneDimensionalModel">
+    <div class="Model" v-if="slideDown">
+      <ul class="clear-fix Model_ul">
+        <li :class="[TapType == '1' ? 'csourer' : '']" @click="TapSwitch(1)">方案库</li>
+        <li :class="[TapType == '2' ? 'csourer' : '']" @click="TapSwitch(2)">方案编制</li>
+        <li>
+          <div class="butt_close" @click="header(1)">
+            <img src="../../../../static/images/close.png" alt="" />
+          </div>
+        </li>
+      </ul>
+      <div v-show="TapType == '1'" class="Model_text">
+        <schemeLibrary></schemeLibrary>
       </div>
-
-      <div id="oneDimensionalModel" v-if="slideDown">
-        <ul class="programModel_title">
-          <li
-            v-for="(item,index) in menu"
-            :key="index"
-            :class="['programModelClass',{programModel_active : ( isActive == item.value ? true : false )}]"
-            @click="isActive = item.value;currentComp = item.comp"
-          >
-            <i  :class="['iconfont', item.icon]"></i>
-            <span>{{item.name}}</span>
-          </li>
-        </ul>
-          <!--切换组件-->
-      <div>
-        <!--組件跳轉-->
-        <!--方案库组件-->
-        <div v-show="currentComp=='schemeLibrary'">
-          <schemeLibrary></schemeLibrary>
-        </div>
-        <!--方案编制组件-->
-        <div v-show="currentComp=='programmePreparation'">
-          <programmePreparation></programmePreparation>
-        </div>
+      <div v-show="TapType == '2'" class="Model_text">
+        <programmePreparation></programmePreparation>
+      </div>
+    </div>
+    <div class="header_true" v-if="!slideDown">
+      <div class="header_shangla_div" @click="header(2)">
+        <img class="shangla_img" src="static/images/shangla.png" alt="" />
       </div>
     </div>
   </div>
-
 </template>
 <script>
-import schemeLibrary from './schemeLibrary.vue';
-import programmePreparation from './programmePreparation.vue';
+import schemeLibrary from "./schemeLibrary.vue";
+import programmePreparation from "./programmePreparation.vue";
 
-
-  export default {
-    components:{
-      schemeLibrary,
-      programmePreparation,
-
-    },
-    data() {
-      return {
-         slideDown: true,
-         currentComp: 'schemeLibrary',
-         isActive: 'schemeLibrary',
-         menu: [
-            {
-              name: '方案库',
-              value: 'schemeLibrary',
-              comp: 'schemeLibrary'
-            },
-            {
-              name: '方案编制',
-              // 当前li标签是否选中的标识
-              value: 'programmePreparation',
-              // 点击当前li标签，要显示的组件
-              comp: 'programmePreparation'
-            }
-
-          ]
-
+export default {
+  components: {
+    schemeLibrary,
+    programmePreparation
+  },
+  data() {
+    return {
+      TapType:1,
+      slideDown: true,
+    };
+  },
+  methods: {
+    // 增加显示隐藏
+    header(id) {
+      if (id == "1") {
+        this.slideDown = false;
+      } else {
+        this.slideDown = true;
       }
     },
-    methods: {
-      // 增加显示隐藏
-      header(id){
-        if(id == '1'){
-           this.slideDown = false;
-        }else{
-          this.slideDown = true;
-        }
-      }
-    },
-    computed: {
-
-
-    },
-    mounted(){
-
-
-    },
-    watch: {
-
+    TapSwitch(id){
+      this.TapType = id;
     }
-
-  }
+  },
+  computed: {},
+  mounted() {},
+  watch: {}
+};
 </script>
-<style scoped="scoped">
-#oneDimensionalModel{
-    width: 1480px;
-    height: 775px;
-    position: absolute;
-    top: 38px;
-    left: 265px;
-    /* background: rgba(21, 37, 63, 0.86); */
-    background: #031823;
-    border-radius: 5px;
-    z-index: 9;
-}
-#programModel .programModel_title{
-    background: rgba(5, 160, 236, 0.26);
-    height: 46px;
-    /* margin-top: 1px; */
-}
-#oneDimensionalModel .programModelClass {
-    cursor: pointer;
-    color: #fff;
-    list-style: none;
-    font-size: 14px;
-    text-align: center;
-    width: 205px;
-    margin-right: 10px;
-    line-height: 32px;
-    float: left;
-    padding: 7px 0;
-}
-#oneDimensionalModel .programModel_active {
-    color: #fff!important;
-    background: rgba(5, 160, 236, 0.58)!important;
-    /* border-left: 4px solid #0718fa; */
-}
-
-
+<style scoped>
+@import '../../../../static/css/public.css';
 </style>

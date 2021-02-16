@@ -60,8 +60,6 @@ body {
   padding-left: 19px;
   font-size: 16px;
   border-bottom:solid 1px   #01c3e4;
-  /*background: url("../../static/images/title_border.png") no-repeat;*/
-
 }
 .index_model{
   width: 231px;
@@ -76,10 +74,7 @@ body {
   padding-left: 10px;
   font-size:16px;
 }
-.model_title span{
 
-
-}
 .clear {
   clear: both;
   height: 0;
@@ -99,9 +94,7 @@ body {
   padding:15px 10px 10px 10px;
   text-align: center;
 }
-.first_line{
 
-}
 .second_line{
   color:#fff;
   padding:10px 0;
@@ -125,100 +118,17 @@ body {
 .border-right{
   border-right: solid 1px  #01ddff;;
 }
-.el-table th,  .el-table tr {
-  background-color: transparent !important;
-  color: #01bdf5 !important;
-}
+
  .el-table--enable-row-hover .el-table__body tr:hover>td {
   background-color: transparent !important;
 }
-.el-checkbox{
-  color: #fff!important;
-}
-/* 滚动条凹槽的颜色，还可以设置边框属性 */
-::-webkit-scrollbar-track-piece {
-  background-color: #031823!important;
-}
-/* 滚动条的宽度 */
-::-webkit-scrollbar {
-  width: 10px!important;
-  height: 15px!important;
-}
-/* 滚动条的设置 */
-::-webkit-scrollbar-thumb {
-  background-color: #058cd0!important;
-  background-clip: padding-box!important;
-  min-height: 28px!important;
-  /* border-radius: 8px!important; */
-}
+
+
 .el-tree-node:focus>.el-tree-node__content {
-      background-color: transparent;
-    }
-    .el-table .cell{
-      font-size: 17px;
-    }
+    background-color: transparent;
+  }
 
-/* 增加显示隐藏 */
-.header_true{
-  width: 1480px;
-  height: 38px;
-  position: absolute;
-  top: 0;
-  left: 265px;
-  text-align: center;
-  /* background: rgba(21, 37, 63, 0.86); */
-  border-radius: 5px;
-  z-index: 9;
-}
-.header_xiala_div{
-  position: relative;
- width: 80px;
-    height: 30px;
-  left: 50%;
-  border: 1px solid #058cd0;
-  border-radius: 20px;
-  transform: translate(-50%);
-  background: #031823;
-}
-.header_shangla_div{
-  position: relative;
- width: 80px;
-    height: 30px;
-  left: 50%;
-  top:780px;
-  border: 1px solid #058cd0;
-  border-radius: 20px;
-  transform: translate(-50%);
-  background: #031823;
-}
-.header_true .xiala_img{
-  position: relative;
-  width: 20px;
-  height: 20px;
-  top: 50%;
-  transform: translate(0,-50%);
-}
-.header_true .shangla_img{
-  position: relative;
-  width: 20px;
-  height: 20px;
-  top: 50%;
-  transform: translate(0,-50%);
-}
-.el-radio{
-  color:#fff!important;
-}
 
- .el-input__inner {
-  padding-left: 10px !important;
-  color: #058cd0;
-  border: 1px solid #058cd0;
-  /*background: #031823;*/
-  -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-  font-size: 16px !important;
-  height: 30px !important;
-}
  .el-pagination__total {
   color: #ffffff !important;
 }
@@ -234,3 +144,54 @@ body {
     margin-right:0px!important;
     overflow: hidden!important;
   }
+
+
+/* 修改滚动条的样式 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #a1a3a9;
+  border-radius: 3px;
+}
+  
+
+
+.el-checkbox{
+  /* color: #fff!important; */
+}
+
+  /* 滚动条凹槽的颜色，还可以设置边框属性 */
+::-webkit-scrollbar-track-piece {
+  /* background-color: #031823!important; */
+}
+/* 滚动条的宽度 */
+::-webkit-scrollbar {
+  /* width: 10px!important; */
+  /* height: 15px!important; */
+}
+/* 滚动条的设置 */
+::-webkit-scrollbar-thumb {
+  /* background-color: #058cd0!important; */
+  /* background-clip: padding-box!important; */
+  /* min-height: 28px!important; */
+  /* border-radius: 8px!important; */
+}
+.el-radio{
+  /* color:#fff!important; */
+}
+.el-table th,  .el-table tr {
+  /* background-color: transparent !important; */
+  /* color: #01bdf5 !important; */
+}
+.el-input__inner {
+  /* padding-left: 10px !important; */
+  /* color: #058cd0; */
+  /* border: 1px solid #058cd0; */
+  /* background: #031823; */
+  /* -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%); */
+  /* box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%); */
+  /* font-size: 16px !important; */
+  /* height: 30px !important; */
+}
