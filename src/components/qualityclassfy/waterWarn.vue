@@ -101,7 +101,7 @@
                   </div>
                   <div class="ball"
                        :style="{
-	        left:jindu+'%',
+	        left:jindu-5+'%',
 	    }">
                   </div>
                 </div>
@@ -669,16 +669,28 @@
         },
         /*进度条*/
         progress(){
+          if(this.jindu==100){
+            this.jindu==0
+          }
           let _this=this;
+          /*步长*/
+          let eachWidth=100/5
           _this.clearInt=setInterval(function(){
-            _this.jindu++;
+_this.jindu+=eachWidth
+            // _this.jindu++;
             if(_this.jindu==100){
               clearInterval(_this.clearInt);
+              this.jindu=0
             }
           },3000/5);
         },
         stop(){
           clearInterval(this.clearInt);
+          if(this.jindu==100){
+            this.jindu=0
+            this.isTimerPlaying=false
+          }
+
         },
 
 
@@ -909,6 +921,15 @@
         startTime(newValue){
           console.log(newValue)
 
+        },
+        jindu(newVal){
+          console.log(newVal)
+          if(newVal!==0){
+
+            console.log("切换服务")
+
+          }
+
         }
 
 
@@ -1106,6 +1127,7 @@
   }
   /*echart表*/
 .trigger_btn{
+  display: none;
   cursor:pointer;
   width: 100px;
   height: 30px;
@@ -1121,8 +1143,7 @@
     position: absolute;
     top: calc(100vh - 400px);
     left: 316px;
-    background: rgba(35, 59, 143,0.9);
-    color: #fff;
+    background: #fff;
     height: 281px;
     border-radius: 10px;
     padding:20px 20px;
@@ -1209,14 +1230,18 @@
   }
   .jindu{
 
-    height: 100%;
-    background: #3165c5;
+    height: 50%;
+    background: #2784ff;
     overflow: hidden;
+    vertical-align: center;
+    position: absolute;
+    top: 4px;
+    border-radius: 5px;
   }
   .ball{
     position: absolute;
-    top: 0;
-  left:0;
+    top: 4px;
+    left:0;
     width: 10px;
     height: 10px;
     border-radius: 50%;
