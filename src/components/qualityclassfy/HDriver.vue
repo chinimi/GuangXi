@@ -77,9 +77,9 @@
             <el-table-column
               prop="PG_Mon_TR_Ou"
               label="评估天然月径流量年均值(Ou)">
-              <template slot-scope="scope">
-                <el-input   v-model="scope.row.PG_Mon_TR_Ou" @blur="inputBlur"></el-input>
-              </template>
+              <!-- <template slot-scope="scope">  -->
+                <el-input    v-model="PG_Ou_AVE" @blur="inputBlur"></el-input>
+              <!-- </template> -->
             </el-table-column>
            </el-table-column>
           </el-table>
@@ -232,80 +232,83 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
+  import{FD_Qu_AVE,FD_Fufeng} from '../qualityclassfy/HDriverMath'
+
   export default {
       data() {
           return {
             // 来自后台传入也可以手动输入
-            tableValue:[],
+            PG_Ou_AVE:'',
+            //tableValue:[],
             FD_table:
               [{
             Month: '1月',
             PG_Mon_SC_qm: '15',
             PG_Mon_TR_Qm: '14',
-            PG_Mon_TR_Ou:'20.5',
+           
           }, {
             Month: '2月',
             PG_Mon_SC_qm: '16',
             PG_Mon_TR_Qm: '15',
-            PG_Mon_TR_Ou:'20.5',
+           
           }, {
             Month: '3月',
             PG_Mon_SC_qm: '17',
             PG_Mon_TR_Qm: '15',
-            PG_Mon_TR_Ou:'20.5',
+           
           }, {
             Month: '4月',
             PG_Mon_SC_qm: '18',
             PG_Mon_TR_Qm: '19',
-            PG_Mon_TR_Ou:'20.5',
+           
           },
           {
             Month: '5月',
             PG_Mon_SC_qm: '19',
             PG_Mon_TR_Qm: '20',
-            PG_Mon_TR_Ou:'20.5',
+           
           },
           {
             Month: '6月',
             PG_Mon_SC_qm: '20',
             PG_Mon_TR_Qm: '19',
-            PG_Mon_TR_Ou:'20.5',
+            
           },
           {
             Month: '7月',
             PG_Mon_SC_qm: '21',
             PG_Mon_TR_Qm: '15',
-            PG_Mon_TR_Ou:'20.5',
+           
           },
           {
             Month: '8月',
             PG_Mon_SC_qm: '22',
             PG_Mon_TR_Qm: '28',
-            PG_Mon_TR_Ou:'20.5',
+            
           },
           {
             Month: '9月',
             PG_Mon_SC_qm: '23',
             PG_Mon_TR_Qm: '22',
-            PG_Mon_TR_Ou:'20.5',
+            
           },
           {
             Month: '10月',
             PG_Mon_SC_qm: '24',
             PG_Mon_TR_Qm: '30',
-            PG_Mon_TR_Ou:'20.5',
+           
           },
           {
             Month: '11月',
             PG_Mon_SC_qm: '25',
             PG_Mon_TR_Qm: '24',
-            PG_Mon_TR_Ou:'20.5',
+           
           },
           {
             Month: '12月',
             PG_Mon_SC_qm: '26',
             PG_Mon_TR_Qm: '25',
-            PG_Mon_TR_Ou:'20.5',
+            
           }],
             showhealthyTable:false,//健康流量表是否显示
             originData: [{
@@ -460,7 +463,6 @@
             cities:['流域水系', '水资源分区', '行政区划'],
             cities2:['按单时间段评价', '按时间序列评价'],
 
-
             /*评价标准*/
             pjbzval:'all',
             pjbzOption:[{
@@ -594,7 +596,7 @@
         handleCellClick(row, column, event, cell) {
           this.tabRowIndex = row.index;
           this.tabColumnIndex = column.index;
-          this.tableValue.push(row);
+          //this.tableValue.push(row);
         },
         //数据中没有横纵坐标需要加上进行下一步判断
         getRowColumn({row, column, rowIndex, columnIndex}) {
@@ -605,20 +607,21 @@
         backAgo(){
           this.$router.push({name:'riverHealthy',params:{}});
         },
+
+        // 计算
         Savetable(){
           debugger
-          var arrList =[];
-
-          this.FD_table.map(e =>{
-            var flag = this.tableValue.some(el =>{
-              if (e===el || JSON.stringfy(e)===JSON.stringfy(el)){
-                return arrList.push(e)
-              }
-            })
+          var arrList_SC_qm =[];
+           var arrList_TR_Qm =[];
+          this.FD_table.forEach(function(item,index){
+            arrList_SC_qm.push(item.PG_Mon_SC_qm);
+            arrList_TR_Qm.push(item.PG_Mon_TR_Qm);
           })
+          
+      
+          this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
        
         
-
         },
         checkSelectable(row,index){
           let flag = true;
