@@ -174,33 +174,35 @@
                 prop="Min"
                 label="评估年内最小月水量">
               </el-table-column>
-
             </el-table-column>
           </el-table>
         </el-row>
-
         <el-row v-if="showhealthyTable">
-          <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
-            <el-table-column  align="center" label="四个表格">
+          <el-table    border :data="healthyTable2" height="200px" style="background-color: transparent;">
+            <el-table-column  align="center" >
               <el-table-column
-                prop="stcd"
+                prop="month"
+                label="月份">
+              </el-table-column>
+              <el-table-column
+                prop="amount1"
                 label="参照系列月平均流量">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="amount2"
                 label="参照系月流量P1%">
               </el-table-column>
               <el-table-column
-                prop="mndgMax"
+                prop="amount3"
                 label="参照系月流量P25%">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="amount4"
                 label="参照系月流量P75%">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
-                label="评估年月.流量">
+                prop="amount5"
+                label="评估年月流量">
               </el-table-column>
             </el-table-column>
           </el-table>
@@ -353,6 +355,115 @@
                 HFM:'0',        //最大月水量指标（HFM）	
                 LFM:'0.4',     	//最小月水量指标（LFM）
               },
+            ],
+            healthyTable2:[{
+                month:'1',
+                amount1: '0.8',
+                amount2: '0.5',
+                amount3: '1.1',
+                amount4: '2.1',
+                amount5: '2.2',      
+                },
+                {
+                month:'2',
+                amount1: '0.9',
+                amount2: '0.6',
+                amount3: '1.2',
+                amount4: '2.2',
+                amount5: '2.6',      
+                },
+                {
+                month:'3',
+                amount1: '1.8',
+                amount2: '0.7',
+                amount3: '1.3',
+                amount4: '2.3',
+                amount5: '2.2',      
+                },
+               {
+                month:'4',
+                amount1: '0.5',
+                amount2: '0.8',
+                amount3: '1.4',
+                amount4: '2.4',
+                amount5: '1.8',      
+                },
+                 {
+                month:'5',
+                amount1: '0.9',
+                amount2: '0.9',
+                amount3: '1.5',
+                amount4: '2.5',
+                amount5: '1.3',      
+                },
+                {
+                month:'6',
+                amount1: '1',
+                amount2: '1',
+                amount3: '1.6',
+                amount4: '2.6',
+                amount5: '2',      
+                },
+                {
+                month:'7',
+                amount1: '1.1',
+                amount2: '1.1',
+                amount3: '1.7',
+                amount4: '2.7',
+                amount5: '2.1',      
+                },
+                 {
+                month:'8',
+                amount1: '0.8',
+                amount2: '1.2',
+                amount3: '1.8',
+                amount4: '2.8',
+                amount5: '3.5',      
+                },
+                 {
+                month:'9',
+                amount1: '0.8',
+                amount2: '1.2',
+                amount3: '1.8',
+                amount4: '2.8',
+                amount5: '3.5',      
+                },
+                 {
+                month:'10',
+                amount1: '0.8',
+                amount2: '1.2',
+                amount3: '1.8',
+                amount4: '2.8',
+                amount5: '3.5',      
+                },
+                 {
+                month:'11',
+                amount1: '0.8',
+                amount2: '1.2',
+                amount3: '1.8',
+                amount4: '2.8',
+                amount5: '3.5',      
+                },
+                 {
+                month:'12',
+                amount1: '0.8',
+                amount2: '1.2',
+                amount3: '1.8',
+                amount4: '2.8',
+                amount5: '3.5',      
+                },
+
+
+// 5	0.9	0.9	1.5	2.5	1.3
+// 6	1	1	1.6	2.6	2
+// 7	1.1	1.1	1.7	2.7	2.1
+// 8	0.8	1.2	1.8	2.8	3.5
+// 9	0.6	1.3	1.9	2.9	2.99
+// 10	1.5	1.4	2	3	2.4
+// 11	0.9	1.5	2.1	3.1	1
+// 12	1	1.6	2.2	3.2	2.6
+
+               
             ],
             originData: [{
               id: 'llgcbycd',
