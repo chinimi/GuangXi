@@ -10,9 +10,10 @@
 var  avg = function(num) {
   var sum = 0;
   for (var i = 0, j = num.length; i < j; i++) {
-    sum += num[i];
+    sum += parseFloat(num[i]);
   }
-  return sum / num.length;
+  var da = (sum / num.length).toFixed(2)
+  return da;
 }
 export var FD_Qu_AVE= function(num) {
   

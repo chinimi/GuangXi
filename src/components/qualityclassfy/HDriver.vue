@@ -620,7 +620,8 @@
           
       
           this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
-       
+
+         
         
         },
         checkSelectable(row,index){
