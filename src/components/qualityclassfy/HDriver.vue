@@ -77,9 +77,9 @@
             <el-table-column
               prop="PG_Mon_TR_Ou"
               label="评估天然月径流量年均值(Ou)">
-              <!-- <template slot-scope="scope">  -->
+              <template slot-scope="scope">  
                 <el-input    v-model="PG_Ou_AVE" @blur="inputBlur"></el-input>
-              <!-- </template> -->
+               </template>
             </el-table-column>
            </el-table-column>
           </el-table>
@@ -609,19 +609,17 @@
         },
 
         // 计算
-        Savetable(){
-          debugger
+        Savetable(){ 
           var arrList_SC_qm =[];
            var arrList_TR_Qm =[];
+
           this.FD_table.forEach(function(item,index){
             arrList_SC_qm.push(item.PG_Mon_SC_qm);
             arrList_TR_Qm.push(item.PG_Mon_TR_Qm);
           })
           
-      
           this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
-       
-        
+
         },
         checkSelectable(row,index){
           let flag = true;
