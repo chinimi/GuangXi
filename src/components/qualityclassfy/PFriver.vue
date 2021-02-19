@@ -64,7 +64,6 @@
           <!--第1列-->
           <el-table-column label="岸坡稳定性指数(BKS)">
 
-
             <el-table-column
               prop="name"
               label="斜坡倾角(SA) (度)"
@@ -115,7 +114,7 @@
               </el-table-column>-->
           </el-table-column>
           <!--第2列-->
-          <el-table-column label="岸坡稳定性指数(BKS)">
+          <el-table-column label="河岸带植被覆盖度（RVS）">
             <el-table-column
               prop="name"
               label="植被覆盖度(乔木)"

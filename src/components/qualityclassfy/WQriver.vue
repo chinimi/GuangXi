@@ -51,41 +51,56 @@
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
 
-        <el-table v-if="pjxmval=='khd'"  border :data="tableData"  height="calc( 100vh - 300px )" style="background-color: transparent;">
+        <el-table v-if="pjxmval=='khd'"  border :data="WQ_tableData"  height="calc( 100vh - 300px )" style="background-color: transparent;">
           <el-table-column
-            prop="date"
+            prop="rivername"
             label="河段名称"
             width="150">
           </el-table-column>
           <!--第1列-->
           <el-table-column label="溶解氧状况(DO)">
             <el-table-column
-              prop="name"
+              prop="DO1"
               label="汛期DO平均值"
               width="120">
+                <template slot-scope="scope">
+                <el-input   v-model="scope.row.DO1" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="DO2"
               label="非汛期DO平均值"
               width="120">
+                <template slot-scope="scope">
+                <el-input   v-model="scope.row.DO2" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
           </el-table-column>
           <!--第2列-->
           <el-table-column label="耗氧有机物(OCP)">
             <el-table-column
-              prop="name"
+              prop="CODMN"
               label="高锰酸盐指数CODMN"
               width="120">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.CODMN" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="BOD"
               label="化学需拿量BOD"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.BOD" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="NH3_N"
               label="五日生化需氧量NH3-N"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.NH3_N" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
 
           </el-table-column>
@@ -93,48 +108,72 @@
 
           <el-table-column v-if="zjswrwtable" label="重金属污染状况">
             <el-table-column
-              prop="name"
+              prop="SHEN"
               label="砷"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.SHEN" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="GONG"
               label="汞"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.GONG" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="GE"
               label="镉"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.GE" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="GE6"
               label="铬(六价)"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.GE6" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="QIAN"
               label="铅"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.QIAN" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
           </el-table-column>
 
           <!--第4列-->
           <el-table-column v-if="blyjwtable" label="苯类有机物(BCP)">
             <el-table-column
-              prop="name"
+              prop="BEN"
               label="苯"
               width="120">
+                <template slot-scope="scope">
+                <el-input   v-model="scope.row.BEN" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="JBEN"
               label="甲苯"
               width="120">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.JBEN" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="EJBEN"
               label="二甲苯"
               width="120">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.EJBEN" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
           </el-table-column>
         </el-table>
@@ -259,7 +298,74 @@
             /*截至时间*/
             endTime:'2015-08',
 
+            WQ_tableData:[{
+                rivername:'桂江上游桂林城区段',  //丰水期
+                DO1:'4.7',
+                DO2:'6.7',
+                CODMN:'7',
+                BOD:'5.5',
+                NH3_N:'0.8',
+                SHEN:'0.08',
+                GONG:'0.008',
+                GE:'0.002',
+                GE6:'0.03',
+                QIAN:'0.06',
+                BEN:'达标',
+                JBEN:'达标',
+                EJBEN:'不达标',
+            
+              },
+              {
+                rivername:'桂江中游桂林景观段',  //
+                DO1:'5.7',
+                DO2:'6.2',
+                CODMN:'7',
+                BOD:'5.5',
+                NH3_N:'0.8',
+                SHEN:'0.08',
+                GONG:'0.008',
+                GE:'0.002',
+                GE6:'0.03',
+                QIAN:'0.06',
+                BEN:'达标',
+                JBEN:'达标',
+                EJBEN:'不达标',
+              },
+              {
+                rivername:'丰水期桂江中游阳朔开发利用段',  //丰水期桂江中游阳朔开发利用段
+                DO1:'5.8',
+                DO2:'6.5',
+                CODMN:'7',
+                BOD:'5.5',
+                NH3_N:'0.8',
+                SHEN:'0.08',
+                GONG:'0.008',
+                GE:'0.002',
+                GE6:'0.03',
+                QIAN:'0.06',
+                BEN:'达标',
+                JBEN:'达标',
+                EJBEN:'不达标',
+              },
+              {
+                rivername:'桂江中游昭平保留段',  //丰水期桂江中游阳朔开发利用段
+                DO1:'6.8',
+                DO2:'7.5',
+                CODMN:'7',
+                BOD:'5.5',
+                NH3_N:'0.8',
+                SHEN:'0.08',
+                GONG:'0.008',
+                GE:'0.002',
+                GE6:'0.03',
+                QIAN:'0.06',
+                BEN:'达标',
+                JBEN:'达标',
+                EJBEN:'不达标',
+              },
 
+
+            ],
             menulist: menulist,
             iconsObj:{
               // "generalwaterevaluate":"iconfont icon-shuidi3",
