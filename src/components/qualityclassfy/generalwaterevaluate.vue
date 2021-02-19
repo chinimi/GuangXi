@@ -213,8 +213,6 @@
             </el-col>
           </el-row>
         </div>
-
-
         <!--水系-->
         <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
@@ -642,22 +640,15 @@
         </div>
         <!--行政区 over-->
 
-
-
-
-
         <div style="margin-left:20px;">
           <!--时间段选择-->
           <div >
-
             <el-radio-group  v-model="selectTimeType">
               <el-col :span="12" v-for="product in timequantumOption"   :key="product.value">
                 <el-radio :label="product.value"   >{{product.label}}</el-radio>
               </el-col>
             </el-radio-group>
-
           </div>
-
         </div>
         <!--评价步长-->
         <div class="singleli_title">
@@ -829,7 +820,7 @@
           </el-row>
         </div>-->
 
-         <!--非汛期-->
+        <!--非汛期-->
         <div class="singleli_title" v-if="selectTimeType=='sametime' && pjbcVal=='fxq'">
           <el-row>
             <!--汛期-->
@@ -872,7 +863,6 @@
             </el-col>
           </el-row>
         </div>
-
         <!--半年-->
         <div class="singleli_title" v-if=" selectTimeType=='sametime' && pjbcVal=='halfyear'">
           <el-row>
@@ -895,7 +885,6 @@
             </el-col>
           </el-row>
         </div>
-
         <!--季-->
         <div class="singleli_title" v-if=" selectTimeType=='sametime' && pjbcVal=='season'">
           <el-row>
@@ -918,10 +907,6 @@
             </el-col>
           </el-row>
         </div>
-
-
-
-
         <div class="singleli_title"  v-if="selectTimeType !=='sametime'" >
             <el-row>
               <el-col :span="8">
@@ -963,9 +948,6 @@
             </el-col>
           </el-row>
         </div>
-
-
-
         <div class="singleli_title" >
           <el-row>
             <el-col :span="20" style="text-align: center">
@@ -989,135 +971,7 @@
           :checkStrictly="false"
           collapse-tags
           clearable></el-cascader>
-         <!--水质基础评价-->
-<!--        <el-table v-if="pjxmval=='szjcpj'"  border :data="tableData" height="100px" style="background-color: transparent;">-->
-<!--            <el-table-column-->
-<!--              label="序号"-->
-<!--              type="index"-->
-<!--              width="50">-->
-<!--            </el-table-column>-->
-<!--            <el-table-column-->
-<!--              prop="stcd"-->
-<!--              label="测站编码">-->
-<!--            </el-table-column>-->
-<!--&lt;!&ndash;            <el-table-column&ndash;&gt;-->
-<!--&lt;!&ndash;              label="评价时间">&ndash;&gt;-->
-<!--&lt;!&ndash;              <template slot-scope="scope">&ndash;&gt;-->
-<!--&lt;!&ndash;                {{scope.row.wqWqsinfBDTO.mnag}}&ndash;&gt;-->
 
-<!--&lt;!&ndash;              </template>&ndash;&gt;-->
-<!--&lt;!&ndash;            </el-table-column>&ndash;&gt;-->
-
-<!--          <el-table-column-->
-<!--            label="监测频次">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.mNFRQ}}-->
-
-<!--            </template>-->
-<!--          </el-table-column>-->
-
-<!--          <el-table-column-->
-<!--            label="ASDR">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.aSDR}}-->
-
-<!--            </template>-->
-<!--          </el-table-column>-->
-
-<!--          <el-table-column-->
-<!--            label="ASOT">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.asot}}-->
-
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--&lt;!&ndash;            <el-table-column&ndash;&gt;-->
-
-<!--&lt;!&ndash;              label="评价时段">&ndash;&gt;-->
-<!--&lt;!&ndash;              <template slot-scope="scope">&ndash;&gt;-->
-<!--&lt;!&ndash;                {{scope.row.wqWqsinfBDTO.mnag}}&ndash;&gt;-->
-
-<!--&lt;!&ndash;              </template>&ndash;&gt;-->
-<!--&lt;!&ndash;            </el-table-column>&ndash;&gt;-->
-<!--            <el-table-column-->
-
-<!--              label="水质类别">-->
-<!--              <template slot-scope="scope">-->
-<!--                {{scope.row.wQG}}-->
-
-<!--              </template>-->
-<!--            </el-table-column>-->
-
-<!--            <el-table-column-->
-
-<!--              label="超标项目与倍数">-->
-<!--              <template slot-scope="scope">-->
-<!--                {{scope.row.wQG}}-->
-
-<!--              </template>-->
-<!--            </el-table-column>-->
-
-<!--          <el-table-column-->
-
-<!--              label="测站备注">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.wqWqsinfBDTO.stlc}}-->
-
-<!--            </template>-->
-<!--            </el-table-column>-->
-
-<!--          <el-table-column-->
-
-<!--              label="WQEI">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.wqWqsinfBDTO.mnag}}-->
-
-<!--            </template>-->
-<!--            </el-table-column>-->
-
-<!--           <el-table-column-->
-
-<!--              label="总磷评价参照值">-->
-<!--             <template slot-scope="scope">-->
-<!--               {{scope.row.wqWqsinfBDTO.mnfrq}}-->
-
-<!--             </template>-->
-<!--            </el-table-column>-->
-
-<!--          <el-table-column-->
-
-<!--              label="总氮评价参照值">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.wqWqsinfBDTO.stgrd}}-->
-
-<!--            </template>-->
-<!--            </el-table-column>-->
-
-<!--          <el-table-column-->
-<!--            label="叶绿素">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.wqWqsinfBDTO.stwqt}}-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column-->
-<!--            label="高锰酸盐指数">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.wqWqsinfBDTO.mnag}}-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column-->
-<!--            label="透明度指数">-->
-<!--            <template slot-scope="scope">-->
-<!--              {{scope.row.wqWqsinfBDTO.atmn}}-->
-<!--            </template>-->
-<!--          </el-table-column>-->
-<!--          <el-table-column-->
-<!--              label="备注">-->
-<!--              <template slot-scope="scope">-->
-<!--                  {{scope.row.stlc}}-->
-<!--              </template>-->
-<!--            </el-table-column>-->
-<!--          </el-table>-->
         <el-table v-if="pjxmval=='szjcpj'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
         <!--循环创建这个标签-->
         <!--  <el-table-column
