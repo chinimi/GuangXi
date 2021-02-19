@@ -731,7 +731,7 @@ _this.jindu+=eachWidth
             title: {
               text: 'title',
               textStyle: {
-                color: '#fff',
+                color: '#333',
                 fontSize: 14
               }
             },
@@ -764,7 +764,7 @@ _this.jindu+=eachWidth
                 }
               },
               axisLabel: {
-                color: '#fff', //x轴字体颜色
+                color: '#333', //x轴字体颜色
                 textStyle: {
                   fontSize: 12
                 },
@@ -792,7 +792,7 @@ _this.jindu+=eachWidth
               },
               axisLabel: {
                 // formatter: '{value}('+unit+')',
-                color: '#fff' //y轴字体颜色
+                color: '#333' //y轴字体颜色
               },
             },
             series: [{
@@ -815,7 +815,7 @@ _this.jindu+=eachWidth
             title: {
               text: 'title',
               textStyle: {
-                color: '#fff',
+                color: '#333',
                 fontSize: 14
               }
             },
@@ -848,7 +848,7 @@ _this.jindu+=eachWidth
                 }
               },
               axisLabel: {
-                color: '#fff', //x轴字体颜色
+                color: '#333', //x轴字体颜色
                 textStyle: {
                   fontSize: 12
                 },
@@ -876,7 +876,7 @@ _this.jindu+=eachWidth
               },
               axisLabel: {
                 // formatter: '{value}('+unit+')',
-                color: '#fff' //y轴字体颜色
+                color: '#333' //y轴字体颜色
               },
             },
             series: [{
@@ -1171,11 +1171,11 @@ _this.jindu+=eachWidth
   >>>.el-input__inner {
     padding-left: 10px !important;
     color: #333;
-    border: 1px solid #fff;
+    border: 1px solid #ccc;
     background: #fff!important;
     -webkit-box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
     box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
-    font-size: 16px !important;
+    font-size: 14px !important;
     /*height: 30px !important;*/
   }
   >>>.el-input__icon{
