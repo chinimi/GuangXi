@@ -10,9 +10,9 @@
                 @open="handleOpen"
                 @close="handleClose"
               >
-              <div  v-for="(item,index) in menulist" :key="index">
+              <div  v-for="(item,index) in menulist" :key="item.id">
                 <!--一级菜单（没有任何子级菜单）-->
-                <el-menu-item :index="item.id" v-if="!item.children">
+                <el-menu-item :index="item.path" v-if="!item.children">
 <!--                  <i class="el-icon-menu"></i>-->
                   <i :class=iconsObj[item.id]></i>
                   {{item.authName}}</el-menu-item>
@@ -24,7 +24,7 @@
                     {{item.authName}}
                   </template>
                   <!-- 遍历二级菜单容器 -->
-                  <div v-for="(i,index) in item.children" :key="index">
+                  <div v-for="(i,index) in item.children" :key="i.id">
 
                     <!-- 判断二级菜单（没有三级菜单）-->
                     <el-menu-item :index="i.path" v-if="!i.children">
@@ -179,6 +179,14 @@
   >>>.el-submenu__title:hover {
     /*background-color: #ecf5ff;*/
     /*background: rgba(25, 17, 28, 0.2) !important;*/
+
+  }
+  >>>.el-menu-item.is-active {
+    color: #409EFF;
+    border-left: 6px solid #409EFF;
+  }
+  >>>.el-menu-item{
+    border-left: 6px solid #fff;
 
   }
 </style>

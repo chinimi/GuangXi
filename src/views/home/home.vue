@@ -88,7 +88,9 @@
         </div>
 
         <div v-show="currentComp=='operationalDisplay'">
-          <operationalDisplay></operationalDisplay>
+<!--          <operationalDisplay></operationalDisplay>-->
+          <!--运算操作路由跳转-->
+          <router-view></router-view>
         </div>
 
       </div>
@@ -291,6 +293,10 @@ export default {
       }
       if(newValue=="qualityClassfy"){
         this.$router.push({name:'qualityClassfy',params:{}});
+      }
+      /*运算*/
+      if(newValue=="operationalDisplay"){
+        this.$router.push({name:'operationalDisplay',params:{}});
       }
     }
   }

@@ -2075,7 +2075,13 @@
     created() {
       // alert(1)
       // console.log(map)
-    }
+    },
+    beforeDestroy(){
+      console.log("删除图层")
+      map.removeLayer(this.pointLayer)
+
+
+    },
 
 
   }

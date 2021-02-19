@@ -1844,13 +1844,13 @@
 
   }
   >>>.el-pagination__total{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   >>>.el-pagination__jump{
-    color:#ffffff !important;
+    /*color:#ffffff !important;*/
   }
   >>>.el-pagination .el-select .el-input .el-input__inner{
-    color: #ffff;
+    /*color: #ffff;*/
   }
 
   >>>.el-button{

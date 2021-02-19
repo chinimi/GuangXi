@@ -1256,6 +1256,13 @@
     color:#fff!important;
 
   }
+  >>>.el-menu-item.is-active {
+    color: #409EFF;
+    border-left: 6px solid #409EFF;
+  }
+  >>>.el-menu-item{
+    border-left: 6px solid #fff;
 
+  }
 
 </style>

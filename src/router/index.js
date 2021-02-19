@@ -10,6 +10,9 @@ import drinkWater from '../components/qualityclassfy/drinkWater.vue'
 import environWater from '../components/qualityclassfy/environWater.vue'
 /**/
 import generalwaterevaluate from '../components/qualityclassfy/generalwaterevaluate.vue'
+/*综合运算与展示*/
+import operationalDisplay from "../components/operationdispaly/operationalDisplay.vue"
+
 
 /*江河湖库*/
 import riverHealthy from '../components/qualityclassfy/riverHealthy.vue'
@@ -52,10 +55,10 @@ export default new Router({
     },
 
     // {
-    //   path: '/qualityPrediction',
-    //   name: 'qualityPrediction',
-    //   component: qualityPrediction
-    // },
+    //     //   path: '/qualityPrediction',
+    //     //   name: 'qualityPrediction',
+    //     //   component: qualityPrediction
+    //     // },
     // 首页
     {
       path:'/',//一级路由
@@ -94,7 +97,13 @@ export default new Router({
           component:waterWarn,//水质预警
 
         },
+        /*综合运算与展示*/
+        {
+          path: '/operationalDisplay',
+          name: 'operationalDisplay',
+          component:operationalDisplay,//水质预警
 
+        },
 
         { /*水质分类评价*/
           path: '/qualityClassfy',

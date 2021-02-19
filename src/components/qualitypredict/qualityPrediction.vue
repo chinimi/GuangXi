@@ -167,4 +167,12 @@
   >>>.el-submenu__title:hover {
     /*background: rgba(25, 17, 28, 0.2) !important;*/
   }
+  >>>.el-menu-item.is-active {
+    color: #409EFF;
+    border-left: 6px solid #409EFF;
+  }
+  >>>.el-menu-item{
+    border-left: 6px solid #fff;
+
+  }
 </style>
