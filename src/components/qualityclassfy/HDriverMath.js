@@ -160,8 +160,23 @@ export var PVL =  function(num1,num2)
      }
      return (1-sum/6).toFixed(2);
 }
-export var SFS =  function(num1)
+export function sortByKey(array, key) {
+  return array.sort(function(a, b) {
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  });
+}
+export var SFS =  function(num1,num2)
 {
+  var sum = 0;
+  for (var i = 0, j = num1.length; i < j; i++) {
+    var dif = Math.abs(parseInt(num2[i])-parseInt(num1[i]))
+    console.log(dif);
+    sum +=dif;
+  }
+  sum= (sum / num1.length)
+  debugger
+  return ((6-sum)/6).toFixed(2)
 
 }
 

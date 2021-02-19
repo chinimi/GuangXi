@@ -33,7 +33,7 @@
         waterStationData:[],
         checkedLayer:[],//选中的checkbox
         showVectorLayers:[],//要创建并显示的图层
-        layerList:[{label:'全国重点水质站',value:'waterStation'},{label:'2',value:'2'}]
+        layerList:[{label:'影像图',value:'waterStation'},{label:'街道图',value:'2'},{label:'地名标注',value:'3'}]
       }
     },
     methods: {
@@ -3804,14 +3804,14 @@
 </script>
 <style scoped="scoped">
 #layercontrol{
-  width: 204px;
+  width: 93px;
   position: absolute;
-  top: 76px;
-  right: 68px;
+  top: 60px;
+  right: 168px;
   z-index: 9;
-  background: rgb(23 41 65 / 80%);
+  background: #fff;
   min-height: 50px;
-  border: solid 1px #c8d2df;
+  /* border: solid 1px #c8d2df; */
   border-radius: 5px;
   padding: 15px;
 

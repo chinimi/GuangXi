@@ -262,7 +262,7 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
-  import{FD_Qu_AVE,FD_Fufeng,FD_Value,HFV_HFM,LFV_LFM,PHF,PLF,PVL,SFS} from '../qualityclassfy/HDriverMath'
+  import{FD_Qu_AVE,FD_Fufeng,FD_Value,HFV_HFM,LFV_LFM,PHF,PLF,PVL,SFS,sortByKey} from '../qualityclassfy/HDriverMath'
 
   export default {
       data() {
@@ -420,7 +420,7 @@
                 },
                  {
                 month:'8',
-                amount1: '0.6',
+                amount1: '0.8',
                 amount2: '1.3',
                 amount3: '1.9',
                 amount4: '2.9',
@@ -444,7 +444,7 @@
                 },
                  {
                 month:'11',
-                amount1: '0.8',
+                amount1: '0.9',
                 amount2: '1.2',
                 amount3: '2.1',
                 amount4: '3.1',
@@ -812,6 +812,7 @@
             var arrList_E44 =[];
             var arrList_F44 =[];
             var arrList_D44 =[];
+
           this.healthyTable2.forEach(function(item,index){
                 arrList_G44.push(item.amount5);
                 arrList_E44.push(item.amount3);
@@ -822,7 +823,34 @@
          var PHF_ = PHF(arrList_G44,arrList_E44,arrList_F44)
          var PLF_ = PLF(arrList_G44,arrList_E44,arrList_F44)
          var PVF_ = PVL(arrList_G44,arrList_D44)
-         var SFS_ = SFS()
+
+        //consle.log(this.healthyTable2);
+        let dataTable1 = JSON.parse(JSON.stringify(this.healthyTable2))
+       
+        let dataTable2 = JSON.parse(JSON.stringify(this.healthyTable2))
+        var list1 =  sortByKey(dataTable1,'amount1')
+        var list2 =  sortByKey(dataTable2,'amount5')
+
+        var monthlist1=[];
+        var monthlist2=[];
+
+        list1.forEach(function(item,index){
+            monthlist1.push(item.month);
+        })
+
+        list2.forEach(function(item,index){
+            monthlist2.push(item.month);
+        })
+      
+        var SFS_ = SFS(monthlist1,monthlist2);
+        debugger
+        var IFD = ((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
+        +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8).toFixed(2);
+        var IFDr = (((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
+        +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8)*100).toFixed(2);
+
+
+        
         },
         checkSelectable(row,index){
           let flag = true;

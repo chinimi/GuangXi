@@ -20,7 +20,8 @@
     </div>
     <div class="header_true" v-if="!slideDown">
       <div class="header_shangla_div" @click="header(2)">
-        <img class="shangla_img" src="static/images/shangla.png" alt="" />
+        <!-- <img class="shangla_img" src="static/images/shangla.png" alt="" /> -->
+        方案模型管理窗口
       </div>
     </div>
   </div>
