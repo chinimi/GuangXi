@@ -15,7 +15,8 @@
         <el-table-column prop="address" label="排放流量" min-width="100"></el-table-column>
         <el-table-column prop="max" label="排放浓度" min-width="100"></el-table-column>
         <el-table-column prop="name" label="排放口距评价断面位置" min-width="180"></el-table-column>
-        <el-table-column prop="mix" label="降解系数" min-width="100">
+        <el-table-column prop="name" label="降解系数" min-width="100"></el-table-column>
+        <el-table-column prop="mix" label="操作" min-width="100">
           <template slot-scope="scope">
             <el-button
               size="mini"
@@ -154,7 +155,7 @@
               <img src="../../../../static/images/close.png" alt="" @click="claos2()">
             </p>
           </div>
-   
+
           <el-radio-group v-model="redact" class="redact">
             <el-radio :label="1">实测法</el-radio>
             <el-radio :label="2">经验公式法</el-radio>

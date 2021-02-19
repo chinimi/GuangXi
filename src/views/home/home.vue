@@ -48,6 +48,9 @@
         <div v-show="currentTool=='layer'">
         <layercontrol></layercontrol>
         </div>
+        <div v-show="currentTool=='measure'">
+        <measureRange></measureRange>
+        </div>
       </div>
 
       <!--tab -->
@@ -118,6 +121,7 @@ import bearingCapacity from "../../components/bearcapacity/bearingCapacity"
 import operationalDisplay from "../../components/operationdispaly/operationalDisplay"
 /*toolbar*/
 import layercontrol from "../../components/toolbar/layercontrol"
+import measureRange from "../../components/toolbar/measureRange"
 
 
 export default {
@@ -132,6 +136,7 @@ export default {
         qualityPrediction,
         bearingCapacity,
         layercontrol,//图层控制
+        measureRange,//测距
         operationalDisplay,
     },
     data () {
