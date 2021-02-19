@@ -232,13 +232,15 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
-  import{FD_Qu_AVE,FD_Fufeng} from '../qualityclassfy/HDriverMath'
+  import{FD_Qu_AVE,FD_Fufeng,FD_Value} from '../qualityclassfy/HDriverMath'
 
   export default {
       data() {
           return {
             // 来自后台传入也可以手动输入
             PG_Ou_AVE:'',
+            PG_FD_AVE:'',
+            PG_FD_Fufeng:'',
             //tableValue:[],
             FD_table:
               [{
@@ -617,8 +619,13 @@
             arrList_SC_qm.push(item.PG_Mon_SC_qm);
             arrList_TR_Qm.push(item.PG_Mon_TR_Qm);
           })
-          
+         
+          /// 第一个表格   
           this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
+          var ss = FD_Value(arrList_SC_qm,arrList_TR_Qm,this.PG_Ou_AVE);  
+          var FD_FUFENG = FD_Fufeng(ss)  // 第一个表格的最终结果
+          ///////
+
 
         },
         checkSelectable(row,index){
@@ -861,7 +868,7 @@
       watch:{
         pjxmval(newValue){
 
-          this.tableData=[]
+         // this.tableData=[]
 
 
 
