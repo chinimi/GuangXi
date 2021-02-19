@@ -7,6 +7,13 @@ var  add = function(num) {
   }
   return sum.toFixed(2);
 }
+var  add_abs = function(num) {
+  var sum = 0;
+  for (var i = 0, j = num.length; i < j; i++) {
+    sum += math.abs(parseFloat(num[i]))
+  }
+  return sum.toFixed(2);
+}
 var  avg = function(num) {
   var sum = 0;
   for (var i = 0, j = num.length; i < j; i++) {
@@ -27,7 +34,6 @@ export var FD_Value = function(num1,num2,ave) {
 ///F4<0.05,100,F4<0.1,75,F4<0.3,50,F4<1.5,25,F4<3.5,10
 export var FD_Fufeng = function(num)
 {
-  debugger
   var fufeng = 0;
   if (num<0.05)
   {
@@ -61,4 +67,103 @@ export var FD_Qu_AVE= function(num) {
   
   return avg(num)
 }
+export var HFV_HFM =  function(num1,num2) {
+  if (parseFloat(num1)>=parseFloat(num2))
+  {
+    return 1;
+  }
+  else{
+    return 0;
+  }
+}
+export var LFV_LFM =  function(num1,num2,num3) {
+  if (parseFloat(num1)<parseFloat(num2))
+  {
+    return parseFloat(num1)/parseFloat(num2)
+  }
+  else if (parseFloat(num1)>=parseFloat(num2) &&parseFloat(num1)<=parseFloat(num3))
+  {
+    return 1
+  }
+  else if (parseFloat(num1) >parseFloat(num3))
+  {
+    return 1-0.3*(parseFloat(num1)/parseFloat(num3))
+  }
+}
+
+export var PHF =  function(num1,num2,num3)
+{
+  var sum = 0;
+  for (var i = 0, j = num1.length; i < j; i++) {
+     var dif = 0;
+     if (parseFloat(num1[i])>=parseFloat(num2[i]) && parseFloat(num1[i])<=parseFloat(num3[i]))
+     {
+        dif = 0;
+     }
+     else if (parseFloat(num1[i])<parseFloat(num2[i]))
+     {
+        dif = -1;
+     }
+     else if (parseFloat(num1[i]) >parseFloat(num3[i]))
+     {
+        dif = 1;
+     }
+     if(dif>0)
+     {
+       sum +=dif;
+     }
+  
+  }
+  return (1-sum/12).toFixed(2);
+}
+export var PLF =  function(num1,num2,num3)
+{ 
+  var sum = 0;
+  for (var i = 0, j = num1.length; i < j; i++) {
+     var dif = 0;
+     if (parseFloat(num1[i])>=parseFloat(num2[i]) && parseFloat(num1[i])<=parseFloat(num3[i]))
+     {
+        dif = 0;
+     }
+     else if (parseFloat(num1[i])<parseFloat(num2[i]))
+     {
+        dif = -1;
+     }
+     else if (parseFloat(num1[i]) >parseFloat(num3[i]))
+     {
+        dif = 1;
+     }
+     if(dif<0)
+     {
+       sum +=dif;
+     }
+  
+  }
+  return (1-sum/12).toFixed(2);
+}
+export var PVL =  function(num1,num2)
+{
+  var sum = 0;
+  for (var i = 0, j = num1.length; i < j; i++) {
+        var dif = 0;
+        if (parseFloat(num1[i])<parseFloat(num2[i]))
+        {
+          dif = 1;
+        }
+        else{
+          dif =  0
+        }
+        if (dif>0)
+        {
+          sum +=dif;
+        }
+     }
+     return (1-sum/6).toFixed(2);
+}
+export var SFS =  function(num1)
+{
+
+}
+
+
 
