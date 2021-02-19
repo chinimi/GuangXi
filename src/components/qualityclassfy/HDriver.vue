@@ -105,51 +105,73 @@
 
         </el-row>
 
+
+ <!-- WetseasonP25:'2',  //丰水期
+                WetseasonP75:'4',
+                DryseasonP25:'1',
+                DryseasonP75:'2',
+                MaxP25:'0.5',
+                MaxP75: '1',
+                MinP25:'0.25',
+                MinP75: '0.5',
+                Wetseason:'1.5',//评估年内丰水期水量	
+                Dryseason:'0.3',//评估年内枯水期水量
+                Max:'0.5',      //评估年内最大月水量	
+                Min:'0.1',      //评估年内最小月水量	
+                HFV:'0',        //丰水期水量指标（HFV） 	
+                LFV:'0.6',      //枯水期水量指标（LFV）	
+                HFM:'0',        //最大月水量指标（HFM）	
+                LFM:'0.4',     	//最小月水量指标（LFM） -->
+
         <el-row   v-if="showhealthyTable">
-          <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
-            <el-table-column  align="center" label="流量过程变异程度(FD)">
+          <el-table    border :data="healthyTable" height="200px" style="background-color: transparent;">
+            <el-table-column  align="center" label="健康流量指标(IFD)">
               <el-table-column
-                prop="stcd"
+                prop="WetseasonP25"
                 label="参照系丰水期水量P25%">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="WetseasonP75"
                 label="参照系丰水期2量P75%">
               </el-table-column>
               <el-table-column
-                prop="mndgMax"
+                prop="DryseasonP25"
                 label="参照系枯水期水量P25%">
               </el-table-column>
+               <el-table-column
+                prop="DryseasonP75"
+                label="参照系枯水期水量P75%">
+              </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="MaxP25"
                 label="参照系最大月水量指标P25%">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="MaxP75"
                 label="参照系最大月水量指标P75%">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="MinP25"
                 label="参照系量小月水量指标P25%">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="MinP75"
                 label="参照系最小月水量指标P75%">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="Wetseason"
                 label="评估年内丰水期水量">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="Dryseason"
                 label="评估年内枯水期水量">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="Max"
                 label="评估年内最大月水量">
               </el-table-column>
               <el-table-column
-                prop="mndgType"
+                prop="Min"
                 label="评估年内最小月水量">
               </el-table-column>
 
@@ -241,7 +263,6 @@
             PG_Ou_AVE:'',
             PG_FD_AVE:'',
             PG_FD_Fufeng:'',
-            //tableValue:[],
             FD_table:
               [{
             Month: '1月',
@@ -313,6 +334,26 @@
             
           }],
             showhealthyTable:false,//健康流量表是否显示
+
+            healthyTable:[{
+                WetseasonP25:'2',  //丰水期
+                WetseasonP75:'4',
+                DryseasonP25:'1',
+                DryseasonP75:'2',
+                MaxP25:'0.5',
+                MaxP75: '1',
+                MinP25:'0.25',
+                MinP75: '0.5',
+                Wetseason:'1.5',//评估年内丰水期水量	
+                Dryseason:'0.3',//评估年内枯水期水量
+                Max:'0.5',      //评估年内最大月水量	
+                Min:'0.1',      //评估年内最小月水量	
+                HFV:'0',        //丰水期水量指标（HFV） 	
+                LFV:'0.6',      //枯水期水量指标（LFV）	
+                HFM:'0',        //最大月水量指标（HFM）	
+                LFM:'0.4',     	//最小月水量指标（LFM）
+              },
+            ],
             originData: [{
               id: 'llgcbycd',
               name: '水文水资源(HD)',
