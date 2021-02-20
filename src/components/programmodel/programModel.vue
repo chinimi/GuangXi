@@ -8,7 +8,8 @@
             :class="['programModelClass',{programModel_active : ( isActive == item.value ? true : false )}]"
             @click="isActive = item.value;currentComp = item.comp"
           >
-            <i  :class="['iconfont', item.icon]"></i>
+            <!-- <i  :class="['iconfont', item.icon]"></i> -->
+            <img :src=item.icon alt="">
             <span>{{item.name}}</span>
           </li>
         </ul>
@@ -48,25 +49,25 @@ import moduleManager from './moduleManager/moduleManager.vue';
          isActive: 'oneDimensionalModel',
          menu: [
             {
-              icon:"icon-home",
+              icon:"/static/images/icon/yiwei.png",
               name: '一维模型',
               value: 'oneDimensionalModel',
               comp: 'oneDimensionalModel'
             },
             {
-              icon:"icon-home",
+              icon:"/static/images/icon/erwei.png",
               name: '二维模型',
               value: 'twoDimensionalModel',
               comp: 'twoDimensionalModel'
             },
             {
-              icon:"icon-fuhao-tuceng",
+              icon:"/static/images/icon/yaogan.png",
               name: '遥感模型',
               value: 'remoteSensingModel',
               comp: 'remoteSensingModel'
             },
             {
-              icon:"icon-home",
+              icon:"/static/images/icon/moban.png",
               name: '模板管理',
               value: 'moduleManager',
               comp: 'moduleManager'

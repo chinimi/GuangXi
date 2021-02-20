@@ -461,8 +461,8 @@
   /* margin: 10px 0;
   margin-left: 20px; */
   box-sizing: border-box;
-  padding: 0 20px;
-  padding-top: 20px;
+  padding: 10px 20px;
+  /* padding-top: 20px; */
 }
 
 .informationLnquiry /deep/ .el-radio-group {
@@ -609,6 +609,7 @@
   line-height: 35px;
   height: 35px;
   display: inline-block;
+  text-align: right;
 }
 
 /* 水域 */
@@ -710,7 +711,7 @@
 /* 一级弹窗 */
 .Mouth{
   position: absolute;
-  width: 900px;
+  width: 1117px;
   height: 400px;
   left: 400px;
   background: #FFFFFF;
@@ -819,8 +820,8 @@
 .echarts{
   position: absolute;
   background: #fff;
-  width: 400px;
-  height: 300px;
+  width: 497px;
+  height: 418px;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -848,7 +849,7 @@
 /* 计算方法表格 */
 .table_data{
   position: absolute;
-  width: 700px;
+  width: 1081px;
   height: 450px;
   top: 50%;
   left: 50%;
@@ -915,8 +916,8 @@
 /* 编辑弹窗 */
 .compile{
   position:absolute;
-  width: 400px;
-  height: 300px;
+  width: 439px;
+  height: 350px;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -947,7 +948,7 @@
 .compile_title p img{
   position: relative;
   width: 30px;
-  top: 10px;
+  top: -3px;
 }
 .redact label{
   height: 35px;
@@ -1147,7 +1148,7 @@ line-height: 38px;
   line-height: 30px;
 }
 .sysfxTit{
-  text-align: center;
+  text-align: right;
   font-size: 14px;
   width: 100px;
   height: 30px;
@@ -1159,7 +1160,7 @@ line-height: 38px;
   height: 40px;
   line-height: 40px;
   text-align: center;
-  bottom: 20px;
+  bottom: 65px;
   box-sizing: border-box;
 
 }
@@ -1294,7 +1295,7 @@ line-height: 38px;
   width: 95px;
   margin-right: 10px;
   padding: 7px 0;
-  background: rgba(5, 160, 236, 0.58);
+  background: #286FFF;
   margin: auto;
   margin-top: 20px;
   border-radius: 50px;
@@ -1303,8 +1304,8 @@ line-height: 38px;
   margin-top: 0px!important;
 }
 .actve{
-  color: #fff!important;
-  background: #01ddff!important;
+  color: #286FFF!important;
+  background: #E7F1FF!important;
 }
 .modelParameter_right{
   float: left;
@@ -1461,7 +1462,7 @@ line-height: 38px;
   position: relative;
   width: 100%;
   height: 100%;
-  color: #1677FF;
+  /* color: #1677FF; */
   padding: 10px;
   box-sizing: border-box;
 }
@@ -1596,4 +1597,8 @@ line-height: 38px;
   padding: 9px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+.el-button{
+  background: #1677FF!important;
+  color: #fff!important;
 }

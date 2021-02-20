@@ -4,12 +4,12 @@
     <div class="administrativeDivisions_left">
               <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 省：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="province">
                   <el-option
@@ -25,12 +25,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 市：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="city">
                   <el-option
@@ -46,12 +46,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 县：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="county">
                   <el-option
@@ -67,12 +67,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 镇：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="town">
                   <el-option
@@ -88,12 +88,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 村：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="rustic">
                   <el-option

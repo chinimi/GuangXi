@@ -5,7 +5,8 @@
         <div class="stair">
           <ul class="clear-fix stair_ui">
             <li :class="[Type == '1' ? 'cur' : '']" @click=" Switch(1);contraction(statse);">
-              <i class="iconfont icon-shuidi1"></i>
+              <!-- <i class="iconfont icon-menu"></i> -->
+              <img src="/static/images/icon/xinxi.png" alt="">
               信息汇总
             </li>
             <div class="list" v-if="statse">
@@ -55,15 +56,16 @@
               </div>
             </div>
             <li :class="[Type == '2' ? 'cur' : '']" @click="Switch(2)">
-              <i class="iconfont icon-shuidi2"></i>
+              <!-- <i class="iconfont icon-shuidi2"></i> -->
+              <img src="/static/images/icon/chaxun.png" alt="">
               信息查询
             </li>
             <li :class="[Type == '3' ? 'cur' : '']" @click="Switch(3)">
-              <i class="iconfont icon-shuidi3"></i>
+              <img src="/static/images/icon/shuizhi.png" alt="">
               水质报告
             </li>
             <li :class="[Type == '4' ? 'cur' : '']" @click="Switch(4)">
-              <i class="iconfont icon-shuidi4"></i>
+              <img src="/static/images/icon/quanxian.png" alt="">
               权限管理
             </li>
           </ul>

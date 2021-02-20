@@ -17,7 +17,7 @@ img {
 }
 
 img {
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 ul,
@@ -113,39 +113,37 @@ body {
 .content_table{
   /*border:solid 1px  #01ddff;*/
   margin-top: 10px;
-  font-size:14px;
-  text-align: center;
 }
 
 .border-right{
   /*border-right: solid 1px  #01ddff;;*/
 }
 
-.el-table--enable-row-hover .el-table__body tr:hover>td {
+ .el-table--enable-row-hover .el-table__body tr:hover>td {
   background-color: transparent !important;
 }
 
 
 .el-tree-node:focus>.el-tree-node__content {
     background-color: transparent;
-}
+  }
 
 
-.el-pagination__total {
+ .el-pagination__total {
   color: #ffffff !important;
 }
-.el-pagination__jump {
+ /* .el-pagination__jump {
   color: #ffffff !important;
-}
-.el-pagination .el-select .el-input .el-input__inner {
+} */
+ .el-pagination .el-select .el-input .el-input__inner {
   /*color: #ffff;*/
 }
-.el-scrollbar__wrap{
-  height: 100%!important;
-  margin-bottom: 0px!important;
-  margin-right:0px!important;
-  overflow: hidden!important;
-}
+  .el-scrollbar__wrap{
+    height: 100%!important;
+    margin-bottom: 0px!important;
+    margin-right:0px!important;
+    overflow: hidden!important;
+  }
 
 
 /* 修改滚动条的样式 */
@@ -164,7 +162,7 @@ body {
   /* color: #fff!important; */
 }
 
-/* 滚动条凹槽的颜色，还可以设置边框属性 */
+  /* 滚动条凹槽的颜色，还可以设置边框属性 */
 ::-webkit-scrollbar-track-piece {
   /* background-color: #031823!important; */
 }

@@ -4,12 +4,12 @@
     <div class="administrativeDivisions_left">
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               一级分区：
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-select v-model="primaryPartition">
                 <el-option
@@ -25,12 +25,12 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               二级分区：
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-select v-model="secondaryPartition">
                 <el-option
@@ -46,12 +46,12 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               三级分区：
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-select v-model="tertiaryPartition">
                 <el-option
@@ -67,12 +67,12 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               四级分区：
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-select v-model="fourstagePartition">
                 <el-option
@@ -88,12 +88,12 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               五级分区：
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-select v-model="fivestagePartition">
                 <el-option

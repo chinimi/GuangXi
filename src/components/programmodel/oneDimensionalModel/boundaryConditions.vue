@@ -6,14 +6,19 @@
         <div v-for="(item, index) in data" :key="index">
           <div class="data_info" @click="tap(item, index)">
             <span>{{ item.name }}</span>
-            <img
+            <!-- <img
               :src="
                 item.info == true
                   ? '../../../../static/images/top.png'
                   : '../../../../static/images/bottom.png'
               "
               alt=""
-            />
+            /> -->
+            <i style="position: relative;float: right;right: 20px;top: 10px;" :class="
+                item.info == true
+                  ? 'el-icon-arrow-up'
+                  : 'el-icon-arrow-down'
+              "></i>
           </div>
           <ul
             class="list"
@@ -40,8 +45,8 @@
             </el-table-column>
           </el-table>
           <div class="boundaryConditions_name">
-            <el-button type="primary" size="small" plain>上传</el-button>
-            <el-button type="primary" size="small" plain>下载</el-button>
+            <el-button size="small" plain>上传</el-button>
+            <el-button size="small" plain>下载</el-button>
           </div>
         </div>
       </div>
@@ -116,15 +121,15 @@
               </el-table-column>
             </el-table>
             <div class="boundaryConditions_name">
-              <el-button type="primary" size="small" plain>上传</el-button>
-              <el-button type="primary" size="small" plain>下载</el-button>
+              <el-button size="small" plain>上传</el-button>
+              <el-button size="small" plain>下载</el-button>
             </div>
       </div>
     </div>
     <div class="boundaryConditions_bottom">
-        <el-button type="primary" size="small" plain>保存</el-button>
-        <el-button type="primary" size="small" plain>计算</el-button>
-        <el-button type="primary" size="small" plain>查看结果</el-button>
+        <el-button size="small" plain>保存</el-button>
+        <el-button size="small" plain>计算</el-button>
+        <el-button size="small" plain>查看结果</el-button>
     </div>
   </div>
 </template>

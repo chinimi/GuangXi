@@ -4,12 +4,12 @@
     <div class="administrativeDivisions_left">
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 流域：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="drainageBasin">
                   <el-option
@@ -25,12 +25,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 水系：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="basin">
                   <el-option
@@ -46,12 +46,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 一级河流：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="firstOrderStream">
                   <el-option
@@ -67,12 +67,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 二级河流：
               </div>
             </el-col>
-            <el-col :span="14" >
+            <el-col :span="13" >
               <div>
                 <el-select v-model="secondOrderStream">
                   <el-option
