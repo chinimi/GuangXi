@@ -7,47 +7,47 @@
 
 
       <div class="r_model_content">
-        <el-row  class="th_bg">
-        <el-col :span="4" >站名</el-col>
-        <el-col :span="7" > 时间</el-col>
-        <el-col :span="7" >水位（m）</el-col>
-        <el-col :span="6" >流量(m3)</el-col>
+        <el-row >
+        <el-col :span="6" ><span  class="th_bg">站名</span></el-col>
+        <el-col :span="6" > <span  class="th_bg">时间</span></el-col>
+        <el-col :span="6" ><span  class="th_bg">水位</span></el-col>
+        <el-col :span="6" ><span  class="th_bg">流量</span></el-col>
         </el-row>
 
         <!--table表格-->
 
         <div  class="content_table">
           <el-row     class="on">
-            <el-col :span="4" class="border-right">田东</el-col>
-            <el-col :span="12" class="border-right">2021-01-03  </el-col>
-            <el-col :span="4" class="border-right">30</el-col>
-            <el-col :span="4" class="border-right">5000</el-col>
+            <el-col :span="5" class="border-right">田东</el-col>
+            <el-col :span="8" class="border-right">2021-01-03  </el-col>
+            <el-col :span="5" class="border-right">30</el-col>
+            <el-col :span="5" class="border-right">5000</el-col>
           </el-row>
           <el-row  class="off">
-            <el-col :span="4"   class="border-right" >隆安</el-col>
-            <el-col :span="12"  class="border-right">2021-01-03  </el-col>
-            <el-col :span="4"   class="border-right">35</el-col>
-            <el-col :span="4"   class="border-right">4563</el-col>
+            <el-col :span="5"   class="border-right" >隆安</el-col>
+            <el-col :span="8"  class="border-right">2021-01-03  </el-col>
+            <el-col :span="5"   class="border-right">35</el-col>
+            <el-col :span="5"   class="border-right">4563</el-col>
           </el-row>
           <el-row    class="on">
-            <el-col :span="4"  class="border-right">太平</el-col>
-            <el-col :span="12" class="border-right">2021-01-03</el-col>
-            <el-col :span="4"  class="border-right">44</el-col>
-            <el-col :span="4"  class="border-right">2564</el-col>
+            <el-col :span="5"  class="border-right">太平</el-col>
+            <el-col :span="8" class="border-right">2021-01-03</el-col>
+            <el-col :span="5"  class="border-right">44</el-col>
+            <el-col :span="5"  class="border-right">2564</el-col>
           </el-row>
           <el-row    class="off">
-            <el-col :span="4"  class="border-right" >英竹</el-col>
-            <el-col :span="12" class="border-right">2021-01-03 </el-col>
-            <el-col :span="4"  class="border-right">35.3</el-col>
-            <el-col :span="4"  class="border-right">2235</el-col>
+            <el-col :span="5"  class="border-right" >英竹</el-col>
+            <el-col :span="8" class="border-right">2021-01-03 </el-col>
+            <el-col :span="5"  class="border-right">35.3</el-col>
+            <el-col :span="5"  class="border-right">2235</el-col>
           </el-row>
 
           <!--循环 奇数偶数行样式不一致  -->
           <el-row   class="on">
-            <el-col :span="4"  class="border-right" >东华</el-col>
-            <el-col :span="12" class="border-right">2021-01-03  </el-col>
-            <el-col :span="4"  class="border-right">44</el-col>
-            <el-col :span="4"  class="border-right">8654</el-col>
+            <el-col :span="5"  class="border-right" >东华</el-col>
+            <el-col :span="8" class="border-right">2021-01-03  </el-col>
+            <el-col :span="5"  class="border-right">44</el-col>
+            <el-col :span="5"  class="border-right">8654</el-col>
           </el-row>
 
         </div>
@@ -64,39 +64,39 @@
       </div>
 
       <div class="r_model_content">
-        <el-row  class="th_bg">
-          <el-col :span="6" >河流</el-col>
-          <el-col :span="12" > 站点名称</el-col>
-          <el-col :span="6" >水质类别</el-col>
+        <el-row>
+          <el-col :span="6" ><span  class="th_bg">河流</span></el-col>
+          <el-col :span="9"><span  class="th_bg">占地名称</span></el-col>
+          <el-col :span="9" ><span  class="th_bg">水质类别</span></el-col>
 
         </el-row>
 
         <div  class="content_table">
           <el-row  class="on">
             <el-col :span="6" class="border-right">郁江</el-col>
-            <el-col :span="12" class="border-right">田东</el-col>
-            <el-col :span="6" class="border-right">Ⅲ</el-col>
+            <el-col :span="9" class="border-right">田东</el-col>
+            <el-col :span="9" class="border-right">Ⅲ</el-col>
           </el-row>
 
           <el-row  class="off">
             <el-col :span="6" class="border-right">郁江</el-col>
-            <el-col :span="12" class="border-right">隆安</el-col>
-            <el-col :span="6" class="border-right">Ⅲ</el-col>
+            <el-col :span="9" class="border-right">隆安</el-col>
+            <el-col :span="9" class="border-right">Ⅲ</el-col>
           </el-row>
           <el-row  class="on">
             <el-col :span="6" class="border-right">郁江</el-col>
-            <el-col :span="12" class="border-right">太平</el-col>
-            <el-col :span="6" class="border-right">Ⅲ</el-col>
+            <el-col :span="9" class="border-right">太平</el-col>
+            <el-col :span="9" class="border-right">Ⅲ</el-col>
           </el-row>
           <el-row  class="off">
             <el-col :span="6" class="border-right">英竹河</el-col>
-            <el-col :span="12" class="border-right">英竹</el-col>
-            <el-col :span="6" class="border-right">Ⅲ</el-col>
+            <el-col :span="9" class="border-right">英竹</el-col>
+            <el-col :span="9" class="border-right">Ⅲ</el-col>
           </el-row>
           <el-row  class="on">
             <el-col :span="6" class="border-right">秦川河</el-col>
-            <el-col :span="12" class="border-right">东华</el-col>
-            <el-col :span="6" class="border-right">Ⅲ</el-col>
+            <el-col :span="9" class="border-right">东华</el-col>
+            <el-col :span="9" class="border-right">Ⅲ</el-col>
           </el-row>
 
 
@@ -111,60 +111,81 @@
         <span>水质报告</span>
       </div>
 
-      <div class="r_model_content">
-<!--        <el-row  class="first_line">-->
-<!--          <el-col :span="5" >站名</el-col>-->
-<!--          <el-col :span="9" > 时间</el-col>-->
-<!--          <el-col :span="5" >水位</el-col>-->
-
-<!--        </el-row>-->
-
-        <div   >
-          <el-row  class="lion">
-            <el-col :span="20">
-              2020年桂江流域水质报告54期(20201205)
+      <div class="r_model_content" style="max-height:230px;overflow-y: auto;">
+         <div >
+           <el-row  class="lion">
+            <el-col :span="2">
+              <i class="iconfont icon-xiazai1  downstyle" ></i>
             </el-col>
-            <el-col :span="4">
-              <img src="../../../static/images/download.png" alt="">
+            <el-col :span="14">
+              2020邕江流域水质报告54期
             </el-col>
-          </el-row>
-
-          <el-row  class="lioff">
-            <el-col :span="20">
-              2020年桂江流域水质报告53期(20201201)
+            <el-col :span="4" class="date_color">
+               03/02
             </el-col>
-            <el-col :span="4">
-              <img src="../../../static/images/download.png" alt="">
+            <el-col :span="4" class="date_color">
+              17:39
             </el-col>
           </el-row>
+           <el-row  class="lioff">
+             <el-col :span="2">
+               <i class="iconfont icon-xiazai1  downstyle" ></i>
+             </el-col>
+             <el-col :span="14">
+               2020邕江流域水质报告53期
+             </el-col>
+             <el-col :span="4" class="date_color">
+               03/02
+             </el-col>
+             <el-col :span="4" class="date_color">
+               17:39
+             </el-col>
+           </el-row>
+           <el-row  class="lion">
+             <el-col :span="2">
+               <i class="iconfont icon-xiazai1  downstyle" ></i>
+             </el-col>
+             <el-col :span="14">
+               2020邕江流域水质报告52期
+             </el-col>
+             <el-col :span="4" class="date_color">
+               03/02
+             </el-col>
+             <el-col :span="4" class="date_color">
+               17:39
+             </el-col>
+           </el-row>
+           <el-row  class="lioff">
+             <el-col :span="2">
+               <i class="iconfont icon-xiazai1  downstyle" ></i>
+             </el-col>
+             <el-col :span="14">
+               2020邕江流域水质报告51期
+             </el-col>
+             <el-col :span="4" class="date_color">
+               03/02
+             </el-col>
+             <el-col :span="4" class="date_color">
+               17:39
+             </el-col>
+           </el-row>
+           <el-row  class="lion">
+             <el-col :span="2">
+               <i class="iconfont icon-xiazai1  downstyle" ></i>
+             </el-col>
+             <el-col :span="14">
+               2020邕江流域水质报告50期
+             </el-col>
+             <el-col :span="4" class="date_color">
+               03/02
+             </el-col>
+             <el-col :span="4" class="date_color">
+               17:39
+             </el-col>
+           </el-row>
 
-          <el-row  class="lion">
-            <el-col :span="20">
-              2020邕江流域水质报告54期(20201205)
-            </el-col>
-            <el-col :span="4">
-              <img src="../../../static/images/download.png" alt="">
-            </el-col>
-          </el-row>
-
-          <el-row  class="lioff">
-            <el-col :span="20">
-              2020年邕江流域水质报告53期(20201201)
-            </el-col>
-            <el-col :span="4">
-              <img src="../../../static/images/download.png" alt="">
-            </el-col>
-          </el-row>
-
-
-        </div>
-
-
+         </div>
       </div>
-
-
-
-
   </div>
 </template>
 <script>
@@ -232,7 +253,7 @@
   top: 74px;
   right: 10px;
   z-index: 9;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 200px);
   background-size: 100% 100%;
   background: #fff;
   border-radius: 20px;
@@ -241,10 +262,11 @@
 }
 
 .th_bg{
-  font-size:16px;
+  font-size: 15px;
   background: #caebff;
   color: #235d9a;
   font-weight: 900;
+  padding: 4px 18px;
 }
 .r_module_title{
   font-weight: 800;
@@ -262,25 +284,38 @@
   .r_model_content{
     color: #7b7e7f;
     width:90%;
-    margin:5px auto;
+    margin:9px auto;
 
   }
   .on {
+
     background: #f5f5f5;
+    line-height: 30px;
   }
   .off {
+
     background: #fefdff;
+    line-height: 30px;
   }
 
   .lion{
     cursor: pointer;
-    padding: 5px 0px;
+    padding: 12px 0px;
     background: #fff;
+    font-size: 14px;
   }
 
   .lioff{
+    font-size: 14px;
     cursor: pointer;
-    padding: 5px 0px;
+    padding: 12px 0px;
     background: #eaf7ff;
+  }
+
+  .downstyle{
+    color:#1677FF;
+  }
+  .date_color{
+    color:#333;
   }
 </style>

@@ -101,7 +101,7 @@
                   </div>
                   <div class="ball"
                        :style="{
-	        left:jindu-5+'%',
+	        left:jindu-1+'%',
 	    }">
                   </div>
                 </div>
@@ -169,7 +169,9 @@
 
       </div>
       <div class="warnRight">
-        <div class="warn-title">耦合性参数</div>
+        <div class="warn-title">
+          <i  class="iconfont icon-shu" style="color: rgb(140, 241, 179);"></i>
+          耦合性参数</div>
         <ul  class="mid_tab_title">
           <li
             v-for="item  in calculateType"
@@ -183,7 +185,8 @@
         </ul>
 
         <!--边界条件 -->
-        <div class="warn-title">边界条件</div>
+        <div class="warn-title">
+          <i  class="iconfont icon-shu" style="color: rgb(140, 241, 179);"></i>边界条件</div>
 
 
         <ul class="limitCondition">
@@ -206,7 +209,8 @@
 
 
         <!--预报期河网水质预报 -->
-        <div class="warn-title">预报期河网水质预报</div>
+        <div class="warn-title">
+          <i  class="iconfont icon-shu" style="color: rgb(140, 241, 179);"></i>预报期河网水质预报</div>
 
         <el-row  class="tableTh">
           <el-col :span="6">
@@ -251,7 +255,8 @@
 
         <!--成因分析-->
 
-        <div class="warn-title">成因分析</div>
+        <div class="warn-title">
+          <i  class="iconfont icon-shu" style="color: rgb(140, 241, 179);"></i>成因分析</div>
 
         <el-row  class="tableResult">
           <el-col :span="12">
@@ -982,7 +987,8 @@ _this.jindu+=eachWidth
     border:solid 1px red;
   }
   .warnRight{
-    background: rgba(69, 135, 214, 0.61);
+    background:#fff;
+    /*background: rgba(69, 135, 214, 0.61);*/
     position:absolute;
     top:100px;
     right:10px;
@@ -995,29 +1001,39 @@ _this.jindu+=eachWidth
     font-weight: 800;
     font-size: 15px;
     color: #fff;
-    line-height: 50px;
+    line-height:35px;
     padding-left: 23px;
+    background: #2784FF;
+    border-radius:5px;
     /*border: solid 1px #fff;*/
   }
   /*middle part*/
 
   .middleSliderClass{
     cursor: pointer;
-    color: #fff;
+    color: #2784FF;
     float: left;
     list-style: none;
     font-size: 10px;
-    line-height: 30px;
+    line-height: 25px;
     padding: 0px 6px;
-    background: #233b8f;
-    border-radius: 5px;
-    margin-left: 19px;
-    margin-top: 6px;
+    /* background: #88BBFF; */
+    /* border-radius: 5px; */
+    /* margin-left: 19px; */
+    /* margin-top: 6px; */
     width: 50px;
+    /* width: 74px; */
+    /* height: 51px; */
+    background: #E1F4FF;
+    border: 1px solid #88BBFF;
+    border-radius: 4px;
+    font-weight: 900;
+    margin: 12px 10px;
 
   }
 
   .limitSliderClass{
+   /* font-weight: 900;
     cursor: pointer;
     color: #333;
     float: left;
@@ -1025,23 +1041,46 @@ _this.jindu+=eachWidth
     font-size: 10px;
     line-height: 30px;
     padding: 0px 6px;
-    background: #69e4ff;
-    border-radius: 15px;
+    !*background: #69e4ff;*!
+    !*border-radius: 15px;*!
     margin-left: 9px;
     margin-top: 6px;
+    !*width: 50px;*!
+    !*border: solid 1px blue;*!
+
+    width: 74px;
+    height: 51px;
+    background: #E1F4FF;
+    border: 1px solid #88BBFF;
+    border-radius: 4px;*/
+
+    cursor: pointer;
+    color: #2784FF;
+    float: left;
+    list-style: none;
+    font-size: 10px;
+    line-height: 50px;
+    padding: 0px 6px;
     width: 50px;
+    background: #E1F4FF;
+    border: 1px solid #88BBFF;
+    border-radius: 4px;
+    font-weight: 900;
+    margin: 12px 10px;
 
   }
   .midactiveli{
+
     color:yellow;
   }
   .activeLi{
-    color: #ffdb61 !important;
+    background:#2784FF!important;
+    color: #fff !important;
   }
 
   .limitactiveLi{
-    color: #233b8f !important;
-    font-weight:900;
+    background:#2784FF!important;
+    color: #fff !important;
   }
 
 
@@ -1050,26 +1089,27 @@ _this.jindu+=eachWidth
   .limitCondition li{
     width: 90%;
     line-height: 30px;
-    background: #233b8f;
-    margin: 5px  auto;
+    background: #F5F5F5;
+    margin: 5px auto;
     padding: 0 0 0 13px;
-    color: #fff;
+    color: #1C1C1C;
     border-radius: 5px;
 
   }
   .limitCondition li span{
-    color:greenyellow
+    color:green
 
   }
 
   .tableTh{
-    color: #fff;
-    background: #233b8f;
+    color: #333;
+    background: #fff;
     width: 98%;
     margin: 5px auto;
     border-radius: 10px;
     font-size: 13px;
     padding: 5px 12px;
+    border: solid 1px rgb(22 119 255 / 10%);
   }
   .tableContent{
     color: #fff;
@@ -1082,27 +1122,28 @@ _this.jindu+=eachWidth
 
   .tableResult {
     line-height: 50px;
-    color: #fff;
-    background: #233b8f;
+    color: #333;
+    background: #fff;
     width: 97%;
     margin: 5px auto;
     border-radius: 10px;
     font-size: 13px;
     padding: 5px 12px;
+    border: solid 1px rgb(22 119 255 / 10%);
+
   }
 
   .timeModule{
     width: 60%;
-    /* height: 55px; */
-    /* border: solid 1px purple; */
+
     position: absolute;
     top: 27px;
     left: 317px;
-    background: #233b8f;
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 10px;
-
+    background: #fff;
+    padding: 10px;
+    border-radius:10px;
+    -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
+    box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
   }
 
   .timeModule span{
@@ -1116,8 +1157,8 @@ _this.jindu+=eachWidth
     position: absolute;
     top: 98px;
     right: 401px;
-    background: #233b8f;
-    color: #fff;
+    background: #fff;
+    color: #333;
     padding: 12px 25px;
     border-radius: 10px;
   }
@@ -1221,32 +1262,35 @@ _this.jindu+=eachWidth
   .Progress {
     position: relative;
     width: 100%;
-    height: 20px;
+    height: 5px;
     margin: 0 auto;
-    /*margin-top: 50px;*/
-    border: 1px solid gray;
-    box-shadow: -1px -1px 1px #000;
-    background: rgb(177, 174, 174);
+    /* margin-top: 50px; */
+    /* border: 1px solid gray; */
+    /* -webkit-box-shadow: -1px -1px 1px #000; */
+    /* box-shadow: -1px -1px 1px #000; */
+    /* background: rgb(177, 174, 174); */
+    top: 9px;
+    border-radius: 5px;
+    border: solid 1px #1677ff;
   }
   .jindu{
-
-    height: 50%;
+    height: 100%;
     background: #2784ff;
     overflow: hidden;
     vertical-align: center;
     position: absolute;
-    top: 4px;
+    top: 0px;
     border-radius: 5px;
   }
   .ball{
     position: absolute;
-    top: 4px;
-    left:0;
+    top: -3px;
+    left: 0;
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #3165c5;
-    overflow: hidden;
+    background: #fff;
+    border: solid 1px #ccc;
   }
   >>>.el-menu-item.is-active {
     color: #409EFF;

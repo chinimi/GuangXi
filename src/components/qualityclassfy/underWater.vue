@@ -1,55 +1,495 @@
 <template>
     <div  id="groundWater">
       <div class="left_menu">
-        <div class="singleli_title">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                评价标准：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="pjbzval">
-                  <el-option
-                    v-for="(item, index) in pjbzOption"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
+        <!---->
+        <div >
+          <span class="cur_title">地表水资源量预测</span>
         </div>
+
+        <!--水量组成-->
+        <div style="width: 100%;padding-left:20px;margin-top:20px;">
+          <el-radio-group  v-model="cursysval">
+            <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
+              <el-radio :label="product.value"   >{{product.label}}</el-radio>
+            </el-col>
+          </el-radio-group>
+        </div>
+        <!-- tab切换 -->
+        <div class="nav">
+          <ul class="clear-fix nav_ui">
+            <li :class="[companyType=='1'?'csour':'']" @click="companySwitch(1)">河长制</li>
+            <li :class="[companyType=='2'?'csour':'']" @click="companySwitch(2)">流域</li>
+            <li :class="[companyType=='3'?'csour':'']" @click="companySwitch(3)">水资源</li>
+            <li :class="[companyType=='4'?'csour':'']" @click="companySwitch(4)">行政</li>
+          </ul>
+          <div class="searchMain " v-if="companyType=='1'">
+            <!--河长制-->
+            <!--省-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    省：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="primaryPartition">
+                      <el-option
+                        v-for="(item, index) in primaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--市-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    市：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="secondaryPartition">
+                      <el-option
+                        v-for="(item, index) in secondaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--县-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    县：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="tertiaryPartition">
+                      <el-option
+                        v-for="(item, index) in tertiaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--镇-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    镇：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fourstagePartition">
+                      <el-option
+                        v-for="(item, index) in fourstagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--村-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    村：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fivestagePartition">
+                      <el-option
+                        v-for="(item, index) in fivestagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+
+          </div>
+          <div class="searchMain" v-if="companyType=='2'" >
+            <!--流域水系-->
+            <!--流域-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    流域：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="primaryPartition">
+                      <el-option
+                        v-for="(item, index) in primaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--水系-->
+            <div class="singleli_title">
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    水系：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="secondaryPartition">
+                      <el-option
+                        v-for="(item, index) in secondaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--一级河流-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    一级河流：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="tertiaryPartition">
+                      <el-option
+                        v-for="(item, index) in tertiaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--二级河流-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    二级河流：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fourstagePartition">
+                      <el-option
+                        v-for="(item, index) in fourstagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--三级河流-->
+            <div class="singleli_title"    >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    三级河流：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fivestagePartition">
+                      <el-option
+                        v-for="(item, index) in fivestagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--四级河流-->
+            <div class="singleli_title"    >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    四级河流：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fivestagePartition">
+                      <el-option
+                        v-for="(item, index) in fivestagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+
+            <!--流域水系  over-->
+          </div>
+          <div class="searchMain " v-if="companyType=='3'">
+            <!--水资源分区-->
+            <!--1级-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    一级分区：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="primaryPartition">
+                      <el-option
+                        v-for="(item, index) in primaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--2级-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    二级分区：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="secondaryPartition">
+                      <el-option
+                        v-for="(item, index) in secondaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--3级-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    三级分区：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="tertiaryPartition">
+                      <el-option
+                        v-for="(item, index) in tertiaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--4级-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    四级分区：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fourstagePartition">
+                      <el-option
+                        v-for="(item, index) in fourstagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+
+            <!--水资源分区 over-->
+          </div>
+          <div class="searchMain " v-if="companyType=='4'">
+
+            <!--行政区-->
+            <!--省-->
+            <div class="singleli_title"    >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    省：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="primaryPartition">
+                      <el-option
+                        v-for="(item, index) in primaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--市-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    市：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="secondaryPartition">
+                      <el-option
+                        v-for="(item, index) in secondaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--县-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    县：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="tertiaryPartition">
+                      <el-option
+                        v-for="(item, index) in tertiaryPartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--镇-->
+            <div class="singleli_title"   >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    镇：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fourstagePartition">
+                      <el-option
+                        v-for="(item, index) in fourstagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--村-->
+            <div class="singleli_title"  >
+              <el-row>
+                <el-col :span="8">
+                  <div class="sysfxTit">
+                    村：
+                  </div>
+                </el-col>
+                <el-col :span="14" style="margin-left: -5%;">
+                  <div>
+                    <el-select v-model="fivestagePartition">
+                      <el-option
+                        v-for="(item, index) in fivestagePartitionList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <!--行政区 over-->
+
+          </div>
+        </div>
+        <!--tab切换 over-->
 
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                评价项目：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="pjxmval">
-                  <el-option
-                    v-for="(item, index) in pjxmOption"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-
-        <div class="singleli_title">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                取值方式：
+                湖库名称：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
@@ -66,511 +506,10 @@
             </el-col>
           </el-row>
         </div>
-        <!--水系参数-->
-        <div style="width: 100%;padding-left:20px;" >
-          <!-- <el-checkbox-group v-model="pjbzval" @change="">
-             <el-checkbox v-for="item in curWaterSysOption" :label="item.value" :key="item.value">{{item.label}}</el-checkbox>
-           </el-checkbox-group>-->
 
-          <el-radio-group  v-model="cursysval">
-            <el-col :span="5" v-for="product in curWaterSysOption"   :key="product.value">
-              <el-radio :label="product.value">{{product.label}}</el-radio>
-            </el-col>
-          </el-radio-group>
-        </div>
 
-        <!--河长制-->
-        <!--省-->
-        <div class="singleli_title"    v-if="cursysval=='longriver'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                省：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="primaryPartition">
-                  <el-option
-                    v-for="(item, index) in primaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--市-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                市：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="secondaryPartition">
-                  <el-option
-                    v-for="(item, index) in secondaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--县-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                县：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="tertiaryPartition">
-                  <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--镇-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                镇：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fourstagePartition">
-                  <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--村-->
-        <div class="singleli_title"  v-if="cursysval=='longriver'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                村：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--流域水系-->
-        <!--流域-->
-        <div class="singleli_title"  v-if="cursysval=='river'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                流域：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="primaryPartition">
-                  <el-option
-                    v-for="(item, index) in primaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--水系-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                水系：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="secondaryPartition">
-                  <el-option
-                    v-for="(item, index) in secondaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--一级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                一级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="tertiaryPartition">
-                  <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--二级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                二级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fourstagePartition">
-                  <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--三级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                三级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--四级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'"  >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                四级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--五级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                五级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="customdefine">
-                  <el-option
-                    v-for="(item, index) in customdefineList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--六级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                六级河流：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="customdefine">
-                  <el-option
-                    v-for="(item, index) in customdefineList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--流域水系  over-->
-        <!--水资源分区-->
-        <!--1级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                一级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="primaryPartition">
-                  <el-option
-                    v-for="(item, index) in primaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--2级-->
-        <div class="singleli_title"  v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                二级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="secondaryPartition">
-                  <el-option
-                    v-for="(item, index) in secondaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--3级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                三级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="tertiaryPartition">
-                  <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--4级-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                四级分区：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fourstagePartition">
-                  <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
 
-        <!--水资源分区 over-->
-        <!--行政区-->
-        <!--省-->
-        <div class="singleli_title"    v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                省：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="primaryPartition">
-                  <el-option
-                    v-for="(item, index) in primaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--市-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                市：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="secondaryPartition">
-                  <el-option
-                    v-for="(item, index) in secondaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--县-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                县：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="tertiaryPartition">
-                  <el-option
-                    v-for="(item, index) in tertiaryPartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--镇-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                镇：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fourstagePartition">
-                  <el-option
-                    v-for="(item, index) in fourstagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--村-->
-        <div class="singleli_title"  v-if="cursysval=='distriction'">
-          <el-row>
-            <el-col :span="8">
-              <div class="sysfxTit">
-                村：
-              </div>
-            </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
-              <div>
-                <el-select v-model="fivestagePartition">
-                  <el-option
-                    v-for="(item, index) in fivestagePartitionList"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-              </div>
-            </el-col>
-          </el-row>
-        </div>
-        <!--行政区 over-->
+
         <div style="margin-left:20px;">
           <!--时间段选择-->
           <div >
@@ -581,6 +520,7 @@
             </el-radio-group>
           </div>
         </div>
+
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -602,6 +542,7 @@
             </el-col>
           </el-row>
         </div>
+
         <div class="singleli_title" >
           <el-row>
             <el-col :span="8">
@@ -747,6 +688,8 @@
   export default {
       data() {
           return {
+            companyType: '1', //河长制、流域、水资源、行政
+
             /*评价标准*/
             evaluatiStandarVal:'SL395-2007',
             evaluationOptopn:[{
@@ -807,21 +750,19 @@
             /*取值方式*/
             qzfsval:'avg',
             qzfsOption:[{
-              label:"平均值",
+              label:"11",
               value:'avg',
             },{
-              label:"最小值",
+              label:"22",
               value:'min',
             },{
-              label:"最大值",
+              label:"33",
               value:'max',
             }],
             /*当前水系*/
-            cursysval:'longriver',
-            /*水系参数*/
-            curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'水资源',value:'watersource'},{label:'流域',value:'river'},{label:'行政区',value:'distriction'}],
-
-            // curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+            cursysval:'river',
+            /*水量组成*/
+            curWaterSysOption:[{label:'上游来水',value:'longriver'},{label:'区间来水',value:'river'},{label:'区间耗水',value:'watersource'}],
             /*时间选择*/
             selectTimeType:"singletime",
             /*时间段选择*/
@@ -850,6 +791,10 @@
 
       },
       methods: {
+        // 河长制切换切换
+        companySwitch(id) {
+          this.companyType = id;
+        },
         handleSizeChange(val) {
           console.log(`每页 ${val} 条`);
           console.log(val)
@@ -1177,6 +1122,65 @@
    color:#fff!important;
 
   }
+  /* tab切换 */
 
+  .clear-fix:after,
+  .clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .clear{
+    clear: both;
+    font-size:0;
+    line-height: 0;
+    height: 0;
+  }
+
+  .cur_title{
+    padding:10px;border-bottom: solid 2px  #1677FF;color: #1677FF;font-weight:900;width:250px;line-height: 40px;margin: 20px;
+  }
+  .nav {
+    margin-top: 20px;
+
+  }
+  .nav_ui li {
+    width: 21%;
+    float: left;
+    text-align: center;
+    /*border-bottom: 1px solid #1677FF;*/
+    margin: 0 2%;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+  }
+  .searchMain{
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+  .searchMain ul{
+    text-align: center;
+    padding: 10px 0;
+  }
+  .searchMain ul li{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    float: left;
+    text-align: center;
+  }
+  .searchMain_div{
+    line-height: 35px;
+    height: 35px;
+    display: inline-block;
+  }
+  .csour{
+    color: #1677FF!important;
+    border-bottom: 2px solid #1677FF;
+  }
 
 </style>

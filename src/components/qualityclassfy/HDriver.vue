@@ -86,7 +86,7 @@
         </el-col>
         <el-col :span="12" style="padding-left:20px;">
           <!--合并单元格数据-->
-          <el-table :data="tableData6" height="calc( 100vh - 600px )" :span-method="resolveSpanMethod" border style="width: 100%; margin-top: 20px">
+          <el-table :data="tableData6" height="calc( 100vh - 600px )" :span-method="resolveSpanMethod" border style="width: 100%;">
             <el-table-column  align="center" label="生态流量满足程度(EF)">   
                     <el-table-column prop="name" label="名称">
                       </el-table-column>
@@ -97,7 +97,7 @@
                 <template slot-scope="scope">
                   <el-input   v-model="scope.row.id"  ></el-input>
                 </template>
-                      </el-table-column>
+             </el-table-column>
               <el-table-column label="多年平均径流Q">
                 <template slot-scope="scope">
                   <el-input   v-model="scope.row.id"  ></el-input>
