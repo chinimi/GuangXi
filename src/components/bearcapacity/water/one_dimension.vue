@@ -18,10 +18,11 @@
         <el-table-column prop="name" label="降解系数" min-width="100"></el-table-column>
         <el-table-column prop="mix" label="操作" min-width="100">
           <template slot-scope="scope">
-            <el-button
+            <img @click="handleEdit(scope.$index, scope.row)" src="/static/images/icon/bianji.png" alt="">
+            <!-- <el-button
               size="mini"
               @click="handleEdit(scope.$index, scope.row)">编辑
-            </el-button>
+            </el-button> -->
           </template>
         </el-table-column>
         <el-table-column prop="mix" label="河长" min-width="80"></el-table-column>

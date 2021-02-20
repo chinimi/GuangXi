@@ -9,12 +9,12 @@
       <div class="left_menu">
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 查询目标：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <div>
                 <el-select v-model="queryTarget">
                   <el-option
@@ -30,12 +30,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 查询项目：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <div>
                 <el-select v-model="queryProject">
                   <el-option
@@ -51,12 +51,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 显示内容：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <div>
                 <el-select v-model="displayContent">
                   <el-option
@@ -88,12 +88,12 @@
         <div v-if="cursys == '1'">
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   省：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="XZprovince">
                     <el-option
@@ -110,12 +110,12 @@
           <!--市-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   市：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="XZcity">
                     <el-option
@@ -132,12 +132,12 @@
           <!--县-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   县：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="XZcounty">
                     <el-option
@@ -154,12 +154,12 @@
           <!--镇-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   镇：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="XZtown">
                     <el-option
@@ -176,12 +176,12 @@
           <!--村-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   村：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="XZvillage">
                     <el-option
@@ -200,12 +200,12 @@
         <div v-if="cursys == '2'">
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   一级分区：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="stairPartition">
                     <el-option
@@ -222,12 +222,12 @@
           <!--2级-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   二级分区：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="secondPartition">
                     <el-option
@@ -244,12 +244,12 @@
           <!--3级-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   三级分区：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="threePartition">
                     <el-option
@@ -266,12 +266,12 @@
           <!--4级-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   四级分区：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="fourPartition">
                     <el-option
@@ -290,12 +290,12 @@
         <div v-if="cursys == '3'">
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   省：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="HCZprovince">
                     <el-option
@@ -312,12 +312,12 @@
           <!--市-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   市：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="HCZcity">
                     <el-option
@@ -334,12 +334,12 @@
           <!--县-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   县：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="HCZcounty">
                     <el-option
@@ -356,12 +356,12 @@
           <!--镇-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   镇：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="HCZtown">
                     <el-option
@@ -378,12 +378,12 @@
           <!--村-->
           <div class="singleli_title">
             <el-row>
-              <el-col :span="8">
+              <el-col :span="9">
                 <div class="sysfxTit">
                   村：
                 </div>
               </el-col>
-              <el-col :span="14" style="margin-left: -5%;">
+              <el-col :span="13" style="margin-left: -5%;">
                 <div>
                   <el-select v-model="HCZvillage">
                     <el-option
@@ -401,12 +401,12 @@
         <!--自定义-->
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 自定义：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <div>
                 <el-select v-model="customdefine">
                   <el-option
@@ -434,12 +434,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 评价步长：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <div>
                 <el-select v-model="evaluationStep">
                   <el-option
@@ -455,12 +455,12 @@
         </div>
         <div class="singleli_title">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 时间选择：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <el-date-picker
                 v-model="startTime"
                 format="yyyy-MM"
@@ -477,12 +477,12 @@
         <!--时间序列-->
         <div class="singleli_title" v-if="selectTimeType == 'ordertime'">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 截至时间：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <el-date-picker
                 v-model="endTime"
                 @change="getendTime"

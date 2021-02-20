@@ -163,12 +163,12 @@
 
         <div class="singleli_title" >
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 时间选择：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <el-date-picker
                 v-model="startTime"
                 format="yyyy-MM"
@@ -184,12 +184,12 @@
         <!--时间序列-->
         <div class="singleli_title" v-if="selectTimeType=='ordertime'">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="9">
               <div class="sysfxTit">
                 截至时间：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="13" style="margin-left: -5%;">
               <el-date-picker
                 v-model="endTime"
                 @change="getendTime"

@@ -17,7 +17,7 @@ img {
 }
 
 img {
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 ul,
@@ -132,9 +132,9 @@ body {
  .el-pagination__total {
   color: #ffffff !important;
 }
- .el-pagination__jump {
+ /* .el-pagination__jump {
   color: #ffffff !important;
-}
+} */
  .el-pagination .el-select .el-input .el-input__inner {
   /*color: #ffff;*/
 }

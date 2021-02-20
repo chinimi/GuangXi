@@ -4,12 +4,12 @@
     <div class="basicSetup_left">
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               模板名称：
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-input v-model="templateName" placeholder="模板1"></el-input>
             </div>
@@ -18,12 +18,12 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               方案名称：
             </div>
           </el-col>
-          <el-col :span="14" >
+          <el-col :span="13" >
             <div>
               <el-input v-model="ScenarioName" placeholder="请输入内容"></el-input>
             </div>
@@ -32,12 +32,12 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               开始时间：
             </div>
           </el-col>
-          <el-col :span="14" >
+          <el-col :span="13" >
               <el-date-picker
                 v-model="StartTime"
                 type="date"
@@ -50,12 +50,12 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               结束时间：
             </div>
           </el-col>
-          <el-col :span="14" >
+          <el-col :span="13" >
               <el-date-picker
                 v-model="EndTime"
                 type="date"
@@ -68,7 +68,7 @@
       </div>
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               计算步长：
             </div>
@@ -83,7 +83,7 @@
                 class="SimIntervalMinute"
               ></el-input-number>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="5">
             <div style="width: 60px;text-align: center;line-height: 30px;">
               分钟
             </div>
@@ -101,10 +101,10 @@
           >
           </el-input>
           <div style="margin: 10px;text-align: right;">
-            <el-button type="primary" size="small" plain @click="saveModel">保存</el-button>
-            <el-button type="primary" size="small" plain>计算</el-button>
-            <el-button type="primary" size="small" plain>查看结果</el-button>
-            <el-button type="primary" size="small" plain>上传</el-button>
+            <el-button size="small" plain @click="saveModel">保存</el-button>
+            <el-button size="small" plain>计算</el-button>
+            <el-button size="small" plain>查看结果</el-button>
+            <el-button size="small" plain>上传</el-button>
         </div>
       </div>
     </div>

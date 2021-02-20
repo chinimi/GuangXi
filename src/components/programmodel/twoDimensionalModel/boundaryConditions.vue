@@ -6,14 +6,11 @@
         <div v-for="(item, index) in data" :key="index">
           <div class="data_info" @click="tap(item, index)">
             <span>{{ item.name }}</span>
-            <img
-              :src="
+           <i style="position: relative;float: right;right: 20px;top: 10px;" :class="
                 item.info == true
-                  ? '../../../../static/images/top.png'
-                  : '../../../../static/images/bottom.png'
-              "
-              alt=""
-            />
+                  ? 'el-icon-arrow-up'
+                  : 'el-icon-arrow-down'
+              "></i>
           </div>
           <ul
             class="list"

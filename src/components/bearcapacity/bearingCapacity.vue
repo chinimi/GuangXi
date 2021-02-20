@@ -276,7 +276,7 @@
         </div>
         <!-- 水域 -->
         <div class="water">
-          <p class="water_p">水域</p>
+          <p class="water_p"><img src="/static/images/icon/shuiyu.png" alt="">  水域</p>
           <div class="water_div">
             <el-radio-group v-model="radio">
               <el-radio :label="1">河流</el-radio>
@@ -286,17 +286,14 @@
           </div>
         </div>
         <!-- 评价项目 -->
-        <div class="evaluation">
-          <div class="searchMain_div w80">评价项目:</div>
-          <div class="searchMain_div">
-            <el-select v-model="one" placeholder="请选择">
-              <el-option
-                v-for="(item,i) in one_options"
-                :key="i"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
-            </el-select>
+        <div class="water">
+          <p class="water_p"><img src="/static/images/icon/pingjia.png" alt="">评价项目</p>
+          <div class="water_div">
+            <el-radio-group v-model="radio">
+              <el-radio :label="1">COD、BOD</el-radio>
+              <el-radio :label="2">TP、TN</el-radio>
+              <el-radio :label="3">组分3</el-radio>
+            </el-radio-group>
           </div>
         </div>
         <!-- 水质类别 -->
