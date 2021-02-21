@@ -44,15 +44,13 @@
           </div>
         </el-menu>
 
-
-
-
       </div>-->
       <!--table表格-->
       <div class="right_menu">
-        <el-row style="color:#fff;padding-top:20px;">
+        <el-row style="color:#fff;padding-top:5px;">
           <el-col :span="20" ><p style="padding-left:30px;">物理结构(PF)</p></el-col>
-          <el-col :span="2"> <el-button>保存</el-button></el-col>
+         
+          <el-col :span="2"> <el-button @click="Savetable">保存</el-button></el-col>
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
         <el-table v-if="pjxmval=='khd'"  border :data="PF_tableData"  height="calc( 100vh - 300px )" style="background-color: transparent;">
@@ -301,6 +299,26 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
+
+
+  import{SAr,
+        SCr,
+        SHr,
+        SMr,
+        STr,
+        RVS,
+        HeA_PF,
+        CaiS_PF,
+        JianZ_PF,
+        GongL_PF,
+        Laj_PF,
+        GongY_PF,
+        GuanD_PF,
+        NongY_PF,
+        XuM_PF,
+        YuL_PF,
+        
+        } from '../qualityclassfy/PFriverMath'
   export default {
       data() {
           return {
@@ -308,14 +326,14 @@
                  {value:'1',label:'基岩'},
                  {value:'2',label:'岩土河岸'},
                  {value:'3',label:'粘土河岸'},
-                 {value:'3',label:'非粘土河岸'},
+                 {value:'4',label:'非粘土河岸'},
                ],
              
                ST_option:[
                  {value:'1',label:'无冲刷迹象'},
                  {value:'2',label:'轻度冲刷'},
                  {value:'3',label:'中度冲刷'},
-                 {value:'3',label:'重度冲刷'},
+                 {value:'4',label:'重度冲刷'},
                ],
                option:[
                  {value:'0',label:'无'},
@@ -545,6 +563,59 @@
 
       },
       methods: {
+            // 计算
+      inputBlur() {
+        this.tabRowIndex = null;
+        this.tabColumnIndex = "";
+      },
+      Savetable(){
+        debugger
+          for (var i = 0, j = this.PF_tableData.length; i < j; i++) 
+          {
+            var SAr_ = SAr(this.PF_tableData[i].SA);
+
+            var SCr_ = SCr(this.PF_tableData[i].SC);
+        
+            var SHr_=  SHr(this.PF_tableData[i].SH);
+  
+            var SMr_=  SMr(this.PF_tableData[i].SM);
+
+            var STr_=  STr(this.PF_tableData[i].ST);
+
+            var BKSr = ((SAr_+SCr_+SHr_+SMr_+STr_)/5).toFixed(2);
+
+            var TCr=  RVS(this.PF_tableData[i].QiaoM);
+            
+            var SCCr=  RVS(this.PF_tableData[i].GuanM);
+          
+            var HCr=  RVS(this.PF_tableData[i].CaoB);
+
+            var RVSr = ((TCr+SCCr+HCr)/3).toFixed(2);
+
+            var HeA_Fufen=  HeA_PF(this.PF_tableData[i].HeA);
+            var CaiS_Fufen=  CaiS_PF(this.PF_tableData[i].CaiS);
+            var JianZ_Fufen=  JianZ_PF(this.PF_tableData[i].JianZ);
+            var GongL_Fufen=  GongL_PF(this.PF_tableData[i].GongL);
+            var Laj_Fufen=  Laj_PF(this.PF_tableData[i].Laj);
+            var GongY_Fufen=  GongY_PF(this.PF_tableData[i].GongY);
+            var GuanD_Fufen=  GuanD_PF(this.PF_tableData[i].GuanD);
+            var NongY_Fufen=  NongY_PF(this.PF_tableData[i].NongY);
+            var XuM_Fufen=  XuM_PF(this.PF_tableData[i].XuM);
+
+            var RDr = 100+HeA_Fufen+CaiS_Fufen+JianZ_Fufen+GongL_Fufen+
+                        Laj_Fufen+GongY_Fufen+GuanD_Fufen+NongY_Fufen+XuM_Fufen;
+
+            if (RDr<0) RDr= 0;
+
+            var RSr = (0.25*BKSr+0.5*RVSr+0.25*RDr).toFixed(2);
+
+            var YuL_FuFen=  YuL_PF(this.PF_tableData[i].YuL);
+
+            var PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
+
+          }
+
+      },
         backAgo(){
           this.$router.push({name:'riverHealthy',params:{}});
         },
@@ -730,6 +801,7 @@
 
 
       },
+  
 
 
   }
