@@ -47,7 +47,7 @@
       <div class="right_menu">
         <el-row style="color:#fff;padding-top:20px;">
           <el-col :span="20" ><p style="padding-left:30px;">水质状况指标(WQ)</p></el-col>
-          <el-col :span="2"> <el-button>保存</el-button></el-col>
+          <el-col :span="2"> <el-button @click="SaveTable">保存</el-button></el-col>
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
 
@@ -155,25 +155,34 @@
               prop="BEN"
               label="苯"
               width="120">
-                <template slot-scope="scope">
-                <el-input   v-model="scope.row.BEN" @blur="inputBlur"></el-input>
-              </template>
+              <template slot-scope="scope">
+               <el-select v-model="scope.row.BEN">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
               prop="JBEN"
               label="甲苯"
               width="120">
                <template slot-scope="scope">
-                <el-input   v-model="scope.row.JBEN" @blur="inputBlur"></el-input>
-              </template>
+               <el-select v-model="scope.row.JBEN">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
               prop="EJBEN"
               label="二甲苯"
               width="120">
               <template slot-scope="scope">
-                <el-input   v-model="scope.row.EJBEN" @blur="inputBlur"></el-input>
-              </template>
+               <el-select v-model="scope.row.EJBEN">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
           </el-table-column>
         </el-table>
@@ -197,6 +206,18 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
+  import{DO_fufen,
+        CODMNr_fufen,
+        BODr_fufen,
+        NH3_Nr_fufen,
+        ARr_fufen,
+        HGr_fufen,
+        CDr_fufen,
+        CRr_fufen,
+        PBr_fufen,
+        BEN_fufen,
+
+        } from '../qualityclassfy/WQriverMath'
   export default {
       data() {
           return {
@@ -298,6 +319,10 @@
             /*截至时间*/
             endTime:'2015-08',
 
+         option:[
+                 {value:'0',label:'达标'},
+                 {value:'1',label:'不达标'},
+               ],
             WQ_tableData:[{
                 rivername:'桂江上游桂林城区段',  //丰水期
                 DO1:'4.7',
@@ -306,13 +331,13 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
             
               },
               {
@@ -323,13 +348,13 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
               },
               {
                 rivername:'丰水期桂江中游阳朔开发利用段',  //丰水期桂江中游阳朔开发利用段
@@ -339,13 +364,13 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
               },
               {
                 rivername:'桂江中游昭平保留段',  //丰水期桂江中游阳朔开发利用段
@@ -355,13 +380,13 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
               },
 
 
@@ -402,6 +427,34 @@
 
       },
       methods: {
+          inputBlur() {
+            this.tabRowIndex = null;
+            this.tabColumnIndex = "";
+          },
+        SaveTable(){
+          debugger
+
+          for (var i = 0, j = this.WQ_tableData.length; i < j; i++) 
+          {
+            var DO_ = DO_fufen(Math.min(this.WQ_tableData[i].DO1,this.WQ_tableData[i].DO2))
+            var OCPr_= ((CODMNr_fufen(this.WQ_tableData[i].CODMN) + BODr_fufen(this.WQ_tableData[i].BOD) + NH3_Nr_fufen(this.WQ_tableData[i].NH3_N) )/3).toFixed(2);
+            
+
+            var HMBr_= Math.min(ARr_fufen(this.WQ_tableData[i].SHEN),
+                              HGr_fufen(this.WQ_tableData[i].GONG),
+                              CDr_fufen(this.WQ_tableData[i].GE ),
+                              CRr_fufen(this.WQ_tableData[i].GE6 ),
+                              PBr_fufen(this.WQ_tableData[i].QIAN ));
+
+            var BCPr_ = Math.min(BEN_fufen(this.WQ_tableData[i].BEN),
+                                 BEN_fufen(this.WQ_tableData[i].JBEN),
+                                 BEN_fufen(this.WQ_tableData[i].EJBEN))
+
+            var WQr_ = Math.min(DO_,OCPr_,HMBr_,BCPr_)
+
+          }
+
+        },
         backAgo(){
           this.$router.push({name:'riverHealthy',params:{}});
         },
