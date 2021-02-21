@@ -55,80 +55,86 @@
           <el-col :span="2"> <el-button>保存</el-button></el-col>
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
-        <el-table v-if="pjxmval=='khd'"  border :data="tableData"  height="calc( 100vh - 300px )" style="background-color: transparent;">
+        <el-table v-if="pjxmval=='khd'"  border :data="PF_tableData"  height="calc( 100vh - 300px )" style="background-color: transparent;">
           <el-table-column
-            prop="date"
+            prop="rivername"
             label="河段名称"
             width="150">
           </el-table-column>
           <!--第1列-->
           <el-table-column label="岸坡稳定性指数(BKS)">
-
             <el-table-column
-              prop="name"
+              prop="SA"
               label="斜坡倾角(SA) (度)"
-              width="120">
+              width="100">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.SA" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="SC"
               label="植被覆盖度(SC) (%)"
-              width="120">
+              width="100">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.SC" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="SH"
               label="岸坡高度(SH) (米)"
-              width="120">
+              width="100">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.SH" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="SM"
               label="河岸基质(SM)(类别)"
-              width="120">
+              width="150">
+               <template slot-scope="scope">
+              <el-select v-model="scope.row.SM">
+                <el-option v-for="item in SM_option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="ST"
               label="坡脚冲刷强度(ST)"
-              width="120">
+              width="150">
+                <template slot-scope="scope">
+              <el-select v-model="scope.row.ST">
+                <el-option v-for="item in ST_option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
-
-            <!--  <el-table-column label="地址">
-                <el-table-column
-                  prop="province"
-                  label="省份"
-                  width="120">
-                </el-table-column>
-                <el-table-column
-                  prop="city"
-                  label="市区"
-                  width="120">
-                </el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="地址"
-                  width="300">
-                </el-table-column>
-                <el-table-column
-                  prop="zip"
-                  label="邮编"
-                  width="120">
-                </el-table-column>
-              </el-table-column>-->
           </el-table-column>
           <!--第2列-->
           <el-table-column label="河岸带植被覆盖度（RVS）">
             <el-table-column
-              prop="name"
+              prop="QiaoM"
               label="植被覆盖度(乔木)"
-              width="120">
+              width="100">
+               <template slot-scope="scope">
+                <el-input   v-model="scope.row.QiaoM" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="GuanM"
               label="植被覆盖度(灌木)"
-              width="120">
+              width="100">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.GuanM" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="CaoB"
               label="植被覆盖度(草本)"
-              width="120">
+              width="100">
+              <template slot-scope="scope">
+                <el-input   v-model="scope.row.CaoB" @blur="inputBlur"></el-input>
+              </template>
             </el-table-column>
 
           </el-table-column>
@@ -136,57 +142,117 @@
 
           <el-table-column label="河岸带人工干扰程度(RD)">
             <el-table-column
-              prop="name"
+              prop="HeA"
               label="河岸硬主砌护"
-              width="120">
+              width="100">
+               <template slot-scope="scope">
+              <el-select v-model="scope.row.HeA">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="CaiS"
               label="采砂"
-              width="120">
+              width="100">
+               <template slot-scope="scope">
+               <el-select v-model="scope.row.CaiS">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="JianZ"
               label="沿岸建筑物（房屋）"
-              width="120">
+              width="100">
+              <template slot-scope="scope">
+               <el-select v-model="scope.row.JianZ">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="GongL"
               label="公路(或铁路)"
-              width="120">
+              width="100">
+                <template slot-scope="scope">
+               <el-select v-model="scope.row.GongL">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="Laj"
               label="垃圾填埋场或垃圾堆放"
-              width="120">
+              width="100">
+                <template slot-scope="scope">
+               <el-select v-model="scope.row.Laj">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="GongY"
               label="河滨公园"
-              width="120">
+              width="100">
+                  <template slot-scope="scope">
+               <el-select v-model="scope.row.GongY">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="GuanD"
               label="管道"
-              width="120">
+              width="100">
+              <template slot-scope="scope">
+               <el-select v-model="scope.row.GuanD">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="NongY"
               label="农业耕种"
-              width="120">
+              width="100">
+               <template slot-scope="scope">
+               <el-select v-model="scope.row.NongY">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="XuM"
               label="畜牧养殖"
-              width="120">
+              width="100">
+                <template slot-scope="scope">
+               <el-select v-model="scope.row.XuM">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
           </el-table-column>
           <!--第4列-->
           <el-table-column label="河流连通阻隔状况">
             <el-table-column
-              prop="name"
+              prop="YuL"
               label="鱼类迁移阻隔特征"
-              width="120">
+              width="200">
+                <template slot-scope="scope">
+               <el-select v-model="scope.row.YuL">
+                <el-option v-for="item in YuL_option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
           </el-table-column>
 
@@ -238,6 +304,116 @@
   export default {
       data() {
           return {
+               SM_option:[
+                 {value:'1',label:'基岩'},
+                 {value:'2',label:'岩土河岸'},
+                 {value:'3',label:'粘土河岸'},
+                 {value:'3',label:'非粘土河岸'},
+               ],
+             
+               ST_option:[
+                 {value:'1',label:'无冲刷迹象'},
+                 {value:'2',label:'轻度冲刷'},
+                 {value:'3',label:'中度冲刷'},
+                 {value:'3',label:'重度冲刷'},
+               ],
+               option:[
+                 {value:'0',label:'无'},
+                 {value:'1',label:'有'},
+               ],
+              YuL_option:[
+                 {value:'0',label:'无阻隔'},
+                 {value:'1',label:'有渔道,且正常运行'},
+                 {value:'2',label:'无渔道,对部分鱼类迁移有阻隔作用'},
+                 {value:'3',label:'迁移通道完全阻隔'},
+               ],
+
+               PF_tableData:[{
+                rivername:'桂江上游桂林城区段',  //丰水期
+                SA:'15',
+                SC:'60',
+                SH:'2.2',
+                SM:'2',
+                ST:'2',
+                QiaoM:'8',
+                GuanM:'52',
+                CaoB:'74',
+                HeA:'1',
+                CaiS:'1',
+                JianZ:'1',
+                GongL:'1',
+                Laj:'1',
+                GongY:'1',
+                GuanD:'1',
+                NongY:'1',
+                XuM:'1',
+                YuL:'1',  
+              },
+              {
+                rivername:'桂江中游桂林景观段',  //丰水期
+                SA:'15',
+                SC:'60',
+                SH:'2.2',
+                SM:'1',
+                ST:'1',
+                QiaoM:'8',
+                GuanM:'52',
+                CaoB:'74',
+                HeA:'0',
+                CaiS:'0',
+                JianZ:'0',
+                GongL:'0',
+                Laj:'0',
+                GongY:'0',
+                GuanD:'0',
+                NongY:'0',
+                XuM:'0',
+                YuL:'0',  
+              },
+              {
+                rivername:'桂江中游阳朔开发利用段',  //丰水期
+                SA:'15',
+                SC:'60',
+                SH:'2.2',
+                SM:'3',
+                ST:'3',
+                QiaoM:'8',
+                GuanM:'52',
+                CaoB:'74',
+                HeA:'1',
+                CaiS:'0',
+                JianZ:'1',
+                GongL:'0',
+                Laj:'0',
+                GongY:'1',
+                GuanD:'0',
+                NongY:'1',
+                XuM:'0',
+                YuL:'2',  
+              },
+              {
+                rivername:'桂江中游昭平保留段',  //丰水期
+                SA:'15',
+                SC:'60',
+                SH:'2.2',
+                SM:'1',
+                ST:'2',
+                QiaoM:'8',
+                GuanM:'52',
+                CaoB:'74',
+                HeA:'0',
+                CaiS:'1',
+                JianZ:'1',
+                GongL:'1',
+                Laj:'0',
+                GongY:'1',
+                GuanD:'0',
+                NongY:'1',
+                XuM:'0',
+                YuL:'3',  
+              },
+              ],
+          
             /*评价标准*/
             evaluatiStandarVal:'SL395-2007',
             evaluationOptopn:[{
