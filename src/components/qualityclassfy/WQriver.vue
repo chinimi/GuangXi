@@ -37,9 +37,7 @@
                   <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>
                 </el-submenu>
               </div>
-
             </el-submenu>
-
           </div>
         </el-menu>
       </div>-->
@@ -47,7 +45,7 @@
       <div class="right_menu">
         <el-row style="color:#fff;padding-top:20px;">
           <el-col :span="20" ><p style="padding-left:30px;">水质状况指标(WQ)</p></el-col>
-          <el-col :span="2"> <el-button>保存</el-button></el-col>
+          <el-col :span="2"> <el-button @click="SaveTable">保存</el-button></el-col>
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
 
@@ -155,25 +153,34 @@
               prop="BEN"
               label="苯"
               width="120">
-                <template slot-scope="scope">
-                <el-input   v-model="scope.row.BEN" @blur="inputBlur"></el-input>
-              </template>
+              <template slot-scope="scope">
+               <el-select v-model="scope.row.BEN">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
               prop="JBEN"
               label="甲苯"
               width="120">
                <template slot-scope="scope">
-                <el-input   v-model="scope.row.JBEN" @blur="inputBlur"></el-input>
-              </template>
+               <el-select v-model="scope.row.JBEN">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
             <el-table-column
               prop="EJBEN"
               label="二甲苯"
               width="120">
               <template slot-scope="scope">
-                <el-input   v-model="scope.row.EJBEN" @blur="inputBlur"></el-input>
-              </template>
+               <el-select v-model="scope.row.EJBEN">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
             </el-table-column>
           </el-table-column>
         </el-table>
@@ -197,6 +204,17 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
+  import{DO_fufen,
+        CODMNr_fufen,
+        BODr_fufen,
+        NH3_Nr_fufen,
+        ARr_fufen,
+        HGr_fufen,
+        CDr_fufen,
+        CRr_fufen,
+        PBr_fufen,
+        BEN_fufen,
+        } from '../qualityclassfy/WQriverMath'
   export default {
       data() {
           return {
@@ -287,17 +305,18 @@
               value:'sametime',
               label:'按同时间段评价',
             }
-
             ],
             /*评价步长*/
             pjbcVal:'year',//评价步长
             pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
-
             /*初始时间*/
             startTime:'2015-07',
             /*截至时间*/
             endTime:'2015-08',
-
+         option:[
+                 {value:'0',label:'达标'},
+                 {value:'1',label:'不达标'},
+               ],
             WQ_tableData:[{
                 rivername:'桂江上游桂林城区段',  //丰水期
                 DO1:'4.7',
@@ -306,13 +325,13 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
             
               },
               {
@@ -323,13 +342,13 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
               },
               {
                 rivername:'丰水期桂江中游阳朔开发利用段',  //丰水期桂江中游阳朔开发利用段
@@ -339,13 +358,13 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
               },
               {
                 rivername:'桂江中游昭平保留段',  //丰水期桂江中游阳朔开发利用段
@@ -355,32 +374,27 @@
                 BOD:'5.5',
                 NH3_N:'0.8',
                 SHEN:'0.08',
-                GONG:'0.008',
+                GONG:'0.0008',
                 GE:'0.002',
                 GE6:'0.03',
                 QIAN:'0.06',
-                BEN:'达标',
-                JBEN:'达标',
-                EJBEN:'不达标',
+                BEN:'0',
+                JBEN:'0',
+                EJBEN:'1',
               },
-
-
             ],
             menulist: menulist,
             iconsObj:{
               // "generalwaterevaluate":"iconfont icon-shuidi3",
               // "zxpjfxmodelpart":"iconfont icon-kongqi",
               // "ssthjfx":"iconfont icon-shuidi3",
-
             },
           }
       },
       created() {
-
       },
     mounted() {
       console.log("获取当前跳转传过来的参数")
-
       var checkParam=this.$route.params
       var currentPath=this.$route.path
       var currentRouter=currentPath.substr(1,currentPath.length-1)
@@ -395,13 +409,32 @@
           this.blyjwtable=true
         }
       }
-
-
     },
       computed: {
-
       },
       methods: {
+          inputBlur() {
+            this.tabRowIndex = null;
+            this.tabColumnIndex = "";
+          },
+        SaveTable(){
+          debugger
+          for (var i = 0, j = this.WQ_tableData.length; i < j; i++) 
+          {
+            var DO_ = DO_fufen(Math.min(this.WQ_tableData[i].DO1,this.WQ_tableData[i].DO2))
+            var OCPr_= ((CODMNr_fufen(this.WQ_tableData[i].CODMN) + BODr_fufen(this.WQ_tableData[i].BOD) + NH3_Nr_fufen(this.WQ_tableData[i].NH3_N) )/3).toFixed(2);
+            
+            var HMBr_= Math.min(ARr_fufen(this.WQ_tableData[i].SHEN),
+                              HGr_fufen(this.WQ_tableData[i].GONG),
+                              CDr_fufen(this.WQ_tableData[i].GE ),
+                              CRr_fufen(this.WQ_tableData[i].GE6 ),
+                              PBr_fufen(this.WQ_tableData[i].QIAN ));
+            var BCPr_ = Math.min(BEN_fufen(this.WQ_tableData[i].BEN),
+                                 BEN_fufen(this.WQ_tableData[i].JBEN),
+                                 BEN_fufen(this.WQ_tableData[i].EJBEN))
+            var WQr_ = Math.min(DO_,OCPr_,HMBr_,BCPr_)
+          }
+        },
         backAgo(){
           this.$router.push({name:'riverHealthy',params:{}});
         },
@@ -409,11 +442,8 @@
           console.log("选中当前页面要素标签")
           console.log(key)
           console.log(keyPath)
-
-
         },
         handleOpen(key, keyPath){
-
           console.log(key, keyPath)
         },
         handleClose(key, keyPath){
@@ -424,7 +454,6 @@
           console.log(val)
           this.pageSize=val
           this.queryTableData()
-
         },
         handleCurrentChange(val) {
           console.log(`当前页: ${val}`);
@@ -433,7 +462,6 @@
           this.queryTableData()
         },
         queryTableData(){
-
          /* if(this.selectTimeType=="singletime"){
             if(this.startTime ){
               this.$message('请选择时间参数');
@@ -445,7 +473,6 @@
               return
             }
           }*/
-
           let checkstartTime = moment(this.startTime).format('YYYYMM');
           let startyear = moment(this.startTime).format('YYYY');
           let checkendTime = moment(this.endTime).format('YYYYMM');
@@ -458,40 +485,28 @@
           // console.log(endyear)
           // console.log(checkendTime.substring(checkendTime.length-2))
           let endMonth=checkendTime.substring(checkendTime.length-2)
-
           // console.log(parseInt(endMonth)-parseInt(startMonth))
-
           console.log(parseInt(startMonth))
-
-
           var str=""
           var count=parseInt(endMonth)-parseInt(startMonth)
-
           if (count-1>0){
             for(var i=parseInt(startMonth)-1;i<count;i++)
             {
               var tmp=i+1;
               tmp=tmp<10?String('0'+tmp):(tmp)
               str=str+startyear+tmp+"-"
-
             }
           }else{
             str=str+checkstartTime+'-'
           }
-
           str=str+checkendTime
           console.log(str)
-
           let tjsj=null;
           if(this.selectTimeType=="singletime"){
             tjsj=checkstartTime
-
-
           }else{
             tjsj=str
           }
-
-
           /*1:获取参数*/
           /*请求经纬度坐标点*/
           var param=
@@ -516,16 +531,10 @@
             emulateJSON: true,
           }).then(function(res) {
             console.log(res)
-
             this.tableData=res.body.data.pageResultList
           }).catch(function(res){
-
-
           })
-
-
         }
-
         /*水化学类型*/
           if(this.pjxmval=="shxlx") {
             let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
@@ -534,15 +543,11 @@
               emulateJSON: true,
             }).then(function (res) {
               console.log(res)
-
               this.tableData = res.body.data.pageResultList
             }).catch(function (res) {
-
               // alert("请求失败")
             })
-
           }
-
           /*总硬度*/
           if(this.pjxmval=="zyd") {
             let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
@@ -550,21 +555,14 @@
             this.$http.post(zydurl, JSON.stringify(param), {
               emulateJSON: true,
             }).then(function (res) {
-
               console.log(res)
-
               this.tableData = res.body.data.pageResultList
             }).catch(function (res) {
               console.log(res)
-
             })
-
           }
-
-
           /*地表天然水*/
           if(this.pjxmval=="dbtrs") {
-
             let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
             /*http请求*/
             this.$http.post(dbtrsurl, JSON.stringify(param), {
@@ -573,28 +571,15 @@
               console.log(res)
               this.tableData = res.body.data.pageResultList
             }).catch(function (res) {
-
-
             })
-
           }
-
         }
       },
       watch:{
         pjxmval(newValue){
-
           this.tableData=[]
-
-
-
         }
-
-
-
       },
-
-
   }
 </script>
 
@@ -629,7 +614,6 @@
     top: 0;
     right: 0;
   }
-
   #groundWater .singleli_title {
     font-size: 13px;
     height: 35px;
@@ -639,7 +623,6 @@
     margin-left: 3%;
     margin-top: 20px;
   }
-
   #groundWater .singleli_title .sysfxTit {
     color: #333;
     letter-spacing: 1px;
@@ -647,7 +630,6 @@
     /* text-align: right; */
     margin-right: 10px;
   }
-
   #groundWater >>>.el-pagination__total{
     /*color:#ffffff !important;*/
   }
@@ -657,8 +639,6 @@
   #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
     /*color: #ffff;*/
   }
-
-
   >>>.el-main{
     padding:0;
   }
@@ -671,7 +651,6 @@
     box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     font-size: 14px;
     height: 30px ;
-
   }
   >>>.el-pagination__total{
     color:#ffffff !important;
@@ -682,7 +661,6 @@
   >>>.el-pagination .el-select .el-input .el-input__inner{
     color: #ffff;
   }
-
   >>>.el-button{
     padding: 5px 15px !important;
   }
@@ -698,7 +676,6 @@
     /*background-color: rgba(21,37,63,0.86);*/
     background: #1677ff;
   }
-
   >>>.el-radio-group{
     width:100%;
   }
@@ -711,7 +688,6 @@
   >>>.el-select-dropdown__item.selected{
     padding-left:20px!important;
   }
-
   >>>.el-radio__label {
     color: #333;
     font-size: 14px;
@@ -723,11 +699,9 @@
     /*height: 0 !important;*/
     /*width: 0 !important;*/
   }
-
   >>> ::-webkit-scrollbar-thumb {
     /*background-color: transparent !important;*/
   }
-
   /* 修改边框颜色*/
   >>> ::-webkit-scrollbar-thumb {
     /*background-color: transparent !important;*/
@@ -738,8 +712,5 @@
   >>>.el-menu-item:focus, .el-menu-item:hover{
     background: red!important;
     color:#fff!important;
-
   }
-
-
 </style>

@@ -49,70 +49,60 @@
     </div>
     <!--table表格-->
     <div class="right_menu">
-
-      <el-row style="color:#fff;padding-top:20px;">
+      <el-row style="color:#fff;padding-top:10px;">
         <el-col :span="20" ><p style="padding-left:30px;">水生生物评估(AL)</p></el-col>
-        <el-col :span="2"> <el-button>保存</el-button></el-col>
+        <el-col :span="2"> <el-button @click="SaveTable">保存</el-button></el-col>
         <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
       </el-row>
-      <el-row  style="padding:30px 0 0 30px;" >
+      <el-row  style="padding:0px 0 0 30px;" >
         <el-col span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
-
+          <el-table    border :data="PHP_tableData" height="240px" style="background-color: transparent;">
             <el-table-column  align="center" label="大型无脊椎动物完整性指数(PHP)">
-
               <el-table-column
-                prop="stcd"
+                prop="PHP_ZB"
                 label="指标">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="DJ"
                 label="等级">
+                <template slot-scope="scope">
+               <el-select v-model="scope.row.DJ">
+                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
               </el-table-column>
               <el-table-column
-                prop="mndgMax"
+                prop="DJ"
                 label="生物状态">
+                 <template slot-scope="scope">
+               <el-select v-model="scope.row.DJ">
+                <el-option v-for="item in option_zt" :label="item.label" :value="item.value" :key="item.value">
+                  </el-option>
+              </el-select>
+                </template>
               </el-table-column>
-
-
             </el-table-column>
-          </el-table>
-
-
-
-        </el-col>
-
-
-
-      </el-row>
-      <el-row style="padding-top:20px;padding-left:30px;">
-        <el-col span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
-
             <el-table-column  align="center" label="鱼类损失指数(FOE)">
-
               <el-table-column
-                prop="stcd"
+                prop="FOE_ZB"
                 label="指标">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="SZ"
                 label="数值">
+                 <template slot-scope="scope">
+                <el-input   v-model="scope.row.SZ" @blur="inputBlur"></el-input>
+                </template>
               </el-table-column>
-
-
-
             </el-table-column>
           </el-table>
 
-
-
         </el-col>
       </el-row>
-
       <el-row   v-if="fsgzTable"  style="padding:20px  0 30px  30px;">
         <el-col span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
+          <el-table    border :data="ED_tableData" height="300px" style="background-color: transparent;">
 
             <el-table-column  align="center" label="附生硅藻指数(ED)使用IPS指数表示">
 
@@ -133,8 +123,6 @@
                 label="指示值Vj">
               </el-table-column>
 
-
-
             </el-table-column>
           </el-table>
 
@@ -150,7 +138,6 @@
 </template>
 
 <script>
-
   var menulist =[
     /*一级菜单*/
         { "authName": "桂江上游兴安源头段" ,id:'syxaytd',path:'syxaytd'},
@@ -165,10 +152,41 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
+   import{PHP_fufen,
+        FOE_fufen,
+        } from '../qualityclassfy/ALriverMath'
   export default {
     data() {
       return {
-
+            option:[
+                {value:'0',label:'很好'},
+                 {value:'1',label:'好'},
+                 {value:'2',label:'中等'},
+                 {value:'3',label:'较差'},
+                 {value:'4',label:'很差'},
+               ],
+            option_zt:[
+                 {value:'0',label:'非常健康'},
+                 {value:'1',label:'较为健康'},
+                 {value:'2',label:'轻度受损'},
+                 {value:'3',label:'中度受损'},
+                 {value:'4',label:'重度受损'},     
+               ],
+            PHP_tableData:[{
+                PHP_ZB:'B-IBI',  //丰水期
+                DJ:'0',
+                // SWZT:'0',
+                FOE_ZB:'评估河段调查获得的鱼类种类数量(FO)',
+                SZ:'1600'
+              },
+              {
+                PHP_ZB:'',  //丰水期
+                DJ:'',
+                // SWZT:'',
+                FOE_ZB:'1980s以前评估河段的鱼类种类数量(FE)',
+                SZ:'1900'
+              }
+              ],
         originData: [{
           id: 'llgcbycd',
           name: '水文水资源(HD)',
@@ -183,7 +201,6 @@
           amount2: 'EF',
           amount3: 12,
           PID:'HD',
-
         }, {
           id: 'jkll',
           name: '水文水资源(HD)',
@@ -191,7 +208,6 @@
           amount2: 'HEF',
           amount3: 9,
           PID:'HD',
-
         }, {
           id: 'hadzk',
           name: '物理结构(PF)',
@@ -320,8 +336,6 @@
         tableData: [],
         cities:['流域水系', '水资源分区', '行政区划'],
         cities2:['按单时间段评价', '按时间序列评价'],
-
-
         /*评价标准*/
         pjbzval:'all',
         pjbzOption:[{
@@ -369,30 +383,24 @@
         },{
           value:'ordertime',
           label:'按单时序列评价',
-
         }],
         /*评价步长*/
         pjbcVal:'year',//评价步长
         pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
-
         /*初始时间*/
         startTime:'2015-07',
         /*截至时间*/
         endTime:'2015-08',
-
-
         menulist: menulist,
         iconsObj:{
           // "generalwaterevaluate":"iconfont icon-shuidi3",
           // "zxpjfxmodelpart":"iconfont icon-kongqi",
           // "ssthjfx":"iconfont icon-shuidi3",
-
         },
         fsgzTable:false,//浮生硅藻table
       }
     },
     created() {
-
     },
     mounted() {
       var checkParam=this.$route.params
@@ -405,13 +413,9 @@
         if(selectCheck[i].id=="fsgz"){
           this.fsgzTable=true
         }
-
       }
-
-
     },
     computed: {
-
     },
     methods: {
       inputBlur() {
@@ -419,9 +423,9 @@
             this.tabColumnIndex = "";
           },
       SaveTable(){
-        // PHP_fufen
-        // FOE_fufen
-
+        
+        //PHP_fufen
+        //FOE_fufen
       },
       backAgo(){
         this.$router.push({name:'riverHealthy',params:{}});
@@ -441,7 +445,6 @@
         //   isChecked = false
         // }
         // return isChecked
-
       },
       // 传入element-table的合并方法
       mergeStratege ({ row, column, rowIndex, columnIndex }) {
@@ -461,21 +464,16 @@
           }
         }
       },
-
       handleSelectionChange(val){
         console.log("获取选中的行要素数组集合")
         console.log(val)
-
       },
       handleSelect(key, keyPath){
         console.log("选中当前要素请求接口数据渲染表格")
         console.log(key)
         console.log(keyPath)
-
-
       },
       handleOpen(key, keyPath){
-
         console.log(key, keyPath)
       },
       handleClose(key, keyPath){
@@ -486,7 +484,6 @@
         console.log(val)
         this.pageSize=val
         this.queryTableData()
-
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
@@ -495,7 +492,6 @@
         this.queryTableData()
       },
       queryTableData(){
-
         /* if(this.selectTimeType=="singletime"){
            if(this.startTime ){
              this.$message('请选择时间参数');
@@ -507,7 +503,6 @@
              return
            }
          }*/
-
         let checkstartTime = moment(this.startTime).format('YYYYMM');
         let startyear = moment(this.startTime).format('YYYY');
         let checkendTime = moment(this.endTime).format('YYYYMM');
@@ -520,40 +515,28 @@
         // console.log(endyear)
         // console.log(checkendTime.substring(checkendTime.length-2))
         let endMonth=checkendTime.substring(checkendTime.length-2)
-
         // console.log(parseInt(endMonth)-parseInt(startMonth))
-
         console.log(parseInt(startMonth))
-
-
         var str=""
         var count=parseInt(endMonth)-parseInt(startMonth)
-
         if (count-1>0){
           for(var i=parseInt(startMonth)-1;i<count;i++)
           {
             var tmp=i+1;
             tmp=tmp<10?String('0'+tmp):(tmp)
             str=str+startyear+tmp+"-"
-
           }
         }else{
           str=str+checkstartTime+'-'
         }
-
         str=str+checkendTime
         console.log(str)
-
         let tjsj=null;
         if(this.selectTimeType=="singletime"){
           tjsj=checkstartTime
-
-
         }else{
           tjsj=str
         }
-
-
         /*1:获取参数*/
         /*请求经纬度坐标点*/
         var param=
@@ -578,16 +561,10 @@
             emulateJSON: true,
           }).then(function(res) {
             console.log(res)
-
             this.tableData=res.body.data.pageResultList
           }).catch(function(res){
-
-
           })
-
-
         }
-
         /*水化学类型*/
         if(this.pjxmval=="shxlx") {
           let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
@@ -596,15 +573,11 @@
             emulateJSON: true,
           }).then(function (res) {
             console.log(res)
-
             this.tableData = res.body.data.pageResultList
           }).catch(function (res) {
-
             // alert("请求失败")
           })
-
         }
-
         /*总硬度*/
         if(this.pjxmval=="zyd") {
           let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
@@ -612,21 +585,14 @@
           this.$http.post(zydurl, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function (res) {
-
             console.log(res)
-
             this.tableData = res.body.data.pageResultList
           }).catch(function (res) {
             console.log(res)
-
           })
-
         }
-
-
         /*地表天然水*/
         if(this.pjxmval=="dbtrs") {
-
           let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
           /*http请求*/
           this.$http.post(dbtrsurl, JSON.stringify(param), {
@@ -635,28 +601,15 @@
             console.log(res)
             this.tableData = res.body.data.pageResultList
           }).catch(function (res) {
-
-
           })
-
         }
-
       }
     },
     watch:{
       pjxmval(newValue){
-
         this.tableData=[]
-
-
-
       }
-
-
-
     },
-
-
   }
 </script>
 
@@ -677,7 +630,6 @@
     border-left: #fff solid 1px;
     -webkit-box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
-
   }
   #groundWater  .right_menu{
     width: 80%;
@@ -690,7 +642,6 @@
     top: 0;
     right: 0;
   }
-
   #groundWater .singleli_title {
     font-size: 13px;
     height: 35px;
@@ -700,7 +651,6 @@
     margin-left: 3%;
     margin-top: 20px;
   }
-
   #groundWater .singleli_title .sysfxTit {
     color: #333;
     letter-spacing: 1px;
@@ -708,7 +658,6 @@
     /* text-align: right; */
     margin-right: 10px;
   }
-
   #groundWater >>>.el-pagination__total{
     /*color:#ffffff !important;*/
   }
@@ -718,8 +667,6 @@
   #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
     /*color: #ffff;*/
   }
-
-
   >>>.el-main{
     padding:0;
   }
@@ -732,7 +679,6 @@
     box-shadow: 0px 0px 4px 0px rgb(22, 119, 255);
     font-size: 14px;
     height: 30px ;
-
   }
   >>>.el-pagination__total{
     color:#ffffff !important;
@@ -743,7 +689,6 @@
   >>>.el-pagination .el-select .el-input .el-input__inner{
     color: #ffff;
   }
-
   >>>.el-button{
     padding: 5px 15px !important;
   }
@@ -759,7 +704,6 @@
     /*background-color: rgba(21,37,63,0.86);*/
     background: #1677ff;
   }
-
   >>>.el-radio-group{
     width:100%;
   }
@@ -772,7 +716,6 @@
   >>>.el-select-dropdown__item.selected{
     padding-left:20px!important;
   }
-
   >>>.el-radio__label {
     color: #333;
     font-size: 14px;
@@ -784,11 +727,9 @@
     /*height: 0 !important;*/
     /*width: 0 !important;*/
   }
-
   >>> ::-webkit-scrollbar-thumb {
     /*background-color: transparent !important;*/
   }
-
   /* 修改边框颜色*/
   >>> ::-webkit-scrollbar-thumb {
     /*background-color: transparent !important;*/
@@ -796,8 +737,4 @@
   >>>.el-container{
     height: 100%;
   }
-
-
-
-
 </style>
