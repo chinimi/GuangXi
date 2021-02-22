@@ -103,24 +103,32 @@
       <el-row   v-if="fsgzTable"  style="padding:20px  0 30px  30px;">
         <el-col span="20">
           <el-table    border :data="ED_tableData" height="300px" style="background-color: transparent;">
-
             <el-table-column  align="center" label="附生硅藻指数(ED)使用IPS指数表示">
 
               <el-table-column
-                prop="stcd"
+                prop="WZMC"
                 label="物种名称">
               </el-table-column>
               <el-table-column
-                prop="stnm"
-                label="物种的相对丰富度Aj(%0)">
+                prop="Aj"
+                label="物种的相对丰富度Aj(0.1%)">
+                  <template slot-scope="scope">
+                <el-input   v-model="scope.row.Aj" @blur="inputBlur"></el-input>
+                </template>
               </el-table-column>
               <el-table-column
-                prop="stnm"
-                label="敏感度系数j">
+                prop="Lj"
+                label="敏感度系数lj">
+                  <template slot-scope="scope">
+                <el-input   v-model="scope.row.Lj" @blur="inputBlur"></el-input>
+                </template>
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="Vj"
                 label="指示值Vj">
+                  <template slot-scope="scope">
+                <el-input   v-model="scope.row.Vj" @blur="inputBlur"></el-input>
+                </template>
               </el-table-column>
 
             </el-table-column>
@@ -154,6 +162,7 @@
   import moment from "moment";
    import{PHP_fufen,
         FOE_fufen,
+        Alr_fufen,
         } from '../qualityclassfy/ALriverMath'
   export default {
     data() {
@@ -171,6 +180,68 @@
                  {value:'2',label:'轻度受损'},
                  {value:'3',label:'中度受损'},
                  {value:'4',label:'重度受损'},     
+               ],
+               ED_tableData:[
+                 {
+                   WZMC:'1',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                 {
+                   WZMC:'2',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'3',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'4',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'5',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'6',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'7',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'8',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'9',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
+                  {
+                   WZMC:'10',
+                   Aj: '10',
+                   Lj:'2',
+                   Vj:'1'
+                 },
                ],
             PHP_tableData:[{
                 PHP_ZB:'B-IBI',  //丰水期
@@ -423,9 +494,24 @@
             this.tabColumnIndex = "";
           },
       SaveTable(){
+
+        var PHP = PHP_fufen(this.PHP_tableData[0].DJ)
+        var FOE = FOE_fufen(this.PHP_tableData[0].SZ,this.PHP_tableData[1].SZ);
+
+        var AjList = [];
+        var LjList = [];
+        var VjList = [];
+
+        this.ED_tableData.forEach(function(item,index){
+                AjList.push(item.Aj);
+                LjList.push(item.Lj);
+                VjList.push(item.Vj);
+          })
+        debugger
+        var Alr = Alr_fufen(AjList,LjList,VjList);
+       
+
         
-        //PHP_fufen
-        //FOE_fufen
       },
       backAgo(){
         this.$router.push({name:'riverHealthy',params:{}});

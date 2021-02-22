@@ -1357,7 +1357,7 @@ debugger
           this.$http.post(khdurl, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function(res) {
-
+          //  debugger
             let data=res.body.data.pageResultList
             let points=[]
             console.log(data)
@@ -1659,6 +1659,7 @@ debugger
       if (map==null) return
         var that=this
 
+        debugger
 
         let checkstartTime = moment(this.startTime).format('YYYYMM');
         let startyear = moment(this.startTime).format('YYYY');

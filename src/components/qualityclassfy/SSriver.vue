@@ -53,84 +53,85 @@
 
       <el-row style="color:#fff;padding-top:20px;">
         <el-col :span="20" ><p style="padding-left:30px;">社会服务功能评估(SS)</p></el-col>
-        <el-col :span="2"> <el-button>保存</el-button></el-col>
+        <el-col :span="2"> <el-button @click="SaveTable">保存</el-button></el-col>
         <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
       </el-row>
-      <el-row  style="padding:30px 0 0 30px;" >
-        <el-col span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
-
+      <el-row  style="padding:20px  0 30px  30px;" >
+         
+        <el-col span="10">
+          <el-table    border :data="SS_tableData"  height="300px" style="background-color: transparent;">
             <el-table-column  align="center" label="水功能区达标指标">
-
               <el-table-column
-                prop="stcd"
+                prop="WNQ"
                 label="流域内水功能区">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="DBCS"
                 label="达标次数">
               </el-table-column>
               <el-table-column
-                prop="mndgMax"
+                prop="PGCS"
                 label="评估次数">
               </el-table-column>
 
-
             </el-table-column>
-          </el-table>
-
-
-
-        </el-col>
-
-
-
-      </el-row>
-      <el-row style="padding-top:20px;padding-left:30px;">
-        <el-col span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
-
-            <el-table-column  align="center" label="水资源开发利用指标(WRU)">
-
+             </el-table>
+              </el-col>
+             <el-col :span="10" style="padding-left:10px;">
+            <el-table    border :data="WRU_tableData" height="300px" style="background-color: transparent;">
+             <el-table-column  align="center" label="水资源开发利用指标(WRU)">
               <el-table-column
-                prop="stcd"
+                prop="WR"
                 label="评估流域水资源总量(WR)">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="WU"
                 label="评估流域水资源开发利用量(WU)">
               </el-table-column>
+               </el-table-column>
+               </el-table>
+               </el-col>
 
-
-
+              <el-col :span="10" style="padding-right:0px;">
+                 <el-table    border :data="PP_tableData" height="300px" style="background-color: transparent;">
+               <el-table-column  align="center" label="公众满意指标(PP)">
+              <el-table-column
+                prop="PERr"
+                label="有效调查公众总体评估赋分(PERr)">
+              </el-table-column>
+              <el-table-column
+                prop="PERw"
+                label="公众类型权重(PERw)">
+              </el-table-column>
+             
             </el-table-column>
           </el-table>
+           </el-col>
 
 
 
-        </el-col>
       </el-row>
-
+     
       <el-row style="padding:20px  0 30px  30px;">
         <el-col span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
+          <el-table    border :data="FLD_tableData" height="300px" style="background-color: transparent;">
 
             <el-table-column  align="center" label="防洪指标(FLD)">
 
               <el-table-column
-                prop="stcd"
+                prop="Name"
                 label="河道名称">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="RIVLn"
                 label="河段的长度(RIVLn)">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="RIVBn"
                 label="河段防洪工程是否满足规划要求(RIVBn)">
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="RIVWFn"
                 label="河段规划防洪标准重现期(RIVWFn)">
               </el-table-column>
 
@@ -175,6 +176,31 @@
   export default {
     data() {
       return {
+        SS_tableData:[{
+            WNQ:'1',
+            DBCS:'5',
+            PGCS:'6',
+
+        }],
+        WRU_tableData:[{
+            WR:'1000',
+            WU:'500',
+        }],
+        PP_tableData:[
+          {
+            PERr:'66',
+            PERw:'0',
+          },
+
+        ],
+        FLD_tableData:[{
+          Name:'1',
+          RIVLn:'100',
+          RIVBn:'1',
+          RIVWFn:'50'
+
+        }],
+
 
         originData: [{
           id: 'llgcbycd',
@@ -404,6 +430,9 @@
 
     },
     methods: {
+      SaveTable(){
+
+      },
       backAgo(){
         this.$router.push({name:'riverHealthy',params:{}});
       },
@@ -680,7 +709,9 @@
     margin-left: 3%;
     margin-top: 12px;
   }
-
+  /* #groundWater .el-table{
+    width: 500px;
+  } */
   #groundWater .singleli_title .sysfxTit {
     color: #333;
     letter-spacing: 1px;
