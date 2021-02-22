@@ -47,12 +47,12 @@
     <!--table表格-->
     <div class="right_menu">
       <el-row style="color:#fff;padding-top:20px;">
-        <el-col :span="20" ><p style="padding-left:20px;">水文水资源(HD)</p></el-col>
+        <el-col :span="20" ><p style="padding-left:30px;">水文水资源(HD)</p></el-col>
         <el-col :span="2"> <el-button @click="Savetable">保存</el-button></el-col>
         <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
       </el-row>
-        <el-row style="padding-top:0px;">
-          <el-col :span="12">
+      <el-row  >
+        <el-col :span="12">
           <el-table  :span-method="objectSpanMethod" :cell-class-name="getRowColumn"  @cell-click="handleCellClick"  border :data="FD_table" height="calc( 100vh - 600px )" style="background-color: transparent;">
             <el-table-column  align="center" label="流量过程变异程度(FD)">
               <el-table-column
@@ -126,141 +126,84 @@
 
       </el-row>
 
-        <el-row   v-if="showhealthyTable">
-          <el-table    border :data="healthyTable" height="200px" style="background-color: transparent;">
-            <el-table-column  align="center" label="健康流量指标(IFD)">
-              <el-table-column
-                prop="WetseasonP25"
-                label="参照系丰水期水量P25%">
-                <template slot-scope="scope">
-                <el-input   v-model="scope.row.WetseasonP25" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="WetseasonP75"
-                label="参照系丰水期2量P75%">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.WetseasonP75" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="DryseasonP25"
-                label="参照系枯水期水量P25%">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.DryseasonP25" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-               <el-table-column
-                prop="DryseasonP75"
-                label="参照系枯水期水量P75%">
-                     <template slot-scope="scope">
-                <el-input   v-model="scope.row.DryseasonP75" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="MaxP25"
-                label="参照系最大月水量指标P25%">
-                   <template slot-scope="scope">
-                <el-input   v-model="scope.row.MaxP25" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="MaxP75"
-                label="参照系最大月水量指标P75%">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.MaxP75" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="MinP25"
-                label="参照系量小月水量指标P25%">
-                  <template slot-scope="scope">
-                <el-input   v-model="scope.row.MinP25" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="MinP75"
-                label="参照系最小月水量指标P75%">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.MinP75" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="Wetseason"
-                label="评估年内丰水期水量">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.Wetseason" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="Dryseason"
-                label="评估年内枯水期水量">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.Dryseason" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="Max"
-                label="评估年内最大月水量">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.Max" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="Min"
-                label="评估年内最小月水量">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.Min" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
+      <el-row   v-if="showhealthyTable">
+        <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
+          <el-table-column  align="center" label="流量过程变异程度(FD)">
+            <el-table-column
+              prop="stcd"
+              label="参照系丰水期水量P25%">
             </el-table-column>
-          </el-table>
-        </el-row>
-        <el-row v-if="showhealthyTable">
-          <el-table   :show-header="true" :data="healthyTable2" height="300px" style="background-color: transparent;">
-            <!-- <el-table-column  align="center" > -->
-              <el-table-column
-                prop="month"
-                label="月份">
-              </el-table-column>
-              <el-table-column
-                prop="amount1"
-                label="参照系列月平均流量">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.amount1" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="amount2"
-                label="参照系月流量P1%">
-                  <template slot-scope="scope">
-                <el-input   v-model="scope.row.amount2" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="amount3"
-                label="参照系月流量P25%">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.amount3" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="amount4"
-                label="参照系月流量P75%">
-                <template slot-scope="scope">
-                <el-input   v-model="scope.row.amount4" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-              <el-table-column
-                prop="amount5"
-                label="评估年月流量">
-                  <template slot-scope="scope">
-                <el-input   v-model="scope.row.amount5" @blur="inputBlur"></el-input>
-              </template>
-              </el-table-column>
-            <!-- </el-table-column> -->
-          </el-table>
-        </el-row>
+            <el-table-column
+              prop="stnm"
+              label="参照系丰水期2量P75%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgMax"
+              label="参照系枯水期水量P25%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="参照系最大月水量指标P25%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="参照系最大月水量指标P75%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="参照系量小月水量指标P25%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="参照系最小月水量指标P75%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="评估年内丰水期水量">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="评估年内枯水期水量">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="评估年内最大月水量">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="评估年内最小月水量">
+            </el-table-column>
+
+          </el-table-column>
+        </el-table>
+      </el-row>
+
+      <el-row v-if="showhealthyTable">
+        <el-table    border :data="tableData" height="200px" style="background-color: transparent;">
+          <el-table-column  align="center" label="四个表格">
+            <el-table-column
+              prop="stcd"
+              label="参照系列月平均流量">
+            </el-table-column>
+            <el-table-column
+              prop="stnm"
+              label="参照系月流量P1%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgMax"
+              label="参照系月流量P25%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="参照系月流量P75%">
+            </el-table-column>
+            <el-table-column
+              prop="mndgType"
+              label="评估年月.流量">
+            </el-table-column>
+          </el-table-column>
+        </el-table>
+      </el-row>
 
     </div>
 
@@ -268,8 +211,34 @@
 </template>
 
 <script>
+
+
+  /*var menulist =[
+    /!*一级菜单*!/
+    {
+      /!*切换对应组件*!/
+      "authName": "河段选择",
+      id:'zxpjfxmodelpart',
+      path:'zxpjfxmodelpart',
+      children: [
+        { "authName": "桂江上游兴安源头段" ,id:'syxaytd',path:'syxaytd'},
+        { "authName": "桂江上游桂林城区段",id:'syglcqd',path:'syglcqd'},
+        { "authName": "桂江中游桂林景观段",id:'zygljgd',path:'zygljgd'},
+        { "authName": "桂江中游阳朔开发利用段",id:'zyyskflyd',path:'zyyskflyd' },
+        { "authName": "桂江中游昭平保留段",id:'zyzpbld',path:'zyzpbld' },
+        { "authName": "挂江下游昭平保留段",id:'xyzpbld',path:'xyzpbld' },
+        { "authName": "桂江下游苍梧保留段",id:'xycwbld',path:'xycwbld' },
+        { "authName": "恭城河开发利用段",id:'gchkflyd',path:'gchkflyd' },
+        { "authName": "荔浦河开发利用段",id:'lphkflyd',path:'lphkflyd'},
+
+      ]
+    }
+  ]*/
+
   var menulist =[
     /*一级菜单*/
+
+
     { "authName": "桂江上游兴安源头段" ,id:'syxaytd',path:'syxaytd'},
     { "authName": "桂江上游桂林城区段",id:'syglcqd',path:'syglcqd'},
     { "authName": "桂江中游桂林景观段",id:'zygljgd',path:'zygljgd'},
@@ -279,17 +248,19 @@
     { "authName": "桂江下游苍梧保留段",id:'xycwbld',path:'xycwbld' },
     { "authName": "恭城河开发利用段",id:'gchkflyd',path:'gchkflyd' },
     { "authName": "荔浦河开发利用段",id:'lphkflyd',path:'lphkflyd'},
+
+
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
-  import{FD_Qu_AVE,FD_Fufeng,FD_Value,HFV_HFM,LFV_LFM,PHF,PLF,PVL,SFS,sortByKey} from '../qualityclassfy/HDriverMath'
+  import{FD_Qu_AVE,FD_Fufeng} from '../qualityclassfy/HDriverMath'
+
   export default {
     data() {
       return {
         // 来自后台传入也可以手动输入
         PG_Ou_AVE:'',
-            PG_FD_AVE:'',
-            PG_FD_Fufeng:'',
+        //tableValue:[],
         FD_table:
           [{
             Month: '1月',
@@ -361,122 +332,6 @@
 
             }],
         showhealthyTable:false,//健康流量表是否显示
-            healthyTable:[{
-                WetseasonP25:'2',  //丰水期
-                WetseasonP75:'4',
-                DryseasonP25:'0.5',
-                DryseasonP75:'0.8',
-                MaxP25:'0.5',
-                MaxP75: '1',
-                MinP25:'0.25',
-                MinP75: '0.5',
-                Wetseason:'1.5',//评估年内丰水期水量	
-                Dryseason:'0.3',//评估年内枯水期水量
-                Max:'0.5',      //评估年内最大月水量	
-                Min:'0.1',      //评估年内最小月水量	
-                HFV:'0',        //丰水期水量指标（HFV） 	
-                LFV:'0.6',      //枯水期水量指标（LFV）	
-                HFM:'0',        //最大月水量指标（HFM）	
-                LFM:'0.4',     	//最小月水量指标（LFM）
-              },
-            ],
-            healthyTable2:[{
-                month:'1',
-                amount1: '0.8',
-                amount2: '0.5',
-                amount3: '1.1',
-                amount4: '2.1',
-                amount5: '2.2',      
-                },
-                {
-                month:'2',
-                amount1: '0.9',
-                amount2: '0.6',
-                amount3: '1.2',
-                amount4: '2.2',
-                amount5: '2.6',      
-                },
-                {
-                month:'3',
-                amount1: '1.8',
-                amount2: '0.7',
-                amount3: '1.3',
-                amount4: '2.3',
-                amount5: '2.2',      
-                },
-               {
-                month:'4',
-                amount1: '0.5',
-                amount2: '0.8',
-                amount3: '1.4',
-                amount4: '2.4',
-                amount5: '1.8',      
-                },
-                 {
-                month:'5',
-                amount1: '0.9',
-                amount2: '0.9',
-                amount3: '1.5',
-                amount4: '2.5',
-                amount5: '1.3',      
-                },
-                {
-                month:'6',
-                amount1: '1',
-                amount2: '1',
-                amount3: '1.6',
-                amount4: '2.6',
-                amount5: '2',      
-                },
-                {
-                month:'7',
-                amount1: '1.1',
-                amount2: '1.1',
-                amount3: '1.7',
-                amount4: '2.7',
-                amount5: '2.1',      
-                },
-                 {
-                month:'8',
-                amount1: '0.8',
-                amount2: '1.3',
-                amount3: '1.9',
-                amount4: '2.9',
-                amount5: '3.5',      
-                },
-                 {
-                month:'9',
-                amount1: '0.6',
-                amount2: '1.3',
-                amount3: '1.9',
-                amount4: '2.9',
-                amount5: '2.99',      
-                },
-                 {
-                month:'10',
-                amount1: '1.5',
-                amount2: '1.4',
-                amount3: '2',
-                amount4: '3',
-                amount5: '2.4',      
-                },
-                 {
-                month:'11',
-                amount1: '0.9',
-                amount2: '1.2',
-                amount3: '2.1',
-                amount4: '3.1',
-                amount5: '1',      
-                },
-                 {
-                month:'12',
-                amount1: '1',
-                amount2: '1.6',
-                amount3: '2.2',
-                amount4: '3.2',
-                amount5: '2.6',      
-                },             
-            ],
         originData: [{
           id: 'llgcbycd',
           name: '水文水资源(HD)',
@@ -818,6 +673,7 @@
 
 
 
+
       ]
       console.log("获取当前跳转传过来的参数")
 
@@ -871,76 +727,8 @@
           arrList_TR_Qm.push(item.PG_Mon_TR_Qm);
         })
 
-          /// 第一个表格   
-          this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
-          var ss = FD_Value(arrList_SC_qm,arrList_TR_Qm,this.PG_Ou_AVE);  
-          var FD_FUFENG = FD_Fufeng(ss)  // 第一个表格的最终结果
-           
-           ///健康评价表
-          var Wetseason='';
-          var WetseasonP25='';
-          var Max='';
-          var MaxP25='';
-          var  Dryseason = '';   //K
-          var  DryseasonP25 = '';
-          var  DryseasonP75 = '';
-          var   Min ='';
-          var   MinP25='';
-          var   MinP75='';
-          this.healthyTable.forEach(function(item,index){
-                Wetseason = item.Wetseason;
-                WetseasonP25 = item.WetseasonP25;
-                
-                Max = item.Max;
-                MaxP25 = item.MaxP25
-                Dryseason = item.Dryseason;
-                DryseasonP25 = item.DryseasonP25;
-                DryseasonP75 = item.DryseasonP75;
-                Min = item.Min;
-                MinP25=item.MinP25;
-                MinP75=item.MinP75;
-             })
-            
-            var  HFV = HFV_HFM(Wetseason,WetseasonP25);
-            var  LFV = LFV_LFM(Dryseason,DryseasonP25,DryseasonP75);
-            var  HFM = HFV_HFM(Max,MaxP25);
-            var  LFM = LFV_LFM(Min,MinP25,MinP75);
-            var arrList_G44 =[];
-            var arrList_E44 =[];
-            var arrList_F44 =[];
-            var arrList_D44 =[];
-          this.healthyTable2.forEach(function(item,index){
-                arrList_G44.push(item.amount5);
-                arrList_E44.push(item.amount3);
-                arrList_F44.push(item.amount4);
-                arrList_D44.push(item.amount2);
-          })
-         debugger
-         var PHF_ = PHF(arrList_G44,arrList_E44,arrList_F44)
-         var PLF_ = PLF(arrList_G44,arrList_E44,arrList_F44)
-         var PVF_ = PVL(arrList_G44,arrList_D44)
-        //consle.log(this.healthyTable2);
-        let dataTable1 = JSON.parse(JSON.stringify(this.healthyTable2))
-       
-        let dataTable2 = JSON.parse(JSON.stringify(this.healthyTable2))
-        var list1 =  sortByKey(dataTable1,'amount1')
-        var list2 =  sortByKey(dataTable2,'amount5')
-        var monthlist1=[];
-        var monthlist2=[];
-        list1.forEach(function(item,index){
-            monthlist1.push(item.month);
-        })
-        list2.forEach(function(item,index){
-            monthlist2.push(item.month);
-        })
-      
-        var SFS_ = SFS(monthlist1,monthlist2);
-        debugger
-        var IFD = ((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
-        +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8).toFixed(2);
-        var IFDr = (((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
-        +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8)*100).toFixed(2);
-        
+        this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
+
       },
       checkSelectable(row,index){
         let flag = true;
@@ -1238,6 +1026,8 @@
 
         this.tableData=[]
 
+
+
       }
 
 
@@ -1269,7 +1059,7 @@
   #groundWater  .right_menu{
     width: 80%;
     height: calc( 100vh - 80px);
-    padding-top: 0px;
+    /*padding-top: 50px;*/
     /*background: #031823;*/
     background: #fff;
     /*background: rgba(21, 37, 63,1);*/

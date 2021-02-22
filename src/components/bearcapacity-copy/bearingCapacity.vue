@@ -624,7 +624,7 @@ export default {
   padding: 10px 0;
 }
 .searchMain ul li{
-  position: relative;csour
+  position: relative;
   width: 100%;
   height: 100%;
   float: left;

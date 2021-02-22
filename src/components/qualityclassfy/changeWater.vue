@@ -799,10 +799,10 @@
           label="浓度中值/ (mg/L)">
         </el-table-column>
 
-        <el-table-column
-          prop="qs"
-          label="浓度变化趋势/ (mg/ (L-al)">
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          prop="qs"-->
+<!--          label="浓度变化趋势/ (mg/ (L-al)">-->
+<!--        </el-table-column>-->
 
         <el-table-column
           label="显著水平">
@@ -815,17 +815,17 @@
         <el-table-column
           label="结论">
           <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
+              {{scope.row.qs}}
 
           </template>
         </el-table-column>
-        <el-table-column
-          label="备注">
-          <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
+<!--        <el-table-column-->
+<!--          label="备注">-->
+<!--          <template slot-scope="scope">-->
+<!--            &lt;!&ndash;  {{scope.row.time}}&ndash;&gt;-->
 
-          </template>
-        </el-table-column>
+<!--          </template>-->
+<!--        </el-table-column>-->
 
       </el-table>
 
@@ -1343,7 +1343,7 @@
     border-radius: 5px;
     font-weight: lighter;
     margin-left: 3%;
-    margin-top: 20px;
+    margin-top: 12px;
   }
 
   #groundWater .singleli_title .sysfxTit {

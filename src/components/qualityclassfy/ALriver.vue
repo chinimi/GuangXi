@@ -49,60 +49,70 @@
     </div>
     <!--table表格-->
     <div class="right_menu">
-      <el-row style="color:#fff;padding-top:10px;">
+
+      <el-row style="color:#fff;padding-top:20px;">
         <el-col :span="20" ><p style="padding-left:30px;">水生生物评估(AL)</p></el-col>
-        <el-col :span="2"> <el-button @click="SaveTable">保存</el-button></el-col>
+        <el-col :span="2"> <el-button>保存</el-button></el-col>
         <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
       </el-row>
-      <el-row  style="padding:0px 0 0 30px;" >
+      <el-row  style="padding:30px 0 0 30px;" >
         <el-col span="20">
-          <el-table    border :data="PHP_tableData" height="240px" style="background-color: transparent;">
+          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
+
             <el-table-column  align="center" label="大型无脊椎动物完整性指数(PHP)">
+
               <el-table-column
-                prop="PHP_ZB"
+                prop="stcd"
                 label="指标">
               </el-table-column>
               <el-table-column
-                prop="DJ"
+                prop="stnm"
                 label="等级">
-                <template slot-scope="scope">
-               <el-select v-model="scope.row.DJ">
-                <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
-                  </el-option>
-              </el-select>
-                </template>
               </el-table-column>
               <el-table-column
-                prop="DJ"
+                prop="mndgMax"
                 label="生物状态">
-                 <template slot-scope="scope">
-               <el-select v-model="scope.row.DJ">
-                <el-option v-for="item in option_zt" :label="item.label" :value="item.value" :key="item.value">
-                  </el-option>
-              </el-select>
-                </template>
               </el-table-column>
-            </el-table-column>
-            <el-table-column  align="center" label="鱼类损失指数(FOE)">
-              <el-table-column
-                prop="FOE_ZB"
-                label="指标">
-              </el-table-column>
-              <el-table-column
-                prop="SZ"
-                label="数值">
-                 <template slot-scope="scope">
-                <el-input   v-model="scope.row.SZ" @blur="inputBlur"></el-input>
-                </template>
-              </el-table-column>
+
+
             </el-table-column>
           </el-table>
 
+
+
+        </el-col>
+
+
+
+      </el-row>
+      <el-row style="padding-top:20px;padding-left:30px;">
+        <el-col span="20">
+          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
+
+            <el-table-column  align="center" label="鱼类损失指数(FOE)">
+
+              <el-table-column
+                prop="stcd"
+                label="指标">
+              </el-table-column>
+              <el-table-column
+                prop="stnm"
+                label="数值">
+              </el-table-column>
+
+
+
+            </el-table-column>
+          </el-table>
+
+
+
         </el-col>
       </el-row>
+
       <el-row   v-if="fsgzTable"  style="padding:20px  0 30px  30px;">
         <el-col span="20">
-          <el-table    border :data="ED_tableData" height="300px" style="background-color: transparent;">
+          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
 
             <el-table-column  align="center" label="附生硅藻指数(ED)使用IPS指数表示">
 
@@ -122,6 +132,8 @@
                 prop="stnm"
                 label="指示值Vj">
               </el-table-column>
+
+
 
             </el-table-column>
           </el-table>
@@ -153,43 +165,9 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
-   import{PHP_fufen,
-        FOE_fufen,
-        } from '../qualityclassfy/ALriverMath'
-
   export default {
     data() {
       return {
-
-            option:[
-                {value:'0',label:'很好'},
-                 {value:'1',label:'好'},
-                 {value:'2',label:'中等'},
-                 {value:'3',label:'较差'},
-                 {value:'4',label:'很差'},
-               ],
-            option_zt:[
-                 {value:'0',label:'非常健康'},
-                 {value:'1',label:'较为健康'},
-                 {value:'2',label:'轻度受损'},
-                 {value:'3',label:'中度受损'},
-                 {value:'4',label:'重度受损'},     
-               ],
-            PHP_tableData:[{
-                PHP_ZB:'B-IBI',  //丰水期
-                DJ:'0',
-                // SWZT:'0',
-                FOE_ZB:'评估河段调查获得的鱼类种类数量(FO)',
-                SZ:'1600'
-              },
-              {
-                PHP_ZB:'',  //丰水期
-                DJ:'',
-                // SWZT:'',
-                FOE_ZB:'1980s以前评估河段的鱼类种类数量(FE)',
-                SZ:'1900'
-              }
-              ],
 
         originData: [{
           id: 'llgcbycd',
@@ -436,18 +414,6 @@
 
     },
     methods: {
-      inputBlur() {
-            this.tabRowIndex = null;
-            this.tabColumnIndex = "";
-          },
-      SaveTable(){
-
-        
-
-        PHP_fufen
-        FOE_fufen
-
-      },
       backAgo(){
         this.$router.push({name:'riverHealthy',params:{}});
       },

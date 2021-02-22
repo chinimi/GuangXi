@@ -1226,7 +1226,7 @@
             /*水系参数*/
             curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
             /*时间选择*/
-            selectTimeType:"singletime",
+            selectTimeType:"ordertime",
             /*时间段选择*/
             timequantumOption:[{
               value:'singletime',
@@ -1385,42 +1385,1023 @@
             ],
 
             /*初始时间*/
-            startTime:'2015-07',
+            startTime:'2020-10',
             /*截至时间*/
-            endTime:'2015-08',
+            endTime:'2020-11',
 
             /*表明以及字段筛选*/
             props: { multiple: true },
-            options: [{
-              value: 'szjcStation',
-              label: '水质监测站',
-              children: [{
-                value: 'stcd',
-                label: '测站代码',
+            /*字典表  自定义*/
+            options: [
+              /*表1：wQ_AAACP_DDTO*/
+              {
+              value: 'wQ_AAACP_DDTO',
+              label: 'wQ_AAACP_DDTO',
+              children: [
+                {
+                  value: 'bXQ',
+                  label: '丙烯醛',
+                },
+                {
+                value: 'bXQI',
+                label: '丙烯腈',
+                },
+                {
+                value: 'bXXAN',
+                label: '丙烯酰胺',
+                },
+                {
+                  value: 'eRLJW',
+                  label: '二氯甲烷',
+                },
+                {
+                  value: 'eRLYW12',
+                  label: '1,2-二氯乙浣',
+                },
+                {
+                  value: 'eRLYX11',
+                  label: '1,1-二氯乙烯',
+                },
+                {
+                  value: 'eRLYX12',
+                  label: '1,2-二氯乙烯',
+                },
+                {
+                  value: 'hYLBW',
+                  label: '环氧氯丙烷',
+                },
+                {
+                  value: 'hYQL',
+                  label: '环氧七氯',
+                },
+                {
+                  value: 'jQ',
+                  label: '甲醛',
+                },
+                {
+                  value: 'lDERX',
+                  label: '氯丁二烯',
+                },
+                {
+                  value: 'lLDERX',
+                  label: '六氯丁二烯',
+                },
+                {
+                  value: 'lYNM',
+                  label: '层面编号',
+                },
+                {
+                  value: 'lYX',
+                  label: '氯乙燥',
+                },
+                {
+                  value: 'nT',
+                  label: '备注',
+                },
+                {
+                  value: 'sILHT',
+                  label: '四氯化碳',
+                },
+                {
+                  value: 'sILYX',
+                  label: '四氯乙烯',
+                },
+                {
+                  value: 'sLJW',
+                  label: '二氯甲烷',
 
-              }, {
-                value: 'stnm',
-                label: '水域类型',
+                }, {
+                  value: 'sLYQ',
+                  label: '二氯乙醛',
 
-              }, {
-                value: 'mndgMax',
-                label: '流域名称',
+                }, {
+                  value: 'sLYX',
+                  label: '二氯乙烯',
 
-              }]
-            }, {
-              value: 'surfaceWaterStation',
-              label: '地表水水质监测',
-              children: [{
-                value: 'mndgType',
-                label: '水系名称',
+                }, {
+                  value: 'sXJW',
+                  label: '二溴甲烷',
 
-              }, {
-                value: 'mndgName',
-                label: '河流名称',
+                }, {
+                  value: 'wBTP',
+                  label: 'wBTP',
 
-              }]
-            },
+                }, {
+                  value: 'yQ',
+                  label: '乙醛',
 
+                }
+
+              ]
+              },
+
+              /*表2：wQ_ABTP_DDTO*/
+              {
+                value: 'wQ_ABTP_DDTO',
+                label: 'wQ_ABTP_DDTO',
+                children: [
+                  {
+                    value: 'aTTR',
+                    label: 'ATTR',
+                  },
+                  {
+                    value: 'cTTR',
+                    label: 'CTTR',
+                  },
+                  {
+                    value: 'fSAM',
+                    label: 'FSAM',
+                  },
+                  {
+                    value: 'fSSP',
+                    label: '鱼类种类',
+                  },
+                  {
+                    value: 'mCRAM',
+                    label: 'MCRAM',
+                  },
+                  {
+                    value: 'mCRSP',
+                    label: '水生维管束植物种类',
+                  },
+                  {
+                    value: 'nT',
+                    label: '备注',
+                  },
+                  {
+                    value: 'pHYAM',
+                    label: 'PHYAM',
+                  },
+                  {
+                    value: 'pHYBM',
+                    label: 'PHYBM',
+                  },
+                  {
+                    value: 'pHYSP',
+                    label: '浮游植物种类',
+                  },
+                  {
+                    value: 'pRPAM',
+                    label: 'PRPAM',
+                  },
+                  {
+                    value: 'pRPSP',
+                    label: '着生生物种类',
+                  },
+                  {
+                    value: 'wBPP',
+                    label: '水体初级生产力',
+                  },
+                  {
+                    value: 'wCMTR',
+                    label: '污水致突变试验结果',
+                  },
+                  {
+                    value: 'zBNAM',
+                    label: 'ZBNAM',
+                  },
+                  {
+                    value: 'zBNBM',
+                    label: 'ZBNBM',
+                  },
+                  {
+                    value: 'zBNSP',
+                    label: 'ZBNSP',
+                  },
+                  {
+                    value: 'zPLAM',
+                    label: 'ZPLAM',
+
+                  }, {
+                    value: 'zPLBM',
+                    label: 'ZPLBM',
+
+                  }, {
+                    value: 'zPLSP',
+                    label: '浮游动物种类',
+
+                  }
+                ]
+              },
+
+              /*表3：wQ_AMR_DDTO*/
+              {
+                value: 'wQ_AMR_DDTO',
+                label: 'wQ_AMR_DDTO',
+                children: [
+                  {
+                    value: 'aDS',
+                    label: 'ADS',
+                  },
+                  {
+                    value: 'aLGTP',
+                    label: 'ALGTP',
+                  },
+                  {
+                    value: 'bCLCD',
+                    label: '硅藻门细胞密度',
+                  },
+                  {
+                    value: 'cHLCD',
+                    label: '绿藻门细胞密度',
+                  },
+                  {
+                    value: 'cHRCD',
+                    label: '金藻门细胞密度',
+                  },
+                  {
+                    value: 'cRYCD',
+                    label: '隐藻门细胞密度',
+                  },
+                  {
+                    value: 'cYNCD',
+                    label: '蓝藻门细胞密度',
+                  },
+                  {
+                    value: 'eUGCD',
+                    label: '裸藻门细胞密度',
+                  },
+                  {
+                    value: 'pYRCD',
+                    label: '甲藻门细胞密度',
+                  },
+                  {
+                    value: 'sUMCD',
+                    label: '总密度',
+                  },
+                  {
+                    value: 'xNTCD',
+                    label: '黄藻门细胞密度',
+                  },
+
+                ]
+              },
+              /*表4：wQ_BCP_DDTO*/
+              {
+                value: 'wQ_BCP_DDTO',
+                label: 'wQ_BCP_DDTO',
+                children: [
+                  {
+                    value: 'bEN',
+                    label: '苯',
+                  },
+                  {
+                    value: 'bENAN',
+                    label: '苯胺',
+                  },
+                  {
+                    value: 'bENYX',
+                    label: '苯乙烯',
+                  },
+                  {
+                    value: 'eRJBEN',
+                    label: '二甲苯',
+                  },
+                  {
+                    value: 'eRLB12',
+                    label: '1,2-二氯苯',
+                  },
+                  {
+                    value: 'eRLB14',
+                    label: '1,4-二氯苯',
+                  },
+                  {
+                    value: 'eRXJB12',
+                    label: '1,2-二硝基苯',
+                  },
+                  {
+                    value: 'eRXJB13',
+                    label: '1,3-二硝基苯',
+                  },
+                  {
+                    value: 'eRXJB14',
+                    label: '1,4-二硝基苯',
+                  },
+                  {
+                    value: 'eRXJJB24',
+                    label: '2,4-二硝基甲苯',
+                  },
+                  {
+                    value: 'sLB135',
+                    label: '1,3,5-三氯苯',
+                  },
+                  {
+                    value: 'sXJJB246',
+                    label: '2,4,6-三硝基甲苯',
+                  },
+                  {
+                    value: 'wBTP',
+                    label: 'WBTP',
+                  },
+                  {
+                    value: 'xJBEN',
+                    label: '硝基苯',
+                  },
+                  {
+                    value: 'xJLB2',
+                    label: '2-硝基氯苯',
+                  },
+                  {
+                    value: 'xJLB3',
+                    label: '3-硝基氯苯',
+                  },
+                  {
+                    value: 'xJLB4',
+                    label: '4-硝基氯苯',
+                  },
+                  {
+                    value: 'yBBEN',
+                    label: '异丙苯',
+                  },
+                  {
+                    value: 'yBEN',
+                    label: '乙苯',
+                  },
+
+                ]
+              },
+              /*表5：wQ_NMISP_DDTO*/
+              {
+                value: 'wQ_NMISP_DDTO',
+                label: 'wQ_NMISP_DDTO',
+                children: [
+                  {
+                    value: 'aCHL',
+                    label: '活性氯',
+                  },
+                  {
+                    value: 'b',
+                    label: '硼',
+                  },
+                  {
+                    value: 'bOD5',
+                    label: '五日生化需氧量',
+                  },
+                  {
+                    value: 'cL',
+                    label: '氯化物',
+                  },
+                  {
+                    value: 'cN',
+                    label: '氰化物',
+                  },
+                  {
+                    value: 'cODCR',
+                    label: '化学需氧量',
+                  },
+                  {
+                    value: 'cODMN',
+                    label: '高锰酸盐指数',
+                  },
+                  {
+                    value: 'dOX',
+                    label: ' ',
+                  },
+                  {
+                    value: 'dTP',
+                    label: '溶解性总磷',
+                  },
+                  {
+                    value: 'eP',
+                    label: '元素磷',
+                  },
+                  {
+                    value: 'f',
+                    label: '氟化物',
+                  },
+                  {
+                    value: 'fCHL',
+                    label: '游离余氯',
+                  },{
+                    value: 'i',
+                    label: '碘化物',
+                  },{
+                    value: 'kN',
+                    label: '凯氏氮',
+                  },{
+                    value: 'lYNM',
+                    label: '层面编号',
+                  },{
+                    value: 'nH3',
+                    label: '非离子氨',
+                  },{
+                    value: 'nH3N',
+                    label: '氨氮',
+                  },{
+                    value: 'nO2',
+                    label: '亚硝酸盐氮',
+                  },{
+                    value: 'nO3',
+                    label: '硝酸盐氮',
+                  }, {
+                    value: 'nT',
+                    label: '备注',
+                  },
+                  {
+                    value: 'pO4',
+                    label: '溶解性磷酸盐',
+                  },{
+                    value: 'pRPNM',
+                    label: '垂线编号',
+                  },
+                  {
+                    value: 's2',
+                    label: '硫化物',
+                  },{
+                    value: 'sI',
+                    label: '硅',
+                  },{
+                    value: 'sO4',
+                    label: '硫酸盐',
+                  },{
+                    value: 'tCHL',
+                    label: '总氯',
+                  },{
+                    value: 'tCN',
+                    label: '总氰化物',
+                  },{
+                    value: 'tIC',
+                    label: '离子总量',
+                  },{
+                    value: 'tN',
+                    label: '总氮',
+                  },{
+                    value: 'tP',
+                    label: '总磷',
+                  },{
+                    value: 'wBTP',
+                    label: 'WBTP',
+                  }, {
+                    value: 'yP',
+                    label: '黄磷',
+                  },
+
+                ]
+              },
+              /*表6：wQ_OPCP_DDTO*/
+              {
+                value: 'wQ_OPCP_DDTO',
+                label: 'wQ_OPCP_DDTO',
+                children: [
+                  {
+                    value: 'aTLJ',
+                    label: '阿特拉津',
+                  },
+                  {
+                    value: 'bHC',
+                    label: '八八八',
+                  },
+                  {
+                    value: 'bJQ',
+                    label: '百菌清',
+                  },
+                  {
+                    value: 'dBCH',
+                    label: '敌百虫',
+                  },
+                  {
+                    value: 'dDT',
+                    label: '滴滴涕',
+                  },
+                  {
+                    value: 'dDV',
+                    label: '敌敌畏',
+                  },
+                  {
+                    value: 'dLL',
+                    label: '对硫磷',
+                  },
+                  {
+                    value: 'jJDLL',
+                    label: '甲基对硫磷',
+                  },
+                  {
+                    value: 'jNW',
+                    label: '甲萘威',
+                  },
+                  {
+                    value: 'lYNM',
+                    label: '层面编号',
+                  },
+                  {
+                    value: 'mLLL',
+                    label: '马拉硫磷',
+                  },
+                   {
+                    value: 'nT',
+                    label: '备注',
+                  },{
+                    value: 'nXL',
+                    label: '内吸磷',
+                  },{
+                    value: 'rOGOR',
+                    label: '乐果',
+                  },{
+                    value: 'wBTP',
+                    label: 'WBTP',
+                  },{
+                    value: 'xQJZH',
+                    label: '溴氰菊酯',
+                  },
+
+                ]
+              },
+
+              /*表7：wQ_PHNCP_DDTO*/
+              {
+                value: 'wQ_PHNCP_DDTO',
+                label: 'wQ_PHNCP_DDTO',
+                children: [
+                  {
+                    value: 'bENF',
+                    label: '苯酚',
+                  },
+                  {
+                    value: 'eRLBF24',
+                    label: '2,4-二氯苯酚',
+                  },
+                  {
+                    value: 'lYNM',
+                    label: '层面编号',
+                  },
+                  {
+                    value: 'nT',
+                    label: '备注',
+                  },
+                  {
+                    value: 'pRPNM',
+                    label: '垂线编号',
+                  },
+                  {
+                    value: 'sLBF246',
+                    label: '2,4,6三氯酚',
+                  },
+                  {
+                    value: 'sXJF246',
+                    label: '2,4,6三硝基苯酚',
+                  },
+                  {
+                    value: 'vLPH',
+                    label: '挥发酚',
+                  },
+                  {
+                    value: 'wBTP',
+                    label: 'WBTP',
+                  },
+                  {
+                    value: 'wLF',
+                    label: '五氯酚',
+                  },
+
+
+                ]
+              },
+
+              /*表8：wQ_WBHP_DDTO*/
+              {
+                value: 'wQ_WBHP_DDTO',
+                label: 'wQ_WBHP_DDTO',
+                children: [
+                  {
+                    value: 'bCTC',
+                    label: '细菌总数',
+                  },
+                  {
+                    value: 'fCG',
+                    label: '粪大肠菌群',
+                  },
+                  {
+                    value: 'fS',
+                    label: '粪链球菌',
+                  },
+                  {
+                    value: 'lYNM',
+                    label: '层面编号',
+                  },
+                  {
+                    value: 'nT',
+                    label: '备注',
+                  },
+                  {
+                    value: 'pRPNM',
+                    label: '垂线编号',
+                  },
+                  {
+                    value: 'wBTP',
+                    label: 'WBTP',
+                  },
+
+
+                ]
+              },
+              /*表9：wqMIspDDTO*/
+              {
+                value: 'wqMIspDDTO',
+                label: 'wqMIspDDTO',
+                children: [
+                  {
+                    value: 'AG',
+                    label: '银',
+                  },
+                  {
+                    value: 'AL',
+                    label: '铝',
+                  },
+                  {
+                    value: 'ARS',
+                    label: '砷',
+                  },
+                  {
+                    value: 'BA',
+                    label: '钡',
+                  },
+                  {
+                    value: 'BE',
+                    label: '铍',
+                  },
+                  {
+                    value: 'CA',
+                    label: '钙',
+                  },
+                  {
+                    value: 'CD',
+                    label: '镉',
+                  },
+                  {
+                    value: 'CO',
+                    label: '钴',
+                  },
+                  {
+                    value: 'CR6',
+                    label: '六价铬',
+                  },
+                  {
+                    value: 'CU',
+                    label: '铜',
+                  },
+                  {
+                    value: 'FE',
+                    label: '铁',
+                  },
+                  {
+                    value: 'HG',
+                    label: '汞',
+                  },
+                  {
+                    value: 'K',
+                    label: '钾',
+                  },
+                  {
+                    value: 'KNA',
+                    label: '钾钠',
+                  },
+                  {
+                    value: 'MG',
+                    label: '镁',
+                  },
+                  {
+                    value: 'MN',
+                    label: '锰',
+                  },
+                  {
+                    value: 'MO',
+                    label: '钼',
+                  },
+                  {
+                    value: 'NA',
+                    label: '钠',
+                  },
+                  {
+                    value: 'NI',
+                    label: '镍',
+                  },
+                  {
+                    value: 'PB',
+                    label: '铅',
+                  },
+                  {
+                    value: 'SB',
+                    label: '锑',
+                  },
+                  {
+                    value: 'SE',
+                    label: '硒',
+                  },
+                  {
+                    value: 'TCR',
+                    label: '总铬',
+                  },
+                  {
+                    value: 'THRD',
+                    label: '总硬度',
+                  },
+
+                  {
+                    value: 'TL',
+                    label: '铊',
+                  },
+                  {
+                    value: 'V',
+                    label: '钒',
+                  },
+                  {
+                    value: 'ZN',
+                    label: '锌',
+                  },
+
+
+                  {
+                    value: 'tI',
+                    label: '钛',
+                  },
+
+                  {
+                    value: 'lYNM',
+                    label: '层面编号',
+                  },
+
+
+
+
+                  {
+                    value: 'nT',
+                    label: '备注',
+                  },
+
+                  {
+                    value: 'pRPNM',
+                    label: '垂线编号',
+                  },
+
+                  {
+                    value: 'spt',
+                    label: '采样时间',
+                  },
+                  {
+                    value: 'stcd',
+                    label: '测站代码',
+                  },
+
+                  {
+                    value: 'wBTP',
+                    label: 'wBTP',
+                  },
+
+
+                ]
+              },
+              /*表10：wqMIspDDTO*/
+              {
+                value: 'wqPcpDDTO',
+                label: 'wqPcpDDTO',
+                children: [
+                  {
+                    value: 'ACID',
+                    label: '银',
+                  },
+                  {
+                    value: 'AGCO2',
+                    label: '铝',
+                  },
+                  {
+                    value: 'CHROMA',
+                    label: '砷',
+                  },
+                  {
+                    value: 'CLARITY',
+                    label: '钡',
+                  },
+                  {
+                    value: 'CO3',
+                    label: '铍',
+                  },
+                  {
+                    value: 'COND',
+                    label: '钙',
+                  },
+                  {
+                    value: 'DSCO2',
+                    label: '镉',
+                  },
+                  {
+                    value: 'HCO3',
+                    label: '钴',
+                  },
+                  {
+                    value: 'ILMI',
+                    label: '六价铬',
+                  },
+                  {
+                    value: 'ILMT',
+                    label: '铜',
+                  },
+                  {
+                    value: 'MNDG',
+                    label: '铁',
+                  },
+                  {
+                    value: 'PH',
+                    label: '汞',
+                  },
+                  {
+                    value: 'REDOX',
+                    label: '钾',
+                  },
+                  {
+                    value: 'SS',
+                    label: '钾钠',
+                  },
+                  {
+                    value: 'TALATV',
+                    label: '镁',
+                  },
+                  {
+                    value: 'TALKY',
+                    label: '锰',
+                  },
+                  {
+                    value: 'TBTATV',
+                    label: '钼',
+                  },
+                  {
+                    value: 'TDS',
+                    label: '钠',
+                  },
+                  {
+                    value: 'TSOLID',
+                    label: '镍',
+                  },
+                  {
+                    value: 'TURB',
+                    label: '铅',
+                  },
+                  {
+                    value: 'WNDV',
+                    label: '锑',
+                  },
+                  {
+                    value: 'WT',
+                    label: '硒',
+                  },
+                  {
+                    value: 'lynm',
+                    label: '总铬',
+                  },
+                  {
+                    value: 'nEOBJ',
+                    label: ' ',
+                  },
+
+                  {
+                    value: 'nT',
+                    label: ' ',
+                  },
+                  {
+                    value: 'pH',
+                    label: '钒',
+                  },
+                  {
+                    value: 'prpnm',
+                    label: '锌',
+                  },
+
+
+                  {
+                    value: 'rEDOX',
+                    label: '钛',
+                  },
+
+                  {
+                    value: 'sMELL',
+                    label: '层面编号',
+                  },
+
+
+
+
+                  {
+                    value: 'sS',
+                    label: '备注',
+                  },
+
+                  {
+                    value: 'spt',
+                    label: '垂线编号',
+                  },
+
+                  {
+                    value: 'stcd',
+                    label: '采样时间',
+                  },
+                  {
+                    value: 'stnm',
+                    label: '测站代码',
+                  },
+
+                  {
+                    value: 'tALATV',
+                    label: '总a放射性',
+                  },
+                  {
+                    value: 'tALKY',
+                    label: '总碱度',
+                  },{
+                    value: 'tBTATV',
+                    label: '总P放射性',
+                  },{
+                    value: 'tDS',
+                    label: '溶解性总固体',
+                  },{
+                    value: 'tSOLID',
+                    label: '总固体',
+                  },{
+                    value: 'tURB',
+                    label: '浊度',
+                  },{
+                    value: 'wINDIR',
+                    label: '风向',
+                  },{
+                    value: 'wNDV',
+                    label: '风速',
+                  },{
+                    value: 'wT',
+                    label: '水温',
+                  },{
+                    value: 'wbtp',
+                    label: 'WBTP',
+                  }
+
+                ]
+              },
+
+              /*表11：wqWqsinfBDTO*/
+              {
+                value: 'wqWqsinfBDTO',
+                label: 'wqWqsinfBDTO',
+                children: [
+                  {
+                    value: 'adag',
+                    label: '管理单位',
+                  },
+                  {
+                    value: 'addvcd',
+                    label: '行政区划代码',
+                  },
+                  {
+                    value: 'astnm',
+                    label: 'ASTNM',
+                  },
+                  {
+                    value: 'atmn',
+                    label: 'ATMN',
+                  },
+                  {
+                    value: 'esstym',
+                    label: '建站年月',
+                  },
+                  {
+                    value: 'mnag',
+                    label: '监测单位',
+                  },
+                  {
+                    value: 'mnfrq',
+                    label: '监测频次',
+                  },
+                  {
+                    value: 'nt',
+                    label: '备注',
+                  },
+                  {
+                    value: 'stcd',
+                    label: '测站代码',
+                  },
+                  {
+                    value: 'stgrd',
+                    label: '测站等级',
+                  },
+                  {
+                    value: 'stlc',
+                    label: '站址',
+                  },
+                  {
+                    value: 'stnm',
+                    label: '测站名称',
+                  },
+                  {
+                    value: 'stwqt',
+                    label: 'STWQT',
+                  },
+                  {
+                    value: 'wdstym',
+                    label: '撤站年月',
+                  },
+                  {
+                    value: 'wrrcd',
+                    label: '水资源分区代码',
+                  },
+
+                ]
+              },
 
 
 
@@ -1469,10 +2450,9 @@
 
 
         },
-        queryTableData(){
-
-
-
+        queryTableData(tabArr){
+          var that=this
+          this.tableData=[]//清空table
           /*时间选择*/
          /* selectTimeType:"singletime",
             /!*时间段选择*!/
@@ -1485,38 +2465,20 @@
 
           }],*/
 
-          console.log(this.selectTimeType)
-          console.log(this.startTime)
-          console.log(this.endTime)
+          console.log("统计时间")
+          /*YYYYMMDDHHmmss*/
+          let checkstartTime = moment(this.startTime).format('YYYYMM');
+          let checkendTime = moment(this.endTime).format('YYYYMM');
+          console.log(checkstartTime)
+          console.log(checkendTime)
 
-          /*if(this.selectTimeType=="singletime"){
-            if(this.startTime ){
-              this.$message('请选择时间参数');
-              return
-            }
-          }else{
-            if(this.startTime||this.endTime){
-              this.$message('请选择时间参数');
-              return
-            }
-          }*/
 
-        let checkstartTime = moment(this.startTime).format('YYYYMM');
+      /*  let checkstartTime = moment(this.startTime).format('YYYYMM');
         let startyear = moment(this.startTime).format('YYYY');
         let checkendTime = moment(this.endTime).format('YYYYMM');
         let endyear = moment(this.endTime).format('YYYY');
-         console.log(checkstartTime)
-         console.log(startyear)
-         console.log(checkstartTime.substring(checkstartTime.length-2))
-          let startMonth=checkstartTime.substring(checkstartTime.length-2)
-         console.log(checkendTime)
-         console.log(endyear)
-          console.log(checkendTime.substring(checkendTime.length-2))
-          let endMonth=checkendTime.substring(checkendTime.length-2)
-
-          console.log(parseInt(endMonth)-parseInt(startMonth))
-
-
+        let startMonth=checkstartTime.substring(checkstartTime.length-2)
+        let endMonth=checkendTime.substring(checkendTime.length-2)
 
           var str=""
           var count=parseInt(endMonth)-parseInt(startMonth)
@@ -1538,26 +2500,56 @@
           }else{
             tjsj=str
           }
-
+*/
 
           var param=
           {
-            "pageNum":this.currentPage,
+            "pageNum":0,
             "pageSize":this.pageSize,
-            "qzfs":this.qzfsval,// min max avg
-            "tjsj":tjsj
+            "startTime":"20201031000000",
+            "endTime":"20201102000000",
           }
+          // "startTime":checkstartTime+'00000000',
+          // "endTime":checkendTime+"00000000",
+
           this.tableData=[]
-          /*矿化度请求*/
           let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/base/listswmsar"
           /*http请求*/
           this.$http.post(url, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function(res) {
-            // alert("chenggong")
-            console.log(res)
 
-            this.tableData=res.body.data.pageResultList
+             let data=res.body.data.pageResultList[0]
+            /*过滤table表格数据*/
+
+            /*创建table表格数据*/
+            var eachObj={}
+            for(var i=0;i<tabArr.length;i++){
+
+
+              let curChartName=tabArr[i].chartName
+
+              if(tabArr[i].chartName==curChartName){
+                /*循环res查询结果，然后赋值*/
+
+                let curChartResult=data[curChartName]
+
+                let keyName=tabArr[i].key
+                console.log(keyName)
+                console.log(curChartResult[keyName])
+
+                eachObj[keyName]=curChartResult[keyName]
+
+                console.log(eachObj)
+
+              }
+
+
+            }
+            that.tableData.push(eachObj)
+            console.log(that.tableData)
+
+
           }).catch(function(res){
 
 
@@ -1575,12 +2567,7 @@
         },
         selectedOptions(newValue){
 
-          let data=[{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,mndgMax:807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田222东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田333东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田444东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田555东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田666东"},{"lgtd":107.11,"lttd":23.58,"lynm":null,"mNDG":null,"mndg":null,"mndgMax":807.9,"mndgName":"较高矿化度","mndgType":"四","nEOBJ":null,"nT":null,"pH":null,"prpnm":null,"rEDOX":null,"sMELL":null,"sS":null,"spt":null,"stcd":"80786230","stnm":"田11东"}]
 
-
-
-          this.tabledata=data
-          console.log(newValue)
 
           /*rightHeader: [
         {
@@ -1597,19 +2584,39 @@
         }
       ],*/
           var arr=[]
+
+
+
           for(var i=0;i<newValue.length;i++){
-            console.log(newValue[i])
+
             var obj={}
-            obj.key=newValue[i][1]
-            obj.label=newValue[i][1]
+            /*循环中文字典表*/
+            for(var a=0;a<this.options.length;a++){
+
+
+
+              if(newValue[i][0]==this.options[a].value){//表名相同
+                let children=this.options[a].children/*找对应中文*/
+                /*找对应请求回来数据的对应值*/
+                for( var b=0;b<children.length;b++){
+                  if(newValue[i][1]==children[b].value){
+                    obj.key=children[b].value
+                    obj.label=children[b].label
+                    obj.chartName=newValue[i][0]
+
+                  }
+                }
+              }
+            }
             arr.push(obj)
 
           }
-          console.log(arr)//渲染表头
+
           this.renderTab=arr
           /*每次切换数据table表格清空重新渲染*/
+          /*处理tabledata对应表头属性的数据赋值*/
 
-
+          this.queryTableData(arr)//调用请求查询数据接口
 
 
         }
@@ -1629,6 +2636,7 @@
      background: #fff;
    }
   #groundWater .left_menu{
+    overflow-y: auto;
     background: #fff;
     width: 20%;
     height: calc( 100vh - 80px);
@@ -1661,7 +2669,7 @@
     border-radius: 5px;
     font-weight: lighter;
     margin-left: 3%;
-    margin-top: 20px;
+    margin-top: 12px;
   }
 
   #groundWater .singleli_title .sysfxTit {
@@ -1764,6 +2772,21 @@
     color:#fff!important;
 
   }
+  >>>.el-scrollbar__wrap{
+    max-height: 400px!important;
+    overflow-y: auto;
 
+  }
+  >>>.el-cascader-menu__list {
+    position: relative;
+    /* min-height: 100%; */
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    max-height: 400px !important;
+    overflow-y: auto !important;
+  }
 
 </style>

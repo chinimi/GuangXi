@@ -32,7 +32,7 @@
             <ul  class="mid_tab_title">
               <li
                 v-for="item  in calculateType"
-                :class="['middleSliderClass',{ activeLi : ( curMidTab == item.name ? true : false )}]"
+                :class="['middleSliderClass',{ activemiddleLi : ( curMidTab == item.name ? true : false )}]"
                 @click="curMidTab = item.name;curMidCom=item.comp ;showMidTab(item.comp)"
               >
 
@@ -45,7 +45,7 @@
               <div v-show="curMidCom == 'first'">
 
                 <el-radio-group  v-model="firstRadio">
-                  <el-col :span="8" v-for="product in firstRadioOption"   :key="product.value">
+                  <el-col   v-for="product in firstRadioOption"   :key="product.value">
                     <el-radio :label="product.value"   >{{product.label}}</el-radio>
                   </el-col>
                 </el-radio-group>
@@ -53,7 +53,7 @@
               </div>
               <div v-show="curMidCom == 'second'">
                 <el-radio-group  v-model="secondRadio">
-                  <el-col :span="8" v-for="product in secondRadioOption"   :key="product.value">
+                  <el-col   v-for="product in secondRadioOption"   :key="product.value">
                     <el-radio :label="product.value"   >{{product.label}}</el-radio>
                   </el-col>
                 </el-radio-group>
@@ -62,7 +62,7 @@
               </div>
               <div v-show="curMidCom == 'third'">
                 <el-radio-group  v-model="thirdRadio">
-                  <el-col :span="8" v-for="product in thirdRadioOption"   :key="product.value">
+                  <el-col   v-for="product in thirdRadioOption"   :key="product.value">
                     <el-radio :label="product.value"   >{{product.label}}</el-radio>
                   </el-col>
                 </el-radio-group>
@@ -71,7 +71,7 @@
               </div>
               <div v-show="curMidCom == 'fourth'">
                 <el-radio-group  v-model="fourthRadio">
-                  <el-col :span="8" v-for="product in fourthRadioOption"   :key="product.value">
+                  <el-col   v-for="product in fourthRadioOption"   :key="product.value">
                     <el-radio :label="product.value"   >{{product.label}}</el-radio>
                   </el-col>
                 </el-radio-group>
@@ -1251,6 +1251,95 @@
       }
     },
     methods: {
+      createChart(){
+
+debugger
+
+
+        /*没拿到echart全局变量*/
+        // let  Chart = this.$refs.echart
+        let  Chart = document.getElementById("echart1")
+        let myChart=this.$echarts.init(Chart);
+
+
+        // 给树状图赋值
+        let lineOption={
+          title: {
+            text: 'title',
+            textStyle: {
+              color: '#333',
+              fontSize: 14
+            }
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              show: true,
+              type: 'cross',
+              lineStyle: {
+                type: 'dashed',
+                width: 1
+              }
+            }
+          },
+          color: [ '#f87b03', '#cd0100', '#bfaf01'],
+
+          grid: {
+            top: 55,
+            left: 10,// 调整这个属性
+            right: 10,
+            bottom: 10,
+            containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            axisLine: {
+              lineStyle: {
+                color: '#05a3f2'  //x轴legend放上时的颜色
+              }
+            },
+            axisLabel: {
+              color: '#333', //x轴字体颜色
+              textStyle: {
+                fontSize: 12
+              },
+              // formatter: function (value) {
+              //   return value.split(' ').join('\n')
+              // }
+            }
+          },
+
+          yAxis: {
+            type: 'value',
+            splitLine: {
+              lineStyle: {
+                // 使用深浅的间隔色刻度
+                color: ['#094172', '#094172'],
+                type: 'dashed'
+              }
+            },
+            // splitArea : {show : false},
+            // splitLine:{show: false},
+            axisLine: {
+              lineStyle: {
+                color: '#05a3f2' //x轴legend放上时的颜色
+              },
+            },
+            axisLabel: {
+              // formatter: '{value}('+unit+')',
+              color: '#333' //y轴字体颜色
+            },
+          },
+          series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+          }]
+        }
+
+        myChart.setOption(lineOption)
+
+      },
       showMidTab(ele){
 
       },
@@ -1261,21 +1350,21 @@
         var  that=this
 
         /*矿化度请求*/
-        //debugger
+
         if(that.pjxmval=="khd") {
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
           /*http请求*/
           this.$http.post(khdurl, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function(res) {
-            // alert('矿化度')
+
             let data=res.body.data.pageResultList
             let points=[]
             console.log(data)
             for (let i=0;i<data.length;i++) {
               let coord = data[i]
-              console.log(data[i])
-              //debugger
+
+
               var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:4326");
               var point = new ol.Feature({
                 geometry: new ol.geom.Point(labelCoords)
@@ -1290,12 +1379,7 @@
             features: points
           });
 
-            // if(pointLayer){//如果有图层
-            //   source = pointLayer.getSource()
-            //   source.clear();
-            //   pointLayer.setSource(source)
-            //
-            // }else{//没有图层创建新图层
+
                   //矢量图层
               that.pointLayer=new ol.layer.Vector({
                 zIndex: 10,
@@ -1320,8 +1404,8 @@
 
               map.addLayer(that.pointLayer);//添加上站点的图层
 
+            this.activeLayerEvent()
 
-            // }
 
 
           }).catch(function(res){
@@ -1382,7 +1466,7 @@
 
               map.addLayer(that.pointLayer);//添加上站点的图层
 
-
+            this.activeLayerEvent()
             // }
 
 
@@ -1448,7 +1532,7 @@
               });
 
               map.addLayer(that.pointLayer);//添加上站点的图层
-
+            this.activeLayerEvent()
 
             // }
           }).catch(function (res) {
@@ -1514,7 +1598,7 @@
               });
               map.addLayer(that.pointLayer);//添加上站点的图层
 
-
+            this.activeLayerEvent()
             // }
 
           }).catch(function (res) {
@@ -1575,17 +1659,7 @@
       if (map==null) return
         var that=this
 
-        /*if(this.selectTimeType=="singletime"){
-          if(this.startTime ){
-            this.$message('请选择时间参数');
-            return
-          }
-        }else{
-          if(this.startTime||this.endTime){
-            this.$message('请选择时间参数');
-            return
-          }
-        }*/
+
         let checkstartTime = moment(this.startTime).format('YYYYMM');
         let startyear = moment(this.startTime).format('YYYY');
         let checkendTime = moment(this.endTime).format('YYYYMM');
@@ -1630,6 +1704,9 @@
         if(this.pointLayer) {//有图层，清空所有几何要素
           let lastsource =  this.pointLayer.getSource()
           lastsource.clear();
+          if(this.OverlayPopup){
+            map.removeOverlay(this.OverlayPopup);
+          }
           /*请求数据重新绘制*/
           this.ajaxPointSource(param,this.pointLayer)
 
@@ -1639,94 +1716,8 @@
           this.ajaxPointSource(param)
         }
 
-
-       /*  if(this.pointLayer){//有图层，清空所有几何要素
-             let lastsource =  this.pointLayer.getSource()
-                 lastsource.clear();
-             let source=this.PlotPointSource(pointData)//当前数据绘制的图层
-             this.pointLayer.setSource(source)
-          }else{//没有图层，创建一个新的图层，添加要素
-
-            let source=this.PlotPointSource(pointData)//当前数据绘制的图层
-
-            //矢量图层
-              this.pointLayer=new ol.layer.Vector({
-              zIndex: 10,
-              projection: 'EPSG:4326',
-              source:source,
-              style: new ol.style.Style({
-                fill: new ol.style.Fill({
-                  color: 'rgba(255, 255, 255, 0.1)'
-                }),
-                stroke: new ol.style.Stroke({
-                  color: 'red',
-                  width: 10
-                }),
-                image: new ol.style.Circle({
-                  radius: 10,
-                  fill: new ol.style.Fill({
-                    color: '#ffcf43'
-                  })
-                })
-              })
-            });
-
-            map.addLayer( this.pointLayer);//添加上站点的图层
-
-          }*/
-       /* /!*矿化度请求*!/
-        let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-        /!*http请求*!/
-        this.$http.post(khdurl, JSON.stringify(param), {
-          emulateJSON: true,
-        }).then(function(res) {
-          let data=res.body.data.pageResultList
-          let points=[]
-          for (let i=0;i<data.length;i++) {
-            let coord = data[i]
-            console.log(coord.lgtd)
-            console.log(coord.lttd)
-            var labelCoords = ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
-            var point = new ol.Feature({
-              geometry: new ol.geom.Point(labelCoords)
-            });//构点
-            points.push(point)
-          }
-            //实例化一个矢量图层Vector作为绘制层
-            var source = new ol.source.Vector({
-              features: points
-            });
-            //矢量图层
-            let positionLayer = new ol.layer.Vector({
-              zIndex: 10,
-              projection: 'EPSG:4326',
-              source: source,
-              style: new ol.style.Style({
-                fill: new ol.style.Fill({
-                  color: 'rgba(255, 255, 255, 0.1)'
-                }),
-                stroke: new ol.style.Stroke({
-                  color: 'red',
-                  width: 10
-                }),
-                image: new ol.style.Circle({
-                  radius: 10,
-                  fill: new ol.style.Fill({
-                    color: '#ffcf43'
-                  })
-                })
-              })
-            });
-
-            console.log(map)
-            // positionLayer.setSource(source);
-            map.addLayer(positionLayer);//添加上站点的图层
-
-          }
-        }).catch(function(res){})*/
-
       var that = this;
-      window.map.on('singleclick', mapClick);
+     /* window.map.on('singleclick', mapClick);
         debugger
        function mapClick(e){
           //点击的坐标
@@ -1769,7 +1760,7 @@
 
           }
 
-       }
+       }*/
        //this.activeLayerEvent();
 
       },
@@ -1953,14 +1944,21 @@
         let attribute=attr
         console.log(attribute)
 
+        /*创建echarts*/
+
         var hdms="";
 
-        hdms = hdms+"<span class='Popup_p_title'>"+attribute["SecName"]+"</span>"+
-          "<div><span class='Popup_p'><span class='Popup_span'>经度:</span>"+attribute["lgtd"]+'°</span>'+
-          "<span class='Popup_p'><span class='Popup_span'>纬度:</span>"+attribute["lttd"]+'°</span>'+
-          "<span class='Popup_p'><span class='Popup_span'>地址:</span>"+attribute["lttd"]+'</span>'+
-          "<span class='Popup_p'><span class='Popup_span'>编码:</span>"+attribute["lttd"]+'</span>';
-        hdms=hdms+"</div>";
+        // if(attribute[0].values_.attribute["stnm"]){
+        //   hdms = hdms+"<span class='Popup_p_title'>"+attribute[0].values_.attribute["stnm"]+"</span>"+
+        //     "<div ref='echart' id='echart1'></div>"
+        //
+        // }else{
+          hdms = hdms+"<span class='Popup_p_title'>详情信息</span>"+
+            "<div ref='echart' id='echart1'></div>"
+        // }
+
+
+
 
 
         return hdms;
@@ -1974,7 +1972,7 @@
         debugger
         var elediv_popup=document.createElement('div');
         // elediv_popup.setAttribute(id,'environmentpop');
-        elediv_popup.className="environmentFeaturePopup";
+        elediv_popup.className="FeaturePopup";
         var elediv_popup = new ol.Overlay({
           element:elediv_popup,
           autoPan:true,
@@ -2023,15 +2021,16 @@
         });
 
         // map.on('pointermove',onPointerMove);
-      //  window.map.addInteraction(that.selectClick);
+
+        map.addInteraction(that.selectClick);
         that.selectClick.on('select', function(e) {
           // alert(2)
           console.log("获取当前选中的要素")
           console.log(e)
 
           if(that.OverlayPopup){
-            that.removeAllOverlay(map)
-            // map.removeOverlay(that.OverlayPopup);
+            // that.removeAllOverlay(map)
+            map.removeOverlay(that.OverlayPopup);
           }
           var features=e.selected;
 
@@ -2044,8 +2043,16 @@
 
             element.innerHTML=that.GetPopupContent(features);
 
+
+
             that.OverlayPopup.setPosition(features[0].getGeometry().getCoordinates());
             map.addOverlay(that.OverlayPopup);
+
+        setTimeout(function(){//dom没有创建出来bug修改
+          that.createChart()
+
+        },500)
+
 
           }
 
@@ -2086,6 +2093,51 @@
 
   }
 </script>
+<style>
+
+  .FeaturePopup{
+    background: #fff !important;
+    font-size: 13px;
+    font-family: sans-serif;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    padding-left: 20px;
+    border-radius: 10px;
+    border: 2px solid #24948b;
+    width: 350px;
+    color: #dcdbdb;
+    height: 280px;
+    overflow-y: auto;
+  }
+  .FeaturePopup .Popup_p{
+    float:left;
+    display:block;
+    width:150px;
+    line-height: 25px;
+    /*height: 25px;*/
+    padding: 0;
+    margin: 0;
+    font-weight: lighter;
+    font-size: 12px;
+  }
+  .FeaturePopup .Popup_p_title{
+    display:block;
+    padding:5px 0;
+    color:#1a51ff;
+    text-align: center;
+    font-size:15px;
+  }
+  .FeaturePopup .Popup_span{
+    font-weight: 500;
+  }
+
+
+  #echart1{
+
+    width:300px;
+    height:200px;
+  }
+</style>
 <style scoped="scoped">
 
 .clear{
@@ -2101,8 +2153,9 @@
   -webkit-box-shadow: 0 0 2px #1e88ef, 0 0 12px #1e88ef;
   box-shadow: 0 0 2px #1e88ef, 0 0 12px #1e88ef;
   /*border-left-color: #0a74db;*/
+  border-radius: 10px;
   position: absolute;
-  top: 30px;
+  top: 70px;
   left:0;
 }
 .associateRight{
@@ -2232,9 +2285,13 @@
 
 }
 .activeLi{
-  /*background-color: #ffdb61 !important;*/
+  background-color: #E1F4FF!important;
   color: #2784ff !important;
-  /*border: 1px solid #d49500!important;*/
+}
+.activemiddleLi{
+  background-color: #E1F4FF!important;
+  color: #2784ff !important;
+  border:solid 1px #2784ff;
 }
 /*middle part*/
 .middleSliderClass{
@@ -2245,7 +2302,7 @@
   font-size: 10px;
   line-height: 30px;
   padding: 0px 6px;
-  background: #6184b5;
+  background: #2784FF;
   border-radius: 5px;
   margin-left: 6px;
   margin-top: 6px;
@@ -2279,9 +2336,11 @@
 
   }
   .mid_tab_content{
+    padding:15px;
     width:100%;
     color: #fff;
   }
+
 
 
 

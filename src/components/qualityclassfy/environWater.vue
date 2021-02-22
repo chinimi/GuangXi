@@ -1196,7 +1196,7 @@
     border-radius: 5px;
     font-weight: lighter;
     margin-left: 3%;
-    margin-top: 20px;
+    margin-top: 12px;
   }
 
   #groundWater .singleli_title .sysfxTit {
