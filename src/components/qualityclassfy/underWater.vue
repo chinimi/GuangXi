@@ -3,7 +3,7 @@
       <div class="left_menu">
         <!---->
         <div >
-          <span class="cur_title">地表水资源量预测</span>
+          <span class="cur_title">地下水水位评价</span>
         </div>
 
         <!--水量组成-->

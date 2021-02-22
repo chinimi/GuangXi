@@ -3870,7 +3870,8 @@
     beforeDestroy(){
       console.log("删除图层")
       map.removeLayer( this.layer)
-
+      map.removeInteraction(this.selectClick)
+      this.removeAllOverlay(map)
 
     },
     watch:{

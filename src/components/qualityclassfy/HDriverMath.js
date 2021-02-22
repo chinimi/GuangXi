@@ -1,6 +1,4 @@
-//流量过程变异程度 HD
-//edit by smm
-
+//流量过程变异程度
 //评估年天然月径流量年平均值（Qu）
 var  add = function(num) {
   var sum = 0;
