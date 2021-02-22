@@ -14,7 +14,7 @@
         <el-table-column prop="address" label="河" min-width="150"></el-table-column>
         <el-table-column prop="date" label="里程" min-width="100"></el-table-column>
         <el-table-column prop="date" label="返回" min-width="100"></el-table-column>
-        <el-table-column prop="date" label="计算结果" min-width="100"></el-table-column>
+        <el-table-column prop="date" label="计算" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">

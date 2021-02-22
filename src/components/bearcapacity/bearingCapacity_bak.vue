@@ -289,17 +289,11 @@
         <div class="water">
           <p class="water_p"><img src="/static/images/icon/pingjia.png" alt="">评价项目</p>
           <div class="water_div">
-             <el-option
-                      v-for="(item,i) in one_options"
-                      :key="i"
-                      :label="item.label"
-                      :value="item.value"
-                    ></el-option>
-            <!-- <el-radio-group v-model="radio">
+            <el-radio-group v-model="radio">
               <el-radio :label="1">COD、BOD</el-radio>
               <el-radio :label="2">TP、TN</el-radio>
               <el-radio :label="3">组分3</el-radio>
-            </el-radio-group> -->
+            </el-radio-group>
           </div>
         </div>
         <!-- 水质类别 -->
@@ -309,7 +303,7 @@
             <div class="searchMain_div">
               <el-select v-model="one" placeholder="请选择">
                 <el-option
-                  v-for="(item,i) in one_selections"
+                  v-for="(item,i) in one_options"
                   :key="i"
                   :label="item.label"
                   :value="item.value"
@@ -426,9 +420,9 @@
           <dt>
             <ul class="clear-fix radio_static">
               <li :class="[status=='1'?'csour':'']" @click="condition(1)">零维</li>
-              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维解析法</li>
-              <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维数值法</li>
-              <li :class="[status=='4'?'csour':'']" @click="condition(4)">二维解析法</li>
+              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维</li>
+              <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维MIKE</li>
+              <li :class="[status=='4'?'csour':'']" @click="condition(4)">二维</li>
               <li @click="close()">
                 <div class="butt_close">
                   <img src="../../../static/images/close.png" alt="">
@@ -452,8 +446,8 @@
         <dl>
           <dt>
             <ul class="clear-fix radio_static">
-              <li :class="[status=='1'?'csour':'']" @click="condition(1)">一维解析法</li>
-              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维数值法</li>
+              <li :class="[status=='1'?'csour':'']" @click="condition(1)">一维</li>
+              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维MIKE</li>
               <li @click="close()">
                 <div class="butt_close">
                   <img src="../../../static/images/close.png" alt="">
@@ -476,9 +470,9 @@
           <dt>
             <ul class="clear-fix radio_static">
               <li :class="[status=='1'?'csour':'']" @click="condition(1)">零维</li>
-              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维解析法</li>
-              <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维数值法</li>
-              <li :class="[status=='4'?'csour':'']" @click="condition(4)">二维解析法</li>
+              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维</li>
+              <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维MIKE</li>
+              <li :class="[status=='4'?'csour':'']" @click="condition(4)">二维</li>
               <li :class="[status=='5'?'csour':'']" @click="condition(5)">富营养化</li>
               <li :class="[status=='6'?'csour':'']" @click="condition(6)">分层</li>
               <li @click="close()">
@@ -524,14 +518,6 @@ export default {
     return {
       companyType: '1', //河长制、流域、水资源、行政
       one:'',//一级分区
-      one_selections:[
-        {label:'I类',value:'1'},
-        {label:'II类',value:'2'},
-        {label:'III类',value:'3'},
-        {label:'IV类',value:'4'},
-        {label:'V类',value:'5'},
-        {label:'劣V类',value:'6'},
-      ],
       one_options:[
         {label:'COD,BOD',value:'1'},
         {label:'TP,TN',value:'2'},
