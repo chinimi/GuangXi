@@ -31,6 +31,7 @@ import schemeLibrary from "./schemeLibrary.vue";
 import programmePreparation from "./programmePreparation.vue";
 
 export default {
+  props: ["type"],
   components: {
     schemeLibrary,
     programmePreparation
@@ -40,6 +41,10 @@ export default {
       TapType:1,
       slideDown: true,
     };
+  },
+  created () {
+    // this.info = this.type;
+    // console.log(this.type)
   },
   methods: {
     // 增加显示隐藏
@@ -55,7 +60,9 @@ export default {
     }
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    console.log(this.type)
+  },
   watch: {}
 };
 </script>

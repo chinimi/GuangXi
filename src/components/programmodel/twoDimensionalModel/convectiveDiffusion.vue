@@ -4,12 +4,12 @@
     <div class="convectiveDiffusion_left">
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
-              缩放倍数
+              扩散系数（m2/s）
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-input
                 style="width:196px"
@@ -20,50 +20,12 @@
           </el-col>
         </el-row>
       </div>
-      <el-table
-        border
-        :data="tableData"
-        style="background-color: transparent; height: 480px;"
-        :cell-class-name="getRowColumn"
-        @cell-click="handleCellClick"
-      >
-        <el-table-column prop="ComponentName" label="组分" align="center">
-          <template slot-scope="scope">
-            <el-input
-              v-if="
-                scope.row.index === tabRowIndex &&
-                  scope.column.index === tabColumnIndex
-              "
-              v-model="scope.row.ComponentName"
-              @blur="inputBlur"
-            ></el-input>
-            <span v-else>{{ scope.row.ComponentName }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="DecayValue"
-          label="降解系数（I/day）"
-          align="center"
-        >
-          <template slot-scope="scope">
-            <el-input
-              v-if="
-                scope.row.index === tabRowIndex &&
-                  scope.column.index === tabColumnIndex
-              "
-              v-model="scope.row.DecayValue"
-              @blur="inputBlur"
-            ></el-input>
-            <span v-else>{{ scope.row.DecayValue }}</span>
-          </template>
-        </el-table-column>
-      </el-table>
     </div>
     <div class="convectiveDiffusion_right">
       <el-table
         :data="convectionTable"
         border
-        style="width: 100%;background-color: transparent;margin-top: 50px;height:445px"
+        style="width: 100%;background-color: transparent;height:445px"
       >
         <el-table-column prop="indicator" label="指标"></el-table-column>
         <el-table-column prop="minmum" label="最大值（I/d）"></el-table-column>

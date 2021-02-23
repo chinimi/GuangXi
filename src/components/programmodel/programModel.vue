@@ -17,7 +17,7 @@
       <div  class="programModel_content">
         <!--組件跳轉-->
         <div v-show="currentComp=='oneDimensionalModel'" class="Model_content">
-          <oneDimensionalModel></oneDimensionalModel>
+          <oneDimensionalModel :type="isActive"></oneDimensionalModel>
         </div>
         <div v-show="currentComp=='twoDimensionalModel'" class="Model_content">
           <twoDimensionalModel></twoDimensionalModel>

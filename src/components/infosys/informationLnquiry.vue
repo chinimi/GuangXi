@@ -652,37 +652,56 @@ export default {
         }
       ],
       /*查询项目*/
-      queryProject: "1",
+      queryProject: "",
       queryProjectList: [
         {
-          label: "水质类别",
+          label: "达标情况",
           value: "1"
         },
         {
-          label: "水质目标",
+          label: "水质类别",
           value: "2"
         },
         {
-          label: "达修情况",
+          label: "水质目标",
           value: "3"
         }
       ],
       /*显示内容*/
-      displayContent: "avg",
-      displayContentList: [
-        {
-          label: "平均值",
-          value: "avg" // min max avg
+      displayContent: "",
+      displayContentList: [],
+      information:[ {
+          label: "达标",
+          value: "1"
         },
         {
-          label: "最大",
-          value: "max" // min max avg
+          label: "不达标",
+          value: "2"
+        },],
+      waterQuality:[ {
+          label: "一类",
+          value: "1"
         },
         {
-          label: "最小",
-          value: "min" // min max avg
-        }
-      ],
+          label: "二类",
+          value: "2"
+        },
+         {
+          label: "三类",
+          value: "3"
+        },
+         {
+          label: "四类",
+          value: "4"
+        },
+         {
+          label: "五类",
+          value: "5"
+        },
+         {
+          label: "六类",
+          value: "6"
+        },],
       /*当前水系*/
       cursys: "1",
       /*行政区*/
@@ -833,9 +852,15 @@ export default {
     }
   },
   watch: {
-    pjxmval(newValue) {
-      this.tableData = [];
-    }
+   queryProject:{
+     handler(newvalue,oldvalue){
+       if(newvalue == '1'){
+         this.displayContentList = this.information
+       }else if(newvalue == '2' || newvalue == '3'){
+         this.displayContentList = this.waterQuality
+       }
+     }
+   }
   }
 };
 </script>
