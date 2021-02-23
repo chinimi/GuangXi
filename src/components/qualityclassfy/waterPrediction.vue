@@ -1,18 +1,16 @@
 <template>
   <div  id="groundWater">
     <div class="left_menu">
-      <!---->
       <div >
         <span class="cur_title">地表水资源量预测</span>
       </div>
-
       <!--水量组成-->
-        <div style="width: 100%;padding-left:20px;margin-top:20px;">
-          <el-radio-group  v-model="cursysval">
-            <el-col :span="8" v-for="product in curWaterSysOption"   :key="product.value">
-              <el-radio :label="product.value"   >{{product.label}}</el-radio>
+        <div style="width: 100%; padding:20px;">
+          <el-checkbox-group v-model="cursysval">
+            <el-col :span="8" v-for="product in curWaterSysOption" :key="product.value">
+              <el-checkbox :label="product.value">{{product.label}}</el-checkbox>
             </el-col>
-          </el-radio-group>
+          </el-checkbox-group>
         </div>
       <!-- tab切换 -->
       <div class="nav">
@@ -34,6 +32,7 @@
               </el-col>
               <el-col :span="14" style="margin-left: -5%;">
                 <div>
+
                   <el-select v-model="primaryPartition">
                     <el-option
                       v-for="(item, index) in primaryPartitionList"
@@ -594,14 +593,11 @@
 
     <!--table表格-->
     <div class="right_menu">
-
-
-      <el-row style="padding-top:20px;padding-left:30px;">
-        <el-col span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
-
-            <el-table-column  align="center" label="上游水">
-
+      <!--上游来水-->
+      <el-row style="padding-top:20px;padding-left:30px;"  v-if="sylsFlag">
+        <el-col :span="20">
+          <el-table   border :data="tableData" height="300px" style="background-color: transparent;">
+            <el-table-column  align="center" label="上游来水">
               <el-table-column
                 prop="stcd"
                 label="站点1">
@@ -610,23 +606,15 @@
                 prop="stnm"
                 label="站点2">
               </el-table-column>
-
-
-
             </el-table-column>
           </el-table>
-
-
-
         </el-col>
       </el-row>
-
-      <el-row style="padding:20px  0 30px  30px;">
-        <el-col span="20">
+      <!--区间来水-->
+      <el-row style="padding:20px  0 30px  30px;" v-if="midlsFlag">
+        <el-col :span="20">
           <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
-
-            <el-table-column  align="center" label="中游水">
-
+            <el-table-column  align="center" label="区间来水">
               <el-table-column
                 prop="stcd"
                 label="站点1">
@@ -643,20 +631,15 @@
                 prop="stnm"
                 label="站点1">
               </el-table-column>
-
-
-
             </el-table-column>
           </el-table>
         </el-col>
       </el-row>
-
-      <el-row  style="padding:30px 0 0 30px;" >
-        <el-col span="20">
+      <!--区间耗水-->
+      <el-row  style="padding:30px 0 0 30px;"  v-if="wasteFlag">
+        <el-col :span="20">
           <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
-
-            <el-table-column  align="center" label="下游水">
-
+            <el-table-column  align="center" label="区间耗水">
               <el-table-column
                 prop="stcd"
                 label="站点1">
@@ -669,26 +652,25 @@
                 prop="mndgMax"
                 label="站点1">
               </el-table-column>
-
-
             </el-table-column>
           </el-table>
         </el-col>
       </el-row>
-
     </div>
-
   </div>
 </template>
-
 <script>
-
-
   import  getWater from '../../api/index'
   import moment from "moment";
   export default {
     data() {
       return {
+        /*上游来水*/
+        sylsFlag:false,
+        /*区间来水*/
+        midlsFlag:false,
+        /*区间耗水*/
+        wasteFlag:false,
         companyType: '1', //河长制、流域、水资源、行政
         /*评价标准*/
         evaluatiStandarVal:'SL395-2007',
@@ -759,11 +741,9 @@
           value:'max',
         }],
         /*当前水系*/
-        cursysval:'river',
+        cursysval:[],
         /*水量组成*/
-        curWaterSysOption:[{label:'上游来水',value:'longriver'},{label:'区间来水',value:'river'},{label:'区间耗水',value:'watersource'}],
-
-
+        curWaterSysOption:[{label:'上游来水',value:'upwater'},{label:'区间来水',value:'middlewater'},{label:'区间耗水',value:'wastewater'}],
         /*时间选择*/
         selectTimeType:"ordertime",
         /*时间段选择*/
@@ -783,6 +763,17 @@
         startTime:'2015-07',
         /*截至时间*/
         endTime:'2015-08',
+        iconsObj:{
+          "generalwaterevaluate":"iconfont icon-shuidi3",
+          "zxpjfxmodelpart":"iconfont icon-kongqi",
+          "ssthjfx":"iconfont icon-meiyuequshi",
+          "dbszytrs":"iconfont icon-dian",
+          "yysydaq":"iconfont icon-dian",
+          "szbhqs":"iconfont icon-dian",
+          "riverHealthy":"iconfont icon-dian",
+          "riverQuality":"iconfont icon-dian",
+
+        },
       }
     },
     created() {
@@ -792,6 +783,7 @@
 
     },
     methods: {
+
       // 河长制切换切换
       companySwitch(id) {
         this.companyType = id;
@@ -965,6 +957,33 @@
       }
     },
     watch:{
+      /*判断哪个表格显示隐藏*/
+      cursysval(newValue){
+        console.log(newValue)
+        // 方法一：arr.indexOf(某元素)：未找到则返回 -1。
+
+// 实际用法：if(arr.indexOf(某元素) > -1){//则包含该元素}
+        /*上游来水*/
+        if(newValue.indexOf('upwater') > -1){
+          this.sylsFlag=true
+        }else{
+          this.sylsFlag=false
+
+        }
+        /*区间来水*/
+        if(newValue.indexOf('middlewater') > -1){
+          this.midlsFlag=true
+        }else{
+          this.midlsFlag=false
+
+        }
+        /*下游来水*/
+        if(newValue.indexOf('wastewater') > -1){
+          this.wasteFlag=true
+        }else{
+          this.wasteFlag=false
+        }
+      },
 
       pjxmval(newValue){
 
