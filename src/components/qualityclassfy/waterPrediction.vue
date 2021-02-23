@@ -1191,4 +1191,11 @@
     color: #1677FF!important;
     border-bottom: 2px solid #1677FF;
   }
+  >>>.el-menu-item{
+    border-left: 6px solid #fff;
+    font-size:16px;
+  }
+  >>>.el-submenu__title{
+    font-size:16px;
+  }
 </style>

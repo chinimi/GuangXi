@@ -206,10 +206,8 @@
         :before-close="handleClose">
         <!--tabel主体内容-->
         <div style="height:650px;width:100%; ">
-
           <el-row  class="dialog_single_title">各河段得分</el-row>
           <!--tab切换-->
-
           <ul class="programModel_title">
             <li
               v-for="(item,index) in menu"
@@ -222,8 +220,6 @@
             </li>
             <div class="clear"> </div>
           </ul>
-
-
           <!--tab  content-->
 
           <div  class="table_content">
@@ -1540,6 +1536,8 @@
     font-size: 18px;
     font-weight: 800;
     background: #1825651a;
-    padding: 10px;
+   /* padding: 10px; */
+  margin-top: 20px;
+  padding: 4px;
   }
 </style>

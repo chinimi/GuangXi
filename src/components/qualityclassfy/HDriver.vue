@@ -95,12 +95,12 @@
                     <el-table-column  label="评估年实测日最小径流量(qd)">
                 <!--循环两个input表单-->
                 <template slot-scope="scope">
-                  <el-input   v-model="scope.row.id"  ></el-input>
+                  <el-input   v-model="scope.row.qd"  ></el-input>
                 </template>
              </el-table-column>
               <el-table-column label="多年平均径流Q">
                 <template slot-scope="scope">
-                  <el-input   v-model="scope.row.id"  ></el-input>
+                  <el-input   v-model="scope.row.q"  ></el-input>
                 </template>
                       </el-table-column>
             </el-table-column>
@@ -720,38 +720,38 @@
           id: '2',
           name: '一般水期',
           month: '10',
-          qd: 'qq',
+          qd: '21',
           q: '33',
         }, {
           id: '2',
           name: '一般水期',
           month: '11',
-          qd: 'qq',
+          qd: '21',
           q: '33',
         }, {
           id: '2',
           name: '一般水期',
           month: '12',
-          qd: 'qq',
+          qd: '21',
           q: '33',
         }, {
           id: '2',
           name: '一般水期',
           month: '1',
-          qd: 'qq',
-          q: '',
+          qd: '21',
+          q: '33',
         }, {
           id: '2',
           name: '一般水期',
           month: '2',
-          qd: 'qq',
-          q: '',
+          qd: '21',
+          q: '33',
         },{
           id: '2',
           name: '一般水期',
           month: '3',
-          qd: 'qq',
-          q: '',
+          qd: '21',
+          q: '33',
         }
         ],
         /*合并单元格数据*/
@@ -825,7 +825,14 @@
           /// 第一个表格   
           this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
           var ss = FD_Value(arrList_SC_qm,arrList_TR_Qm,this.PG_Ou_AVE);  
-          var FD_FUFENG = FD_Fufeng(ss)  // 第一个表格的最终结果
+
+
+
+          //流量过程变异程度（FD）  edit by smm
+          var FDR = FD_Fufeng(ss)  // 第一个表格的最终结果
+
+          //生态流量满足程度（EF）  edit by smm
+          var EFR = 100;
            
            ///健康评价表
           var Wetseason='';
@@ -866,7 +873,7 @@
                 arrList_F44.push(item.amount4);
                 arrList_D44.push(item.amount2);
           })
-         debugger
+         
          var PHF_ = PHF(arrList_G44,arrList_E44,arrList_F44)
          var PLF_ = PLF(arrList_G44,arrList_E44,arrList_F44)
          var PVF_ = PVL(arrList_G44,arrList_D44)
@@ -886,12 +893,16 @@
         })
       
         var SFS_ = SFS(monthlist1,monthlist2);
-        debugger
+       
         var IFD = ((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
         +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8).toFixed(2);
-        var IFDr = (((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
+       
+       // 健康流量指标赋分(IFDr)  edit by smm
+       var IFDr = (((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
         +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8)*100).toFixed(2);
         
+      // (HDR)  edit by smm  
+      var HDR = FDR *0.3+ 0.4*EFR +0.3*IFDr
       },
       checkSelectable(row,index){
         let flag = true;

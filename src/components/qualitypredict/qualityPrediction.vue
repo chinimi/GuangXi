@@ -3,7 +3,7 @@
   <div  id="waterQuality" >
 
     <!--左侧递归标题目录树-->
-    <el-aside  class="sub_menu" >
+    <el-aside width=null  class="sub_menu" >
       <el-menu
         :router="true"
         class="el-menu-vertical-demo"
