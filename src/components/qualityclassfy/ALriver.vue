@@ -507,9 +507,10 @@
                 LjList.push(item.Lj);
                 VjList.push(item.Vj);
           })
-        debugger
-        var Alr = Alr_fufen(AjList,LjList,VjList);
        
+        var ED = Alr_fufen(AjList,LjList,VjList);
+       
+         var Alr = Math.min(PHP,FOE,ED)
 
         
       },
