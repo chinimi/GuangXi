@@ -529,7 +529,6 @@
         /*截至时间*/
         endTime:'2015-08',
 
-
         menulist: menulist,
         iconsObj:{
           // "generalwaterevaluate":"iconfont icon-shuidi3",
