@@ -63,14 +63,23 @@
               <el-table-column
                 prop="WNQ"
                 label="流域内水功能区">
+                  <template slot-scope="scope">
+                    <el-input   v-model="scope.row.WNQ" @blur="inputBlur"></el-input>
+                    </template>
               </el-table-column>
               <el-table-column
                 prop="DBCS"
                 label="达标次数">
+                  <template slot-scope="scope">
+                    <el-input   v-model="scope.row.DBCS" @blur="inputBlur"></el-input>
+                    </template>
               </el-table-column>
               <el-table-column
                 prop="PGCS"
                 label="评估次数">
+                  <template slot-scope="scope">
+                    <el-input   v-model="scope.row.PGCS" @blur="inputBlur"></el-input>
+                    </template>
               </el-table-column>
 
             </el-table-column>
@@ -82,10 +91,16 @@
                 <el-table-column
                   prop="WR"
                   label="评估流域水资源总量(WR)">
+                     <template slot-scope="scope">
+                    <el-input   v-model="scope.row.WR" @blur="inputBlur"></el-input>
+                    </template>
                 </el-table-column>
                 <el-table-column
                   prop="WU"
                   label="评估流域水资源开发利用量(WU)">
+                     <template slot-scope="scope">
+                    <el-input   v-model="scope.row.WU" @blur="inputBlur"></el-input>
+                    </template>
                 </el-table-column>
                  </el-table-column>
                  </el-table>
@@ -97,10 +112,19 @@
                  <el-table-column
                     prop="PERr"
                     label="有效调查公众总体评估赋分(PERr)">
+                    <template slot-scope="scope">
+                    <el-input   v-model="scope.row.PERr" @blur="inputBlur"></el-input>
+                    </template>
                  </el-table-column>
                  <el-table-column
                    prop="PERw"
                    label="公众类型权重(PERw)">
+                  <template slot-scope="scope">
+                  <el-select v-model="scope.row.PERw">
+                    <el-option v-for="item in option" :label="item.label" :value="item.value" :key="item.value">
+                      </el-option>
+                  </el-select>
+                </template>
                  </el-table-column>
 
                </el-table-column>
@@ -124,14 +148,24 @@
               <el-table-column
                 prop="RIVLn"
                 label="河段的长度(RIVLn)">
+                <template slot-scope="scope">
+                    <el-input   v-model="scope.row.RIVLn" @blur="inputBlur"></el-input>
+                    </template>
               </el-table-column>
               <el-table-column
                 prop="RIVBn"
                 label="河段防洪工程是否满足规划要求(RIVBn)">
+                 <template slot-scope="scope">
+                    <el-input   v-model="scope.row.RIVBn" @blur="inputBlur"></el-input>
+                    </template>
               </el-table-column>
               <el-table-column
                 prop="RIVWFn"
                 label="河段规划防洪标准重现期(RIVWFn)">
+                 <template slot-scope="scope">
+                    <el-input   v-model="scope.row.RIVWFn" @blur="inputBlur"></el-input>
+                    </template>
+                
               </el-table-column>
 
 
@@ -172,15 +206,49 @@
   ]
   import  getWater from '../../api/index'
   import moment from "moment";
+   import{SS_fufen,
+        WRU_fufen,
+        FLD_fufen,
+        PP_fufen
+        } from '../qualityclassfy/SSriverMath'
+
   export default {
     data() {
       return {
+           option:[
+                 {value:'0',label:'沿河/库居民（河岸以外 1Km 以内范围）'},
+                 {value:'1',label:'河道/水库管理者'},
+                 {value:'2',label:'河道/水库周边从事生产活动'},
+                 {value:'3',label:'经常来旅游'},
+                 {value:'4',label:'偶尔来旅游'},
+                       
+               ],
         SS_tableData:[{
             WNQ:'1',
             DBCS:'5',
             PGCS:'6',
-
-        }],
+        },
+        {
+            WNQ:'2',
+            DBCS:'4',
+            PGCS:'6',
+        },
+         {
+            WNQ:'3',
+            DBCS:'3',
+            PGCS:'6',
+        },
+         {
+            WNQ:'4',
+            DBCS:'5',
+            PGCS:'6',
+        },
+         {
+            WNQ:'5',
+            DBCS:'7',
+            PGCS:'7',
+        }
+          ],
         WRU_tableData:[{
             WR:'1000',
             WU:'500',
@@ -190,15 +258,64 @@
             PERr:'66',
             PERw:'0',
           },
+           {
+            PERr:'67',
+            PERw:'1',
+          },
+           {
+            PERr:'68',
+            PERw:'2',
+          },
+           {
+            PERr:'69',
+            PERw:'3',
+          },
+          {
+            PERr:'70',
+            PERw:'4',
+          },
+            {
+            PERr:'71',
+            PERw:'4',
+          },
+           {
+            PERr:'72',
+            PERw:'4',
+          },
 
         ],
         FLD_tableData:[{
           Name:'1',
           RIVLn:'100',
           RIVBn:'1',
-          RIVWFn:'50'
+          RIVWFn:'50'},
+          {
+          Name:'2',
+          RIVLn:'200',
+          RIVBn:'0',
+          RIVWFn:'100'},
+          {
+          Name:'3',
+          RIVLn:'300',
+          RIVBn:'0',
+          RIVWFn:'10'},
+          {
+          Name:'4',
+          RIVLn:'400',
+          RIVBn:'0',
+          RIVWFn:'20'},
+          {
+          Name:'5',
+          RIVLn:'500',
+          RIVBn:'1',
+          RIVWFn:'50'},
+          {
+          Name:'6',
+          RIVLn:'600',
+          RIVBn:'1',
+          RIVWFn:'100'},
 
-        }],
+        ],
 
 
         originData: [{
@@ -429,8 +546,52 @@
 
     },
     methods: {
+       inputBlur() {
+            this.tabRowIndex = null;
+            this.tabColumnIndex = "";
+          },
       SaveTable(){
+         
+        debugger
+        var ss1=[] ,ss2=[];
 
+        this.SS_tableData.forEach(function(item,index){
+          
+                ss1.push(item.DBCS)
+                ss2.push(item.PGCS)
+             })
+        var ss  = SS_fufen(ss1,ss2)  
+        
+        var wr=[],wu=[];
+        this.WRU_tableData.forEach(function(item,index)
+         {
+            wr.push(item.WR)
+            wu.push(item.WU)
+           })
+        var WRU =  WRU_fufen(wr,wu)
+
+          var PERr_=[],PERw_=[];
+         
+        this.PP_tableData.forEach(function(item,index)
+         {
+            PERr_.push(item.PERr)
+            PERw_.push(item.PERw) 
+           })
+        var PP =  PP_fufen(PERr_,PERw_)
+
+         var RIVLn_=[],RIVBn_=[],RIVWFn_=[];
+        
+        this.FLD_tableData.forEach(function(item,index)
+         {
+            RIVLn_.push(item.RIVLn)
+            RIVBn_.push(item.RIVBn)
+            RIVWFn_.push(item.RIVWFn)
+           })
+        
+        var FLD =  FLD_fufen(RIVLn_,RIVBn_,RIVWFn_)
+
+        var SSR = (ss*0.25 + WRU*0.25+PP*0.25+FLD*0.25).toFixed(2);
+        
       },
       backAgo(){
         this.$router.push({name:'riverHealthy',params:{}});
