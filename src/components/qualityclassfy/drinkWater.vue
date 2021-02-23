@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="8">
             <div class="sysfxTit">
-              评价标准：
+              评价项目：
             </div>
           </el-col>
           <el-col :span="14" style="margin-left: -5%;">
@@ -414,72 +414,7 @@
           </el-col>
         </el-row>
       </div>
-      <!--测站级别-->
-      <div class="singleli_title" v-if="cursysval=='watersource'">
-        <el-row>
-          <el-col :span="8">
-            <div class="sysfxTit">
-              测站级别：
-            </div>
-          </el-col>
-          <el-col :span="14" style="margin-left: -5%;">
-            <div>
-              <el-select v-model="fivestagePartition">
-                <el-option
-                  v-for="(item, index) in fivestagePartitionList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <!--测站名称-->
-      <div class="singleli_title" v-if="cursysval=='watersource'">
-        <el-row>
-          <el-col :span="8">
-            <div class="sysfxTit">
-              测站名称：
-            </div>
-          </el-col>
-          <el-col :span="14" style="margin-left: -5%;">
-            <div>
-              <el-select v-model="fivestagePartition">
-                <el-option
-                  v-for="(item, index) in fivestagePartitionList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <!--自定义-->
-      <div class="singleli_title" v-if="cursysval=='watersource'">
-        <el-row>
-          <el-col :span="8">
-            <div class="sysfxTit">
-              自定义：
-            </div>
-          </el-col>
-          <el-col :span="14" style="margin-left: -5%;">
-            <div>
-              <el-select v-model="customdefine">
-                <el-option
-                  v-for="(item, index) in customdefineList"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
-              </el-select>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
+
       <!--水资源分区 over-->
 
 
@@ -684,214 +619,116 @@
     <!--table表格-->
     <div class="right_menu">
       <!--矿化度-->
-      <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
+      <el-table
+        border
+        :data="tableData"
+        :cell-class-name="getRowColumn"
+        @cell-click="handleCellClick"
+       height="calc( 100vh - 400px )" style="background-color: transparent;">
         <el-table-column
           label="序号"
           type="index"
           width="50">
         </el-table-column>
         <el-table-column
-          prop="stcd"
+          prop="pgzb"
           label="评估指标">
+
         </el-table-column>
         <el-table-column
-          prop="stnm"
+          prop="fz"
           label="分值">
+          <template slot-scope="scope">
+            <el-input
+              v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+              v-model="scope.row.fz"
+              @blur="inputBlur"
+            ></el-input>
+            <span v-else>{{ scope.row.fz }}</span>
+          </template>
+
         </el-table-column>
         <el-table-column
-          prop="mndgMax"
+          prop="kfyy"
           label="扣分原因">
         </el-table-column>
         <el-table-column
-          prop="mndgType"
+          prop="df"
           label="得分">
+          <template slot-scope="scope">
+            <el-input
+              v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+              v-model="scope.row.df"
+              @blur="inputBlur"
+            ></el-input>
+            <span v-else>{{ scope.row.df }}</span>
+          </template>
         </el-table-column>
 
-
-
         <el-table-column
+          prop="bz"
           label="备注">
           <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
-            备注
+
+            {{ scope.row.bz }}
           </template>
+
         </el-table-column>
 
       </el-table>
 
-      <!--总硬度-->
-      <el-table v-if="pjxmval=='zyd'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-        <el-table-column
-          label="序号"
-          type="index"
-          width="50">
-        </el-table-column>
-        <el-table-column
-          prop="stcd"
-          label="河流编码">
-        </el-table-column>
-        <el-table-column
-          prop="stnm"
-          label="河段名称">
-        </el-table-column>
-        <el-table-column
-          prop="stnm"
-          label="测站名称">
-        </el-table-column>
-        <el-table-column
-          prop="thrd"
-          label="总硬度指标">
-        </el-table-column>
+      <el-row style="margin:20px;">
 
-        <el-table-column
-          prop="thrdType"
-          label="级别">
-        </el-table-column>
+        <el-col :span="16">
+          &nbsp;
+        </el-col>
+        <el-col :span="8">
+          <div style="width: 100px;
+            padding:20px 10px;
+            border: solid 1px #ccc;
+            text-align: center;">
+            <span>得分 ：30/100</span>
+          </div>
+
+        </el-col>
 
 
+      </el-row>
 
-        <el-table-column
-          label="备注">
-          <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
-            备注
-          </template>
-        </el-table-column>
+      <el-row>
 
-      </el-table>
+        <el-col :span="16">
+          &nbsp;
+        </el-col>
+        <el-col :span="4"><el-button>上传表</el-button></el-col>
+        <el-col :span="4"><el-button>下载模板</el-button></el-col>
 
-      <!--水化学类型-->
-      <el-table v-if="pjxmval=='shxlx'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
+      </el-row>
 
-        <el-table-column
-          label="序号"
-          type="index"
-          width="50">
-        </el-table-column>
-        <el-table-column
-          prop="stcd"
-          label="河流编码">
-        </el-table-column>
-        <el-table-column
-          prop="stnm"
-          label="河段名称">
-        </el-table-column>
-        <el-table-column
-          prop="ca"
-          label="Ca2+">
-        </el-table-column>
-        <el-table-column
-          prop="mg"
-          label="Mg2+">
-        </el-table-column>
-        <el-table-column
-          prop="na"
-          label="Na+">
-        </el-table-column>
-        <el-table-column
-
-          label="HCO3-">
-
-          <template slot-scope="scope">
-            {{scope.row.hco3}}
-
-          </template>
-        </el-table-column>
-
-        <el-table-column
-          label="SO42-">
-          <template slot-scope="scope">
-            {{scope.row.so4}}
-
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="cl"
-          label="Cl-">
-        </el-table-column>
-
-        <el-table-column
-          label="备注">
-          <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
-
-            备注
-          </template>
-        </el-table-column>
-
-      </el-table>
-
-      <!--地表天然水-->
-      <el-table v-if="pjxmval=='dbtrs'"  border :data="tableData" height="calc( 100vh - 300px )" style="background-color: transparent;">
-        <el-table-column
-          label="序号"
-          type="index"
-          width="50">
-        </el-table-column>
-        <el-table-column
-          prop="stcd"
-          label="河流编码">
-        </el-table-column>
-
-        <el-table-column
-          prop="stnm"
-          label="测站名称">
-        </el-table-column>
-        <el-table-column
-          prop="f"
-          label="氟">
-        </el-table-column>
-        <el-table-column
-          prop="ars"
-          label="砷">
-        </el-table-column>
-        <el-table-column
-          prop="mndg"
-          label="矿化物">
-        </el-table-column>
-
-        <el-table-column
-
-          label="氯化物">
-          <template slot-scope="scope">
-            {{scope.row.cl}}
-
-          </template>
-        </el-table-column>
-        <el-table-column
-
-          label="硫酸盐">
-          <template slot-scope="scope">
-            {{scope.row.so4}}
-
-          </template>
-        </el-table-column>
-
-        <el-table-column
-          label="备注">
-          <template slot-scope="scope">
-            <!--  {{scope.row.time}}-->
-            备注
-          </template>
-        </el-table-column>
-
-      </el-table>
 
       <!--分页-->
-      <div style="padding-top:30px;">
-        <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
-        <el-pagination
-          background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
-        >
-        </el-pagination>
-      </div>
+<!--      <div style="padding-top:30px;">-->
+<!--        &lt;!&ndash; <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> &ndash;&gt;-->
+<!--        <el-pagination-->
+<!--          background-->
+<!--          @size-change="handleSizeChange"-->
+<!--          @current-change="handleCurrentChange"-->
+<!--          :current-page="currentPage4"-->
+<!--          :page-sizes="[100, 200, 300, 400]"-->
+<!--          :page-size="100"-->
+<!--          layout="total, sizes, prev, pager, next, jumper"-->
+<!--          :total="400"-->
+<!--        >-->
+<!--        </el-pagination>-->
+<!--      </div>-->
+
+
     </div>
 
   </div>
@@ -903,20 +740,8 @@
   export default {
     data() {
       return {
-        /*评价标准*/
-        evaluatiStandarVal:'SL395-2007',
-        evaluationOptopn:[{
-          value:'SL395-2007',
-          value:'SL395-2007',
-        }],
-        /*评价项目*/
-        evalProVal:'SL395-2007',
-        evalProOptopn:[{
-          value:'SL395-2007',
-          value:'SL395-2007',
-        }],
-        checkedCities: [],
-        checkedCities2: [],
+
+
 
         currentPage1: 5,
         currentPage2: 5,
@@ -933,37 +758,15 @@
         fivestagePartition: "全部",
         fivestagePartitionList: [],
         tableData: [],
-        cities:['流域水系', '水资源分区', '行政区划'],
-        cities2:['按单时间段评价', '按时间序列评价'],
-        custonlever:'默认分组',
-        custonleveroption:[{
-          label:'默认分组',
-          value:'默认分组'
 
-        },],
 
         /*评价标准*/
         pjbzval:'all',
         pjbzOption:[{
-          label:"全国重要饮用水",
+          label:"水量评价",
           value:'all',
         }],
-        /*评价项目*/
-        pjxmval:'khd',
-        pjxmOption:[{
-          label:"水量评价",
-          value:'khd',
-        },{
-          label:"总硬度",
-          value:'zyd',
-        },{
-          label:"水化学类型",
-          value:'shxlx',
-        },{
-          label:"地表天然水",
-          value:'dbtrs',
-        }
-        ],
+
         /*取值方式*/
         qzfsval:'avg',
         qzfsOption:[{
@@ -974,7 +777,7 @@
         cursysval:'river',
         /*水系参数*/
         curWaterSysOption:[{label:'河长制',value:'longriver'},{label:'流域',value:'river'},{label:'水资源',value:'watersource'},{label:'行政区',value:'distriction'}],
-        // curWaterSysOption:[{label:'流域水系',value:'river'},{label:'水资源分区',value:'watersource'},{label:'行政区划',value:'distriction'}],
+
         /*时间选择*/
         selectTimeType:"singletime",
         /*时间段选择*/
@@ -994,83 +797,35 @@
         startTime:'2015-07',
         /*截至时间*/
         endTime:'2015-08',
+        tabRowIndex: null, //单元格横坐标
+        tabColumnIndex: null //单元格纵坐标
       }
     },
     created() {
-      let list = [
-        {
-          tab1: "1",
-          tab2: "TLR",
-          tab3: " 田东—隆安-日常",
-          tab4: "2020-1-4",
-          tab5: "2020-12-30",
-          tab6: "模板1",
-          tab7: "珠江流域",
-          tab8: "左江",
-          tab9: "南宁",
-          tab10: "一级分区",
-          tab11: "河长A"
-        },
-        // {
-        //   tab1: "1",
-        //   tab2: "TLR",
-        //   tab3: " 田东—隆安-日常",
-        //   tab4: "2020-1-4",
-        //   tab5: "2020-12-30",
-        //   tab6: "模板1",
-        //   tab7: "珠江流域",
-        //   tab8: "左江",
-        //   tab9: "南宁",
-        //   tab10: "一级分区",
-        //   tab11: "河长A"
-        // },
-        // {
-        //   tab1: "1",
-        //   tab2: "TLR",
-        //   tab3: " 田东—隆安-日常",
-        //   tab4: "2020-1-4",
-        //   tab5: "2020-12-30",
-        //   tab6: "模板1",
-        //   tab7: "珠江流域",
-        //   tab8: "左江",
-        //   tab9: "南宁",
-        //   tab10: "一级分区",
-        //   tab11: "河长A"
-        // },
-        // {
-        //   tab1: "1",
-        //   tab2: "TLR",
-        //   tab3: " 田东—隆安-日常",
-        //   tab4: "2020-1-4",
-        //   tab5: "2020-12-30",
-        //   tab6: "模板1",
-        //   tab7: "珠江流域",
-        //   tab8: "左江",
-        //   tab9: "南宁",
-        //   tab10: "一级分区",
-        //   tab11: "河长A"
-        // },  {
-        //   tab1: "1",
-        //   tab2: "TLR",
-        //   tab3: " 田东—隆安-日常",
-        //   tab4: "2020-1-4",
-        //   tab5: "2020-12-30",
-        //   tab6: "模板1",
-        //   tab7: "珠江流域",
-        //   tab8: "左江",
-        //   tab9: "南宁",
-        //   tab10: "一级分区",
-        //   tab11: "河长A"
-        // },
 
-      ];
 
-      this.tableData = list;
+
     },
     computed: {
 
     },
     methods: {
+
+      //点击单元格得到横纵坐标
+      handleCellClick(row, column, event, cell) {
+        this.tabRowIndex = row.index;
+        this.tabColumnIndex = column.index;
+        this.tableValue.push(row);
+      },
+      //数据中没有横纵坐标需要加上进行下一步判断
+      getRowColumn({ row, column, rowIndex, columnIndex }) {
+        row.index = rowIndex;
+        column.index = columnIndex;
+      },
+      inputBlur() {
+        this.tabRowIndex = null;
+        this.tabColumnIndex = "";
+      },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
       },
@@ -1085,76 +840,52 @@
           "tjsj":"201507-201508"
         }
         this.tableData=[]
-        /*矿化度请求*/
-        if(this.pjxmval=="khd") {
+
+
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
           /*http请求*/
           this.$http.post(khdurl, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function(res) {
             console.log(res)
+            // this.tableData=res.body.data.pageResultList
+            console.log("获取查询的数据")
+            this.tableData=[
+              {
+                'pgzb':"年度供水保证率",
+                'fz':14,
+                'kfyy':'未知',
+                'df':10,
+                'bz':'备注'
+              },{
+                'pgzb':"应急备用水源地建设",
+                'fz':8,
+                'kfyy':'未知',
+                'df':10,
+                'bz':'备注'
 
-            this.tableData=res.body.data.pageResultList
+              },{
+                'pgzb':"水量调度管理",
+                'fz':4,
+                'kfyy':'未知',
+                'df':10,
+                'bz':'备注'
+              },{
+                'pgzb':"供水设施运行",
+                'fz':4,
+                'kfyy':'未知',
+                'df':19,
+                'bz':'备注'
+              }
+
+
+            ]
+            console.log(this.tableData)
           }).catch(function(res){
 
 
           })
 
-
-        }
-
-        /*水化学类型*/
-        if(this.pjxmval=="shxlx") {
-          let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
-          /*http请求*/
-          this.$http.post(chemistryurl, JSON.stringify( param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
-
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-
-            // alert("请求失败")
-          })
-
-        }
-
-        /*总硬度*/
-        if(this.pjxmval=="zyd") {
-          let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
-          /*http请求*/
-          this.$http.post(zydurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
-
-            console.log(res)
-
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-            console.log(res)
-
-          })
-
-        }
-
-
-        /*地表天然水*/
-        if(this.pjxmval=="dbtrs") {
-
-          let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
-          /*http请求*/
-          this.$http.post(dbtrsurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-
-
-          })
-
-        }
 
 
 
@@ -1188,6 +919,7 @@
     background: #fff;
   }
   #groundWater .left_menu{
+    overflow-y: auto;
     background: #fff;
     width: 20%;
     height: calc( 100vh - 80px);

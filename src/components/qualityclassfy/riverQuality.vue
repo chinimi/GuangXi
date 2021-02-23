@@ -1648,10 +1648,10 @@
   }
 
 
-  >>>.el-table th:hover, .el-table tr:hover{
+/*  >>>.el-table th:hover, .el-table tr:hover{*/
 
-background:red ;
-  }
+/*background:red ;*/
+/*  }*/
  >>> .el-table  tr:hover>td {
     background :transparent;
 

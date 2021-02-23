@@ -2,7 +2,7 @@
   <!--信息综合管理-->
   <div  id="infoSystem" >
       <!--左侧递归标题目录树-->
-    <el-aside   style="width:15%;height:100%;background:rgba(21,37,63,1);padding-top: 25px;">
+    <el-aside    width=null  style="width:15%;height:100%;background:rgba(21,37,63,1);padding-top: 25px;">
             <el-menu
                 :router="true"
                 class="el-menu-vertical-demo"

@@ -3,7 +3,7 @@
   <div  id="waterQuality" >
     <!--水质评价质量监测-->
       <!--左侧递归标题目录树-->
-    <el-aside  class="sub_menu">
+    <el-aside  width=null class="sub_menu">
             <el-menu
                 :router="true"
                 class="el-menu-vertical-demo"
@@ -28,14 +28,24 @@
 
                     <!-- 判断二级菜单（没有三级菜单）-->
                     <el-menu-item :index="i.path" v-if="!i.children">
-<!--                      <i :class=iconsObj[i.id]></i>-->
-                      <i class="el-icon-menu"></i>
+                      <i :class=iconsObj[i.id]></i>
+<!--                      <i class="el-icon-menu"></i>-->
                       {{i.authName}}
                     </el-menu-item>
                     <!-- 判断二级菜单（有三级菜单）-->
                     <el-submenu :index="i.path" v-if="i.children">
-                      <template slot="title">{{i.authName}}</template>
-                      <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>
+                      <template slot="title">
+                        <i :class=iconsObj[i.id]></i>
+
+<!--                        <i class="el-icon-menu"></i>-->
+                        {{i.authName}}
+                      </template>
+
+                      <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">
+                        <i :class=iconsObj[j.id]></i>
+<!--                        <i class="el-icon-menu"></i>-->
+                        {{j.authName}}
+                      </el-menu-item>
                     </el-submenu>
                   </div>
 
@@ -95,7 +105,12 @@
         iconsObj:{
          "generalwaterevaluate":"iconfont icon-shuidi3",
          "zxpjfxmodelpart":"iconfont icon-kongqi",
-         "ssthjfx":"iconfont icon-shuidi3",
+          "ssthjfx":"iconfont icon-meiyuequshi",
+          "dbszytrs":"iconfont icon-dian",
+         "yysydaq":"iconfont icon-dian",
+         "szbhqs":"iconfont icon-dian",
+         "riverHealthy":"iconfont icon-dian",
+         "riverQuality":"iconfont icon-dian",
 
         },
       }
@@ -187,6 +202,10 @@
   }
   >>>.el-menu-item{
     border-left: 6px solid #fff;
-
+    font-size:16px;
   }
+>>>.el-submenu__title{
+  font-size:16px;
+}
+
 </style>

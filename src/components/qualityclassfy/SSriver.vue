@@ -57,9 +57,8 @@
         <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
       </el-row>
       <el-row  style="padding:20px  0 30px  30px;" >
-         
-        <el-col span="10">
-          <el-table    border :data="SS_tableData"  height="300px" style="background-color: transparent;">
+              <el-col :span="8">
+                <el-table    border :data="SS_tableData"  height="300px" style="background-color: transparent;">
             <el-table-column  align="center" label="水功能区达标指标">
               <el-table-column
                 prop="WNQ"
@@ -77,41 +76,41 @@
             </el-table-column>
              </el-table>
               </el-col>
-             <el-col :span="10" style="padding-left:10px;">
-            <el-table    border :data="WRU_tableData" height="300px" style="background-color: transparent;">
-             <el-table-column  align="center" label="水资源开发利用指标(WRU)">
-              <el-table-column
-                prop="WR"
-                label="评估流域水资源总量(WR)">
-              </el-table-column>
-              <el-table-column
-                prop="WU"
-                label="评估流域水资源开发利用量(WU)">
-              </el-table-column>
-               </el-table-column>
-               </el-table>
+               <el-col :span="8" style="padding-left:10px;">
+                 <el-table    border :data="WRU_tableData" height="300px" style="background-color: transparent;">
+               <el-table-column  align="center" label="水资源开发利用指标(WRU)">
+                <el-table-column
+                  prop="WR"
+                  label="评估流域水资源总量(WR)">
+                </el-table-column>
+                <el-table-column
+                  prop="WU"
+                  label="评估流域水资源开发利用量(WU)">
+                </el-table-column>
+                 </el-table-column>
+                 </el-table>
                </el-col>
 
-              <el-col :span="10" style="padding-right:0px;">
-                 <el-table    border :data="PP_tableData" height="300px" style="background-color: transparent;">
+              <el-col :span="8" style="padding-left:10px;">
+               <el-table    border :data="PP_tableData" height="300px" style="background-color: transparent;">
                <el-table-column  align="center" label="公众满意指标(PP)">
-              <el-table-column
-                prop="PERr"
-                label="有效调查公众总体评估赋分(PERr)">
-              </el-table-column>
-              <el-table-column
-                prop="PERw"
-                label="公众类型权重(PERw)">
-              </el-table-column>
-             
-            </el-table-column>
-          </el-table>
+                 <el-table-column
+                    prop="PERr"
+                    label="有效调查公众总体评估赋分(PERr)">
+                 </el-table-column>
+                 <el-table-column
+                   prop="PERw"
+                   label="公众类型权重(PERw)">
+                 </el-table-column>
+
+               </el-table-column>
+              </el-table>
            </el-col>
 
 
 
       </el-row>
-     
+
       <el-row style="padding:20px  0 30px  30px;">
         <el-col span="20">
           <el-table    border :data="FLD_tableData" height="300px" style="background-color: transparent;">
