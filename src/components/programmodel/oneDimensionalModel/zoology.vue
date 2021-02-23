@@ -71,7 +71,8 @@ export default {
       currentPage1: 5,
       currentPage2: 5,
       currentPage3: 5,
-      currentPage4: 4
+      currentPage4: 4,
+      ScenarioCode:'',//方案编码
     };
   },
   computed: {},
@@ -82,10 +83,11 @@ export default {
   methods: {
     //获取表格数据
     getTableData() {
+      this.ScenarioCode = this.$route.params.value.ScenarioCode
       var that = this;
       var url =
         modelURL +
-        "/api/GXRCWQ/ModelManager/GetEcolabConstantInfo?scenarioCode=DHJKTXRCFA";
+        "/api/GXRCWQ/ModelManager/GetEcolabConstantInfo?scenarioCode="+that.ScenarioCode;
       fetch(url)
         .then(respose => {
           return respose.json();
@@ -138,7 +140,7 @@ export default {
       });
       var testdata = {
         ItemList: ItemList,
-        ScenarioCode: "DHJKTXRCFA"
+        ScenarioCode: this.ScenarioCode
       };
       var url = modelURL + "/api/GXRCWQ/ModelManager/UpdateEcolabConstantInfo";
       var _this = this;

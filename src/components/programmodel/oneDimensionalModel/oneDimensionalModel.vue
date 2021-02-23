@@ -11,11 +11,8 @@
           </div>
         </li>
       </ul>
-      <div v-show="TapType == '1'" class="Model_text">
-        <schemeLibrary></schemeLibrary>
-      </div>
-      <div v-show="TapType == '2'" class="Model_text">
-        <programmePreparation></programmePreparation>
+      <div  class="Model_text">
+        <router-view></router-view>
       </div>
     </div>
     <div class="header_true" v-if="!slideDown">
@@ -27,6 +24,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import schemeLibrary from "./schemeLibrary.vue";
 import programmePreparation from "./programmePreparation.vue";
 
@@ -43,10 +42,12 @@ export default {
     };
   },
   created () {
-    // this.info = this.type;
-    // console.log(this.type)
+
   },
   methods: {
+    ...mapActions({
+      changeOneDimensionalModelTabID: "changeOneDimensionalModelTabID",
+    }),
     // 增加显示隐藏
     header(id) {
       if (id == "1") {
@@ -56,14 +57,24 @@ export default {
       }
     },
     TapSwitch(id){
+      this.changeOneDimensionalModelTabID({value:id})
       this.TapType = id;
+      if(id==1){
+              this.$router.push({name:'schemeLibrary',params:{}});
+      }else{
+        // this.$message.error("请选择方案！");
+        this.$router.push({name:'programmePreparation',params:{}});
+      }
     }
   },
   computed: {},
   mounted() {
-    console.log(this.type)
+
   },
-  watch: {}
+  watch: {
+
+
+  }
 };
 </script>
 <style scoped>

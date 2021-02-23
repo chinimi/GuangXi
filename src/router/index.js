@@ -8,6 +8,9 @@ import groundWater from '../components/qualityclassfy/groundWater.vue'
 import changeWater from '../components/qualityclassfy/changeWater.vue'
 import drinkWater from '../components/qualityclassfy/drinkWater.vue'
 import environWater from '../components/qualityclassfy/environWater.vue'
+import infoSystem from '../components/infosys/infoSystem.vue'
+import programModel from '../components/programmodel/programModel.vue'
+import bearingCapacity from '../components/bearcapacity/bearingCapacity.vue'
 /**/
 import generalwaterevaluate from '../components/qualityclassfy/generalwaterevaluate.vue'
 /*综合运算与展示*/
@@ -28,11 +31,7 @@ import ALriver from '../components/qualityclassfy/ALriver.vue'
 /*社会服务功能(SS)*/
 import SSriver from '../components/qualityclassfy/SSriver.vue'
 
-/*信息综合管理*/
-// import informationAggregation from '../components/infosys/informationAggregation.vue'//信息汇总
-// import informationLnquiry from '../components/infosys/informationLnquiry.vue'//信息查询
-// import waterQualityReport from '../components/infosys/waterQualityReport.vue'//水质报告
-// import authorityManagement from '../components/infosys/authorityManagement.vue'//权限管理
+
 
 /*预测预警组件*/
 import qualityPrediction from "../components/qualitypredict/qualityPrediction"
@@ -40,6 +39,19 @@ import qualityClassfy from "../components/qualityclassfy/qualityClassfy";
 import waterPrediction from "../components/qualityclassfy/waterPrediction";
 import underWater from "../components/qualityclassfy/underWater";
 import waterWarn from "../components/qualityclassfy/waterWarn";
+
+// 一级模型
+import oneDimensionalModel from '../components/programmodel/oneDimensionalModel/oneDimensionalModel.vue'
+import twoDimensionalModel from '../components/programmodel/twoDimensionalModel/twoDimensionalModel.vue'
+import remoteSensingModel from '../components/programmodel/remoteSensingModel/remoteSensingModel.vue'
+import moduleManager from '../components/programmodel/moduleManager/moduleManager.vue'
+
+
+import schemeLibrary from "../components/programmodel/oneDimensionalModel/schemeLibrary"
+import programmePreparation from "../components/programmodel/oneDimensionalModel/programmePreparation"
+
+import schemeLibrarys from "../components/programmodel/twoDimensionalModel/schemeLibrary"
+import programmePreparations from "../components/programmodel/twoDimensionalModel/programmePreparation"
 
 
 
@@ -53,12 +65,6 @@ export default new Router({
       name: 'login',
       component: login
     },
-
-    // {
-    //     //   path: '/qualityPrediction',
-    //     //   name: 'qualityPrediction',
-    //     //   component: qualityPrediction
-    //     // },
     // 首页
     {
       path:'/',//一级路由
@@ -178,28 +184,75 @@ export default new Router({
           ]
         },
 
-          /*水质评价 路由配置*/
-          /*信息综合管理 路由配置*/
-        // {
-        //   path: '/informationAggregation',
-        //   name: 'informationAggregation',
-        //   component:informationAggregation,
-        // },
-        // {
-        //   path: '/informationLnquiry',
-        //   name: 'informationLnquiry',
-        //   component:informationLnquiry,
-        // },
-        // {
-        //   path: '/waterQualityReport',
-        //   name: 'waterQualityReport',
-        //   component:waterQualityReport,
-        // },
-        // {
-        //   path: '/authorityManagement',
-        //   name: 'authorityManagement',
-        //   component:authorityManagement,
-        // },
+        {
+          path: '/infoSystem',
+          name: 'infoSystem',
+          component:infoSystem,//信息综合管理
+        },
+        {
+          path: '/programModel',
+          name: 'programModel',
+          component:programModel,//方案模型管理
+          children:[
+            {
+              path: '/oneDimensionalModel',
+              name: 'oneDimensionalModel',
+              component:oneDimensionalModel,
+              children:[//三级路由
+                 // 模型管理 tab1
+                  {
+                    path: '/oneDimensionalModel/schemeLibrary',
+                    name: 'schemeLibrary',
+                    component:schemeLibrary,
+                  },
+                  // 模型管理 tab2
+                  {
+                    path: '/oneDimensionalModel/programmePreparation',
+                    name: 'programmePreparation',
+                    component:programmePreparation,
+                  },
+              ],
+            },
+            {
+              path: '/twoDimensionalModel',
+              name: 'twoDimensionalModel',
+              component:twoDimensionalModel,
+              children:[//三级路由
+                // 模型管理 tab1
+                 {
+                   path: '/twoDimensionalModel/schemeLibrary',
+                   name: 'schemeLibrarys',
+                   component:schemeLibrarys,
+                 },
+                 // 模型管理 tab2
+                 {
+                   path: '/twoDimensionalModel/programmePreparation',
+                   name: 'programmePreparations',
+                   component:programmePreparations,
+                 },
+             ],
+            },
+            {
+              path: '/remoteSensingModel',
+              name: 'remoteSensingModel',
+              component:remoteSensingModel,
+            },
+            {
+              path: '/moduleManager',
+              name: 'moduleManager',
+              component:moduleManager,
+            },
+
+
+          ]
+        },
+        {
+          path: '/bearingCapacity',
+          name: 'bearingCapacity',
+          component:bearingCapacity,//承载能力分析
+        },
+
+
       ]
     },
 

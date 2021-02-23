@@ -1,15 +1,15 @@
 <template>
   <!--对流扩散主组件-->
   <div class="convectiveDiffusion">
-    <div class="convectiveDiffusion_left">
+    <div class="convectiveDiffusion_lefts">
       <div class="singleli_title">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <div class="sysfxTit">
               纵向扩散系数（㎡/s）
             </div>
           </el-col>
-          <el-col :span="14">
+          <el-col :span="13">
             <div>
               <el-input
                 style="width:196px"
@@ -23,7 +23,7 @@
       <el-table
         border
         :data="tableData"
-        style="background-color: transparent; height: 480px;"
+        style="background-color: transparent; height: 450px;"
         :cell-class-name="getRowColumn"
         @cell-click="handleCellClick"
       >
@@ -59,7 +59,7 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="convectiveDiffusion_right">
+    <div class="convectiveDiffusion_rights">
       <el-table
         :data="convectionTable"
         border

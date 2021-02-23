@@ -477,15 +477,17 @@ export default {
       currentPage3: 5,
       currentPage4: 4,
       tabRowIndex: null, //单元格横坐标
-      tabColumnIndex: null //单元格纵坐标
+      tabColumnIndex: null, //单元格纵坐标
+      ScenarioCode:'',//方案编码
     };
   },
   methods: {
     //获取表格数据
     getTableData() {
+       this.ScenarioCode = this.$route.params.value.ScenarioCode
       var url =
         modelURL +
-        "/api/GXRCWQ/ModelManager/GetNamInfoList?scenarioCode=DHJKTXRCFA";
+        "/api/GXRCWQ/ModelManager/GetNamInfoList?scenarioCode="+this.ScenarioCode;
       fetch(url)
         .then(respose => {
           return respose.json();

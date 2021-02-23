@@ -20,7 +20,7 @@
       </div>
             <div class="container_table">
         <el-table
-        border  
+        border
           :data="roughnessTable"
           style="width: 100%;background-color: transparent;height:425px;"
         >
@@ -58,55 +58,16 @@
 </template>
 
 <script>
+import roughnessTableData from "./Table.js";
 export default {
   data() {
     return {
-      input: "",
-      tableData: [
-        {
-          date: "第一类 小河（汛期最大水面宽度30m）",
-          name: "",
-          address: "",
-          max: ""
-        },
-        {
-          date: "1、平原河流",
-          name: "",
-          address: "",
-          max: ""
-        },
-        {
-          date: "（1）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（2）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（3）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（4）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        },
-        {
-          date: "（5）清洁，顺直，无沙滩，无谭",
-          name: "0.025",
-          address: "0.030",
-          max: "0.033"
-        }
-      ]
+      ResistanceNumber: "",
+      roughnessTable: [],
     };
+  },
+  mounted(){
+      this.roughnessTable = roughnessTableData.roughnessTableData;
   },
   methods: {
     display(value) {

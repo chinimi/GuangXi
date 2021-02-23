@@ -1,9 +1,6 @@
 /*入口*/
 import Vue from 'vue'
 import Vuex  from  'vuex'
-import mutations from  "./mutations"
-import actions from  "./action"
-import model from "./model/index"
 
 Vue.use(Vuex)
 
@@ -11,12 +8,17 @@ const state={
   map:null,//全局变量地图
 
 }
-
+import mutations from  "./mutations"
+import actions from  "./action"
+import OneModel from "./model/index"
 export default new Vuex.Store({
-  state,
-  mutations,
-  actions,
-  model
+  modules:{
+    state,
+    mutations,
+    actions,
+    OneModel
+  }
+
 
 
 })

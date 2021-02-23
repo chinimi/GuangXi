@@ -8,7 +8,6 @@
             :class="['programModelClass',{programModel_active : ( isActive == item.value ? true : false )}]"
             @click="isActive = item.value;currentComp = item.comp"
           >
-            <!-- <i  :class="['iconfont', item.icon]"></i> -->
             <img :src=item.icon alt="">
             <span>{{item.name}}</span>
           </li>
@@ -17,15 +16,19 @@
       <div  class="programModel_content">
         <!--組件跳轉-->
         <div v-show="currentComp=='oneDimensionalModel'" class="Model_content">
-          <oneDimensionalModel :type="isActive"></oneDimensionalModel>
+          <router-view></router-view>
+          <!-- <oneDimensionalModel></oneDimensionalModel> -->
         </div>
         <div v-show="currentComp=='twoDimensionalModel'" class="Model_content">
-          <twoDimensionalModel></twoDimensionalModel>
+          <router-view></router-view>
+          <!-- <twoDimensionalModel></twoDimensionalModel> -->
         </div>
         <div v-show="currentComp=='remoteSensingModel'"  class="Model_content">
+          <!-- <router-view></router-view> -->
           <remoteSensingModel></remoteSensingModel>
         </div>
         <div v-show="currentComp=='moduleManager'"  class="Model_content">
+          <!-- <router-view></router-view> -->
           <moduleManager></moduleManager>
         </div>
       </div>
@@ -85,6 +88,20 @@ import moduleManager from './moduleManager/moduleManager.vue';
 
     },
     watch: {
+    currentComp(newValue) {
+      if(newValue=="oneDimensionalModel"){
+        this.$router.push({name:'schemeLibrary',params:{}});
+      }
+      if(newValue=="twoDimensionalModel"){
+        this.$router.push({name:'schemeLibrarys',params:{}});
+      }
+      if(newValue=="remoteSensingModel"){
+        this.$router.push({name:'remoteSensingModel',params:{}});
+      }
+       if(newValue=="moduleManager"){
+        this.$router.push({name:'moduleManager',params:{}});
+      }
+    }
 
     }
 

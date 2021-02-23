@@ -429,27 +429,27 @@
       <el-button type="primary" size="small" plain>新增方案</el-button>
         <div>
          <el-table border :data="tableData" height="480" style="background-color: transparent;margin: 10px 0px;">
-            <el-table-column prop="tab1" label="序号" min-width="50">
+            <el-table-column prop="tab1" label="序号" width="70" type="index">
             </el-table-column>
-            <el-table-column prop="tab2" label="方案编码" min-width="80">
+            <el-table-column prop="ScenarioCode" label="方案编码" min-width="80">
             </el-table-column>
-            <el-table-column prop="tab3" label="方案名称" min-width="100">
+            <el-table-column prop="ScenarioName" label="方案名称" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab4" label="创建时间" min-width="100">
+            <el-table-column prop="CreateTime" label="创建时间" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab5" label="修改时间" min-width="100">
+            <!-- <el-table-column prop="ForecastTime" label="修改时间" min-width="100">
+            </el-table-column> -->
+            <el-table-column prop="GroupName" label="基准模板" min-width="80">
             </el-table-column>
-            <el-table-column prop="tab6" label="基准模板" min-width="80">
+            <el-table-column prop="RiverGrade1_ZoneName" label="一级流域分区" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab7" label="一级流域分区" min-width="150">
+            <el-table-column prop="RiverGrade2_ZoneName" label="二级流域分区" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab8" label="二级流域分区" min-width="150">
+            <el-table-column prop="District_ZoneName" label="行政分区（市）" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab9" label="行政分区（市）" min-width="150">
+            <el-table-column prop="WaterResource_ZoneName" label="水资源分区" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab10" label="水资源分区" min-width="100">
-            </el-table-column>
-            <el-table-column prop="tab11" label="所属河长" min-width="100">
+            <el-table-column prop="RiverChief_ZoneName" label="所属河长" min-width="100">
             </el-table-column>
             <el-table-column label="操作" min-width="300">
               <template slot-scope="scope">
@@ -613,6 +613,18 @@ export default {
     this.tableData = list;
   },
   methods: {
+    getTableData(){
+        var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetScenarioInfoList?scenarioType=MIKE21FMModel";
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+         this.tableData = data
+        });
+    },
     TapSwitch(id){
       this.TapType = id;
     },
@@ -620,8 +632,7 @@ export default {
       console.log(index, row);
     },
     handleEdit(index, row) {
-      row.show = true;
-      console.log(index, row);
+      this.$router.push({name:'programmePreparations',params:{value:row}});
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -634,7 +645,9 @@ export default {
     }
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    this.getTableData();
+  },
   watch: {}
 };
 </script>

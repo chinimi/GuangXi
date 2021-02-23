@@ -66,11 +66,13 @@
         </div>
 
         <div v-show="currentComp=='infoSystem'">
-          <infoSystem></infoSystem>
+          <router-view></router-view>
+          <!-- <infoSystem></infoSystem> -->
         </div>
 
         <div v-show="currentComp=='programModel'">
-          <programModel></programModel>
+          <router-view></router-view>
+          <!-- <programModel></programModel> -->
         </div>
 
         <div v-show="currentComp=='qualityClassfy'">
@@ -87,7 +89,8 @@
           <router-view></router-view>
         </div>
         <div v-show="currentComp=='bearingCapacity'">
-          <bearingCapacity></bearingCapacity>
+          <router-view></router-view>
+          <!-- <bearingCapacity></bearingCapacity> -->
         </div>
 
         <div v-show="currentComp=='operationalDisplay'">
@@ -302,6 +305,16 @@ export default {
       /*运算*/
       if(newValue=="operationalDisplay"){
         this.$router.push({name:'operationalDisplay',params:{}});
+      }
+
+       if(newValue=="infoSystem"){
+        this.$router.push({name:'infoSystem',params:{}});
+      }
+       if(newValue=="programModel"){
+        this.$router.push({name:'schemeLibrary',params:{}});
+      }
+        if(newValue=="bearingCapacity"){
+        this.$router.push({name:'bearingCapacity',params:{}});
       }
     }
   }

@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/icon/iconfont.css'
 import VueResource from 'vue-resource'
 // import store from './store/index.js'
-import store from './store/index.js'//自动读取index.js
+import store from './store'//自动读取index.js
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 

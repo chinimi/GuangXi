@@ -109,7 +109,7 @@
       <div class="title">天然河道糙率表</div>
       <div class="container_table">
         <el-table
-        border  
+        border
           :data="roughnessTable"
           style="width: 100%;background-color: transparent;height:445px;"
         >
@@ -153,7 +153,8 @@ export default {
       tabColumnIndex: null, //单元格纵坐标
       tableData: [],
       roughnessTable: [],
-      tableValue: []
+      tableValue: [],
+      ScenarioCode:'',//方案编码
     };
   },
   mounted() {
@@ -163,8 +164,9 @@ export default {
   methods: {
     //获取表格数据
     getTableData() {
+      this.ScenarioCode = this.$route.params.value.ScenarioCode
       var url =
-        modelURL + "/api/GXRCWQ/ModelManager/GetHDInfo?scenarioCode=DHJKTXRCFA";
+        modelURL + "/api/GXRCWQ/ModelManager/GetHDInfo?scenarioCode="+this.ScenarioCode;
       fetch(url)
         .then(respose => {
           return respose.json();

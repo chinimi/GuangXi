@@ -1150,7 +1150,7 @@ line-height: 38px;
 .sysfxTit{
   text-align: right;
   font-size: 14px;
-  width: 100px;
+  /* width: 100px; */
   height: 30px;
   line-height: 30px;
 }
@@ -1180,6 +1180,13 @@ line-height: 38px;
   position: relative;
   height: 600px;
 }
+.programmePreparation_left{
+  position: relative;
+  float: left;
+  width: 25%;
+  height: 600px;
+  background: #F7FBFF;
+}
 .programmePreparation_ul{
   position: relative;
   width: 100%;
@@ -1200,6 +1207,14 @@ line-height: 38px;
   position: relative;
   width: 100%;
   height: 560px;
+}
+.programmePreparation_right{
+  float: left;
+  position: relative;
+  width: 75%;
+  background: #FFFFFF;
+  padding: 18px;
+  box-sizing: border-box;
 }
 /* 基本设置 */
 .basicSetup{
@@ -1424,7 +1439,20 @@ line-height: 38px;
 .convectiveDiffusion_right{
   float: right;
   width: 100%;
-  height: 80%;
+  height: 70%;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-top: 0px!important;
+}
+.convectiveDiffusion_lefts{
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+.convectiveDiffusion_rights{
+  float: right;
+  width: 50%;
+  height: 100%;
   padding: 10px;
   box-sizing: border-box;
   padding-top: 0px!important;
@@ -1556,7 +1584,7 @@ line-height: 38px;
 }
 .administrativeDivisions_left{
   float: left;
-  width: 20%;
+  /* width: 20%; */
   height: 100%;
   position: relative;
   padding-top: 20px;

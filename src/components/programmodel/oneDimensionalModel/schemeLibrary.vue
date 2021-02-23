@@ -430,27 +430,27 @@
             height="480"
             style="background-color: transparent;margin:10px 0;"
           >
-            <el-table-column prop="tab1" label="序号" min-width="50">
+            <el-table-column prop="tab1" label="序号" width="70" type="index">
             </el-table-column>
-            <el-table-column prop="tab2" label="方案编码" min-width="80">
+            <el-table-column prop="ScenarioCode" label="方案编码" min-width="80">
             </el-table-column>
-            <el-table-column prop="tab3" label="方案名称" min-width="100">
+            <el-table-column prop="ScenarioName" label="方案名称" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab4" label="创建时间" min-width="100">
+            <el-table-column prop="CreateTime" label="创建时间" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab5" label="修改时间" min-width="100">
+            <!-- <el-table-column prop="ForecastTime" label="修改时间" min-width="100">
+            </el-table-column> -->
+            <el-table-column prop="GroupName" label="基准模板" min-width="80">
             </el-table-column>
-            <el-table-column prop="tab6" label="基准模板" min-width="80">
+            <el-table-column prop="RiverGrade1_ZoneName" label="一级流域分区" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab7" label="一级流域分区" min-width="150">
+            <el-table-column prop="RiverGrade2_ZoneName" label="二级流域分区" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab8" label="二级流域分区" min-width="150">
+            <el-table-column prop="District_ZoneName" label="行政分区（市）" min-width="150">
             </el-table-column>
-            <el-table-column prop="tab9" label="行政分区（市）" min-width="150">
+            <el-table-column prop="WaterResource_ZoneName" label="水资源分区" min-width="100">
             </el-table-column>
-            <el-table-column prop="tab10" label="水资源分区" min-width="100">
-            </el-table-column>
-            <el-table-column prop="tab11" label="所属河长" min-width="100">
+            <el-table-column prop="RiverChief_ZoneName" label="所属河长" min-width="100">
             </el-table-column>
             <el-table-column label="操作" min-width="300">
               <template slot-scope="scope">
@@ -539,85 +539,27 @@ export default {
       currentPage4: 4,
     };
   },
-  created() {
-    // 发请求去后台拿数据,如果有api，就正常请求，
-    //我这里是demo，就简单给list赋值了，原理一样。
-    // getlistApi().then(res => {
-    // let list = res.data.list
-    let list = [
-      {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
-      {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
-      {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
-      {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
-      {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      }
-    ];
-    // list.forEach(element => {
-    //   element["show"] = false;
-    // });
-    this.tableData = list;
-    // })
+  // created() {
+  //   this.getTableData();
+  // },
+  mounted(){
+  this.$nextTick(()=>{
+       this.getTableData();
+        })
   },
   methods: {
+    getTableData(){
+        var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetScenarioInfoList?scenarioType=MIKE11Model";
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+         this.tableData = data
+        });
+    },
     TapSwitch(id){
       this.TapType = id;
     },
@@ -628,8 +570,7 @@ export default {
       console.log(index, row);
     },
     handleEdit(index, row) {
-      row.show = true;
-      console.log(index, row);
+      this.$router.push({name:'programmePreparation',params:{value:row}});
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -642,7 +583,6 @@ export default {
     }
   },
   computed: {},
-  mounted() {},
   watch: {}
 };
 </script>

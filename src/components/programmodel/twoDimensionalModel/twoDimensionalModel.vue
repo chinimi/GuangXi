@@ -15,11 +15,8 @@
           </div>
         </li>
       </ul>
-      <div v-show="TapType == '1'" class="Model_text">
-        <schemeLibrary></schemeLibrary>
-      </div>
-      <div v-show="TapType == '2'" class="Model_text">
-        <programmePreparation></programmePreparation>
+      <div  class="Model_text">
+        <router-view></router-view>
       </div>
     </div>
     <div class="header_true" v-if="!slideDown">
@@ -54,8 +51,14 @@ export default {
         this.slideDown = true;
       }
     },
-    TapSwitch(id) {
+    TapSwitch(id){
       this.TapType = id;
+      if(id==1){
+        this.$router.push({name:'schemeLibrarys',params:{}});
+      }
+      else{
+        this.$router.push({name:'programmePreparations',params:{}});
+      }
     }
   },
   computed: {},

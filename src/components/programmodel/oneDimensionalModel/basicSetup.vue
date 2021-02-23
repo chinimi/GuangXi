@@ -11,7 +11,7 @@
           </el-col>
           <el-col :span="13">
             <div>
-              <el-input v-model="templateName" placeholder="模板1"></el-input>
+              <el-input v-model="GroupName" placeholder="请输入内容" disabled></el-input>
             </div>
           </el-col>
         </el-row>
@@ -119,24 +119,26 @@ export default {
   components: {},
   data() {
     return {
-      templateName:'',//模板名称
+      GroupName:'',//模板名称
       ScenarioName:'',//方案名称
       StartTime:'',//开始时间
       EndTime:'',//结束时间
       SimIntervalMinute: '',//计算步长
       Description:'',//方案描述
+      ScenarioCode:'',//方案编码
     };
   },
   methods: {
     //获取基本信息
     getModelManagerData(){
-        var url = modelURL + "/api/GXRCWQ/ModelManager/GetScenarioInfo?scenarioCode=DHJKTXRCFA"
+      this.ScenarioCode = this.$route.params.value.ScenarioCode
+        var url = modelURL + "/api/GXRCWQ/ModelManager/GetScenarioInfo?scenarioCode="+this.ScenarioCode
          fetch(url)
         .then(respose => {
           return respose.json();
         })
         .then(data => {
-            this.templateName = data.templateName
+            this.GroupName = data.GroupName
             this.ScenarioName = data.ScenarioName
             this.StartTime = data.StartTime
             this.EndTime = data.EndTime
@@ -154,7 +156,7 @@ export default {
         // contentType: "application/json",
         url: url,
         data: {
-            "ScenarioCode": "DHJKTXRCFA",
+            "ScenarioCode": this.ScenarioCode,
             "ScenarioName": _this.templateName,
             "StartTime": _this.StartTime,
             "EndTime": _this.EndTime,
