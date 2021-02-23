@@ -6,14 +6,6 @@
         <div v-for="(item, index) in data" :key="index">
           <div class="data_info" @click="tap(item, index)">
             <span>{{ item.name }}</span>
-            <!-- <img
-              :src="
-                item.info == true
-                  ? '../../../../static/images/top.png'
-                  : '../../../../static/images/bottom.png'
-              "
-              alt=""
-            /> -->
             <i style="position: relative;float: right;right: 20px;top: 10px;" :class="
                 item.info == true
                   ? 'el-icon-arrow-up'
@@ -36,9 +28,9 @@
           </ul>
         </div>
       </div>
-      <div class="boundaryConditions_content" v-if="water">
+      <div class="boundaryConditions_content" v-show="water">
         <div class="clear-fix">
-          <el-table border :data="tableData" style="background-color: transparent;height:450px;">
+          <el-table border :data="tableData" style="background-color: transparent;" height=450>
             <el-table-column prop="DT" label="时间" align="center">
             </el-table-column>
             <el-table-column prop="Value" :label="unit" align="center" width="130">
@@ -50,8 +42,10 @@
           </div>
         </div>
       </div>
-      <div class="boundaryConditions_right" v-if="water">
-        <div class="echarts_map">曲线图</div>
+      <div class="boundaryConditions_right" v-show="water">
+        <div class="echarts_map" style="margin-top: -9px;">
+          <div id="echarts_line" style="height:500px"></div>
+        </div>
       </div>
       <div class="boundaryConditions_content" v-if="sourcePollution" style="border: 1px solid #EBEEF5;padding-top:10px;">
         <div class="singleli_title">
@@ -61,9 +55,14 @@
                 污染源名称：
               </div>
             </el-col>
-            <el-col :span="14" style="margin-left: -5%;">
+            <el-col :span="9" style="margin-left: -5%;">
               <div>
-              <el-input style="width:180px" v-model="input" placeholder="请输入内容"></el-input>
+              <el-input style="width:100px" v-model="sourcePollutionName" placeholder="请输入内容"></el-input>
+              </div>
+            </el-col>
+              <el-col :span="7" style="margin-left: -5%;">
+              <div>
+              <el-button size="min" plain>选点</el-button>
               </div>
             </el-col>
           </el-row>
@@ -77,7 +76,7 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-              <el-input style="width:180px" v-model="input" placeholder="请输入内容"></el-input>
+              <el-input style="width:180px" v-model="degradationCoefficient " placeholder="请输入内容"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -91,7 +90,7 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-              <el-input style="width:180px" v-model="input" placeholder="请输入内容"></el-input>
+              <el-input style="width:180px" v-model="coordinate" placeholder="请输入内容"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -105,7 +104,7 @@
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
               <div>
-              <el-input style="width:180px" v-model="input" placeholder="请输入内容"></el-input>
+              <el-input style="width:180px" v-model="riverMiles" placeholder="请输入内容"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -138,7 +137,10 @@ export default {
   components: {},
   data() {
     return {
-      input:'',
+      sourcePollutionName:'',//污染源名称
+      degradationCoefficient:'',//降解系数
+      coordinate:'',//坐标
+      riverMiles:'',//河道里程
       water:true,
       sourcePollution:false,
       tableData:[],
@@ -177,29 +179,34 @@ export default {
       RainfallItems:[],//降雨站
       PollutionSourceItems:[],//污染源
       componentName:'',
+      name:'',
     };
   },
   methods: {
     tap(item, index) {
+      this.name = item.name
       if(item.name == '流量边界'){
         this.data[index].data_name = this.DischargeItems;
         this.unit = '流量（m³/s）';
         this.componentName = '';
+        this.drawLine();
       }else if(item.name == '水位边界'){
         this.data[index].data_name = this.WaterLevelItems;
         this.unit = '水位（m）';
         this.componentName = '';
+        this.drawLine();
       }else if(item.name == '水质边界'){
         this.data[index].data_name = this.WaterQualityItems;
         this.unit = '氨氮（mg/L）';
         this.componentName = 'NH3N';
+        this.drawLine();
       }else if(item.name == '降雨站'){
+        this.drawBar();
         this.data[index].data_name = this.RainfallItems;
         this.unit = '降雨量（mm）';
         this.componentName = '';
       }else if(item.name == '污染源'){
         this.data[index].data_name = this.PollutionSourceItems;
-        this.water = false;
         this.sourcePollution = true;
         this.componentName = '';
       }
@@ -217,7 +224,7 @@ export default {
       }
     },
     tap_info(item,index,e){
-      console.log(item)
+      console.log(this.name)
       var boundaryId = item.BoundaryId
       this.active = index
       var url =
@@ -228,7 +235,8 @@ export default {
           return respose.json();
         })
         .then(data => {
-          console.log(data)
+         this.tableData = data
+        //  this.drawLine(data);
 
         });
 
@@ -243,7 +251,6 @@ export default {
           return respose.json();
         })
         .then(data => {
-          console.log(data)
             this.DischargeItems = data.DischargeItems
             this.WaterLevelItems = data.WaterLevelItems
             this.WaterQualityItems = data.WaterQualityItems
@@ -251,6 +258,54 @@ export default {
             this.PollutionSourceItems = data.PollutionSourceItems
         });
     },
+      drawLine(data) {
+        console.log(this.data)
+        var xAxisData = [];
+        var yAxisData = [];
+    //     data.forEach((item,index)=>{
+    //     console.log(item);
+    //     xAxisData.push(item)
+    // })
+        var myChart = this.$echarts.init(document.getElementById('echarts_line'));
+        // 基于准备好的dom，初始化echarts实例
+        myChart.setOption({
+            //设置canvas内部表格的内距
+        tooltip: {},
+        xAxis: {
+        type: 'category',
+        data: ['2008-08-01', '2008-08-01', '2008-08-01', '2008-08-01', '2008-08-01', '2008-08-01', '2008-08-01'],
+         axisLabel: {
+           interval:0,
+           rotate:40
+         }
+          },
+        yAxis: {
+              type: 'value'
+          },
+        series: [{
+              data: [150, 230, 224, 218, 135, 147, 260],
+              type: 'line',
+              smooth: true,
+          }]
+        });
+      },
+      drawBar() {
+        var myChart = this.$echarts.init(document.getElementById('echarts_line'));
+        // 基于准备好的dom，初始化echarts实例
+        myChart.setOption({
+          xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [150, 230, 224, 218, 135, 147, 260],
+        type: 'bar'
+    }]
+        });
+      }
   },
   computed: {},
   mounted() {

@@ -105,6 +105,10 @@
             <el-button size="small" plain>计算</el-button>
             <el-button size="small" plain>查看结果</el-button>
             <el-button size="small" plain>上传</el-button>
+            <!-- <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-change="handleChange" :file-list="fileList">
+            <el-button size="small" type="primary">上传</el-button>
+            </el-upload> -->
+            <el-button size="small" plain>下载</el-button>
         </div>
       </div>
     </div>
