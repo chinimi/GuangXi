@@ -10,12 +10,12 @@
 
           <li class="shu_line">
             <div class="river_name">河流（条）</div>
-            <div class="river_amount">18936</div>
+            <div class="river_amount">{{heliu}}</div>
 
           </li>
           <li>
-            <div class="river_name">河流（条）</div>
-            <div class="river_amount">55967</div>
+            <div class="river_name">河段（条）</div>
+            <div class="river_amount">{{heduan}}</div>
 
           </li>
           <div class="clear"></div>
@@ -27,12 +27,12 @@
 
         <li class="shu_line">
           <div class="river_name">湖泊（个）</div>
-          <div class="river_amount">34</div>
+          <div class="river_amount">{{hp}}</div>
 
         </li>
         <li>
           <div class="river_name">水库（座）</div>
-          <div class="river_amount">4922</div>
+          <div class="river_amount">{{sk}}</div>
 
         </li>
 
@@ -44,12 +44,12 @@
 
         <li class="shu_line">
           <div class="river_name">总河（湖）长数（人）</div>
-          <div class="river_amount">2650</div>
+          <div class="river_amount">{{zhcs}}</div>
 
         </li>
         <li>
           <div class="river_name">河（湖）长数（人）</div>
-          <div class="river_amount">23799</div>
+          <div class="river_amount">{{hhcs}}</div>
 
         </li>
 
@@ -78,6 +78,12 @@
     },
     data() {
       return {
+        heliu:null,//河流
+        heduan:null,//河段
+        hp:null,//湖泊
+        sk:null,//水库
+        zhcs:null,//总河（湖）长数（人）
+        hhcs:null,//河（湖）长数（人）
 
       }
     },
@@ -89,7 +95,24 @@
 
     },
     mounted(){
+      /*请求河湖长制展示信息*/
+      /*http请求*/
+      let url='http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/gmcont'
+      this.$http.post( url,{
+        emulateJSON: true,
+      }).then(function(res) {
 
+        console.log(res.body.data)
+        let resData=res.body.data
+        this.heliu=resData.River
+        this.heduan=resData.MasterZHC
+        this.hp=resData.Lake
+        this.sk=resData.River
+        this.zhcs=resData.River
+        this.hhcs=resData.Reservoirr
+
+      }).catch(function(res){
+      })
 
     },
     watch: {
