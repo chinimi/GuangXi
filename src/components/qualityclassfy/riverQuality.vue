@@ -805,12 +805,12 @@
         <el-table-column
           prop="swzs"
           label="指数">
-          <template slot-scope="scope">
+          <template slot-scope="scope" >
 
-            <el-select v-model="scope.row.swzs" >
+            <el-select v-model="scope.row.swzs" @change="getDatalist(scope.row)">
               <el-option
-                v-for="(item, index) in swpjOption"
-                :key="item.value+index"
+                v-for="item in swpjOption"
+                :key="item.value"
                 :label="item.label"
                 :value="item.value"
               ></el-option>
@@ -1042,41 +1042,762 @@
       heigit="800px"
       :modal=false
        >
+      <div style="width:100%;height: 450px;">
+        <el-table   border :data="pjbtableData"   style="margin-bottom:20px;height:300px;border:solid 1px #ccc;background-color: transparent;">
 
-      <el-table   border :data="pjbtableData"   style="margin-bottom:20px;height:300px;border:solid 1px #ccc;background-color: transparent;">
+
+
+          <el-table-column
+            prop="pjd"
+            label="评价点">
+          </el-table-column>
+          <el-table-column
+            prop="sthjzl"
+            label="水生志环量状况">
+          </el-table-column>
+          <el-table-column
+            prop="zhzs"
+            label="综合指数">
+          </el-table-column>
+
+        </el-table>
+        <el-row>
+          <el-col :span="17">&nbsp;</el-col>
+          <el-col :span="3">
+            <el-button>保存至数据库</el-button>
+          </el-col>
+          <el-col :span="1">&nbsp;</el-col>
+          <el-col :span="3">
+            <el-button>导出结果</el-button>
+
+          </el-col>
+        </el-row>
+      </div>
+    </el-dialog>
+
+    <!--8个pdf表格弹窗-->
+    <el-dialog
+      :title=currentTableName
+      :modal-append-to-body="false"
+      :visible.sync="eightVisible"
+      :close-on-click-modal="false"
+      width="60%"
+      :before-close="handleClose">
+      <div style="width:90%;height:600px;margin:0 auto;">
+        <!--表格1-->
+        <div  v-if="indexPage==1">
+          <el-row>
+            <el-col :span="7">
+              <el-table   :data="table1DataA" height="480" style="background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  :label="'采样点\nSampling sites'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.name}}</p>
+                    <p>{{scope.row.country}}</p>
+
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'全球定位系统\nGPS'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                    <p>{{scope.row.east}}</p>
+
+                  </template>
+                </el-table-column>
+
+
+              </el-table>
+
+
+            </el-col>
+
+            <el-col :span="7">
+              <el-table   :data="table1DataB" height="480" style="  background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  :label="'采样点\nSampling sites'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.name}}</p>
+                    <p>{{scope.row.country}}</p>
+
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'全球定位系统\nGPS'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                    <p>{{scope.row.east}}</p>
+
+                  </template>
+                </el-table-column>
+
+
+              </el-table>
+
+
+            </el-col>
+            <el-col :span="7">
+              <el-table  :data="table1DataC" height="480" style="  background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  :label="'采样点\nSampling sites'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                    <p>{{scope.row.east}}</p>
+
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'全球定位系统\nGPS'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                    <p>{{scope.row.east}}</p>
+
+                  </template>
+                </el-table-column>
+
+
+              </el-table>
+
+
+            </el-col>
+          </el-row>
 
 
 
-        <el-table-column
-          prop="pjd"
-          label="评价点">
-        </el-table-column>
-        <el-table-column
-          prop="sthjzl"
-          label="水生志环量状况">
-        </el-table-column>
-        <el-table-column
-          prop="zhzs"
-          label="综合指数">
-        </el-table-column>
 
-      </el-table>
-      <el-row>
-        <el-col :span="17">&nbsp;</el-col>
-        <el-col :span="3">
-          <el-button>保存至数据库</el-button>
-        </el-col>
-        <el-col :span="1">&nbsp;</el-col>
-        <el-col :span="3">
-          <el-button>导出结果</el-button>
 
-        </el-col>
-      </el-row>
+        </div>
 
-      <!--<span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>-->
+        <!--表格1 over-->
+        <!--表格2-->
+
+        <div  v-if="indexPage==2">
+
+          <el-row>
+            <el-col :span="24">
+              <el-table  border  :data="table1DataA" height="480" style="background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  label="指标类型"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.name}}</p>
+
+
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="平均值"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="标准差"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="最小值"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="最大值"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="25%分位数"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="中位数"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="75%分位数"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+
+              </el-table>
+
+
+            </el-col>
+
+
+          </el-row>
+
+
+        </div>
+        <!--表格2 over-->
+        <!--表格3-->
+
+        <div  v-if="indexPage==3">
+
+          <el-row>
+            <el-col :span="24">
+              <el-table  border  :data="table1DataA" height="480" style="background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  label="M1"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.name}}</p>
+
+
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M2"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M3"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M4"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M5"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M6"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M7"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M8"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M9"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M10"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+              </el-table>
+
+
+            </el-col>
+
+
+          </el-row>
+            <el-row>
+           <span>注: M1总分类单元数 </span>
+          </el-row>
+
+
+        </div>
+        <!--表格3 over-->
+        <!--表格4-->
+
+        <div  v-if="indexPage==4">
+
+          <el-row>
+            <el-col :span="24">
+              <el-table  border  :data="table4Data" height="480" style="background-color: transparent;">
+                <!--第1列-->
+
+                <el-table-column
+                  align="center"
+                  label="生物参数Metris"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.name}}</p>
+                  </template>
+                </el-table-column>
+                <!--第2列-->
+
+                <el-table-column
+                    align="center"
+                    label="统计分布Statistics"
+                  >
+                    <template slot-scope="scope">
+                      <p>{{scope.row.north}}</p>
+                    </template>
+                        <el-table-column
+                          align="center"
+                          label="25%"
+                        >
+                          <template slot-scope="scope">
+                            <p>{{scope.row.bfz25}}</p>
+                          </template>
+
+                        </el-table-column>
+
+                        <el-table-column
+                          align="center"
+                          label="50%"
+                        >
+                          <template slot-scope="scope">
+                            <p>{{scope.row.bfz50}}</p>
+                          </template>
+
+                        </el-table-column>
+
+
+                        <el-table-column
+                          align="center"
+                          label="75%"
+                        >
+                          <template slot-scope="scope">
+                            <p>{{scope.row.bfz75}}</p>
+                          </template>
+
+                        </el-table-column>
+
+                  </el-table-column>
+                <!--第三列-->
+
+                  <el-table-column
+                  align="center"
+                  label="评分 Scores"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.f6}}</p>
+                  </template>
+
+
+                    <el-table-column
+                      align="center"
+                      label="6"
+                    >
+                      <template slot-scope="scope">
+                        <p>{{scope.row.f3}}</p>
+                      </template>
+
+                    </el-table-column>
+
+                    <el-table-column
+                      align="center"
+                      label="3"
+                    >
+                      <template slot-scope="scope">
+                        <p>{{scope.row.f0}}</p>
+                      </template>
+
+                    </el-table-column>
+
+
+
+
+                </el-table-column>
+
+              </el-table>
+            </el-col>
+          </el-row>
+        </div>
+        <!--表格4 over-->
+        <!--表格5-->
+        <div  v-if="indexPage==5">
+          <el-row>
+            <el-col :span="24">
+              <el-table  border  :data="table5Data" height="480" style="background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  :label="'生物参数'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.name}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'最小值'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.min}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'5%分位数'"
+
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.ffws}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'中位数'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.middle}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'95%分位数'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.nffws}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  :label="'最大值\nMax'"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.max}}</p>
+                  </template>
+                </el-table-column>
+
+
+              </el-table>
+
+
+            </el-col>
+
+
+          </el-row>
+
+
+
+
+        </div>
+        <!--表格5 over-->
+        <!--表格6-->
+
+        <div  v-if="indexPage==6">
+
+          <el-row>
+            <el-col :span="24">
+              <el-table  border  :data="table6Data" height="480" style="background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  label="健康"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.healthy}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="亚健康"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.unhealthy}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="一般"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.normal}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="差"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.bad}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="极差"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.verybad}}</p>
+                  </template>
+                </el-table-column>
+
+
+
+              </el-table>
+
+
+            </el-col>
+
+
+          </el-row>
+
+        </div>
+        <div  v-if="indexPage==7">
+
+          <el-row>
+            <el-col :span="24">
+              <el-table  border  :data="table6Data" height="480" style="background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  label="健康"
+                  prop="healthy"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.healthy}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="亚健康"
+                  prop="unhealthy"
+
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.unhealthy}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="一般"
+                  prop="normal"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.normal}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  prop="bad"
+                  label="差"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.bad}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="极差"
+                  prop="verybad"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.verybad}}</p>
+                  </template>
+                </el-table-column>
+
+
+
+              </el-table>
+
+
+            </el-col>
+
+
+          </el-row>
+
+
+        </div>
+        <div  v-if="indexPage==8">
+
+          <el-row>
+            <el-col :span="24">
+              <el-table  border  :data="table1DataA" height="480" style="background-color: transparent;">
+                <el-table-column
+                  align="center"
+                  label="M1"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.name}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M2"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M3"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M4"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M5"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+                <el-table-column
+                  align="center"
+                  label="M6"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M7"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M8"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M9"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  align="center"
+                  label="M10"
+                >
+                  <template slot-scope="scope">
+                    <p>{{scope.row.north}}</p>
+                  </template>
+                </el-table-column>
+
+              </el-table>
+
+
+            </el-col>
+
+
+          </el-row>
+
+        </div>
+
+
+
+
+        <!--下一步-->
+        <div style="float:right;padding-right:20px;padding-top:20px;">
+          <el-button @click="goNextTable">下一步</el-button>
+        </div>
+
+      </div>
     </el-dialog>
 
 
@@ -1091,6 +1812,7 @@
   export default {
     data() {
       return {
+        currentTableName:'表1:呼兰河口湿地及周边水域各采样点地理位置',
         pjbtableData: [{
           pjd: '平价点1',
           sthjzl: '非常健康',
@@ -1196,8 +1918,8 @@
         pjbcOption:[{value:'xun',label:'旬'},{value:'month',label:'月'},{value:'ji',label:'季'},{value:'xq',label:'汛期'},{value:'fxq',label:'非汛期'},{value:'halfyear',label:'半年'},{value:'year',label:'年'}],
 
         /*生物评价*/
-        swpjVal:'fir',//生物评价
-        swpjOption:[{value:'fir',label:'生物多样性指数'},{value:'sec',label:'生物指数'},{value:'third',label:'生物完整性指数'}],
+
+        swpjOption:[{value:'varityswdyx',label:'生物多样性指数'},{value:'swzs',label:'生物指数'},{value:'swwzx',label:'生物完整性指数'}],
         /*初始时间*/
         startTime:'2015-07',
         /*截至时间*/
@@ -1208,6 +1930,240 @@
         tabRowIndex: null, //单元格横坐标
         tabColumnIndex: null, //单元格纵坐标
         dialogVisible:false,
+        /*eightVisible  八个弹窗*/
+        eightVisible:false,
+        indexPage:1,//第一个表
+        /*8个表对应数据*/
+        table1DataA:[
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          },
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          },
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          }
+
+
+        ],
+        table1DataB:[
+
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          },
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          },
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          }
+
+        ],
+        table1DataC:[
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          },
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          },
+          {
+            name:'S1',
+            country:"万家",
+            north:'N454620',
+            east:'E126 30578',
+          }
+
+        ],
+        table2Data:[],
+        table3Data:[],
+        table4Data:[
+
+          {'name':"直接集食者%Gatherers t",
+            bfz25:'3',
+            bfz50:'10',
+            bfz75:'5',
+            f6:'>17',
+            f3:'10-17',
+            f0:'<10',
+
+          },
+          {'name':"总分类单元数",
+            bfz25:'3',
+            bfz50:'10',
+            bfz75:'5',
+            f6:'>17',
+            f3:'10-17',
+            f0:'<10',
+
+          },
+          {'name':"EPT类单元数",
+            bfz25:'3',
+            bfz50:'10',
+            bfz75:'5',
+            f6:'>17',
+            f3:'10-17',
+            f0:'<10',
+
+          },
+          {'name':"浮游单元数",
+            bfz25:'3',
+            bfz50:'10',
+            bfz75:'5',
+            f6:'>17',
+            f3:'10-17',
+            f0:'<10',
+
+          },
+          {'name':"直接集食者",
+            bfz25:'3',
+            bfz50:'10',
+            bfz75:'5',
+            f6:'>17',
+            f3:'10-17',
+            f0:'<10',
+
+          },
+          {'name':"耐污类群",
+            bfz25:'3',
+            bfz50:'10',
+            bfz75:'5',
+            f6:'>17',
+            f3:'10-17',
+            f0:'<10',
+
+          },
+
+          {'name':"生物指数BI",
+            bfz25:'3',
+            bfz50:'10',
+            bfz75:'5',
+            f6:'>17',
+            f3:'10-17',
+            f0:'<10',
+
+          },
+
+
+        ],
+        table5Data:[
+          {'name':"总分类单元数No. of total txa",
+            min:'3',
+            max:'10',
+            middle:'5',
+            nffws:'35',
+            ffws:'8',
+          },
+          {'name':"EPT类单元数EPT taxa",
+            min:'3',
+            max:'10',
+            middle:'5',
+            nffws:'35',
+            ffws:'8',
+          },
+          {'name':" %Epheneroptera",
+            min:'3',
+            max:'10',
+            middle:'5',
+            nffws:'35',
+            ffws:'8',
+          },
+          {'name':"直接集食者%Gatherers t",
+            min:'3',
+            max:'10',
+            middle:'5',
+            nffws:'35',
+            ffws:'8',
+          },
+          {'name':"耐污类群s Tolerant taxa%",
+            min:'13',
+            max:'10',
+            middle:'5',
+            nffws:'315',
+            ffws:'8',
+          },
+          {'name':"生物指数BI",
+            min:'13',
+            max:'101',
+            middle:'5',
+            nffws:'135',
+            ffws:'8',
+          },
+
+
+
+
+        ],
+        table6Data:[
+          {
+            name:'三分法',
+            healthy:'>26',
+            unhealthy:'20-26',
+            normal:'13-19',
+            bad:'7-12',
+            verybad:'<6',
+
+          },
+          {
+            name:'比值法',
+            healthy:'>26',
+            unhealthy:'20-26',
+            normal:'13-19',
+            bad:'7-12',
+            verybad:'<6',
+
+          }
+
+
+
+
+        ],
+        table7Data:[
+          {
+            yd:'S1',
+            sff:'22',
+            jkzl:'亚健康Sub-health',
+            bzf:'13-19',
+          },
+          {
+            yd:'S1',
+            sff:'22',
+            jkzl:'亚健康Sub-health',
+            bzf:'13-19',
+          },
+          {
+            yd:'S1',
+            sff:'22',
+            jkzl:'亚健康Sub-health',
+            bzf:'13-19',
+          },
+        ],
+        table8Data:[],
+
 
       }
     },
@@ -1216,14 +2172,14 @@
         {
           'swpj':1,
           'swzt':"优",
-          "swzs":'fir',
+          "swzs":'varityswdyx',
           "stnm":20,
 
         },
         {
           'swpj':2,
           'swzt':"优",
-          "swzs":'sec',
+          "swzs":'varityswdyx',
           "stnm":20,
 
 
@@ -1231,7 +2187,7 @@
         {
           'swpj':3,
           'swzt':"优",
-          "swzs":'third',
+          "swzs":'varityswdyx',
           "stnm":20,
 
 
@@ -1273,6 +2229,63 @@
 
     },
     methods: {
+      /*下一步*/
+      goNextTable(){//展示下一个表格
+        this.indexPage++
+        if(this.indexPage==1){
+          this.currentTableName='表1,呼兰河口湿地及周边水域各采样点地理位置'
+
+        }
+        if(this.indexPage==2){
+          this.currentTableName='表2、20个生物参数在9个品t占中的分布'
+
+        }
+        if(this.indexPage==3){
+          this.currentTableName='表3.10个候选生物参数间的Pearson相关分析(n=10)'
+
+        }
+        if(this.indexPage==4){
+          this.currentTableName='表4 、6个参数值在参照点中的分布及分值计算标准'
+
+        }
+        if(this.indexPage==5){
+          this.currentTableName='表5.6个生物参数值在所有样点中的统计分布'
+
+        }
+        if(this.indexPage==6){
+          this.currentTableName='表6.B-IBI指标体系健康评价标准'
+
+        }
+        if(this.indexPage==7){
+          this.currentTableName='表7,各样点健康状况'
+
+        }
+
+        if(this.indexPage>=7){
+          this.indexPage=7
+          this.currentTableName='表7,各样点健康状况'
+        }
+
+
+      },
+      handleClose(){//关闭弹窗
+        this.eightVisible=false
+        this.indexPage=1
+
+      },
+      getDatalist(scope){
+        console.log(scope.swzs)//判断选中生物多样性指数弹窗
+        if(scope.swzs=='swwzx'){
+          this.eightVisible=true
+
+        }else{
+          this.eightVisible=false
+          this.indexPage=1
+
+        }
+
+
+      },
       showDialog(){
         this.dialogVisible=true
 
@@ -1554,15 +2567,6 @@
     margin-right: 10px;
   }
 
-  #groundWater >>>.el-pagination__total{
-    /*color:#ffffff !important;*/
-  }
-  #groundWater >>>.el-pagination__jump{
-    /*color:#ffffff !important;*/
-  }
-  #groundWater >>>.el-pagination .el-select .el-input .el-input__inner{
-    /*color: #ffff;*/
-  }
 
   >>>.el-main{
     padding:0;
@@ -1578,16 +2582,7 @@
     height: 30px ;
 
   }
-  >>>.el-pagination__total{
-    color:#ffffff !important;
-  }
-  >>>.el-pagination__jump{
-    color:#ffffff !important;
-  }
-  >>>.el-pagination .el-select .el-input .el-input__inner{
-    color: #ffff;
 
-  }
 
   >>>.el-button{
     padding: 5px 15px !important;
@@ -1661,10 +2656,32 @@
     background :transparent;
   }
 
-  >>>.el-dialog{
-    height: 450px;
 
 
+  >>>.el-dialog__headerbtn .el-dialog__close {
+    color: #fff;
+    border: solid 1px #2784ff;
+    border-radius: 50%;
+    padding: 2px;
+    background: #2784ff;
+  }
+
+  >>>.el-dialog__header {
+    padding: 21px 0 0 24px;
+  }
+
+  .dialog_single_title{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+    background: #1825651a;
+    padding: 10px;
+  }
+
+  /*实现表格头数据换行*/
+  >>>.el-table .cell {
+    /*text-align: center;*/
+    white-space: pre-line;/*保留换行符*/
   }
 
 </style>

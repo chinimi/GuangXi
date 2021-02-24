@@ -1,9 +1,7 @@
 <template>
     <div  id="groundWater">
-
       <!--左侧递归标题目录树-->
       <el-aside  width=null  class="sub_menu" >
-
       <el-menu
           :router="true"
           class="el-menu-vertical-demo"
@@ -12,13 +10,14 @@
           <div  v-for="(item,index) in menulist" :key="item.id">
             <!--一级菜单（没有任何子级菜单）-->
             <el-menu-item :index="item.path" v-if="!item.children">
+<!--              <i class="el-icon-menu"></i>-->
 
               <i :class=iconsObj[item.id]></i>
               {{item.authName}}</el-menu-item>
             <!-- 一级菜单（有子级菜单）-->
             <el-submenu :index="item.path" v-else>
               <template slot="title">
-                <!--                    <i class="el-icon-menu"></i>-->
+<!--                                    <i class="el-icon-menu"></i>-->
                 <i :class=iconsObj[item.id]></i>
                 {{item.authName}}
               </template>
@@ -417,9 +416,10 @@
             startTime:'',
             menulist: menulist,
             iconsObj:{
-              "generalwaterevaluate":"iconfont icon-shuidi3",
-              "zxpjfxmodelpart":"iconfont icon-kongqi",
-              "ssthjfx":"iconfont icon-shuidi3",
+              "szylyc":"iconfont icon-yubaomoshi",
+              "waterPrediction":"iconfont icon-xinxi-",
+              "underWater":"iconfont icon-xinxi-",
+              "waterWarn":"iconfont icon-leida",
 
             },
             calculateType:[
@@ -1298,7 +1298,10 @@ _this.jindu+=eachWidth
   }
   >>>.el-menu-item{
     border-left: 6px solid #fff;
-
+    font-size: 16px;
+  }
+  >>>.el-submenu__title{
+    font-size:16px;
   }
 
   </style>
