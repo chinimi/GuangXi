@@ -484,6 +484,7 @@ export default {
   methods: {
     //获取表格数据
     getTableData() {
+      if(this.$route.params.value != undefined){
        this.ScenarioCode = this.$route.params.value.ScenarioCode
       var url =
         modelURL +
@@ -495,6 +496,7 @@ export default {
         .then(data => {
           this.tableData = data;
         });
+      }
     },
     //每页显示条数
     handleSizeChange(val) {

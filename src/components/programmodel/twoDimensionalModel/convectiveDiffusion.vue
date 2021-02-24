@@ -54,7 +54,8 @@ export default {
       tableData: [],
       roughnessTable: [],
       tableValue: [],
-      convectionTable: []
+      convectionTable: [],
+      scenarioCode:'',
     };
   },
  mounted() {
@@ -64,9 +65,11 @@ export default {
   methods: {
     //获取表格数据
     getTableData() {
+      if(this.$route.params.value != undefined){
+        this.scenarioCode = this.$route.params.value.ScenarioCode
       var url =
         modelURL +
-        "/api/GXRCWQ/ModelManager/GetDispersionAndDecayInfo?scenarioCode=DHJKTXRCFA";
+        "/api/GXRCWQ/ModelManager/GetDispersionAndDecayInfo?scenarioCode="+this.scenarioCode;
       fetch(url)
         .then(respose => {
           return respose.json();
@@ -75,6 +78,7 @@ export default {
           this.tableData = data.DecayByComponentList;
           this.DispersionFactor = data.DispersionFactor;
         });
+      }
     },
     //点击单元格得到横纵坐标
     handleCellClick(row, column, event, cell) {
@@ -104,7 +108,7 @@ export default {
         });
       });
       var testdata = {
-        ScenarioCode: "DHJKTXRCFA",
+        ScenarioCode:this.ScenarioCode ,
         DispersionFactor: this.DispersionFactor,
         DecayByComponentList: arrList
       };
