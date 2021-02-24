@@ -165,7 +165,7 @@
                  <template slot-scope="scope">
                     <el-input   v-model="scope.row.RIVWFn" @blur="inputBlur"></el-input>
                     </template>
-                
+
               </el-table-column>
 
 
@@ -221,7 +221,7 @@
                  {value:'2',label:'河道/水库周边从事生产活动'},
                  {value:'3',label:'经常来旅游'},
                  {value:'4',label:'偶尔来旅游'},
-                       
+
                ],
         SS_tableData:[{
             WNQ:'1',
@@ -550,17 +550,17 @@
             this.tabColumnIndex = "";
           },
       SaveTable(){
-         
+
         debugger
         var ss1=[] ,ss2=[];
 
         this.SS_tableData.forEach(function(item,index){
-          
+
                 ss1.push(item.DBCS)
                 ss2.push(item.PGCS)
              })
-        var ss  = SS_fufen(ss1,ss2)  
-        
+        var ss  = SS_fufen(ss1,ss2)
+
         var wr=[],wu=[];
         this.WRU_tableData.forEach(function(item,index)
          {
@@ -570,27 +570,27 @@
         var WRU =  WRU_fufen(wr,wu)
 
           var PERr_=[],PERw_=[];
-         
+
         this.PP_tableData.forEach(function(item,index)
          {
             PERr_.push(item.PERr)
-            PERw_.push(item.PERw) 
+            PERw_.push(item.PERw)
            })
         var PP =  PP_fufen(PERr_,PERw_)
 
          var RIVLn_=[],RIVBn_=[],RIVWFn_=[];
-        
+
         this.FLD_tableData.forEach(function(item,index)
          {
             RIVLn_.push(item.RIVLn)
             RIVBn_.push(item.RIVBn)
             RIVWFn_.push(item.RIVWFn)
            })
-        
-        var FLD =  FLD_fufen(RIVLn_,RIVBn_,RIVWFn_)
 
-        var SSR = (ss*0.25 + WRU*0.25+PP*0.25+FLD*0.25).toFixed(2);
-        
+         FLD =  FLD_fufen(RIVLn_,RIVBn_,RIVWFn_)
+
+          SSR = (ss*0.25 + WRU*0.25+PP*0.25+FLD*0.25).toFixed(2);
+
       },
       backAgo(){
         this.$router.push({name:'riverHealthy',params:{}});

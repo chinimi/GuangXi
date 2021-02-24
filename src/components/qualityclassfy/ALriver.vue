@@ -179,7 +179,7 @@
                  {value:'1',label:'较为健康'},
                  {value:'2',label:'轻度受损'},
                  {value:'3',label:'中度受损'},
-                 {value:'4',label:'重度受损'},     
+                 {value:'4',label:'重度受损'},
                ],
                ED_tableData:[
                  {
@@ -324,7 +324,7 @@
         }, {
           id: 'dxwjzdwwzxzs',
           name: '生物(AL)',
-          amount1: '大型无脊椎动物生物完整性指数',
+          amount1: '大型无脊椎动物指数',
           amount2: 'BMIBI',
           amount3: 9,
           PID:'AL',
@@ -495,8 +495,8 @@
           },
       SaveTable(){
 
-        var PHP = PHP_fufen(this.PHP_tableData[0].DJ)
-        var FOE = FOE_fufen(this.PHP_tableData[0].SZ,this.PHP_tableData[1].SZ);
+        PHP = PHP_fufen(this.PHP_tableData[0].DJ)
+        FOE = FOE_fufen(this.PHP_tableData[0].SZ,this.PHP_tableData[1].SZ);
 
         var AjList = [];
         var LjList = [];
@@ -507,12 +507,11 @@
                 LjList.push(item.Lj);
                 VjList.push(item.Vj);
           })
-       
-        var ED = Alr_fufen(AjList,LjList,VjList);
-       
-         var Alr = Math.min(PHP,FOE,ED)
 
-        
+          ED = Alr_fufen(AjList,LjList,VjList);
+          Alr = Math.min(PHP,FOE,ED)
+
+
       },
       backAgo(){
         this.$router.push({name:'riverHealthy',params:{}});

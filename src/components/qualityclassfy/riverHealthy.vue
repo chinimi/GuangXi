@@ -195,7 +195,6 @@
 
     </div>
 
-    <!--      <moduleDialog v-if="resultdialogVisible"></moduleDialog>-->
     <!--弹窗-->
     <el-dialog
       :title="评价结果"
@@ -217,7 +216,7 @@
             :class="['sliderMenuClass',{active : ( isActive == item.value ? true : false )}]"
             @click="isActive = item.value;currentComp = item.comp"
           >
-            <!--              <i  :class="['iconfont', item.icon]"></i>-->
+            <!--<i  :class="['iconfont', item.icon]"></i>-->
             <span>{{item.name}}</span>
           </li>
           <div class="clear"> </div>
@@ -239,81 +238,50 @@
                     width="100">
                   </el-table-column>
 
-
                   <el-table-column
                     prop="zonecode"
                     label="水功能区(水资源区)区代码">
-                    <!--                        <template slot-scope="scope">-->
-
-                    <!--                        </template>-->
                   </el-table-column>
-
 
                   <el-table-column
                     prop="hdmc"
                     label="河段名称">
-                    <!--                        <template slot-scope="scope">-->
-
-                    <!--                        </template>-->
                   </el-table-column>
-
 
                   <el-table-column
                     prop="start"
                     label="起点">
-                    <!--                        <template slot-scope="scope">-->
-
-                    <!--                        </template>-->
                   </el-table-column>
 
                   <el-table-column
                     prop="end"
                     label="终点">
-                    <!--                      <template slot-scope="scope">-->
-
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
                     prop="szhl"
                     label="所在河流">
-                    <!--                      <template slot-scope="scope">-->
-
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
                     prop="length"
                     label="长度">
-                    <!--                      <template slot-scope="scope">-->
-
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="bygc"
+                    prop="FD"
                     label="流量过程变异过程FD">
-                    <!--                      <template slot-scope="scope">-->
-
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="llmz"
+                    prop="EF"
                     label="生态流量满足程度EF">
-                    <!--                      <template slot-scope="scope">-->
-
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="jkllzb"
-                    label="健康流量指标FD">
-                    <!--                      <template slot-scope="scope">-->
-
-                    <!--                      </template>-->
+                    prop="IFDr"
+                    label="健康流量指标IFDr">
                   </el-table-column>
-
 
                 </el-table>
               </el-col>
@@ -382,19 +350,15 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="bygc"
+                    prop="RS"
                     label="河岸带状况(RS)">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="llmz"
+                    prop="RC"
                     label="流连通阻隔状况(RC)">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
 
@@ -406,7 +370,7 @@
           <div v-show="currentComp=='WQ'"  >
             <el-row  style="padding-top: 10px;">
               <el-col :span="24">
-                <el-table  :cell-class-name="getRowColumn" border :data="PFTableData"   max-height="200" >
+                <el-table  :cell-class-name="getRowColumn" border :data="WQTableData"   max-height="200" >
                   <el-table-column
                     fixed
                     type="index"
@@ -418,83 +382,62 @@
                   <el-table-column
                     prop="zonecode"
                     label="水功能区(水资源区)区代码">
-                    <!--                        <template slot-scope="scope">-->
 
-                    <!--                        </template>-->
                   </el-table-column>
 
 
                   <el-table-column
                     prop="hdmc"
                     label="河段名称">
-                    <!--                        <template slot-scope="scope">-->
 
-                    <!--                        </template>-->
                   </el-table-column>
 
 
                   <el-table-column
                     prop="start"
                     label="起点">
-                    <!--                        <template slot-scope="scope">-->
 
-                    <!--                        </template>-->
                   </el-table-column>
 
                   <el-table-column
                     prop="end"
                     label="终点">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
                     prop="szhl"
                     label="所在河流">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
                     prop="length"
                     label="长度">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="bygc"
+                    prop="Do"
                     label="溶解氧状况(Do)">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="llmz"
+                    prop="OCP"
                     label="耗氧有机物(OCP)">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="jkllzb"
+                    prop="HMPr"
                     label="重金属污染状况">
-                    <!--                      <template slot-scope="scope">-->
 
-                    <!--                      </template>-->
                   </el-table-column>
 
                   <el-table-column
-                    prop="jkllzb"
+                    prop="BCР"
                     label="苯类有机物(BCР)">
-                    <!--                      <template slot-scope="scope">-->
-
-                    <!--                      </template>-->
                   </el-table-column>
 
 
@@ -505,7 +448,7 @@
           <div v-show="currentComp=='AL'"   >
             <el-row  style="padding-top: 10px;">
               <el-col :span="24">
-                <el-table  :cell-class-name="getRowColumn" border :data="PFTableData"   max-height="200" >
+                <el-table  :cell-class-name="getRowColumn" border :data="ALTableData"   max-height="200" >
                   <el-table-column
                     fixed
                     type="index"
@@ -565,7 +508,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="bygc"
+                    prop="PHP"
                     label="大型无脊椎动物整性指数(PHP)">
                     <!--                      <template slot-scope="scope">-->
 
@@ -573,7 +516,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="llmz"
+                    prop="FОЕ"
                     label="鱼类损失指数(FОЕ)">
                     <!--                      <template slot-scope="scope">-->
 
@@ -581,7 +524,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="jkllzb"
+                    prop="ED"
                     label="附生硅藻指数(ED)">
                     <!--                      <template slot-scope="scope">-->
 
@@ -596,7 +539,7 @@
           <div v-show="currentComp=='SS'"   >
             <el-row  style="padding-top: 10px;">
               <el-col :span="24">
-                <el-table  :cell-class-name="getRowColumn" border :data="PFTableData"   max-height="200" >
+                <el-table  :cell-class-name="getRowColumn" border :data="SSTableData"   max-height="200" >
                   <el-table-column
                     fixed
                     type="index"
@@ -656,7 +599,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="bygc"
+                    prop="WFZ"
                     label="水功能区达标指标(WFZ)">
                     <!--                      <template slot-scope="scope">-->
 
@@ -664,7 +607,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="llmz"
+                    prop="WRU"
                     label="水资源开发利用指标(WRU)">
                     <!--                      <template slot-scope="scope">-->
 
@@ -672,7 +615,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="jkllzb"
+                    prop="FLD"
                     label="防洪指标(FLD)">
                     <!--                      <template slot-scope="scope">-->
 
@@ -680,7 +623,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="jkllzb"
+                    prop="PP"
                     label="公众满意度指标(PP)">
                     <!--                      <template slot-scope="scope">-->
 
@@ -698,18 +641,18 @@
         <el-row class="dialog_single_title">生态完整性评估</el-row>
         <el-table :cell-style="isBlue" :data="stwzxData" :span-method="resolveSpanMethod" max-height="200"    border  >
            
-                <el-table-column prop="name" label="河段名称"></el-table-column>
-                <el-table-column prop="hdcd" label="河段长度"></el-table-column>
-                <el-table-column  prop="szyff" label="水文水资源赋分HD"></el-table-column>
+          <el-table-column prop="name" label="河段名称"></el-table-column>
+          <el-table-column prop="hdcd" label="河段长度"></el-table-column>
+          <el-table-column  prop="HD" label="水文水资源赋分HD"></el-table-column>
           <!--                <el-table-column prop="dnpjjl"  label="多年平均径流Q"></el-table-column>-->
-          <el-table-column prop="wljg"  label="物理结构PHr"></el-table-column>
-          <el-table-column prop="szyzk"  label="水资状况指标赋分WQr"></el-table-column>
-          <el-table-column prop="sswpg"  label="水生生物评估赋分ALr"></el-table-column>
-          <el-table-column prop="pghdst"  label="评估河段生态完整性评估分值RElir"></el-table-column>
-          <el-table-column prop="lystwz"  label="流域生态完整性评估分值REle">
+          <el-table-column prop="PHr"  label="物理结构PHr"></el-table-column>
+          <el-table-column prop="WQr"  label="水资状况指标赋分WQr"></el-table-column>
+          <el-table-column prop="ALr"  label="水生生物评估赋分ALr"></el-table-column>
+          <el-table-column prop="RElir"  label="评估河段生态完整性评估分值RElir"></el-table-column>
+          <el-table-column prop="REle"  label="流域生态完整性评估分值REle">
             <template slot-scope="scope">
 
-              <div style="color:dodgerblue;" >{{ scope.row.lystwz }}</div>
+              <div style="color:dodgerblue;" >{{ scope.row.REle }}</div>
             </template>
           </el-table-column>
 
@@ -720,13 +663,13 @@
         <el-row class="dialog_single_title">流域生态完整性评估分值REIr</el-row>
         <el-table :cell-style="isPink" :data="lystwazxData"  max-height="100"    border  >
            
-                <el-table-column prop="name" label="社会服务功能准则层分SSr"></el-table-column>
-                <el-table-column prop="hdcd" label="河段长度"></el-table-column>
-                <el-table-column  prop="szyff"  style="background: #0b93d5" label="综合健康评估分值RHIr">
+                <el-table-column prop="SSR" label="社会服务功能准则层分SSr"></el-table-column>
+                <el-table-column prop="length" label="河段长度"></el-table-column>
+                <el-table-column  prop="REle"  style="background: #0b93d5" label="综合健康评估分值RHIr">
 
           <template slot-scope="scope">
 
-            <div style="color:dodgerblue;" >{{ scope.row.szyff }}</div>
+            <div style="color:dodgerblue;" >{{ scope.row.REle }}</div>
           </template>
 
         </el-table-column>
@@ -1051,7 +994,7 @@
             'llmz':111,
             'jkllzb':111,
 
-          },{},{},{},{},{}
+          }
 
 
         ],
@@ -1243,6 +1186,111 @@
       queryTableData(){//查看评价结果
 
         this.resultdialogVisible=true
+        console.log("显示表格计算的全局变量")
+        // 流量过程变异 生态流量满足 健康流量指标过程FD 程度EF FD
+
+
+        /*各河段得分*/
+
+        this.HDTableData=[
+          {
+            "zonecode":101100,
+            "hdmc":'名称',
+            "start":"起点",
+            "end":"终点",
+            'szhl':"所在河流",
+            'length':"1000km",
+            'FD':FDR,
+            'EF':EFR,
+            'IFDr':IFDr,
+
+          }]
+
+
+          /*PF table*/
+          this.PFTableData=[
+            {
+              "zonecode":101100,
+              "hdmc":'名称',
+              "start":"起点",
+              "end":"终点",
+              'szhl':"所在河流",
+              'length':"1000km",
+              'RS':RSr,
+              'RC':PFr,
+            }]
+          /*WQ table*/
+          this.WQTableData=[
+            {
+              "zonecode":101100,
+              "hdmc":'名称',
+              "start":"起点",
+              "end":"终点",
+              'szhl':"所在河流",
+              'length':"1000km",
+              'Do':DO_,
+              'OCP':OCPr_,
+              'HMPr':HMPr,
+              'BCР':BCPr_,
+            }]
+/*ALTableData*/
+        this.ALTableData=[
+          {
+            "zonecode":101100,
+            "hdmc":'名称',
+            "start":"起点",
+            "end":"终点",
+            'szhl':"所在河流",
+            'length':"1000km",
+            'PHP':PHP,
+            'FОЕ':FOE,
+            'ED':ED,
+
+          }]
+/*SSTableData*/
+        this.SSTableData=[
+          {
+            "zonecode":101100,
+            "hdmc":'名称',
+            "start":"起点",
+            "end":"终点",
+            'szhl':"所在河流",
+            'length':"1000km",
+            'FLD':FLD,
+            'SSR':SSR,
+            'ED':ED,
+
+          }]
+
+        /*生态完整性评估表*/
+
+        this.stwzxData=[
+          {
+            "zonecode":101100,
+            "hdmc":'名称',
+            "start":"起点",
+            "end":"终点",
+            'szhl':"所在河流",
+            'length':"1000km",
+            'HD':HDR,
+            'PHr':SSR,
+            'WQr':WQr_,
+            'ALr':Alr,
+            'REle':RVSr,
+
+
+          }]
+
+
+        /**/
+
+        this.lystwazxData=[
+          {
+            'SSR':SSR,
+            'length':"1000km",
+            'REle':RVSr,
+
+          }]
       },
       handleClose(){//点击显示弹窗界面
 
