@@ -539,78 +539,7 @@ export default {
     };
   },
   created() {
-    // 发请求去后台拿数据,如果有api，就正常请求，
-    //我这里是demo，就简单给list赋值了，原理一样。
-    // getlistApi().then(res => {
-    // let list = res.data.list
-    let list = [
-      {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
-        {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
-        {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
-        {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },  {
-        tab1: "1",
-        tab2: "TLR",
-        tab3: " 田东—隆安-日常",
-        tab4: "2020-1-4",
-        tab5: "2020-12-30",
-        tab6: "模板1",
-        tab7: "珠江流域",
-        tab8: "左江",
-        tab9: "南宁",
-        tab10: "一级分区",
-        tab11: "河长A"
-      },
 
-    ];
-    this.tableData = list;
   },
   methods: {
     getTableData(){

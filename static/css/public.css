@@ -1632,3 +1632,22 @@ line-height: 38px;
   background: #1677FF!important;
   color: #fff!important;
 }
+.oneall{
+  margin-top: -18px;
+}
+
+.oneall ul{
+  padding-left: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+    line-height: 30px;
+}
+.oneall ul li {
+  float: left;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin-left: 10px;
+}

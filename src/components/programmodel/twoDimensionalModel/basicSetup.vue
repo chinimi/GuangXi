@@ -127,6 +127,7 @@ export default {
   methods: {
      //获取基本信息
     getModelManagerData(){
+      if(this.$route.params.value != undefined){
       this.ScenarioCode = this.$route.params.value.ScenarioCode
         var url = modelURL + "/api/GXRCWQ/ModelManager/GetScenarioInfo?scenarioCode="+this.ScenarioCode
          fetch(url)
@@ -141,6 +142,7 @@ export default {
             this.SimIntervalMinute = data.SimIntervalMinute
             this.Description = data.Description
         });
+      }
     },
     //保存模板信息
     saveModel(){
