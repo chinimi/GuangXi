@@ -458,7 +458,7 @@
               <dimension v-if="status==1"></dimension>
               <oneall v-if="status==2"></oneall>
               <!-- <onedimensionMIKE v-if="status==3"></onedimensionMIKE> -->
-              <twoall v-if="status==4"></twoall>
+              <twodimension v-if="status==4"></twodimension>
             </div>
           </dd>
         </dl>
@@ -530,7 +530,6 @@ import hierarchy from '@/components/bearcapacity/water/hierarchy.vue'//富营养
 import eutrophication from '@/components/bearcapacity/water/eutrophication.vue'//分层
 import estuaryOoneDimensional from '@/components/bearcapacity/water/estuary_one_dimensional.vue'//河口一维
 import Oneall from './water/oneall.vue'
-import twoall from '@/components/bearcapacity/water/twoall.vue'
 export default {
   components: {
     dimension,//零维
@@ -541,7 +540,6 @@ export default {
     eutrophication,//富营养化
     estuaryOoneDimensional,//河口一维
     Oneall,
-    twoall
   },
   data() {
     return {

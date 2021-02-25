@@ -428,7 +428,7 @@
           <dt>
             <ul class="clear-fix radio_static">
               <li :class="[status=='1'?'csour':'']" @click="condition(1)">零维</li>
-              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维</li>
+              <li :class="[status=='7'?'csour':'']" @click="condition(7)">一维</li>
               <!-- 一维解析 -->
               <!-- <el-button :class="[status=='2'?'csour':'']" @click="condition(2)">一维解析法</el-button>
               <el-button :class="[status=='3'?'csour':'']" @click="condition(3)">一维数值法</el-button> -->
@@ -441,10 +441,10 @@
               </li>
             </ul>
 
-            <!-- <ul class="clear-fix radio_static_ul">
+            <ul class="clear-fix radio_static_ul">
               <li :class="[status == '2' ? 'csour' : '']" @click="condition(2)">一维解析法</li>
               <li :class="[status == '3' ? 'csour' : '']" @click="condition(3)">一维数值法</li>
-              </ul> -->
+              </ul>
 
 
             <!-- <div class="radio_static_text" v-show="status == '1'">
@@ -456,9 +456,9 @@
           <dd>
             <div class="tableData">
               <dimension v-if="status==1"></dimension>
-              <oneall v-if="status==2"></oneall>
-              <!-- <onedimensionMIKE v-if="status==3"></onedimensionMIKE> -->
-              <twoall v-if="status==4"></twoall>
+              <onedimension v-if="status==2"></onedimension>
+              <onedimensionMIKE v-if="status==3"></onedimensionMIKE>
+              <twodimension v-if="status==4"></twodimension>
             </div>
           </dd>
         </dl>
@@ -529,8 +529,6 @@ import twodimension from '@/components/bearcapacity/water/two_dimension.vue'//�
 import hierarchy from '@/components/bearcapacity/water/hierarchy.vue'//富营养化
 import eutrophication from '@/components/bearcapacity/water/eutrophication.vue'//分层
 import estuaryOoneDimensional from '@/components/bearcapacity/water/estuary_one_dimensional.vue'//河口一维
-import Oneall from './water/oneall.vue'
-import twoall from '@/components/bearcapacity/water/twoall.vue'
 export default {
   components: {
     dimension,//零维
@@ -540,8 +538,6 @@ export default {
     hierarchy,//分层
     eutrophication,//富营养化
     estuaryOoneDimensional,//河口一维
-    Oneall,
-    twoall
   },
   data() {
     return {

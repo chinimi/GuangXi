@@ -289,19 +289,11 @@
         <div class="water">
           <p class="water_p"><img src="/static/images/icon/pingjia.png" alt="">评价项目</p>
           <div class="water_div">
-             <el-select v-model="one" placeholder="请选择">
-             <el-option
-                      v-for="(item,i) in one_options"
-                      :key="i"
-                      :label="item.label"
-                      :value="item.value"
-                    ></el-option>
-                    </el-select>
-            <!-- <el-radio-group v-model="radio">
+            <el-radio-group v-model="radio">
               <el-radio :label="1">COD、BOD</el-radio>
               <el-radio :label="2">TP、TN</el-radio>
               <el-radio :label="3">组分3</el-radio>
-            </el-radio-group> -->
+            </el-radio-group>
           </div>
         </div>
         <!-- 水质类别 -->
@@ -311,7 +303,7 @@
             <div class="searchMain_div">
               <el-select v-model="one" placeholder="请选择">
                 <el-option
-                  v-for="(item,i) in one_selections"
+                  v-for="(item,i) in one_options"
                   :key="i"
                   :label="item.label"
                   :value="item.value"
@@ -429,10 +421,7 @@
             <ul class="clear-fix radio_static">
               <li :class="[status=='1'?'csour':'']" @click="condition(1)">零维</li>
               <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维</li>
-              <!-- 一维解析 -->
-              <!-- <el-button :class="[status=='2'?'csour':'']" @click="condition(2)">一维解析法</el-button>
-              <el-button :class="[status=='3'?'csour':'']" @click="condition(3)">一维数值法</el-button> -->
-              <!-- <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维数值法</li> -->
+              <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维MIKE</li>
               <li :class="[status=='4'?'csour':'']" @click="condition(4)">二维</li>
               <li @click="close()">
                 <div class="butt_close">
@@ -440,25 +429,13 @@
                 </div>
               </li>
             </ul>
-
-            <!-- <ul class="clear-fix radio_static_ul">
-              <li :class="[status == '2' ? 'csour' : '']" @click="condition(2)">一维解析法</li>
-              <li :class="[status == '3' ? 'csour' : '']" @click="condition(3)">一维数值法</li>
-              </ul> -->
-
-
-            <!-- <div class="radio_static_text" v-show="status == '1'">
-              </div>
-            <div class="radio_static_text" v-show="status == '2'">
-              </div> -->
-
           </dt>
           <dd>
             <div class="tableData">
               <dimension v-if="status==1"></dimension>
-              <oneall v-if="status==2"></oneall>
-              <!-- <onedimensionMIKE v-if="status==3"></onedimensionMIKE> -->
-              <twoall v-if="status==4"></twoall>
+              <onedimension v-if="status==2"></onedimension>
+              <onedimensionMIKE v-if="status==3"></onedimensionMIKE>
+              <twodimension v-if="status==4"></twodimension>
             </div>
           </dd>
         </dl>
@@ -469,9 +446,8 @@
         <dl>
           <dt>
             <ul class="clear-fix radio_static">
-              <li :class="[status=='1'?'csour':'']" @click="condition(1)">一维解析法</li>
-              <!-- 一维解析 -->
-             <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维数值法</li>
+              <li :class="[status=='1'?'csour':'']" @click="condition(1)">一维</li>
+              <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维MIKE</li>
               <li @click="close()">
                 <div class="butt_close">
                   <img src="../../../static/images/close.png" alt="">
@@ -495,8 +471,7 @@
             <ul class="clear-fix radio_static">
               <li :class="[status=='1'?'csour':'']" @click="condition(1)">零维</li>
               <li :class="[status=='2'?'csour':'']" @click="condition(2)">一维</li>
-
-              <!-- <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维数值法</li> -->
+              <li :class="[status=='3'?'csour':'']" @click="condition(3)">一维MIKE</li>
               <li :class="[status=='4'?'csour':'']" @click="condition(4)">二维</li>
               <li :class="[status=='5'?'csour':'']" @click="condition(5)">富营养化</li>
               <li :class="[status=='6'?'csour':'']" @click="condition(6)">分层</li>
@@ -529,8 +504,6 @@ import twodimension from '@/components/bearcapacity/water/two_dimension.vue'//�
 import hierarchy from '@/components/bearcapacity/water/hierarchy.vue'//富营养化
 import eutrophication from '@/components/bearcapacity/water/eutrophication.vue'//分层
 import estuaryOoneDimensional from '@/components/bearcapacity/water/estuary_one_dimensional.vue'//河口一维
-import Oneall from './water/oneall.vue'
-import twoall from '@/components/bearcapacity/water/twoall.vue'
 export default {
   components: {
     dimension,//零维
@@ -540,22 +513,11 @@ export default {
     hierarchy,//分层
     eutrophication,//富营养化
     estuaryOoneDimensional,//河口一维
-    Oneall,
-    twoall
   },
   data() {
     return {
       companyType: '1', //河长制、流域、水资源、行政
       one:'',//一级分区
-      one_selections:[
-        {label:'I类',value:'1'},
-        {label:'II类',value:'2'},
-        {label:'III类',value:'3'},
-        {label:'IV类',value:'4'},
-        {label:'V类',value:'5'},
-        {label:'劣V类',value:'6'},
-      ],
-      //水质类别
       one_options:[
         {label:'COD,BOD',value:'1'},
         {label:'TP,TN',value:'2'},
@@ -612,10 +574,6 @@ export default {
   watch: {}
 };
 </script>
-
 <style scoped>
 @import '../../../static/css/public.css';
 </style>
-
-
-
