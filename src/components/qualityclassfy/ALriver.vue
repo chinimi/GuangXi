@@ -510,7 +510,7 @@
        
         var ED = Alr_fufen(AjList,LjList,VjList);
        
-         var Alr = Math.min(PHP,FOE,ED)
+        var Alr = Math.min(PHP,FOE,ED)
 
         
       },
