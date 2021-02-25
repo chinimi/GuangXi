@@ -1085,7 +1085,7 @@
       :before-close="handleClose">
       <div style="width:90%;height:600px;margin:0 auto;">
         <!--表格1-->
-        <div  v-if="indexPage==1">
+        <div  v-show="indexPage==1">
           <el-row>
             <el-col :span="7">
               <el-table   :data="table1DataA" height="480" style="background-color: transparent;">
@@ -1186,7 +1186,7 @@
         <!--表格1 over-->
         <!--表格2-->
 
-        <div  v-if="indexPage==2">
+        <div  v-show="indexPage==2">
 
           <el-row>
             <el-col :span="24">
@@ -1277,7 +1277,7 @@
         <!--表格2 over-->
         <!--表格3-->
 
-        <div  v-if="indexPage==3">
+        <div  v-show="indexPage==3">
 
           <el-row>
             <el-col :span="24">
@@ -1386,7 +1386,7 @@
         <!--表格3 over-->
         <!--表格4-->
 
-        <div  v-if="indexPage==4">
+        <div  v-show="indexPage==4">
 
           <el-row>
             <el-col :span="24">
@@ -1484,7 +1484,7 @@
         </div>
         <!--表格4 over-->
         <!--表格5-->
-        <div  v-if="indexPage==5">
+        <div  v-show="indexPage==5">
           <el-row>
             <el-col :span="24">
               <el-table  border  :data="table5Data" height="480" style="background-color: transparent;">
@@ -1559,7 +1559,7 @@
         <!--表格5 over-->
         <!--表格6-->
 
-        <div  v-if="indexPage==6">
+        <div  v-show="indexPage==6">
 
           <el-row>
             <el-col :span="24">
@@ -1620,7 +1620,7 @@
           </el-row>
 
         </div>
-        <div  v-if="indexPage==7">
+        <div  v-show="indexPage==7">
 
           <el-row>
             <el-col :span="24">
@@ -2277,6 +2277,7 @@
         console.log(scope.swzs)//判断选中生物多样性指数弹窗
         if(scope.swzs=='swwzx'){
           this.eightVisible=true
+
 
         }else{
           this.eightVisible=false

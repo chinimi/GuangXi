@@ -45,7 +45,7 @@
       <div class="right_menu">
         <el-row style="color:#fff;padding-top:5px;">
           <el-col :span="20" ><p style="padding-left:30px;">物理结构(PF)</p></el-col>
-         
+
           <el-col :span="2"> <el-button @click="Savetable">保存</el-button></el-col>
           <el-col :span="2"><el-button @click="backAgo">返回</el-button></el-col>
         </el-row>
@@ -309,7 +309,7 @@
         NongY_PF,
         XuM_PF,
         YuL_PF,
-        
+
         } from '../qualityclassfy/PFriverMath'
   export default {
       data() {
@@ -320,7 +320,7 @@
                  {value:'3',label:'粘土河岸'},
                  {value:'4',label:'非粘土河岸'},
                ],
-             
+
                ST_option:[
                  {value:'1',label:'无冲刷迹象'},
                  {value:'2',label:'轻度冲刷'},
@@ -356,7 +356,7 @@
                 GuanD:'1',
                 NongY:'1',
                 XuM:'1',
-                YuL:'1',  
+                YuL:'1',
               },
               {
                 rivername:'桂江中游桂林景观段',  //丰水期
@@ -377,7 +377,7 @@
                 GuanD:'0',
                 NongY:'0',
                 XuM:'0',
-                YuL:'0',  
+                YuL:'0',
               },
               {
                 rivername:'桂江中游阳朔开发利用段',  //丰水期
@@ -398,7 +398,7 @@
                 GuanD:'0',
                 NongY:'1',
                 XuM:'0',
-                YuL:'2',  
+                YuL:'2',
               },
               {
                 rivername:'桂江中游昭平保留段',  //丰水期
@@ -419,10 +419,10 @@
                 GuanD:'0',
                 NongY:'1',
                 XuM:'0',
-                YuL:'3',  
+                YuL:'3',
               },
               ],
-          
+
             /*评价标准*/
             evaluatiStandarVal:'SL395-2007',
             evaluationOptopn:[{
@@ -546,22 +546,24 @@
       },
       Savetable(){
         debugger
-          for (var i = 0, j = this.PF_tableData.length; i < j; i++) 
+          for (var i = 0, j = this.PF_tableData.length; i < j; i++)
           {
             var SAr_ = SAr(this.PF_tableData[i].SA);
             var SCr_ = SCr(this.PF_tableData[i].SC);
-        
+
             var SHr_=  SHr(this.PF_tableData[i].SH);
-  
+
             var SMr_=  SMr(this.PF_tableData[i].SM);
             var STr_=  STr(this.PF_tableData[i].ST);
-            var BKSr = ((SAr_+SCr_+SHr_+SMr_+STr_)/5).toFixed(2);
+            // var BKSr = ((SAr_+SCr_+SHr_+SMr_+STr_)/5).toFixed(2);
+             BKSr = ((SAr_+SCr_+SHr_+SMr_+STr_)/5).toFixed(2);
             var TCr=  RVS(this.PF_tableData[i].QiaoM);
-            
+
             var SCCr=  RVS(this.PF_tableData[i].GuanM);
-          
+
             var HCr=  RVS(this.PF_tableData[i].CaoB);
-            var RVSr = ((TCr+SCCr+HCr)/3).toFixed(2);
+            // var RVSr = ((TCr+SCCr+HCr)/3).toFixed(2);
+            RVSr = ((TCr+SCCr+HCr)/3).toFixed(2);
             var HeA_Fufen=  HeA_PF(this.PF_tableData[i].HeA);
             var CaiS_Fufen=  CaiS_PF(this.PF_tableData[i].CaiS);
             var JianZ_Fufen=  JianZ_PF(this.PF_tableData[i].JianZ);
@@ -574,9 +576,12 @@
             var RDr = 100+HeA_Fufen+CaiS_Fufen+JianZ_Fufen+GongL_Fufen+
                         Laj_Fufen+GongY_Fufen+GuanD_Fufen+NongY_Fufen+XuM_Fufen;
             if (RDr<0) RDr= 0;
-            var RSr = (0.25*BKSr+0.5*RVSr+0.25*RDr).toFixed(2);
-            var YuL_FuFen=  YuL_PF(this.PF_tableData[i].YuL);
-            var PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
+            /*全局变量  RSr*/
+            // var RSr = (0.25*BKSr+0.5*RVSr+0.25*RDr).toFixed(2);
+             RSr = (0.25*BKSr+0.5*RVSr+0.25*RDr).toFixed(2);
+             var YuL_FuFen=  YuL_PF(this.PF_tableData[i].YuL);
+             // var PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
+             PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
           }
       },
         backAgo(){
@@ -718,7 +723,7 @@
           this.tableData=[]
         }
       },
-  
+
   }
 </script>
 

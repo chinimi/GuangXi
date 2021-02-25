@@ -332,7 +332,7 @@
                 BEN:'0',
                 JBEN:'0',
                 EJBEN:'1',
-            
+
               },
               {
                 rivername:'桂江中游桂林景观段',  //
@@ -419,20 +419,20 @@
           },
         SaveTable(){
           debugger
-          for (var i = 0, j = this.WQ_tableData.length; i < j; i++) 
+          for (var i = 0, j = this.WQ_tableData.length; i < j; i++)
           {
-            var DO_ = DO_fufen(Math.min(this.WQ_tableData[i].DO1,this.WQ_tableData[i].DO2))
-            var OCPr_= ((CODMNr_fufen(this.WQ_tableData[i].CODMN) + BODr_fufen(this.WQ_tableData[i].BOD) + NH3_Nr_fufen(this.WQ_tableData[i].NH3_N) )/3).toFixed(2);
-            
-            var HMBr_= Math.min(ARr_fufen(this.WQ_tableData[i].SHEN),
+            DO_ = DO_fufen(Math.min(this.WQ_tableData[i].DO1,this.WQ_tableData[i].DO2))
+             OCPr_= ((CODMNr_fufen(this.WQ_tableData[i].CODMN) + BODr_fufen(this.WQ_tableData[i].BOD) + NH3_Nr_fufen(this.WQ_tableData[i].NH3_N) )/3).toFixed(2);
+
+             HMBr_= Math.min(ARr_fufen(this.WQ_tableData[i].SHEN),
                               HGr_fufen(this.WQ_tableData[i].GONG),
                               CDr_fufen(this.WQ_tableData[i].GE ),
                               CRr_fufen(this.WQ_tableData[i].GE6 ),
                               PBr_fufen(this.WQ_tableData[i].QIAN ));
-            var BCPr_ = Math.min(BEN_fufen(this.WQ_tableData[i].BEN),
+            BCPr_ = Math.min(BEN_fufen(this.WQ_tableData[i].BEN),
                                  BEN_fufen(this.WQ_tableData[i].JBEN),
                                  BEN_fufen(this.WQ_tableData[i].EJBEN))
-            var WQr_ = Math.min(DO_,OCPr_,HMBr_,BCPr_)
+              WQr_ = Math.min(DO_,OCPr_,HMBr_,BCPr_)
           }
         },
         backAgo(){

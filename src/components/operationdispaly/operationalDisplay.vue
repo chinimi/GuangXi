@@ -1251,10 +1251,14 @@
       }
     },
     methods: {
-      createChart(){
+      createChart(features){
 
-debugger
-
+        console.log(features)
+        console.log(features.values_.attribute)
+        let AxisData=[]
+        let yData=[]
+        AxisData.push(features.values_.attribute.mndgName)
+        yData.push(features.values_.attribute.mndgMax)
 
         /*没拿到echart全局变量*/
         // let  Chart = this.$refs.echart
@@ -1282,7 +1286,7 @@ debugger
               }
             }
           },
-          color: [ '#f87b03', '#cd0100', '#bfaf01'],
+          color: [ '#4587d6', '#cd0100', '#bfaf01'],
 
           grid: {
             top: 55,
@@ -1293,7 +1297,8 @@ debugger
           },
           xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: AxisData,
             axisLine: {
               lineStyle: {
                 color: '#05a3f2'  //x轴legend放上时的颜色
@@ -1332,8 +1337,10 @@ debugger
             },
           },
           series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line'
+            // data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: yData,
+            // type: 'line'//折线图
+            type: 'bar'//柱形图
           }]
         }
 
@@ -1678,7 +1685,7 @@ debugger
 
         }
         str=str+checkendTime
-        console.log(str)
+
 
         let tjsj=null;
         if(this.selectTimeType=="singletime"){
@@ -1688,6 +1695,8 @@ debugger
         }else{
           tjsj=str
         }
+
+        console.log(tjsj)
          // this.activeLayerEvent(map)
         /*1:获取参数*/
         /*请求经纬度坐标点*/
@@ -1767,117 +1776,50 @@ debugger
       },
 
 
-     /* drawPoint(){//绘制点要素图层
-        /!*请求经纬度坐标点*!/
-        var param={
-          "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
-          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201507-201508"
-        }
-        let pointData=this.ajaxPointData(param)//请求回来的数据
 
-        console.log(pointData)
-      /!*  if(this.pointLayer){//有图层，清空所有几何要素
-           let lastsource =  this.pointLayer.getSource()
-               lastsource.clear();
-           let source=this.PlotPointSource(pointData)//当前数据绘制的图层
-           this.pointLayer.setSource(source)
-        }else{//没有图层，创建一个新的图层，添加要素
 
-          let source=this.PlotPointSource(pointData)//当前数据绘制的图层
 
-          //矢量图层
-            this.pointLayer=new ol.layer.Vector({
-            zIndex: 10,
-            projection: 'EPSG:4326',
-            source:source,
-            style: new ol.style.Style({
-              fill: new ol.style.Fill({
-                color: 'rgba(255, 255, 255, 0.1)'
-              }),
-              stroke: new ol.style.Stroke({
-                color: 'red',
-                width: 10
-              }),
-              image: new ol.style.Circle({
-                radius: 10,
-                fill: new ol.style.Fill({
-                  color: '#ffcf43'
-                })
-              })
-            })
-          });
+     /* drawPolygon(){
 
-          map.addLayer( this.pointLayer);//添加上站点的图层
+        // /!*请求经纬度坐标点*!/
+        // var param={
+        //   "pageNum":"0",      // --当前页
+        //   "pageSize":"100",     //--一页显示数量
+        //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+        //   "tjsj":"201412-201501-201502-201503-201504-201505-201506-201507-201508-201509-201510-201511-201512-201601-201602-201603-201604-201605-201606-201607-201608-201609-201610-201611-201612"
+        // }
+        // /!*矿化度请求*!/
+        //   let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
 
-        }*!/
-        /!*矿化度请求*!/
-        let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+
+        var param=
+          {
+            "pageNum":0,
+            "pageSize":this.pageSize,
+            "startTime":"20201031000000",
+            "endTime":"20201102000000",
+          }
+
+        let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/base/listswmsar"
         /!*http请求*!/
-        this.$http.post(khdurl, JSON.stringify(param), {
+        this.$http.post(url, JSON.stringify(param), {
           emulateJSON: true,
         }).then(function(res) {
-          let data=res.body.data.pageResultList
-          let points=[]
-          for (let i=0;i<data.length;i++) {
-            let coord = data[i]
-            console.log(coord.lgtd)
-            console.log(coord.lttd)
-            var labelCoords=ol.proj.transform([coord.lgtd, coord.lttd], "EPSG:4326", "EPSG:3857");
-            var point = new ol.Feature({
-              geometry: new ol.geom.Point(labelCoords)
-            });//构点
-            points.push(point)
 
-            //实例化一个矢量图层Vector作为绘制层
-            var source = new ol.source.Vector({
-              features: points
-            });
-            //矢量图层
-            let positionLayer = new ol.layer.Vector({
-              zIndex: 10,
-              projection: 'EPSG:4326',
-              source: source,
-              style: new ol.style.Style({
-                fill: new ol.style.Fill({
-                  color: 'rgba(255, 255, 255, 0.1)'
-                }),
-                stroke: new ol.style.Stroke({
-                  color: 'red',
-                  width: 10
-                }),
-                image: new ol.style.Circle({
-                  radius: 10,
-                  fill: new ol.style.Fill({
-                    color: '#ffcf43'
-                  })
-                })
-              })
-            });
-
-            console.log(map)
-            // positionLayer.setSource(source);
-            map.addLayer(positionLayer);//添加上站点的图层
-
-          }
-        }).catch(function(res){})
-
-      },*/
+          console.log(res)
 
 
-      drawPolygon(){
+        })
 
-        /*请求经纬度坐标点*/
-        var param={
-          "pageNum":"0",      // --当前页
-          "pageSize":"100",     //--一页显示数量
-          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201412-201501-201502-201503-201504-201505-201506-201507-201508-201509-201510-201511-201512-201601-201602-201603-201604-201605-201606-201607-201608-201609-201610-201611-201612"
-        }
-        /*矿化度请求*/
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-          /*http请求*/
+
+
+
+
+
+
+
+
+          /!*http请求*!/
           this.$http.post(khdurl, JSON.stringify(param), {
             emulateJSON: true,
           }).then(function(res) {
@@ -1931,7 +1873,7 @@ debugger
           })
 
 
-      },
+      },*/
 
 
       /*点击地图查询功能20210131*/
@@ -1944,19 +1886,25 @@ debugger
 
         let attribute=attr
         console.log(attribute)
+        console.log(attribute[0].values_.attribute.stnm)
 
         /*创建echarts*/
+        //测站名称、等级、经纬度、地址、管理单位、监测单位、监测频次
 
         var hdms="";
 
-        // if(attribute[0].values_.attribute["stnm"]){
-        //   hdms = hdms+"<span class='Popup_p_title'>"+attribute[0].values_.attribute["stnm"]+"</span>"+
-        //     "<div ref='echart' id='echart1'></div>"
-        //
-        // }else{
+
           hdms = hdms+"<span class='Popup_p_title'>详情信息</span>"+
+            "<div class='Popup_span'> 测站名称："+attribute[0].values_.attribute.stnm+" </div>"+
+            "<div class='Popup_span'>等级："+attribute[0].values_.attribute.mndgType+"</div>"+
+            "<div class='Popup_span'>经纬度：["+attribute[0].values_.attribute.lttd+","+attribute[0].values_.attribute.lgtd+"]</div>"+
+            "<div class='Popup_span'>地址："+attribute[0].values_.attribute.stcd+"</div>"+
+            "<div class='Popup_span'>管理单位："+attribute[0].values_.attribute.stnm+"</div>"+
+            "<div class='Popup_span'>监测单位："+attribute[0].values_.attribute.stnm+"</div>"+
+            "<div class='Popup_span'>监测频次："+attribute[0].values_.attribute.stnm+"</div>"+
+            "<div class='clear'></div>"+
             "<div ref='echart' id='echart1'></div>"
-        // }
+
 
 
 
@@ -2027,14 +1975,13 @@ debugger
         that.selectClick.on('select', function(e) {
           // alert(2)
           console.log("获取当前选中的要素")
-          console.log(e)
+
 
           if(that.OverlayPopup){
-            // that.removeAllOverlay(map)
             map.removeOverlay(that.OverlayPopup);
           }
           var features=e.selected;
-
+          console.log(features)
           // var features=e.target.getFeatures().getArray();
           if(features.length>0){
             var element;
@@ -2050,7 +1997,7 @@ debugger
             map.addOverlay(that.OverlayPopup);
 
         setTimeout(function(){//dom没有创建出来bug修改
-          that.createChart()
+          that.createChart(features[0])
 
         },500)
 
@@ -2087,10 +2034,7 @@ debugger
     beforeDestroy(){
       console.log("删除图层")
       map.removeLayer(this.pointLayer)
-
-
     },
-
 
   }
 </script>
@@ -2105,9 +2049,9 @@ debugger
     padding-left: 20px;
     border-radius: 10px;
     border: 2px solid #24948b;
-    width: 350px;
+    width: 390px;
     color: #dcdbdb;
-    height: 280px;
+    height: 320px;
     overflow-y: auto;
   }
   .FeaturePopup .Popup_p{
@@ -2130,8 +2074,17 @@ debugger
   }
   .FeaturePopup .Popup_span{
     font-weight: 500;
+    width: 190px;
+    float: left;
+    color: #333;
+    /*border: solid 1px red;*/
+    line-height: 20px;
   }
-
+.clear{
+  clear:both;
+  font-size:0;
+  line-height:0;
+}
 
   #echart1{
 
@@ -2343,7 +2296,9 @@ debugger
   }
 
 
+.pop_div{
 
+}
 
 </style>
 
