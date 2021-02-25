@@ -667,15 +667,15 @@
                 <el-table-column prop="length" label="河段长度"></el-table-column>
                 <el-table-column  prop="REle"  style="background: #0b93d5" label="综合健康评估分值RHIr">
 
-          <template slot-scope="scope">
+                <template slot-scope="scope">
 
-            <div style="color:dodgerblue;" >{{ scope.row.REle }}</div>
-          </template>
+                  <div style="color:dodgerblue;" >{{ scope.row.REle }}</div>
+                </template>
 
-        </el-table-column>
+               </el-table-column>
 
 
-              </el-table>
+        </el-table>
 
 
       </div>

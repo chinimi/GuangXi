@@ -42,6 +42,48 @@
         </el-menu>
 
       </el-aside>
+      <!--图例-->
+      <div  class="legendleft">
+        <div style="width: 90%;margin:0 auto;text-align: center;">图例</div>
+        <ul style="padding: 20px;">
+          <li  style="line-height: 30px;">
+            <span style="display:inline-block;width:10px;height: 10px;background: #01041C;"> </span>
+            <span> 劣V类</span>
+
+          </li>
+          <li  style="line-height: 30px;">
+            <span style="display:inline-block;width:10px;height: 10px;background: #840AFF;"> </span>
+            <span> V类</span>
+
+          </li>
+          <li  style="line-height: 30px;">
+            <span style="display:inline-block;width:10px;height: 10px;background: #FF0000;"> </span>
+            <span> IV类</span>
+
+          </li>
+          <li  style="line-height: 30px;">
+            <span style="display:inline-block;width:10px;height: 10px;background: #FAFF00;"> </span>
+            <span> III类</span>
+
+          </li>
+          <li  style="line-height: 30px;">
+            <span style="display:inline-block;width:10px;height: 10px;background: #10E766;"> </span>
+            <span> II类</span>
+
+          </li>
+          <li  style="line-height: 30px;">
+            <span style="display:inline-block;width:10px;height: 10px;background: #1677FF;"> </span>
+            <span> I类</span>
+
+          </li>
+
+
+        </ul>
+
+
+      </div>
+
+
       <div class="timeModule">
         <el-row>
           <el-col :span="2">  <span>预报时间开始:</span></el-col>
@@ -1218,6 +1260,8 @@ _this.jindu+=eachWidth
     box-shadow: 0px 0px 4px 0px rgb(19 255 187 / 30%);
     font-size: 14px !important;
     /*height: 30px !important;*/
+    line-height: 26px;
+    height: 26px;
   }
   >>>.el-input__icon{
     line-height: 27px;
@@ -1302,6 +1346,20 @@ _this.jindu+=eachWidth
   }
   >>>.el-submenu__title{
     font-size:16px;
+  }
+  /*图例*/
+  .legendleft{
+    position: absolute;
+    top: 100px;
+    left: 330px;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+    background: #fff;
+    width: 103px;
+    height: 215px;
+    padding: 0 0 20px 0 ;
+
+
   }
 
   </style>

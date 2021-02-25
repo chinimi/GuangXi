@@ -94,6 +94,8 @@
         </div>
 
         <div v-show="currentComp=='operationalDisplay'">
+
+          <legendCom></legendCom>
 <!--          <operationalDisplay></operationalDisplay>-->
           <!--运算操作路由跳转-->
           <router-view></router-view>
@@ -124,6 +126,7 @@ import qualityClassfy from "../../components/qualityclassfy/qualityClassfy"
 import qualityPrediction from "../../components/qualitypredict/qualityPrediction"
 import bearingCapacity from "../../components/bearcapacity/bearingCapacity"
 import operationalDisplay from "../../components/operationdispaly/operationalDisplay"
+import legendCom from "../../components/operationdispaly/legend"
 /*toolbar*/
 import layercontrol from "../../components/toolbar/layercontrol"
 import measureRange from "../../components/toolbar/measureRange"
@@ -143,7 +146,8 @@ export default {
         layercontrol,//图层控制
         measureRange,//测距
         operationalDisplay,
-    },
+       legendCom//图例
+     },
     data () {
         return {
           toolbarVisible:true,//toobar显引
