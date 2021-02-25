@@ -29,50 +29,60 @@ var baseMap = "http://112.26.122.200:7080/arcgis/rest/services/guangxiwgs84/MapS
 
 /*table表渲染变量*/
 /*tab1  水文水资源指标(HD)*/
-var FDR =null
-var EFR = null
+var FDr =null
+var EFr = null
 var IFDr = null
+
+
+var HDr =null
 
 /*tab2  物埋结构准则层(PF)*/
 var RSr=null
 var PFr=null
-var HDR =null
+var RCr =null
 
 var BKSr=null
 var RVSr =null
+var RDr = null
+
+
 
 
 /*tab3*/
-var WQr_ = null
-var BCPr_ = null
-var HMBr_=null
-var DO_ =null
+var DOr_ =null
 var OCPr_ =null
-var HMPr =null
+var HMBr_ =null
+var BCPr_ = null
+
+var WQr_ = null
+
+
+
+
 
 
 /*tab4*/
-var PHP =null
-var FOE =null
-var ED =null
+var PHPr =null
+var FOEr =null
+var EDr =null
 var Alr =null
 
 
 
 
-var WFZ =null
-var WRU =null
-var FLD =null
+var WFZr =null
+var WRUr =null
+var FLDr =null
+var PPr = null
 
-var SSR =null
-
+var SSr =null
+var RElir=null
+var RElr= null
+var RHir =null
 
 
 
 // 遥感影像反演
 /////////////////////
-
-
-
 /////////////////////////////
 

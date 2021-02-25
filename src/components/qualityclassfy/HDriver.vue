@@ -292,10 +292,12 @@
             PG_FD_Fufeng:'',
         FD_table:
           [{
+          
             Month: '1月',
             PG_Mon_SC_qm: '15',
             PG_Mon_TR_Qm: '14',
           }, {
+
             Month: '2月',
             PG_Mon_SC_qm: '16',
             PG_Mon_TR_Qm: '15',
@@ -823,17 +825,16 @@
           arrList_TR_Qm.push(item.PG_Mon_TR_Qm);
         })
           /// 第一个表格
+          
           this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
           var ss = FD_Value(arrList_SC_qm,arrList_TR_Qm,this.PG_Ou_AVE);
 
-
-
           //流量过程变异程度（FD）  edit by smm
           // var FDR = FD_Fufeng(ss)  // 第一个表格的最终结果
-           FDR = FD_Fufeng(ss)  // 第一个表格的最终结果
+           FDr = FD_Fufeng(ss)  // 第一个表格的最终结果
 
           //生态流量满足程度（EF）  edit by smm
-           EFR = 100;
+           EFr = 100;
 
            ///健康评价表
           var Wetseason='';
@@ -906,7 +907,12 @@
 
       // (HDR)  edit by smm
       // var HDR = FDR *0.3+ 0.4*EFR +0.3*IFDr
-        HDR = FDR *0.3+ 0.4*EFR +0.3*IFDr
+        HDr = FDr *0.3+ 0.4*EFr +0.3*IFDr
+        if (IFDr == null)
+        {
+           HDr = FDr *0.4+ 0.6*EFr;
+        }
+
       },
       checkSelectable(row,index){
         let flag = true;

@@ -13,7 +13,7 @@
         <!-- <el-table-column prop="name" label="指定评价位置" min-width="150"></el-table-column> -->
         <el-table-column prop="address" label="横坐标" min-width="150"></el-table-column>
         <el-table-column prop="address" label="纵坐标" min-width="100"></el-table-column>
-        <el-table-column prop="date" label="返回" min-width="100"></el-table-column>
+        <!-- <el-table-column prop="date" label="返回" min-width="100"></el-table-column> -->
         <el-table-column prop="date" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>

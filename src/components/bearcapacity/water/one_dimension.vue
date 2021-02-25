@@ -27,7 +27,7 @@
         </el-table-column>
         <el-table-column prop="mix" label="河长" min-width="80"></el-table-column>
         <el-table-column prop="mix" label="流速" min-width="80"></el-table-column>
-        <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column>
+        <!-- <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column> -->
         <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>

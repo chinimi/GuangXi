@@ -65,7 +65,7 @@ var  add = function(num) {
   return sum.toFixed(2);
 }
 
-export var Alr_fufen = function(num1,num2,num3)
+export var EDr_fufen = function(num1,num2,num3)
 {
   var Fufen = 0
   var AIVlist =[];
