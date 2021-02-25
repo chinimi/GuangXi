@@ -164,6 +164,7 @@ export default {
   methods: {
     //获取表格数据
     getTableData() {
+      if(this.$route.params.value != undefined){
       this.ScenarioCode = this.$route.params.value.ScenarioCode
       var url =
         modelURL + "/api/GXRCWQ/ModelManager/GetHDInfo?scenarioCode="+this.ScenarioCode;
@@ -176,6 +177,7 @@ export default {
           this.tableData = data.ResistanceLocalList;
           this.ResistanceNumber = data.ResistanceNumber;
         });
+        }
     },
     //新增
     handleAdd() {

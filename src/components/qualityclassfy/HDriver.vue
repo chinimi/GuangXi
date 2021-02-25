@@ -87,7 +87,7 @@
         <el-col :span="12" style="padding-left:20px;">
           <!--合并单元格数据-->
           <el-table :data="tableData6" height="calc( 100vh - 600px )" :span-method="resolveSpanMethod" border style="width: 100%;">
-            <el-table-column  align="center" label="生态流量满足程度(EF)">   
+            <el-table-column  align="center" label="生态流量满足程度(EF)">
                     <el-table-column prop="name" label="名称">
                       </el-table-column>
                     <el-table-column prop="month" label="月份">
@@ -358,13 +358,13 @@
                 MaxP75: '1',
                 MinP25:'0.25',
                 MinP75: '0.5',
-                Wetseason:'1.5',//评估年内丰水期水量	
+                Wetseason:'1.5',//评估年内丰水期水量
                 Dryseason:'0.3',//评估年内枯水期水量
-                Max:'0.5',      //评估年内最大月水量	
-                Min:'0.1',      //评估年内最小月水量	
-                HFV:'0',        //丰水期水量指标（HFV） 	
-                LFV:'0.6',      //枯水期水量指标（LFV）	
-                HFM:'0',        //最大月水量指标（HFM）	
+                Max:'0.5',      //评估年内最大月水量
+                Min:'0.1',      //评估年内最小月水量
+                HFV:'0',        //丰水期水量指标（HFV）
+                LFV:'0.6',      //枯水期水量指标（LFV）
+                HFM:'0',        //最大月水量指标（HFM）
                 LFM:'0.4',     	//最小月水量指标（LFM）
               },
             ],
@@ -374,7 +374,7 @@
                 amount2: '0.5',
                 amount3: '1.1',
                 amount4: '2.1',
-                amount5: '2.2',      
+                amount5: '2.2',
                 },
                 {
                 month:'2',
@@ -382,7 +382,7 @@
                 amount2: '0.6',
                 amount3: '1.2',
                 amount4: '2.2',
-                amount5: '2.6',      
+                amount5: '2.6',
                 },
                 {
                 month:'3',
@@ -390,7 +390,7 @@
                 amount2: '0.7',
                 amount3: '1.3',
                 amount4: '2.3',
-                amount5: '2.2',      
+                amount5: '2.2',
                 },
                {
                 month:'4',
@@ -398,7 +398,7 @@
                 amount2: '0.8',
                 amount3: '1.4',
                 amount4: '2.4',
-                amount5: '1.8',      
+                amount5: '1.8',
                 },
                  {
                 month:'5',
@@ -406,7 +406,7 @@
                 amount2: '0.9',
                 amount3: '1.5',
                 amount4: '2.5',
-                amount5: '1.3',      
+                amount5: '1.3',
                 },
                 {
                 month:'6',
@@ -414,7 +414,7 @@
                 amount2: '1',
                 amount3: '1.6',
                 amount4: '2.6',
-                amount5: '2',      
+                amount5: '2',
                 },
                 {
                 month:'7',
@@ -422,7 +422,7 @@
                 amount2: '1.1',
                 amount3: '1.7',
                 amount4: '2.7',
-                amount5: '2.1',      
+                amount5: '2.1',
                 },
                  {
                 month:'8',
@@ -430,7 +430,7 @@
                 amount2: '1.3',
                 amount3: '1.9',
                 amount4: '2.9',
-                amount5: '3.5',      
+                amount5: '3.5',
                 },
                  {
                 month:'9',
@@ -438,7 +438,7 @@
                 amount2: '1.3',
                 amount3: '1.9',
                 amount4: '2.9',
-                amount5: '2.99',      
+                amount5: '2.99',
                 },
                  {
                 month:'10',
@@ -446,7 +446,7 @@
                 amount2: '1.4',
                 amount3: '2',
                 amount4: '3',
-                amount5: '2.4',      
+                amount5: '2.4',
                 },
                  {
                 month:'11',
@@ -454,7 +454,7 @@
                 amount2: '1.2',
                 amount3: '2.1',
                 amount4: '3.1',
-                amount5: '1',      
+                amount5: '1',
                 },
                  {
                 month:'12',
@@ -462,8 +462,8 @@
                 amount2: '1.6',
                 amount3: '2.2',
                 amount4: '3.2',
-                amount5: '2.6',      
-                },             
+                amount5: '2.6',
+                },
             ],
         originData: [{
           id: 'llgcbycd',
@@ -822,18 +822,19 @@
           arrList_SC_qm.push(item.PG_Mon_SC_qm);
           arrList_TR_Qm.push(item.PG_Mon_TR_Qm);
         })
-          /// 第一个表格   
+          /// 第一个表格
           this.PG_Ou_AVE= FD_Qu_AVE(arrList_TR_Qm);
-          var ss = FD_Value(arrList_SC_qm,arrList_TR_Qm,this.PG_Ou_AVE);  
+          var ss = FD_Value(arrList_SC_qm,arrList_TR_Qm,this.PG_Ou_AVE);
 
 
 
           //流量过程变异程度（FD）  edit by smm
-          var FDR = FD_Fufeng(ss)  // 第一个表格的最终结果
+          // var FDR = FD_Fufeng(ss)  // 第一个表格的最终结果
+           FDR = FD_Fufeng(ss)  // 第一个表格的最终结果
 
           //生态流量满足程度（EF）  edit by smm
-          var EFR = 100;
-           
+           EFR = 100;
+
            ///健康评价表
           var Wetseason='';
           var WetseasonP25='';
@@ -848,7 +849,7 @@
           this.healthyTable.forEach(function(item,index){
                 Wetseason = item.Wetseason;
                 WetseasonP25 = item.WetseasonP25;
-                
+
                 Max = item.Max;
                 MaxP25 = item.MaxP25
                 Dryseason = item.Dryseason;
@@ -858,7 +859,7 @@
                 MinP25=item.MinP25;
                 MinP75=item.MinP75;
              })
-            
+
             var  HFV = HFV_HFM(Wetseason,WetseasonP25);
             var  LFV = LFV_LFM(Dryseason,DryseasonP25,DryseasonP75);
             var  HFM = HFV_HFM(Max,MaxP25);
@@ -873,13 +874,13 @@
                 arrList_F44.push(item.amount4);
                 arrList_D44.push(item.amount2);
           })
-         
+
          var PHF_ = PHF(arrList_G44,arrList_E44,arrList_F44)
          var PLF_ = PLF(arrList_G44,arrList_E44,arrList_F44)
          var PVF_ = PVL(arrList_G44,arrList_D44)
         //consle.log(this.healthyTable2);
         let dataTable1 = JSON.parse(JSON.stringify(this.healthyTable2))
-       
+
         let dataTable2 = JSON.parse(JSON.stringify(this.healthyTable2))
         var list1 =  sortByKey(dataTable1,'amount1')
         var list2 =  sortByKey(dataTable2,'amount5')
@@ -891,18 +892,21 @@
         list2.forEach(function(item,index){
             monthlist2.push(item.month);
         })
-      
+
         var SFS_ = SFS(monthlist1,monthlist2);
-       
+
         var IFD = ((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
         +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8).toFixed(2);
-       
+
        // 健康流量指标赋分(IFDr)  edit by smm
-       var IFDr = (((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
+       // var IFDr = (((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
+       //  +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8)*100).toFixed(2);
+        IFDr = (((parseFloat(HFV)+parseFloat(LFV)+parseFloat(HFM)
         +parseFloat(LFM)+parseFloat(PHF_)+parseFloat(PLF_)+parseFloat(PVF_)+parseFloat(SFS_))/8)*100).toFixed(2);
-        
-      // (HDR)  edit by smm  
-      var HDR = FDR *0.3+ 0.4*EFR +0.3*IFDr
+
+      // (HDR)  edit by smm
+      // var HDR = FDR *0.3+ 0.4*EFR +0.3*IFDr
+        HDR = FDR *0.3+ 0.4*EFR +0.3*IFDr
       },
       checkSelectable(row,index){
         let flag = true;

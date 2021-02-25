@@ -83,6 +83,7 @@ export default {
   methods: {
     //获取表格数据
     getTableData() {
+      if(this.$route.params.value != undefined){
       this.ScenarioCode = this.$route.params.value.ScenarioCode
       var that = this;
       var url =
@@ -105,6 +106,7 @@ export default {
             that.tableData[i].value1 = dataValue[i];
           }
         });
+      }
     },
     //点击单元格得到横纵坐标
     handleCellClick(row, column, event, cell) {

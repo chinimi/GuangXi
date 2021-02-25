@@ -217,7 +217,6 @@ export default {
           return respose.json();
         })
         .then(data => {
-          console.log(data)
             this.DischargeItems = data.DischargeItems
             this.WaterLevelItems = data.WaterLevelItems
             this.WaterQualityItems = data.WaterQualityItems

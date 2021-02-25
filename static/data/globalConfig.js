@@ -27,6 +27,47 @@ var baseMap = "http://112.26.122.200:7080/arcgis/rest/services/guangxiwgs84/MapS
 //
 // export default globalVar
 
+/*table表渲染变量*/
+/*tab1  水文水资源指标(HD)*/
+var FDR =null
+var EFR = null
+var IFDr = null
+
+/*tab2  物埋结构准则层(PF)*/
+var RSr=null
+var PFr=null
+var HDR =null
+
+var BKSr=null
+var RVSr =null
+
+
+/*tab3*/
+var WQr_ = null
+var BCPr_ = null
+var HMBr_=null
+var DO_ =null
+var OCPr_ =null
+var HMPr =null
+
+
+/*tab4*/
+var PHP =null
+var FOE =null
+var ED =null
+var Alr =null
+
+
+
+
+var WFZ =null
+var WRU =null
+var FLD =null
+
+var SSR =null
+
+
+
 
 // 遥感影像反演
 /////////////////////
