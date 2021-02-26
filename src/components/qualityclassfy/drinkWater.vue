@@ -10,7 +10,7 @@
           </el-col>
           <el-col :span="14" style="margin-left: -5%;">
             <div>
-              <el-select v-model="pjbzval">
+              <el-select @change="selectGet" v-model="pjbzval">
                 <el-option
                   v-for="(item, index) in pjbzOption"
                   :key="item.value"
@@ -22,8 +22,6 @@
           </el-col>
         </el-row>
       </div>
-
-
       <!--水系参数-->
       <div style="width: 100%;padding-left:20px;">
         <el-radio-group  v-model="cursysval">
@@ -32,7 +30,6 @@
           </el-col>
         </el-radio-group>
       </div>
-
 
       <!--河长制-->
       <!--省-->
@@ -618,7 +615,6 @@
     </div>
     <!--table表格-->
     <div class="right_menu">
-      <!--矿化度-->
       <el-table
         border
         :data="tableData"
@@ -667,44 +663,34 @@
             <span v-else>{{ scope.row.df }}</span>
           </template>
         </el-table-column>
-
         <el-table-column
           prop="bz"
           label="备注">
           <template slot-scope="scope">
             <el-input
-              v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
+              v-if="scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex"
               v-model="scope.row.bz"
               @blur="inputBlur"
             ></el-input>
             <span v-else>{{ scope.row.bz }}</span>
           </template>
-
         </el-table-column>
-
       </el-table>
 
       <el-row style="margin:20px;">
-
         <el-col :span="16">
           &nbsp;
         </el-col>
-        <el-col :span="8">
-          <div style="width: 100px;
+        <el-col :span="8" >
+          <div  style="width: 100px;
             padding:20px 10px;
             border: solid 1px #ccc;
             text-align: center;">
-            <span>得分 ：30/100</span>
+            <span >得分:{{defen}}/{{zongfen}}</span>
           </div>
-
         </el-col>
-
-
       </el-row>
-
       <el-row>
         <el-col :span="16">
           &nbsp;
@@ -715,37 +701,23 @@
       </el-row>
 
 
-      <!--分页-->
-<!--      <div style="padding-top:30px;">-->
-<!--        &lt;!&ndash; <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> &ndash;&gt;-->
-<!--        <el-pagination-->
-<!--          background-->
-<!--          @size-change="handleSizeChange"-->
-<!--          @current-change="handleCurrentChange"-->
-<!--          :current-page="currentPage4"-->
-<!--          :page-sizes="[100, 200, 300, 400]"-->
-<!--          :page-size="100"-->
-<!--          layout="total, sizes, prev, pager, next, jumper"-->
-<!--          :total="400"-->
-<!--        >-->
-<!--        </el-pagination>-->
-<!--      </div>-->
-
-
     </div>
 
   </div>
 </template>
 
 <script>
-
+ 
   import  getWater from '../../api/index'
+
+  var selectid = 0;
+ 
   export default {
     data() {
       return {
-
-
-
+        
+        defen:30,
+        zongfen:100,
         currentPage1: 5,
         currentPage2: 5,
         currentPage3: 5,
@@ -760,11 +732,15 @@
         fourstagePartitionList: [],
         fivestagePartition: "全部",
         fivestagePartitionList: [],
-        tableData: [],
-
-
+        SL_tableData: [],
+        SZ_tableData:[],
+        JK_tableData:[],
+        GL_tableData:[],
+        tableData:[],
         /*评价标准*/
         pjbzval:'0',
+
+
         pjbzOption:[{
             label:"水量评价", 
             value:'0',
@@ -781,10 +757,191 @@
             label:"管理评价",  
             value:'3',
         },
-       
         ],
-        
 
+        SL_tableData:[
+              {
+                'pgzb':"年度供水保证率",
+                'fz':14,
+                'kfyy':'未知',
+                'df':10,
+                'bz':'备注'
+              },{
+                'pgzb':"应急备用水源地建设",
+                'fz':8,
+                'kfyy':'未知',
+                'df':8,
+                'bz':'备注'
+
+              },{
+                'pgzb':"水量调度管理",
+                'fz':4,
+                'kfyy':'未知',
+                'df':4,
+                'bz':'备注'
+              },{
+                'pgzb':"供水设施运行",
+                'fz':4,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              }
+            ],
+
+             SZ_tableData:[
+              {
+                'pgzb':"取水口水质达标率",
+                'fz':20,
+                'kfyy':'未知',
+                'df':10,
+                'bz':'备注'
+              },{
+                'pgzb':"封闭管理及界标设立",
+                'fz':4,
+                'kfyy':'未知',
+                'df':10,
+                'bz':'备注'
+
+              },{
+                'pgzb':"入河口排污设置",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },{
+                'pgzb':"一级保护区综合治理",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },{
+                'pgzb':"二级保护区综合治理",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },
+              {
+                'pgzb':"准保护区综合治理",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },
+                {
+                'pgzb':"含磷洗涤剂、农药化肥等使用",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },
+              {
+                'pgzb':"保护区交通设施管理",
+                'fz':3,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },
+               {
+                'pgzb':"保护区植被覆盖率",
+                'fz':1,
+                'kfyy':'未知',
+                'df':1,
+                'bz':'备注'
+              },
+
+            ],
+
+            JK_tableData:[
+              {
+                'pgzb':"视频监控",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },{
+                'pgzb':"巡查制度",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+
+              },{
+                'pgzb':"特定指标监测",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },{
+                'pgzb':"在线监测",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },
+              {
+                'pgzb':"信息监控系统",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },
+
+              {
+                'pgzb':"应急监测能力",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },
+
+
+
+            ],
+             GL_tableData:[
+              {
+                'pgzb':"保护区划分",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },{
+                'pgzb':"部门联动机制",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+
+              },{
+                'pgzb':"法规体系",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },{
+                'pgzb':"应急预案与演练",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },
+              {
+                'pgzb':"管理队伍",
+                'fz':3,
+                'kfyy':'未知',
+                'df':3,
+                'bz':'备注'
+              },
+              {
+                'pgzb':"资金保障",
+                'fz':2,
+                'kfyy':'未知',
+                'df':2,
+                'bz':'备注'
+              },
+
+            ],
+        
         /*取值方式*/
         qzfsval:'avg',
         qzfsOption:[{
@@ -831,16 +988,19 @@
 
       //点击单元格得到横纵坐标
       handleCellClick(row, column, event, cell) {
+        debugger
         this.tabRowIndex = row.index;
         this.tabColumnIndex = column.index;
-        this.tableValue.push(row);
+        //this.tableValue.push(row);
       },
       //数据中没有横纵坐标需要加上进行下一步判断
       getRowColumn({ row, column, rowIndex, columnIndex }) {
+       // debugger
         row.index = rowIndex;
         column.index = columnIndex;
       },
       inputBlur() {
+        
         this.tabRowIndex = null;
         this.tabColumnIndex = "";
       },
@@ -850,70 +1010,88 @@
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
       },
-      queryTableData(){
-        var param={
-          "pageNum":"0",      // --当前页
-          "pageSize":"10",     //--一页显示数量
-          "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
-          "tjsj":"201507-201508"
+      selectGet(vId){
+         
+          var obj = this.pjbzOption.find((item)=>{//这里的selectList就是上面遍历的数据源
+          return item.value === vId;//筛选出匹配数据
+      });
+      selectid = vId
+      },
+      queryTableData(){ 
+        if(selectid==0)
+        {
+          this.tableData = this.SL_tableData;     
         }
-        this.tableData=[]
+        else if(selectid==1)
+        {
+          this.tableData = this.SZ_tableData;        
+        }
+        else if(selectid==2)
+        {
+           this.tableData = this.JK_tableData;         
+        }
+        else if(selectid==3)
+        {
+          this.tableData = this.GL_tableData;
+        }    
+        var sum = 0
+        for (var i = 0, j = this.tableData.length; i < j; i++)
+        {
+          sum += parseInt(this.tableData[i].df);
+        }
+        this.defen = sum
 
-
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-          /*http请求*/
-          this.$http.post(khdurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function(res) {
-            console.log(res)
-            // this.tableData=res.body.data.pageResultList
-            console.log("获取查询的数据")
-            this.tableData=[
-              {
-                'pgzb':"年度供水保证率",
-                'fz':14,
-                'kfyy':'未知',
-                'df':10,
-                'bz':'备注'
-              },{
-                'pgzb':"应急备用水源地建设",
-                'fz':8,
-                'kfyy':'未知',
-                'df':10,
-                'bz':'备注'
-
-              },{
-                'pgzb':"水量调度管理",
-                'fz':4,
-                'kfyy':'未知',
-                'df':10,
-                'bz':'备注'
-              },{
-                'pgzb':"供水设施运行",
-                'fz':4,
-                'kfyy':'未知',
-                'df':19,
-                'bz':'备注'
-              }
-
-
-            ]
-            console.log(this.tableData)
-          }).catch(function(res){
-
-
-          })
-
-
-
-
-
-
+        var sumzong = 0
+        for (var i = 0, j = this.SL_tableData.length; i < j; i++)
+        {
+          sumzong += parseInt(this.SL_tableData[i].df);
+        }
+         for (var i = 0, j = this.SZ_tableData.length; i < j; i++)
+        {
+          sumzong += parseInt(this.SZ_tableData[i].df);
+        }
+          for (var i = 0, j = this.JK_tableData.length; i < j; i++)
+        {
+          sumzong += parseInt(this.JK_tableData[i].df);
+        }
+        for (var i = 0, j = this.GL_tableData.length; i < j; i++)
+        {
+          sumzong += parseInt(this.GL_tableData[i].df);
+        }
+         this.zongfen = sumzong
 
       }
+       
+      //   var param={
+      //     "pageNum":"0",      // --当前页
+      //     "pageSize":"10",     //--一页显示数量
+      //     "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
+      //     "tjsj":"201507-201508"
+      //   }
+      //   this.tableData=[]
+      //     let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+      //     /*http请求*/
+      //     this.$http.post(khdurl, JSON.stringify(param), {
+      //       emulateJSON: true,
+      //     }).then(function(res) {
+         
+      //       console.log(res)
+      //       // this.tableData=res.body.data.pageResultList
+      //       console.log("获取查询的数据")
+            
+      //       console.log(this.tableData)
+      //     }).catch(function(res){
+
+      //     })
+
+      // }
     },
     watch:{
 
+      // df(newVal, oldVal){
+      //     alert(newVal);
+      //      alert(newVal);
+      //   },
       pjxmval(newValue){
 
         this.tableData=[]

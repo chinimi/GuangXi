@@ -581,7 +581,8 @@
              RSr = (0.25*BKSr+0.5*RVSr+0.25*RDr).toFixed(2);
              RCr=  YuL_PF(this.PF_tableData[i].YuL);
              // var PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
-             PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
+           
+             PFr = (0.7*RSr + RCr*0.3).toFixed(2);
           }
       },
         backAgo(){

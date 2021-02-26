@@ -581,21 +581,21 @@ export default {
           return respose.json();
         })
         .then(data => {
+          debugger
           console.log(data)
           this.creatLayer(data)
-
         });
     },
     creatLayer(featureJson){
-       var source = new ol.source.Vector({
+      var source = new ol.source.Vector({
       features: new ol.format.GeoJSON({
         dataProjection: "EPSG:4326",
         featureProjection: "EPSG:4326"
       }).readFeatures(featureJson),
       projection: "EPSG:4326"
     })
-    // var extent = source.getExtent()
-    // map.getView().fit(extent, map.getSize(), {padding: [10, 10, 10, 10]})
+    debugger
+    console.log(source)
     this.layer = new ol.layer.Vector({
       source: source,
       style: function(feature) {
@@ -629,7 +629,6 @@ export default {
       zIndex: 15
     })
       map.addLayer( this.layer)
-
 
     },
     handleDelete(index, row) {

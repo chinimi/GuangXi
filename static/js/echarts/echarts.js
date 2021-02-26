@@ -52956,9 +52956,7 @@ var VisualMapping = function (option) {
 };
 
 VisualMapping.prototype = {
-
     constructor: VisualMapping,
-
     mapValueToVisual: function (value) {
         var normalized = this._normalizeData(value);
         return this._doMap(normalized, value);
