@@ -501,15 +501,25 @@ export default {
       currentPage1: 5,
       currentPage2: 5,
       currentPage3: 5,
-      currentPage4: 4
+      currentPage4: 4,
+      //
+      cusParam:'',//空
     };
   },
   methods: {
     //获取表格数据
-    getTableData() {
-      var url =
+    getTableData( ) {
+        if(this.cusParam!==''){
+        var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetTemplateInfoList?scenarioType="+this.cusParam;
+       }else{
+        var url =
         modelURL +
         "/api/GXRCWQ/ModelManager/GetTemplateInfoList?scenarioType=''";
+
+       }
+
       fetch(url)
         .then(respose => {
           return respose.json();
@@ -560,10 +570,20 @@ export default {
   watch: {
     dimension: {
       handler(newvalue, oldvalue) {
-        debugger
+         this.tableData = []
          if (newvalue.indexOf("1") != -1){
-
+          this.cusParam= 'MIKE11Model'
          }
+         if(newvalue.indexOf("2") != -1){
+           this.cusParam= 'MIKE21FMModel'
+         }
+        if(newvalue.length == 2){s
+             this.cusParam= ''
+        }
+        if(newvalue.length == 0){
+             this.cusParam= ''
+        }
+        this.getTableData()
       }
     }
   }

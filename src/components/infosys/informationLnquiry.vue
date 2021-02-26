@@ -678,30 +678,13 @@ export default {
           label: "不达标",
           value: "2"
         },],
-      waterQuality:[ {
-          label: "一类",
-          value: "1"
-        },
-        {
-          label: "二类",
-          value: "2"
-        },
-         {
-          label: "三类",
-          value: "3"
-        },
-         {
-          label: "四类",
-          value: "4"
-        },
-         {
-          label: "五类",
-          value: "5"
-        },
-         {
-          label: "六类",
-          value: "6"
-        },],
+      waterQuality:[
+        {label:'I类',value:'1'},
+        {label:'II类',value:'2'},
+        {label:'III类',value:'3'},
+        {label:'IV类',value:'4'},
+        {label:'V类',value:'5'},
+        {label:'劣V类',value:'6'},],
       /*当前水系*/
       cursys: "1",
       /*行政区*/
