@@ -162,7 +162,7 @@
   import moment from "moment";
    import{PHP_fufen,
         FOE_fufen,
-        Alr_fufen,
+        EDr_fufen,
         } from '../qualityclassfy/ALriverMath'
   export default {
     data() {
@@ -495,8 +495,8 @@
           },
       SaveTable(){
 
-        PHP = PHP_fufen(this.PHP_tableData[0].DJ)
-        FOE = FOE_fufen(this.PHP_tableData[0].SZ,this.PHP_tableData[1].SZ);
+        PHPr = PHP_fufen(this.PHP_tableData[0].DJ)
+        FOEr = FOE_fufen(this.PHP_tableData[0].SZ,this.PHP_tableData[1].SZ);
 
         var AjList = [];
         var LjList = [];
@@ -507,6 +507,9 @@
                 LjList.push(item.Lj);
                 VjList.push(item.Vj);
           })
+        EDr = EDr_fufen(AjList,LjList,VjList)
+        Alr = Math.min(PHP,FOE,EDr)
+      
 
 
       },

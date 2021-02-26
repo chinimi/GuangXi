@@ -201,7 +201,7 @@
       :modal-append-to-body="false"
       :visible.sync="resultdialogVisible"
       :close-on-click-modal="false"
-      width="60%"
+      width="72%"
       :before-close="handleClose">
       <!--tabel主体内容-->
       <div style="height:650px;width:100%; ">
@@ -235,7 +235,7 @@
                     fixed
                     type="index"
                     label="序号"
-                    width="100">
+                    width="60">
                   </el-table-column>
 
                   <el-table-column
@@ -270,17 +270,17 @@
 
                   <el-table-column
                     prop="FD"
-                    label="流量过程变异过程FD">
+                    label="流量过程变异过程（FD）">
                   </el-table-column>
 
                   <el-table-column
                     prop="EF"
-                    label="生态流量满足程度EF">
+                    label="生态流量满足程度（EF）">
                   </el-table-column>
 
                   <el-table-column
                     prop="IFDr"
-                    label="健康流量指标IFDr">
+                    label="健康流量指标（IFDr）">
                   </el-table-column>
 
                 </el-table>
@@ -643,16 +643,15 @@
            
           <el-table-column prop="name" label="河段名称"></el-table-column>
           <el-table-column prop="hdcd" label="河段长度"></el-table-column>
-          <el-table-column  prop="HD" label="水文水资源赋分HD"></el-table-column>
-          <!--                <el-table-column prop="dnpjjl"  label="多年平均径流Q"></el-table-column>-->
-          <el-table-column prop="PHr"  label="物理结构PHr"></el-table-column>
-          <el-table-column prop="WQr"  label="水资状况指标赋分WQr"></el-table-column>
-          <el-table-column prop="ALr"  label="水生生物评估赋分ALr"></el-table-column>
-          <el-table-column prop="RElir"  label="评估河段生态完整性评估分值RElir"></el-table-column>
-          <el-table-column prop="REle"  label="流域生态完整性评估分值REle">
+          <el-table-column  prop="HDr" label="水文水资源赋分（HDr）"></el-table-column>
+          <el-table-column prop="PHr"  label="物理结构（PHr）"></el-table-column>
+          <el-table-column prop="WQr"  label="水资状况指标赋分（WQr）"></el-table-column>
+          <el-table-column prop="ALr"  label="水生生物评估赋分（ALr）"></el-table-column>
+          <el-table-column prop="RElir"  label="评估河段生态完整性评估分值（RElir）"></el-table-column>
+          <el-table-column prop="RElr"  label="流域生态完整性评估分值（RElr）">
             <template slot-scope="scope">
-
-              <div style="color:dodgerblue;" >{{ scope.row.REle }}</div>
+r
+              <div style="color:dodgerblue;" >{{ scope.row.RElir }}</div>
             </template>
           </el-table-column>
 
@@ -660,16 +659,15 @@
 
 
 
-        <el-row class="dialog_single_title">流域生态完整性评估分值REIr</el-row>
+        <el-row class="dialog_single_title">综合健康评估</el-row>
         <el-table :cell-style="isPink" :data="lystwazxData"  max-height="100"    border  >
-           
-                <el-table-column prop="SSR" label="社会服务功能准则层分SSr"></el-table-column>
-                <el-table-column prop="length" label="河段长度"></el-table-column>
-                <el-table-column  prop="REle"  style="background: #0b93d5" label="综合健康评估分值RHIr">
+                <el-table-column prop="REIr" label="流域生态完整性评估分值（RElr）"></el-table-column>
+                <el-table-column prop="SSR" label="社会服务功能准则层分（SSr）"></el-table-column>       
+                <el-table-column  prop="RHlr"  style="background: #0b93d5" label="综合健康评估分值（RHlr）">
 
           <template slot-scope="scope">
 
-            <div style="color:dodgerblue;" >{{ scope.row.REle }}</div>
+            <div style="color:dodgerblue;" >{{ scope.row.RHlr }}</div>
           </template>
 
         </el-table-column>
@@ -1185,13 +1183,40 @@
       },
       queryTableData(){//查看评价结果
 
-        this.resultdialogVisible=true
+        
         console.log("显示表格计算的全局变量")
         // 流量过程变异 生态流量满足 健康流量指标过程FD 程度EF FD
 
-
+        if(FDr==null ||EFr==null|| IFDr==null)
+        {
+          alert('水文水资源为空')
+         
+          return ;
+        }
+        if(RSr==null || RCr==null)
+        {
+          alert('物理结构为空') 
+          return ;
+        }
+        if (DOr_==null||OCPr_==null||HMBr_==null||BCPr_==null)
+        {
+           alert('水质状况指标为空') 
+          return ;
+        }
+        if (PHPr==null||FOEr==null||EDr==null)
+        {
+           alert('水生生物评估为空') 
+          return ;
+        }
+        if(WFZr==null||WRUr==null||FLDr==null||PPr==null)
+        {
+            alert('社区服务功能评估为空') 
+          return ;
+        }
+        else{
+      
         /*各河段得分*/
-
+        this.resultdialogVisible=true
         this.HDTableData=[
           {
             "zonecode":101100,
@@ -1200,13 +1225,11 @@
             "end":"终点",
             'szhl':"所在河流",
             'length':"1000km",
-            'FD':FDR,
-            'EF':EFR,
+            'FD':FDr,
+            'EF':EFr,
             'IFDr':IFDr,
 
           }]
-
-
           /*PF table*/
           this.PFTableData=[
             {
@@ -1217,7 +1240,7 @@
               'szhl':"所在河流",
               'length':"1000km",
               'RS':RSr,
-              'RC':PFr,
+              'RC':RCr,
             }]
           /*WQ table*/
           this.WQTableData=[
@@ -1228,9 +1251,9 @@
               "end":"终点",
               'szhl':"所在河流",
               'length':"1000km",
-              'Do':DO_,
+              'Do':DOr_,
               'OCP':OCPr_,
-              'HMPr':HMPr,
+              'HMBr':HMBr_,
               'BCР':BCPr_,
             }]
 /*ALTableData*/
@@ -1242,9 +1265,9 @@
             "end":"终点",
             'szhl':"所在河流",
             'length':"1000km",
-            'PHP':PHP,
-            'FОЕ':FOE,
-            'ED':ED,
+            'PHP':PHPr,
+            'FОЕ':FOEr,
+            'ED':EDr,
 
           }]
 /*SSTableData*/
@@ -1256,10 +1279,10 @@
             "end":"终点",
             'szhl':"所在河流",
             'length':"1000km",
-            'FLD':FLD,
-            'SSR':SSR,
-            'ED':ED,
-
+            'WFZ':WFZr,
+            'WRU':WRUr,
+            'FLD':FLDr,
+            'PP':PPr
           }]
 
         /*生态完整性评估表*/
@@ -1271,13 +1294,14 @@
             "start":"起点",
             "end":"终点",
             'szhl':"所在河流",
-            'length':"1000km",
-            'HD':HDR,
-            'PHr':SSR,
+            'length':"1000rkm",
+            'HD':HDr,
+            'PFr':PFr,
             'WQr':WQr_,
             'ALr':Alr,
-            'REle':RVSr,
-
+            'RElir':RElir,
+            'RElr':RElr
+        
 
           }]
 
@@ -1286,11 +1310,11 @@
 
         this.lystwazxData=[
           {
-            'SSR':SSR,
-            'length':"1000km",
-            'REle':RVSr,
-
+            'RElr':RElr,
+            'SSr':SSr,
+            'RHir':RHir, 
           }]
+        }
       },
       handleClose(){//点击显示弹窗界面
 

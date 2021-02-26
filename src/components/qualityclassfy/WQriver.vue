@@ -421,18 +421,22 @@
           debugger
           for (var i = 0, j = this.WQ_tableData.length; i < j; i++)
           {
-            DO_ = DO_fufen(Math.min(this.WQ_tableData[i].DO1,this.WQ_tableData[i].DO2))
+             DOr_ = DO_fufen(Math.min(this.WQ_tableData[i].DO1,this.WQ_tableData[i].DO2))
+
              OCPr_= ((CODMNr_fufen(this.WQ_tableData[i].CODMN) + BODr_fufen(this.WQ_tableData[i].BOD) + NH3_Nr_fufen(this.WQ_tableData[i].NH3_N) )/3).toFixed(2);
 
-             HMBr_= Math.min(ARr_fufen(this.WQ_tableData[i].SHEN),
-                              HGr_fufen(this.WQ_tableData[i].GONG),
-                              CDr_fufen(this.WQ_tableData[i].GE ),
-                              CRr_fufen(this.WQ_tableData[i].GE6 ),
-                              PBr_fufen(this.WQ_tableData[i].QIAN ));
+            var s1= ARr_fufen(this.WQ_tableData[i].SHEN);
+             var s2= HGr_fufen(this.WQ_tableData[i].GONG);
+              var s3= CDr_fufen(this.WQ_tableData[i].GE);
+               var s4= CRr_fufen(this.WQ_tableData[i].GE6);
+                var s5= PBr_fufen(this.WQ_tableData[i].QIAN);
+             HMBr_= Math.min(s1,s2,s3,s4,s5),
+                            
+
             BCPr_ = Math.min(BEN_fufen(this.WQ_tableData[i].BEN),
                                  BEN_fufen(this.WQ_tableData[i].JBEN),
                                  BEN_fufen(this.WQ_tableData[i].EJBEN))
-              WQr_ = Math.min(DO_,OCPr_,HMBr_,BCPr_)
+            WQr_ = Math.min(DOr_,OCPr_,HMBr_,BCPr_)
           }
         },
         backAgo(){

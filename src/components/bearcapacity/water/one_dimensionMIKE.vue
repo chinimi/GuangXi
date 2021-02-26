@@ -10,10 +10,10 @@
         height="260"
       >
         <el-table-column prop="date" label="指定方案" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="指定评价位置" min-width="150"></el-table-column>
+        <!-- <el-table-column prop="name" label="指定评价位置" min-width="150"></el-table-column> -->
         <el-table-column prop="address" label="河" min-width="150"></el-table-column>
         <el-table-column prop="date" label="里程" min-width="100"></el-table-column>
-        <el-table-column prop="date" label="返回" min-width="100"></el-table-column>
+        <!-- <el-table-column prop="date" label="返回" min-width="100"></el-table-column> -->
         <el-table-column prop="date" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>

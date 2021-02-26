@@ -633,27 +633,24 @@
         <el-table-column
           prop="pgzb"
           label="评估指标">
-
         </el-table-column>
         <el-table-column
           prop="fz"
           label="分值">
-          <template slot-scope="scope">
-            <el-input
-              v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-              v-model="scope.row.fz"
-              @blur="inputBlur"
-            ></el-input>
-            <span v-else>{{ scope.row.fz }}</span>
-          </template>
-
+          
         </el-table-column>
         <el-table-column
           prop="kfyy"
           label="扣分原因">
+           <template slot-scope="scope">
+            <el-input
+              v-if="scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex"
+              v-model="scope.row.kfyy"
+              @blur="inputBlur"
+            ></el-input>
+            <span v-else>{{ scope.row.kfyy }}</span>
+          </template>
         </el-table-column>
         <el-table-column
           prop="df"
@@ -675,8 +672,15 @@
           prop="bz"
           label="备注">
           <template slot-scope="scope">
-
-            {{ scope.row.bz }}
+            <el-input
+              v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+              v-model="scope.row.bz"
+              @blur="inputBlur"
+            ></el-input>
+            <span v-else>{{ scope.row.bz }}</span>
           </template>
 
         </el-table-column>
@@ -702,7 +706,6 @@
       </el-row>
 
       <el-row>
-
         <el-col :span="16">
           &nbsp;
         </el-col>
@@ -761,11 +764,26 @@
 
 
         /*评价标准*/
-        pjbzval:'all',
+        pjbzval:'0',
         pjbzOption:[{
-          label:"水量评价",
-          value:'all',
-        }],
+            label:"水量评价", 
+            value:'0',
+        },
+        {
+            label:"水质评价",
+            value:'1',
+        },
+          {
+            label:"监控评价",
+            value:'2',
+        },
+         {
+            label:"管理评价",  
+            value:'3',
+        },
+       
+        ],
+        
 
         /*取值方式*/
         qzfsval:'avg',
