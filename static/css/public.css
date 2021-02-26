@@ -528,8 +528,8 @@
 
 .Bearing{
   position: absolute;
-  left: 20px;
-  top: 25px;
+  /* left: 20px;
+  top: 25px; */
   box-sizing: border-box;
 }
 .w80{
@@ -549,10 +549,10 @@
   position: relative;
   float: left;
   width: 350px;
-  height: 800px;
+  height: 857px;
   padding: 20px 10px;
   color: #ffffff;
-  border-top: 4px solid #1677FF;
+  /* border-top: 4px solid #1677FF; */
   background: #FFFFFF;
   box-shadow: 0px 4px 9px 0px rgba(28, 28, 28, 0.26);
   color: #666;
@@ -1001,7 +1001,7 @@
 }
 #programModel .programModel_title{
   float: left;
-  width: 260px;
+  width: 290px;
   height: 890px;
   background: #FFFFFF;
   box-shadow: 0px 2px 8px 0px rgba(0, 86, 58, 0.33);
@@ -1174,6 +1174,9 @@ line-height: 38px;
 }
 .singleli_title{
   padding-bottom: 20px;
+}
+.singleli_titles{
+  padding-bottom: 10px;
 }
 /* 方案编制 */
 .programmePreparation{

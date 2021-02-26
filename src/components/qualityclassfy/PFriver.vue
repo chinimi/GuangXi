@@ -573,13 +573,13 @@
             var GuanD_Fufen=  GuanD_PF(this.PF_tableData[i].GuanD);
             var NongY_Fufen=  NongY_PF(this.PF_tableData[i].NongY);
             var XuM_Fufen=  XuM_PF(this.PF_tableData[i].XuM);
-            var RDr = 100+HeA_Fufen+CaiS_Fufen+JianZ_Fufen+GongL_Fufen+
+            RDr = 100+HeA_Fufen+CaiS_Fufen+JianZ_Fufen+GongL_Fufen+
                         Laj_Fufen+GongY_Fufen+GuanD_Fufen+NongY_Fufen+XuM_Fufen;
             if (RDr<0) RDr= 0;
             /*全局变量  RSr*/
             // var RSr = (0.25*BKSr+0.5*RVSr+0.25*RDr).toFixed(2);
              RSr = (0.25*BKSr+0.5*RVSr+0.25*RDr).toFixed(2);
-             var YuL_FuFen=  YuL_PF(this.PF_tableData[i].YuL);
+             RCr=  YuL_PF(this.PF_tableData[i].YuL);
              // var PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
              PFr = (0.7*RSr + YuL_FuFen*0.3).toFixed(2);
           }

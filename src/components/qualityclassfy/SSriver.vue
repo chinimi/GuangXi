@@ -559,7 +559,7 @@
                 ss1.push(item.DBCS)
                 ss2.push(item.PGCS)
              })
-        var ss  = SS_fufen(ss1,ss2)
+        WFZr  = SS_fufen(ss1,ss2)
 
         var wr=[],wu=[];
         this.WRU_tableData.forEach(function(item,index)
@@ -567,7 +567,7 @@
             wr.push(item.WR)
             wu.push(item.WU)
            })
-        var WRU =  WRU_fufen(wr,wu)
+        WRUr =  WRU_fufen(wr,wu)
 
           var PERr_=[],PERw_=[];
 
@@ -576,7 +576,7 @@
             PERr_.push(item.PERr)
             PERw_.push(item.PERw)
            })
-        var PP =  PP_fufen(PERr_,PERw_)
+         PPr =  PP_fufen(PERr_,PERw_)
 
          var RIVLn_=[],RIVBn_=[],RIVWFn_=[];
 
@@ -587,9 +587,9 @@
             RIVWFn_.push(item.RIVWFn)
            })
 
-         FLD =  FLD_fufen(RIVLn_,RIVBn_,RIVWFn_)
+         FLDr =  FLD_fufen(RIVLn_,RIVBn_,RIVWFn_)
 
-          SSR = (ss*0.25 + WRU*0.25+PP*0.25+FLD*0.25).toFixed(2);
+         SSr = (ss*0.25 + WRU*0.25+PP*0.25+FLD*0.25).toFixed(2);
 
       },
       backAgo(){

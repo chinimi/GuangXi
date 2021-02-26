@@ -19,7 +19,7 @@
         <el-table-column prop="mix" label="进水浓度" min-width="100"></el-table-column>
         <el-table-column prop="name" label="流速" min-width="80"></el-table-column>
         <el-table-column prop="mix" label="系数横向扩散系数" min-width="170"></el-table-column>
-        <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column>
+        <!-- <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column> -->
         <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>

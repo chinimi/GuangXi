@@ -82,6 +82,7 @@
                 ></el-input>
                 <span v-else>{{ scope.row.Umax }}</span>
               </template>
+
             </el-table-column>
           </el-table-column>
         </el-table-column>
