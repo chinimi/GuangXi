@@ -17,14 +17,14 @@
             class="list"
             :style="item.info == true ? 'display: block;' : 'display: none;'"
           >
-            <li
+           <li
               class="info"
-              v-for="(item, index) in item.data_name"
-              :key="index"
-              :class="active == index? 'isactive': ''"
-              @click="tap_info(item,index,$event)"
+              v-for="(i, inx) in item.data_name"
+              :key="inx"
+              :class="item.active == inx? 'isactive': ''"
+              @click="tap_info(index,i,inx)"
             >
-              {{item.BoundaryName}}
+              {{i.BoundaryName}}
               <span v-if="item.id == 5"><i class="el-icon-delete"></i></span>
             </li>
           </ul>
@@ -179,30 +179,35 @@ export default {
           info: false,
           id:1,
           data_name: [],
+          active:-1,
         },
         {
           name: "水位边界",
           info: false,
           id:2,
           data_name: [],
+          active:-1,
         },
         {
           name: "水质边界",
           info: false,
           id:3,
           data_name: [],
+          active:-1,
         },
         {
           name: "降雨站",
           info: false,
           id:4,
           data_name: [],
+          active:-1,
         },
         {
           name: "污染源",
           info: false,
           id:5,
           data_name: [],
+          active:-1,
         },
       ],
       DischargeItems:[],//流量边界
@@ -249,12 +254,16 @@ export default {
       if (item.info == false) {
         this.data[index].info = true;
       } else if (item.info == true) {
+        //当状态点击关闭时候清除数组与传参
         this.data[index].info = false;
+        // 清除状态
+        this.data[index].active = '-1';
       }
     },
-    tap_info(item,index,e){
+   tap_info(index,item,e){
+      // 赋值状态
+      this.data[index].active = e;
       var boundaryId = item.BoundaryId
-      this.active = index
        if(this.$route.params.value != undefined){
          this.ScenarioCode = this.$route.params.value.ScenarioCode
       var url =
@@ -266,8 +275,6 @@ export default {
         })
         .then(data => {
          this.tableData = data
-
-
          if(this.name != '降雨站'){
           this.drawLine(data);
          }else{
