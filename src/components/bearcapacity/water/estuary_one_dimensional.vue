@@ -8,13 +8,74 @@
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
         height="260"
+         :cell-class-name="getRowColumn"
+        @cell-click="handleCellClick"
       >
         <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="进水流量" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="进水浓度" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="排放流量" min-width="100"></el-table-column>
-        <el-table-column prop="address" label="排放浓度" min-width="100"></el-table-column>
-        <el-table-column prop="max" label="排放口距评价断面距离" min-width="180"></el-table-column>
+        <el-table-column prop="name" label="进水流量(m³/s)" min-width="100">
+         <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.name"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.name }}</span>
+              </template>
+        </el-table-column>
+        <el-table-column prop="name" label="进水浓度（(mg/l)）" min-width="100">
+         <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.name"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.name }}</span>
+              </template>
+        </el-table-column>
+        <el-table-column prop="name" label="排放流量(m³/s)" min-width="100"> <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.name"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.name }}</span>
+              </template>
+              </el-table-column>
+        <el-table-column prop="address" label="排放浓度(mg/l)" min-width="100">
+         <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.address"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.address }}</span>
+              </template>
+        </el-table-column>
+        <el-table-column prop="max" label="排放口距评价断面距离（m）" min-width="180">
+           <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.max"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.max }}</span>
+              </template>
+        </el-table-column>
         <el-table-column prop="mix" label="纵向扩散系数" min-width="140">
           <template slot-scope="scope">
             <el-button
@@ -23,11 +84,71 @@
             </el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="mix" label="流速" min-width="80"></el-table-column>
-        <el-table-column prop="mix" label="涨潮流量" min-width="100"></el-table-column>
-        <el-table-column prop="mix" label="落潮流量" min-width="100"></el-table-column>
-        <el-table-column prop="mix" label="涨潮承载能力" min-width="120"></el-table-column>
-        <el-table-column prop="mix" label="落潮承载能力" min-width="120"></el-table-column>
+        <el-table-column prop="mix" label="流速（m/s）" min-width="80">
+         <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.mix"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.mix }}</span>
+              </template>
+        </el-table-column>
+        <el-table-column prop="mix" label="涨潮流量(m³/s)" min-width="100">
+         <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.mix"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.mix }}</span>
+              </template>
+        </el-table-column>
+        <el-table-column prop="mix" label="落潮流量(m³/s)" min-width="100">
+         <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.mix"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.mix }}</span>
+              </template>
+        </el-table-column>
+        <el-table-column prop="mix" label="涨潮承载能力" min-width="120">
+          <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.mix"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.mix }}</span>
+              </template>
+        </el-table-column>
+        <el-table-column prop="mix" label="落潮承载能力" min-width="120">
+           <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.mix"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.mix }}</span>
+              </template>
+        </el-table-column>
         <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
@@ -191,6 +312,8 @@ export default {
   components: {},
   data() {
     return {
+       tabRowIndex: null,
+      tabColumnIndex: null,
         type:0,
         tableData:[
             {date:'COD',name:'',address:'',max:'',mix:'',xas:''},
@@ -217,6 +340,21 @@ export default {
     };
   },
   methods: {
+     //点击单元格得到横纵坐标
+    handleCellClick(row, column, event, cell) {
+      this.tabRowIndex = row.index;
+      this.tabColumnIndex = column.index;
+      this.tableValue.push(row);
+    },
+    //数据中没有横纵坐标需要加上进行下一步判断
+    getRowColumn({ row, column, rowIndex, columnIndex }) {
+      row.index = rowIndex;
+      column.index = columnIndex;
+    },
+    inputBlur() {
+      this.tabRowIndex = null;
+      this.tabColumnIndex = "";
+    },
       tabbar(id){
         this.type = id;
         if(id == 3){
