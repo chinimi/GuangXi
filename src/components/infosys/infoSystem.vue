@@ -113,13 +113,13 @@
         active-text-color="#333"
         text-color="#333">
         <el-menu-item index="1" class="menuItem">
-          <span slot="title">添加关注</span>
+          <span slot="title">添加</span>
         </el-menu-item>
 <!--        <el-menu-item index="2" class="menuItem">-->
 <!--          <span slot="title">修改分类</span>-->
 <!--        </el-menu-item>-->
         <el-menu-item index="3" class="menuItem">
-          <span slot="title">删除关注</span>
+          <span slot="title">删除</span>
         </el-menu-item>
         <hr style="color: #333">
 <!--        <el-menu-item index="4" class="menuItem">-->
@@ -149,6 +149,8 @@ export default {
   },
   data() {
     return {
+      non_maxexpandId:"",
+      maxexpandId:0,
       menuVisible:false,//右键弹窗显示
       currentRiverId:'',//河段公示牌id
       filterText: "",
@@ -298,7 +300,7 @@ export default {
   methods: {
     handleRightSelect(key) {
       console.log(key);
-      if (key == 1) {
+     /* if (key == 1) {
         this.NodeAdd(this.NODE, this.DATA);
         this.menuVisible2 = false;
       } else if (key == 2) {
@@ -309,24 +311,24 @@ export default {
         this.menuVisible2 = false;
       } else if(key == 4){
         console.log('4')
-      }
+      }*/
     },
-  /*  NodeBlur(n, d){//输入框失焦
-      console.log(n, d)
-      if(n.isEdit){
-        this.$set(n, 'isEdit', false)
-      }
-      this.$nextTick(() => {
-        this.$refs['slotTreeInput'+d.id].$refs.input.focus()
-      })
-    },*/
-  /*  NodeEdit(n, d){//编辑节点
+    // NodeBlur(n, d){//输入框失焦
+    //   console.log(n, d)
+    //   if(n.isEdit){
+    //     this.$set(n, 'isEdit', false)
+    //   }
+    //   this.$nextTick(() => {
+    //     this.$refs['slotTreeInput'+d.id].$refs.input.focus()
+    //   })
+    // },
+    NodeEdit(n, d){//编辑节点
       console.log(n, d)
       if(!n.isEdit){//检测isEdit是否存在or是否为false
         this.$set(n, 'isEdit', true)
       }
-    },*/
-  /*  NodeDel(n, d){//删除节点
+    },
+    NodeDel(n, d){//删除节点
       console.log(n, d)
       let that = this;
       if(d.children && d.children.length !== 0){
@@ -355,8 +357,8 @@ export default {
         //判断是否是新增节点
         d.id > this.non_maxexpandId ? DelFun() : ConfirmFun()
       }
-    },*/
-  /*  NodeAdd(n, d){//新增节点
+    },
+    NodeAdd(n, d){//新增节点
       console.log(n, d)
       //判断层级
       if(n.level >= 3){
@@ -374,7 +376,7 @@ export default {
       if(!n.expanded){
         n.expanded = true
       }
-    },*/
+    },
 
      /*右键选择*/
     rihgtClick(event, object, value, element) {
