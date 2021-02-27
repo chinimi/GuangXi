@@ -110,7 +110,7 @@
           </el-select>
           </el-col>
           <!--时间轴-->
-          <el-col :span="5">
+          <el-col :span="6">
 
             <el-row>
               <el-col :span="3">
@@ -123,27 +123,17 @@
 
               </el-col>
               <el-col :span="20">
-                <!--进度条-->
-               <!-- <div class="progress__bar" >
-                  <div class="progress__current" :style="{ width : barWidth }" >
-
-                  </div>
-
-                </div>-->
-
-
-
-
+              <!--进度条-->
                 <div class="Progress">
                   <div class="jindu"
                        :style="{
-	        width:jindu+'%',
-	    }">
-                  </div>
-                  <div class="ball"
-                       :style="{
-	        left:jindu-1+'%',
-	    }">
+                        width:jindu+'%',
+                    }">
+                                </div>
+                                <div class="ball"
+                                     :style="{
+                        left:jindu-1+'%',
+                    }">
                   </div>
                 </div>
 
@@ -165,7 +155,7 @@
           <el-col :span="5">
             <span></span><el-input    style="width:200px;display: inline-block"  v-model="currentPlayTime" placeholder=""></el-input>
           </el-col>
-          <el-col :span="2"><i class=" iconfont icon-hj3" style="font-size:20px;cursor: pointer;display: block;"@click="showControllePan"></i></el-col>
+          <el-col :span="1"><i class=" iconfont icon-hj3" style="font-size:20px;cursor: pointer;display: block;"@click="showControllePan"></i></el-col>
         </el-row>
       </div>
       <!--设置模块-->
@@ -248,6 +238,32 @@
           <div class="clear"></div>
         </ul>
 
+        <ul  class="mid_tab_title">
+          <li
+            v-for="item  in speedOption"
+            :class="['speedClass']"
+          >
+            <span style="color:#1677FF;font-size:20px;">{{item.speed}}</span>{{item.unit}}
+          </li>
+          <div class="clear"></div>
+        </ul>
+
+        <!--类型1234-->
+        <ul  class="mid_tab_title">
+          <li
+            v-for="item  in typeSelOption"
+            :class="['typeSliderClass',{ typeactiveLi : ( typeSelTab == item.value ? true : false )}]"
+            @click="typeSelTab = item.value;typeSelTab=item.comp ;showtypeSelCom(item.comp)"
+          >
+
+            <span>{{item.name}}</span>
+          </li>
+          <div class="clear"></div>
+        </ul>
+
+
+
+
 
         <!--预报期河网水质预报 -->
         <div class="warn-title">
@@ -313,8 +329,8 @@
       <!--echart表  动态收缩弹窗-->
       <div   ref='transitionChart' class="chartPanel">
         <div class="trigger_btn"  @click="transitionChartPanel" ></div>
-        <el-row>
-          <el-col :span="8">
+        <el-row  style="padding-left:50px;">
+          <el-col :span="6">
             <el-select v-model="value" placeholder="请选择">
               <el-option-group
                 v-for="group in options"
@@ -329,10 +345,11 @@
               </el-option-group>
             </el-select>
           </el-col>
-          <el-col :span="4">  <span>达标率</span></el-col>
+          <el-col :span="4">  <span  style="color:#FF6C00;padding:10px;">达标率<span style="font-size:18px;font-weight: 800;">100%</span></span></el-col>
 
 
-          <el-col :span="8">
+          <el-col :span="2">&nbsp;</el-col>
+          <el-col :span="6"   >
 
             <el-select v-model="value" placeholder="请选择">
               <el-option-group
@@ -349,7 +366,8 @@
             </el-select>
           </el-col>
 
-          <el-col :span="4"> <span>达标率</span></el-col>
+          <el-col :span="4">  <span  style="color:#FF6C00;padding:10px;">达标率<span style="font-size:18px;font-weight: 800;">100%</span></span></el-col>
+
 
           <!--创建echart表-->
 <!--          <button @click="createChart">创建echart表</button>-->
@@ -516,6 +534,33 @@
                 comp: 'fourth'
               },
             ],
+
+
+            /*类型条件*/
+            typeSelCom:'one',
+            typeSelTab:'one',//tab mid
+            typeSelOption:[
+              {
+                name: 'I',
+                value: 'one',
+                comp: 'one'
+              },
+              {
+                name: 'II',
+                value: 'two',
+                comp: 'two'
+              },
+              {
+                name: 'III',
+                value: 'three',
+                comp: 'three'
+              },
+              {
+                name: 'IV',
+                value: 'four',
+                comp: 'four'
+              },
+            ],
             /*取值方式*/
             qzfsval:'avg',
             qzfsOption:[{
@@ -647,6 +692,23 @@
             },
 
             chart1:null,//echart表
+            speedOption:[{
+             speed:0.8,
+              unit:'m3/s'
+            },
+            {
+              speed:12,
+              unit:'m3/s'
+            },
+            {
+              speed:1,
+              unit:'m3/s'
+            },
+            {
+              speed:4,
+              unit:'m3/s'
+            }
+            ]
 
           }
       },
@@ -950,6 +1012,14 @@ _this.jindu+=eachWidth
 
         },
 
+
+        showtypeSelCom(ele){
+          console.log("显示当前选中要素")
+          console.log(ele)
+
+
+        },
+
         showControllePan(){
           /*显示设置弹窗*/
           if( this.setFlag){
@@ -1075,27 +1145,6 @@ _this.jindu+=eachWidth
   }
 
   .limitSliderClass{
-   /* font-weight: 900;
-    cursor: pointer;
-    color: #333;
-    float: left;
-    list-style: none;
-    font-size: 10px;
-    line-height: 30px;
-    padding: 0px 6px;
-    !*background: #69e4ff;*!
-    !*border-radius: 15px;*!
-    margin-left: 9px;
-    margin-top: 6px;
-    !*width: 50px;*!
-    !*border: solid 1px blue;*!
-
-    width: 74px;
-    height: 51px;
-    background: #E1F4FF;
-    border: 1px solid #88BBFF;
-    border-radius: 4px;*/
-
     cursor: pointer;
     color: #2784FF;
     float: left;
@@ -1124,8 +1173,31 @@ _this.jindu+=eachWidth
     background:#2784FF!important;
     color: #fff !important;
   }
+  .typeactiveLi{
 
+    color: #10E766 !important;
+    border: 1px solid #10E766!important;
 
+    background: #E5FFEF!important;
+
+  }
+  .typeSliderClass{
+    width: 52px;
+    text-align: center;
+    line-height: 23px;
+    background:#FFCC00;
+    border: 1px solid #FFCC00;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #FEFFC7;
+    float: left;
+    list-style: none;
+    font-size: 10px;
+    /* line-height: 50px; */
+    padding: 0px 6px;
+    font-weight: 900;
+    margin: 12px 10px;
+  }
   /*边界条件*/
 
   .limitCondition li{
@@ -1142,6 +1214,17 @@ _this.jindu+=eachWidth
     color:green
 
   }
+  /*.tableTh{
+    color: #235D9A;
+    background: #caebff;
+    width: 98%;
+    margin: 5px auto;
+    border-radius: 10px;
+    font-size: 13px;
+    padding: 5px 12px;
+    border: solid 1px rgb(22 119 255 / 10%);
+
+  }*/
 
   .tableTh{
     color: #333;
@@ -1197,11 +1280,11 @@ _this.jindu+=eachWidth
   .setModule{
     width: 18%;
     position: absolute;
-    top: 98px;
-    right: 401px;
+    top: 87px;
+    right: 425px;
     background: #fff;
     color: #333;
-    padding: 12px 25px;
+    padding: 7px 23px;
     border-radius: 10px;
   }
   .setModule span{
@@ -1252,7 +1335,7 @@ _this.jindu+=eachWidth
   }
 
   >>>.el-input__inner {
-    padding-left: 10px !important;
+    padding-left: 30px !important;
     color: #333;
     border: 1px solid #ccc;
     background: #fff!important;
@@ -1298,9 +1381,17 @@ _this.jindu+=eachWidth
     border-radius: 10px;
   }
   .playbutton{
-    padding-left:7px;
-
-
+    margin-left:5px;
+    color:#fff;
+    border: solid 1px #2784FF;
+    border-radius: 50%;
+    background:#2784FF;
+    line-height: 20px;
+    width: 20px;
+    text-align: center;
+  }
+  .playbutton i{
+    font-size:12px;
   }
   /*时间轴样式over*/
   .Progress {
@@ -1361,5 +1452,20 @@ _this.jindu+=eachWidth
 
 
   }
+  .speedClass{
+    width: 52px;
+    text-align: center;
+    line-height: 23px;
+    border-radius: 12px;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+    font-size: 12px;
+    padding: 0px 6px;
+    font-weight: 900;
+    margin: 12px 10px;
+  }
+
+
 
   </style>

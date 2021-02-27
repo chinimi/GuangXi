@@ -1088,7 +1088,7 @@
         <div  v-show="indexPage==1">
           <el-row>
             <el-col :span="7">
-              <el-table   :data="table1DataA" height="480" style="background-color: transparent;">
+              <el-table :stripe="true"  :header-cell-style="thStyle" :data="table1DataA" height="480" style="background-color: transparent;">
                 <el-table-column
                   align="center"
                   :label="'采样点\nSampling sites'"
@@ -1118,7 +1118,7 @@
             </el-col>
 
             <el-col :span="7">
-              <el-table   :data="table1DataB" height="480" style="  background-color: transparent;">
+              <el-table  :stripe="true"  :header-cell-style="thStyle"  :data="table1DataB" height="480" style="  background-color: transparent;">
                 <el-table-column
                   align="center"
                   :label="'采样点\nSampling sites'"
@@ -1147,7 +1147,7 @@
 
             </el-col>
             <el-col :span="7">
-              <el-table  :data="table1DataC" height="480" style="  background-color: transparent;">
+              <el-table   :stripe="true"  :header-cell-style="thStyle" :data="table1DataC" height="480" style="  background-color: transparent;">
                 <el-table-column
                   align="center"
                   :label="'采样点\nSampling sites'"
@@ -1190,7 +1190,7 @@
 
           <el-row>
             <el-col :span="24">
-              <el-table  border  :data="table1DataA" height="480" style="background-color: transparent;">
+              <el-table  :stripe="true"  border    :header-cell-style="thStyle" :data="table1DataA" height="480" style="background-color: transparent;">
                 <el-table-column
                   align="center"
                   label="指标类型"
@@ -1281,7 +1281,7 @@
 
           <el-row>
             <el-col :span="24">
-              <el-table  border  :data="table1DataA" height="480" style="background-color: transparent;">
+              <el-table  border  :stripe="true"  :header-cell-style="thStyle" :data="table1DataA" height="480" style="background-color: transparent;">
                 <el-table-column
                   align="center"
                   label="M1"
@@ -1390,7 +1390,7 @@
 
           <el-row>
             <el-col :span="24">
-              <el-table  border  :data="table4Data" height="480" style="background-color: transparent;">
+              <el-table  border  :stripe="true"  :header-cell-style="thStyle":data="table4Data" height="480" style="background-color: transparent;">
                 <!--第1列-->
 
                 <el-table-column
@@ -1487,7 +1487,7 @@
         <div  v-show="indexPage==5">
           <el-row>
             <el-col :span="24">
-              <el-table  border  :data="table5Data" height="480" style="background-color: transparent;">
+              <el-table  border  :stripe="true"  :header-cell-style="thStyle" :data="table5Data" height="480" style="background-color: transparent;">
                 <el-table-column
                   align="center"
                   :label="'生物参数'"
@@ -1563,7 +1563,7 @@
 
           <el-row>
             <el-col :span="24">
-              <el-table  border  :data="table6Data" height="480" style="background-color: transparent;">
+              <el-table  border  :stripe="true"  :header-cell-style="thStyle"  :data="table6Data" height="480" style="background-color: transparent;">
                 <el-table-column
                   align="center"
                   label="健康"
@@ -1624,7 +1624,7 @@
 
           <el-row>
             <el-col :span="24">
-              <el-table  border  :data="table6Data" height="480" style="background-color: transparent;">
+              <el-table  border :stripe="true"  :header-cell-style="thStyle" :data="table6Data" height="480" style="background-color: transparent;">
                 <el-table-column
                   align="center"
                   label="健康"
@@ -1692,7 +1692,7 @@
 
           <el-row>
             <el-col :span="24">
-              <el-table  border  :data="table1DataA" height="480" style="background-color: transparent;">
+              <el-table  border   :stripe="true"  :header-cell-style="thStyle" :data="table1DataA" height="480" style="background-color: transparent;">
                 <el-table-column
                   align="center"
                   label="M1"
@@ -1795,6 +1795,10 @@
         <!--下一步-->
         <div style="float:right;padding-right:20px;padding-top:20px;">
           <el-button @click="goNextTable">下一步</el-button>
+        </div>
+        <!--上一步-->
+        <div style="float:right;padding-right:20px;padding-top:20px;">
+          <el-button @click="goAgoTable">上一步</el-button>
         </div>
 
       </div>
@@ -2229,6 +2233,48 @@
 
     },
     methods: {
+      thStyle(){
+        return  {backgroundColor:'#caebff', color: '#235d9a'}
+
+      },
+      /*上一步*/
+      goAgoTable(){
+        this.indexPage--
+        if(this.indexPage==1){
+          this.currentTableName='表1,呼兰河口湿地及周边水域各采样点地理位置'
+
+        }
+        if(this.indexPage==2){
+          this.currentTableName='表2、20个生物参数在9个品t占中的分布'
+
+        }
+        if(this.indexPage==3){
+          this.currentTableName='表3.10个候选生物参数间的Pearson相关分析(n=10)'
+
+        }
+        if(this.indexPage==4){
+          this.currentTableName='表4 、6个参数值在参照点中的分布及分值计算标准'
+
+        }
+        if(this.indexPage==5){
+          this.currentTableName='表5.6个生物参数值在所有样点中的统计分布'
+
+        }
+        if(this.indexPage==6){
+          this.currentTableName='表6.B-IBI指标体系健康评价标准'
+
+        }
+        if(this.indexPage==7){
+          this.currentTableName='表7,各样点健康状况'
+
+        }
+
+        if(this.indexPage<=1){
+          this.indexPage=1
+          this.currentTableName='表1,呼兰河口湿地及周边水域各采样点地理位置'
+        }
+
+      },
       /*下一步*/
       goNextTable(){//展示下一个表格
         this.indexPage++
@@ -2684,5 +2730,9 @@
     /*text-align: center;*/
     white-space: pre-line;/*保留换行符*/
   }
+  >>>.el-table--striped .el-table__body tr.el-table__row--striped.el-table__row--striped.el-table__row--striped td {
+    background-color: rgba(221, 245, 255, 0.3) !important; /*替换为你需要的颜色，觉得优先级不够就加!important*/
+  }
+
 
 </style>

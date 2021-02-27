@@ -56,7 +56,8 @@
   var menulist =[
     {
       /*切换对应组件*/
-      "authName": "水资源量预测",
+      authName: "水资源量预测",
+      path:'szylyc',
       id:'szylyc',
       children: [
         { "authName": "地表水水资源量预测" ,com:'waterPrediction', id:'waterPrediction', path:'waterPrediction'},

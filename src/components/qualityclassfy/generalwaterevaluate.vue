@@ -1396,7 +1396,7 @@
               /*表1：wQ_AAACP_DDTO*/
               {
               value: 'wQ_AAACP_DDTO',
-              label: 'wQ_AAACP_DDTO',
+              label: '卤代烷醛胺类有机物项目数据表',
               children: [
                 {
                   value: 'bXQ',
@@ -1498,7 +1498,7 @@
               /*表2：wQ_ABTP_DDTO*/
               {
                 value: 'wQ_ABTP_DDTO',
-                label: 'wQ_ABTP_DDTO',
+                label: '水生生物群落与毒性监测数据表',
                 children: [
                   {
                     value: 'aTTR',
@@ -1587,7 +1587,7 @@
               /*表3：wQ_AMR_DDTO*/
               {
                 value: 'wQ_AMR_DDTO',
-                label: 'wQ_AMR_DDTO',
+                label: '藻类监测成果表',
                 children: [
                   {
                     value: 'aDS',
@@ -1639,7 +1639,7 @@
               /*表4：wQ_BCP_DDTO*/
               {
                 value: 'wQ_BCP_DDTO',
-                label: 'wQ_BCP_DDTO',
+                label: '苯类有机物项目数据表',
                 children: [
                   {
                     value: 'bEN',
@@ -1723,7 +1723,7 @@
               /*表5：wQ_NMISP_DDTO*/
               {
                 value: 'wQ_NMISP_DDTO',
-                label: 'wQ_NMISP_DDTO',
+                label: '非金属无机物项目数据表',
                 children: [
                   {
                     value: 'aCHL',
@@ -1841,7 +1841,7 @@
               /*表6：wQ_OPCP_DDTO*/
               {
                 value: 'wQ_OPCP_DDTO',
-                label: 'wQ_OPCP_DDTO',
+                label: '有机农药类项目数据表',
                 children: [
                   {
                     value: 'aTLJ',
@@ -1910,7 +1910,7 @@
               /*表7：wQ_PHNCP_DDTO*/
               {
                 value: 'wQ_PHNCP_DDTO',
-                label: 'wQ_PHNCP_DDTO',
+                label: '酚类有机物项目数据表',
                 children: [
                   {
                     value: 'bENF',
@@ -1960,7 +1960,7 @@
               /*表8：wQ_WBHP_DDTO*/
               {
                 value: 'wQ_WBHP_DDTO',
-                label: 'wQ_WBHP_DDTO',
+                label: '水体卫生项目监测数据表',
                 children: [
                   {
                     value: 'bCTC',
@@ -1997,7 +1997,7 @@
               /*表9：wqMIspDDTO*/
               {
                 value: 'wqMIspDDTO',
-                label: 'wqMIspDDTO',
+                label: '非金属无机物项目数据表',
                 children: [
                   {
                     value: 'AG',
@@ -2153,7 +2153,7 @@
               /*表10：wqMIspDDTO*/
               {
                 value: 'wqPcpDDTO',
-                label: 'wqPcpDDTO',
+                label: '理化指标项目数据表',
                 children: [
                   {
                     value: 'ACID',
@@ -2337,7 +2337,7 @@
               /*表11：wqWqsinfBDTO*/
               {
                 value: 'wqWqsinfBDTO',
-                label: 'wqWqsinfBDTO',
+                label: '水质监测站基本信息表',
                 children: [
                   {
                     value: 'adag',

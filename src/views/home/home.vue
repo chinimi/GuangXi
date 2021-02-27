@@ -392,9 +392,9 @@ export default {
   cursor: pointer;
   color: #fff;
   list-style: none;
-  font-size: 15px;
+  font-size: 17px;
   text-align: center;
-  width: 137px;
+  width: 145px;
   margin-right: 10px;
   float: left;
   line-height: 32px;
