@@ -16,11 +16,11 @@
       <div>
         <!--組件跳轉-->
         <!--方案库组件-->
-        <div v-show="currentComp=='schemeLibrary'">
+        <div v-if="currentComp=='schemeLibrary'">
           <schemeLibrary></schemeLibrary>
         </div>
         <!--方案编制组件-->
-        <div v-show="currentComp=='programmePreparation'">
+        <div v-if="currentComp=='programmePreparation'">
           <programmePreparation></programmePreparation>
         </div>
       </div>

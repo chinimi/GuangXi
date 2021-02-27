@@ -45,10 +45,10 @@
       <!--toolbar tab-->
 
       <div  style="position: relative;z-index:9;" id="toolbar_tab">
-        <div v-show="currentTool=='layer'">
+        <div v-if="currentTool=='layer'">
         <layercontrol></layercontrol>
         </div>
-        <div v-show="currentTool=='measure'">
+        <div v-if="currentTool=='measure'">
         <measureRange></measureRange>
         </div>
       </div>
@@ -59,41 +59,41 @@
         <!--組件跳轉-->
         <!--  <com :is="currentComp"></com>-->
 
-        <div v-show="currentComp=='index'">
+        <div v-if="currentComp=='index'">
           <indexlefttop></indexlefttop>
           <indexleftbottom></indexleftbottom>
           <indexright></indexright>
         </div>
 
-        <div v-show="currentComp=='infoSystem'">
+        <div v-if="currentComp=='infoSystem'">
           <router-view></router-view>
           <!-- <infoSystem></infoSystem> -->
         </div>
 
-        <div v-show="currentComp=='programModel'">
+        <div v-if="currentComp=='programModel'">
           <router-view></router-view>
           <!-- <programModel></programModel> -->
         </div>
 
-        <div v-show="currentComp=='qualityClassfy'">
+        <div v-if="currentComp=='qualityClassfy'">
 <!--          <qualityClassfy></qualityClassfy>-->
           <!--路由配置-->
           <router-view></router-view>
 
         </div>
 
-        <div v-show="currentComp=='qualityPrediction'">
+        <div v-if="currentComp=='qualityPrediction'">
           <!-- <qualityPrediction></qualityPrediction>-->
           <!--路由配置-->
 
           <router-view></router-view>
         </div>
-        <div v-show="currentComp=='bearingCapacity'">
+        <div v-if="currentComp=='bearingCapacity'">
           <router-view></router-view>
           <!-- <bearingCapacity></bearingCapacity> -->
         </div>
 
-        <div v-show="currentComp=='operationalDisplay'">
+        <div v-if="currentComp=='operationalDisplay'">
 
           <legendCom></legendCom>
 <!--          <operationalDisplay></operationalDisplay>-->

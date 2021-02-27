@@ -6,13 +6,13 @@
        <li :class="[TapType == '2' ? 'csour' : '']" @click="TapSwitch(2)">模型参数</li>
        <li :class="[TapType == '3' ? 'csour' : '']" @click="TapSwitch(3)">边界条件</li>
     </ul>
-    <div class="programmePreparation_text" v-show="TapType == '1'">
+    <div class="programmePreparation_text" v-if="TapType == '1'">
       <basicSetup></basicSetup>
     </div>
-    <div class="programmePreparation_text" v-show="TapType == '2'">
+    <div class="programmePreparation_text" v-if="TapType == '2'">
       <modelParameter></modelParameter>
     </div>
-    <div class="programmePreparation_text" v-show="TapType == '3'">
+    <div class="programmePreparation_text" v-if="TapType == '3'">
         <boundaryConditions></boundaryConditions>
     </div>
   </div>

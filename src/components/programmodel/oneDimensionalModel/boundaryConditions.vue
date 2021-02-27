@@ -30,7 +30,9 @@
           </ul>
         </div>
       </div>
-      <div class="boundaryConditions_content" v-show="water">
+
+      <div v-if="water">
+      <div class="boundaryConditions_content">
         <div v-if="name == '水质边界'" class="singleli_title singleli_titles" style="margin-top:-39px">
           <el-row>
             <el-col :span="9">
@@ -53,10 +55,33 @@
           </el-row>
         </div>
         <div class="clear-fix">
-          <el-table border :data="tableData" style="background-color: transparent;" height=450>
+          <el-table border :data="tableData" style="background-color: transparent;" height=450 :cell-class-name="getRowColumn"
+        @cell-click="handleCellClick">
             <el-table-column prop="DT" label="时间" align="center">
+              <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.DT"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.DT }}</span>
+              </template>
             </el-table-column>
             <el-table-column prop="Value" :label="unit" align="center" width="130">
+              <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.Value"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.Value }}</span>
+              </template>
             </el-table-column>
           </el-table>
           <div class="boundaryConditions_name">
@@ -65,12 +90,22 @@
           </div>
         </div>
       </div>
-      <div class="boundaryConditions_right" v-show="water">
-        <div class="echarts_map" style="margin-top: -9px;">
+      <div class="boundaryConditions_right">
+        <div class="echarts_map">
           <div  ref='echart'  id="echartsLine" style="height:500px"></div>
         </div>
+        <div class="boundaryConditions_bottom">
+        <el-button size="small" plain>保存</el-button>
+        <el-button size="small" plain>计算</el-button>
+        <el-button size="small" plain>查看结果</el-button>
       </div>
-      <div class="boundaryConditions_content" v-if="sourcePollution" style="border: 1px solid #EBEEF5;padding-top:10px;">
+      </div>
+
+      </div>
+
+      <!-- 污染源 -->
+      <div v-if="sourcePollution">
+      <div class="boundaryConditions_content" style="border: 1px solid #EBEEF5;padding-top:10px;">
         <div class="singleli_title">
           <el-row>
             <el-col :span="8">
@@ -85,7 +120,7 @@
             </el-col>
               <el-col :span="7" style="margin-left: -5%;">
               <div>
-              <el-button size="min" plain>选点</el-button>
+              <el-button size="min" plain @click="activeLayerEvent">选点</el-button>
               </div>
             </el-col>
           </el-row>
@@ -133,27 +168,80 @@
           </el-row>
         </div>
       </div>
-      <div class="boundaryConditions_right" v-if="sourcePollution" style="border: 0">
-          <el-table border :data="tableData" style="background-color:transparent;" height=440>
-              <el-table-column prop="DT" label="时间" align="center">
-              </el-table-column>
-              <el-table-column prop="Value" label="流量（m³/s）" align="center" width="130">
-              </el-table-column>
-              <el-table-column prop="Value" label="浓度（mg/L）" align="center" width="140">
-              </el-table-column>
-            </el-table>
-              <div class="boundaryConditions_name">
+      <div class="boundaryConditions_right" style="border: 0">
+           <el-button
+              style="position:relative;bottom:3px;"
+              type="primary"
+              size="mini"
+              @click="handleAdd"
+              >新增</el-button>
+                  <el-table border :data="tableData" style="background-color: transparent;" height=450 :cell-class-name="getRowColumn"
+        @cell-click="handleCellClick">
+            <el-table-column prop="DT" label="时间" align="center">
+              <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.DT"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.DT }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="Discharge" label="流量（m³/s）" align="center" width="130">
+              <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.Discharge"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.Discharge }}</span>
+              </template>
+            </el-table-column>
+              <el-table-column prop="Concentration" label="浓度（mg/L）"  align="center" width="130">
+              <template slot-scope="scope">
+                <el-input
+                  v-if="
+                    scope.row.index === tabRowIndex &&
+                      scope.column.index === tabColumnIndex
+                  "
+                  v-model="scope.row.Concentration"
+                  @blur="inputBlur"
+                ></el-input>
+                <span v-else>{{ scope.row.Concentration }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" align="center" width="100">
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="handleDelete(scope.$index, scope.row)"
+                >删除</el-button
+              >
+            </template>
+          </el-table-column>
+          </el-table>
+              <!-- <div class="boundaryConditions_name">
               <el-button size="small" plain>上传</el-button>
               <el-button size="small" plain>下载</el-button>
-            </div>
-      </div>
-
-    </div>
-    <div class="boundaryConditions_bottom">
+            </div> -->
+        <div class="boundaryConditions_bottom">
         <el-button size="small" plain>保存</el-button>
         <el-button size="small" plain>计算</el-button>
         <el-button size="small" plain>查看结果</el-button>
     </div>
+      </div>
+    </div>
+
+
+    </div>
+
   </div>
 </template>
 <script>
@@ -218,9 +306,31 @@ export default {
       componentName:'',
       name:'',
       ScenarioCode:'',//方案编码
+      boundaryId:'',
+      tabRowIndex: null, //单元格横坐标
+      tabColumnIndex: null, //单元格纵坐标
+      tableValue: [],
+      lonValue:null,
+      latValue:null,
+      mapClick :null,
     };
   },
   methods: {
+      //点击单元格得到横纵坐标
+    handleCellClick(row, column, event, cell) {
+      this.tabRowIndex = row.index;
+      this.tabColumnIndex = column.index;
+      this.tableValue.push(row);
+    },
+    //数据中没有横纵坐标需要加上进行下一步判断
+    getRowColumn({ row, column, rowIndex, columnIndex }) {
+      row.index = rowIndex;
+      column.index = columnIndex;
+    },
+    inputBlur() {
+      this.tabRowIndex = null;
+      this.tabColumnIndex = "";
+    },
     tap(item, index) {
       this.name = item.name
       if(item.name == '流量边界'){
@@ -234,7 +344,7 @@ export default {
       }else if(item.name == '水质边界'){
         this.data[index].data_name = this.WaterQualityItems;
         this.unit = '氨氮（mg/L）';
-        this.componentName = 'NH3N';
+        this.getComponentData()
       }else if(item.name == '降雨站'){
         this.data[index].data_name = this.RainfallItems;
         this.unit = '降雨量（mm）';
@@ -260,15 +370,29 @@ export default {
         this.data[index].active = '-1';
       }
     },
+        //新增
+    handleAdd() {
+      let row = {
+        DT: "",
+        Discharge: "",
+        Concentration: "",
+      };
+      this.tableData.unshift(row);
+    },
+    //删除
+    handleDelete(index, row) {
+      this.tableData.splice(index, 1);
+    },
    tap_info(index,item,e){
       // 赋值状态
       this.data[index].active = e;
-      var boundaryId = item.BoundaryId
+      this.boundaryId = item.BoundaryId
        if(this.$route.params.value != undefined){
          this.ScenarioCode = this.$route.params.value.ScenarioCode
-      var url =
+         if(this.name != '水质边界' || this.name != '污染源'){
+        var url =
         modelURL +
-        "/api/GXRCWQ/ModelManager/GetBoundaryTSData?scenarioCode="+this.ScenarioCode+"&boundaryId="+boundaryId+"&componentName="+this.componentName;
+        "/api/GXRCWQ/ModelManager/GetBoundaryTSData?scenarioCode="+this.ScenarioCode+"&boundaryId="+this.boundaryId+"&componentName="+this.componentName;
       fetch(url)
         .then(respose => {
           return respose.json();
@@ -282,7 +406,34 @@ export default {
          }
         });
         }
+        if(this.name == '污染源'){
+
+        }
+          }
     },
+  //获取组分数据
+  getComponentData(){
+    this.componentList = []
+      if(this.$route.params.value != undefined){
+         this.ScenarioCode = this.$route.params.value.ScenarioCode
+      var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetComponentInfoList?scenarioCode="+this.ScenarioCode;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+            data.forEach((item,index)=>{
+            var obj = {
+              value:item,
+              label:item,
+            }
+            this.componentList.push(obj)
+          })
+        });
+        }
+  },
   //获取数据
       getTableData() {
         if(this.$route.params.value != undefined){
@@ -303,6 +454,86 @@ export default {
           });
         }
       },
+      //保存
+      preserve(){
+        //使用some方法，用原来的值与现在的做对比，如果原来的与现在的相等，就满足条件
+      this.ScenarioCode = this.$route.params.value.ScenarioCode
+      var arrList = [];
+      this.tableData.map(e => {
+        var flag = this.tableValue.some(el => {
+          if (e === el || JSON.stringify(e) === JSON.stringify(el)) {
+            return arrList.push(e);
+          }
+        });
+      });
+      var obj = {
+          ScenarioCode:this.ScenarioCode,
+          BoundaryId:this.boundaryId,
+          ComponentName:this.componentName,
+          TSData:arrList
+      }
+      var url = modelURL + "/api/GXRCWQ/ModelManager/UpdateBoundaryInfo";
+      var _this = this;
+      $.ajax({
+        type: "post",
+        dataType: "json",
+        headers: { "Content-Type": "application/json" },
+        url: url,
+        data: JSON.stringify(obj),
+        success: function(data) {
+          if (data != false) {
+            _this.$message({
+              message: "保存成功",
+              type: "success"
+            });
+          } else {
+            _this.$message.error("保存失败");
+          }
+        },
+        error: function(data) {
+          console.log("error" + data);
+        }
+      });
+      },
+    //选点
+      activeLayerEvent(){
+         this.createMap()
+      },
+      createMap(){
+     var _this = this
+      this.mapClick = map.on('singleclick',function(e){
+        console.log(e.coordinate)
+        var feature = new ol.Feature({
+            labelPoint: new ol.geom.Point(e.coordinate),
+            name: 'My Polygon'
+            });
+        var style =  new ol.style.Style({
+             image: new ol.style.Circle({
+             radius: 6,
+             fill: new ol.style.Fill({color: 'blue'}),
+           })
+        });
+      feature.setStyle(style)
+       var vectorSource = new ol.layer.Vector({
+          source:new ol.source.Vector({
+            feature:[feature]
+          })
+      })
+      map.addLayer(vectorSource)
+        _this.lonValue = e.coordinate[0].toFixed(2)
+        _this.latValue = e.coordinate[1].toFixed(2)
+        _this.coordinate = _this.lonValue+','+ _this.latValue
+               let url = modelURL + "/api/GXRCWQ/ModelManager/GetLocationByXY?scenarioCode=DHJKTXRCFA&x="+_this.lonValue+"&y="+_this.latValue
+                fetch(url)
+                    .then(function(res) {
+                    return res.json();
+                    })
+                    .then(function(data) {
+                      _this.riverMiles =data.BranchName+','+ data.Chainage.toFixed(1);
+              });
+
+         })
+		  },
     //折线图
       drawLine(data) {
         var xAxisData = [];
@@ -378,7 +609,25 @@ export default {
   mounted() {
     this.getTableData();
   },
-  watch: {},
+  watch: {
+    //监听水质边界组分
+    component:{
+      handler(newvalue,oldvalue){
+        this.componentName = newvalue
+       var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetBoundaryTSData?scenarioCode="+this.ScenarioCode+"&boundaryId="+this.boundaryId+"&componentName="+newvalue;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+         this.tableData = data
+          this.drawLine(data);
+        });
+      }
+    }
+  },
 };
 </script>
 <style scoped>
