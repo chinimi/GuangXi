@@ -1038,9 +1038,6 @@
         },{
           label:"地表天然水",
           value:'dbtrs',
-        },{
-          label:"地表天然水",
-          value:'dbtrs',
         }],
         /*取值方式*/
         qzfsval:'avg',
@@ -2015,9 +2012,9 @@
 
     mounted(){
       //debugger
-      map = window.map
-      console.log('获取地图全局变量')
-      console.log(window.map)
+      // map = window.map
+      // console.log('获取地图全局变量')
+      // console.log(window.map)
 
     },
     watch: {

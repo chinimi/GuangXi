@@ -82,8 +82,8 @@ var RElir=null
 var RElr= null
 var RHlr =null
 
-
-
+/*河段公示牌adCode*/
+currentRiverId=null
 // 遥感影像反演
 /////////////////////
 /////////////////////////////

@@ -67,6 +67,7 @@
 
         <div v-if="currentComp=='infoSystem'">
           <router-view></router-view>
+<!--          <router-link :to="{ name: 'infoSystem'}"></router-link>-->
           <!-- <infoSystem></infoSystem> -->
         </div>
 

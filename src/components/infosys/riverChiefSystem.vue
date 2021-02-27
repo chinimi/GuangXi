@@ -12,12 +12,12 @@
       >
         <div  v-for="(item,index) in menulist" :key="item.id">
           <!--一级菜单（没有任何子级菜单）-->
-          <el-menu-item :index="item.adCode" v-if="!item.children">
+          <el-menu-item :index="item.signCode" v-if="!item.children">
                 <i class="el-icon-menu"></i>
 <!--            <i :class=iconsObj[item.id]></i>-->
             {{item.photoName}}</el-menu-item>
           <!-- 一级菜单（有子级菜单）-->
-          <el-submenu :index="item.adCode" v-else>
+          <el-submenu :index="item.signCode" v-else>
             <template slot="title">
                <i class="el-icon-menu"></i>
 <!--              <i :class=iconsObj[item.id]></i>-->
@@ -26,13 +26,13 @@
             <!-- 遍历二级菜单容器 -->
             <div v-for="(i,index) in item.children" :key="item.id">
               <!-- 判断二级菜单（没有三级菜单）-->
-              <el-menu-item :index="i.adCode" v-if="!i.children">
+              <el-menu-item :index="i.signCode" v-if="!i.children">
 <!--                <i :class=iconsObj[i.id]></i>-->
                 <i class="el-icon-menu"></i>
                 {{i.photoName}}
               </el-menu-item>
               <!-- 判断二级菜单（有三级菜单）-->
-              <el-submenu :index="i.adCode" v-if="i.children">
+              <el-submenu :index="i.signCode" v-if="i.children">
                 <template slot="title">{{i.photoName}}</template>
                 <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>
               </el-submenu>
@@ -54,21 +54,21 @@
         border: solid 1px #c0c0c0;
         ">
         <el-row  style="text-align: center;border-bottom:solid 1px #c0c0c0;">
-          <el-col :span="6" class="river_title">河段名称</el-col>
+          <el-col :span="4" class="river_title">河段名称</el-col>
           <el-col :span="6" class="river_item">{{riverName}}</el-col>
-          <el-col :span="6" class="river_title">公示牌位置</el-col>
-          <el-col :span="6" class="river_item">{{boardLocation}}</el-col>
+          <el-col :span="4" class="river_title">公示牌位置</el-col>
+          <el-col :span="8" class="river_item">经度：{{boardLocation}} 纬度：{{boardLatitude}}</el-col>
         </el-row>
         <el-row  style="text-align: center;border-bottom:solid 1px #c0c0c0;">
-          <el-col :span="6" class="river_title">河段长度(km)</el-col>
+          <el-col :span="4" class="river_title">河段长度(km)</el-col>
           <el-col :span="6" class="river_item">{{riverLength}}</el-col>
-          <el-col :span="6" class="river_title">监督电话</el-col>
-          <el-col :span="6" class="river_item">{{listenTel}}</el-col>
+          <el-col :span="4" class="river_title">监督电话</el-col>
+          <el-col :span="8" class="river_item">{{listenTel}}</el-col>
         </el-row>
         <el-row style="text-align: center; ">
-          <el-col :span="6" class="river_title">起止点位置</el-col>
-          <el-col :span="9" class="river_item"  style="border-right:1px solid #c0c0c0;"> <i style='color:blue;' class="iconfont icon-dian"></i>{{startPosition}}</el-col>
-          <el-col :span="9" class="river_item"> <i style='color:red;' class="iconfont icon-dian"></i>{{endPosition}}</el-col>
+          <el-col :span="4" class="river_title">起止点位置</el-col>
+          <el-col :span="10" class="river_item"  style="border-right:1px solid #c0c0c0;"> <i style='color:blue;' class="iconfont icon-dian"></i>{{startPosition}}</el-col>
+          <el-col :span="10" class="river_item"> <i style='color:red;' class="iconfont icon-dian"></i>{{endPosition}}</el-col>
 
         </el-row>
 
@@ -86,11 +86,16 @@
 
 <script>
   export default {
+    props:[
+      "valueRiver"//子父组件传值
+    ],
     data() {
       return {
+
         menulist: [],
         imgsrc:'',//图片地址
-        boardLocation:'', /*河段名称*/
+        boardLocation:'', /*经度*/
+        boardLatitude:'', /*纬度度*/
         riverName:'', /*公示牌位置*/
         riverLength:'', /*河段长度*/
         listenTel:'',/*监督电话*/
@@ -106,12 +111,20 @@
     created() {
     },
     mounted() {
+      console.log("获取当前跳转传过来的参数")
+      // var checkParam=this.$route.params
+      // var currentPath=this.$route.path
+      // console.log(checkParam)
+      // console.log(currentPath)
+      // console.log(currentRiverId)
+
       /*请求左侧目录接口*/
       /*http请求*/
       var that=this
 
       let  param={
         "adCode":"450200000000",
+        // "adCode":currentRiverId,
       }
       let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/masterSign"
       this.$http.post(url,JSON.stringify(param),{
@@ -154,19 +167,27 @@
         console.log(key)//
         console.log(this.menulist)
         this.currentRiver=key
-
+        this.imgsrc=""
+        this.boardLocation=""
+        this.riverName=""
+        this.riverLength=""
+        this.listenTel=""
+        this.startPosition=""
+        this.endPosition=""
         for(var i=0;i<this.menulist.length;i++){
-          if(key==this.menulist[i].adCode){
+          if(key==this.menulist[i].signCode){
 
             this.currentRiver=this.menulist[i]
             console.log( this.currentRiver)
             this.imgsrc= this.currentRiver.filePath
-            this.boardLocation= this.currentRiver.rvName
-            this.riverName= this.currentRiver.signAddress
-            this.riverLength= this.currentRiver.signLng
-            this.listenTel= this.currentRiver.adCode
-            this.startPosition= this.currentRiver.signLat
-            this.endPosition= this.currentRiver.signLng
+            this.boardLocation= this.currentRiver.signLng
+            this.boardLatitude= this.currentRiver.signLat
+            this.riverName= this.currentRiver.photoName
+            this.riverLength= this.currentRiver.reaLen
+            // this.listenTel= this.currentRiver.adCode
+            this.listenTel= ""
+            this.startPosition= this.currentRiver.startLoc
+            this.endPosition= this.currentRiver.endLoc
           }
 
         }
@@ -182,9 +203,55 @@
       handleClose(key, keyPath){
         console.log(key, keyPath)
       },
+      ajaxRiverPark(){
+
+        this.imgsrc=""
+        this.boardLocation=""
+        this.riverName=""
+        this.riverLength=""
+        this.listenTel=""
+        this.startPosition=""
+        this.endPosition=""
+        /*http请求*/
+        var that=this
+
+        let  param={
+          // "adCode":"450200000000",
+          "adCode":this.valueRiver,
+        }
+        let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/masterSign"
+        this.$http.post(url,JSON.stringify(param),{
+          emulateJSON: true,
+        }).then(function(res) {
+          console.log("显示当前查询结果")
+          let data=res.body.data.mastersign
+          console.log(data)
+          that.menulist=data
+
+          for(var i=0;i<data.length;i++){
+            console.log(data[i])
+            console.log(data[i].id)
+            console.log(data[i].adCode)
+
+          }
+
+
+        }).catch(function(res){
+        })
+
+
+      }
 
     },
     watch:{
+
+      valueRiver(val){
+        console.log("监听父组件传过来的值")
+        console.log(val)
+        this.ajaxRiverPark()
+
+      }
+
 
     },
   }
