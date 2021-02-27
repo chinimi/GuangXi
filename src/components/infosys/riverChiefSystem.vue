@@ -12,12 +12,12 @@
       >
         <div  v-for="(item,index) in menulist" :key="item.id">
           <!--一级菜单（没有任何子级菜单）-->
-          <el-menu-item :index="item.adCode" v-if="!item.children">
+          <el-menu-item :index="item.signCode" v-if="!item.children">
                 <i class="el-icon-menu"></i>
 <!--            <i :class=iconsObj[item.id]></i>-->
             {{item.photoName}}</el-menu-item>
           <!-- 一级菜单（有子级菜单）-->
-          <el-submenu :index="item.adCode" v-else>
+          <el-submenu :index="item.signCode" v-else>
             <template slot="title">
                <i class="el-icon-menu"></i>
 <!--              <i :class=iconsObj[item.id]></i>-->
@@ -26,13 +26,13 @@
             <!-- 遍历二级菜单容器 -->
             <div v-for="(i,index) in item.children" :key="item.id">
               <!-- 判断二级菜单（没有三级菜单）-->
-              <el-menu-item :index="i.adCode" v-if="!i.children">
+              <el-menu-item :index="i.signCode" v-if="!i.children">
 <!--                <i :class=iconsObj[i.id]></i>-->
                 <i class="el-icon-menu"></i>
                 {{i.photoName}}
               </el-menu-item>
               <!-- 判断二级菜单（有三级菜单）-->
-              <el-submenu :index="i.adCode" v-if="i.children">
+              <el-submenu :index="i.signCode" v-if="i.children">
                 <template slot="title">{{i.photoName}}</template>
                 <el-menu-item :index="j.path" v-for="(j,index) in i.children" :key="index">{{j.authName}}       </el-menu-item>
               </el-submenu>
@@ -86,8 +86,12 @@
 
 <script>
   export default {
+    props:[
+      "valueRiver"//子父组件传值
+    ],
     data() {
       return {
+
         menulist: [],
         imgsrc:'',//图片地址
         boardLocation:'', /*河段名称*/
@@ -106,12 +110,20 @@
     created() {
     },
     mounted() {
+      console.log("获取当前跳转传过来的参数")
+      // var checkParam=this.$route.params
+      // var currentPath=this.$route.path
+      // console.log(checkParam)
+      // console.log(currentPath)
+      // console.log(currentRiverId)
+
       /*请求左侧目录接口*/
       /*http请求*/
       var that=this
 
       let  param={
         "adCode":"450200000000",
+        // "adCode":currentRiverId,
       }
       let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/masterSign"
       this.$http.post(url,JSON.stringify(param),{
@@ -154,9 +166,15 @@
         console.log(key)//
         console.log(this.menulist)
         this.currentRiver=key
-
+        this.imgsrc=""
+        this.boardLocation=""
+        this.riverName=""
+        this.riverLength=""
+        this.listenTel=""
+        this.startPosition=""
+        this.endPosition=""
         for(var i=0;i<this.menulist.length;i++){
-          if(key==this.menulist[i].adCode){
+          if(key==this.menulist[i].signCode){
 
             this.currentRiver=this.menulist[i]
             console.log( this.currentRiver)
@@ -182,9 +200,55 @@
       handleClose(key, keyPath){
         console.log(key, keyPath)
       },
+      ajaxRiverPark(){
+
+        this.imgsrc=""
+        this.boardLocation=""
+        this.riverName=""
+        this.riverLength=""
+        this.listenTel=""
+        this.startPosition=""
+        this.endPosition=""
+        /*http请求*/
+        var that=this
+
+        let  param={
+          // "adCode":"450200000000",
+          "adCode":this.valueRiver,
+        }
+        let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/masterSign"
+        this.$http.post(url,JSON.stringify(param),{
+          emulateJSON: true,
+        }).then(function(res) {
+          console.log("显示当前查询结果")
+          let data=res.body.data.mastersign
+          console.log(data)
+          that.menulist=data
+
+          for(var i=0;i<data.length;i++){
+            console.log(data[i])
+            console.log(data[i].id)
+            console.log(data[i].adCode)
+
+          }
+
+
+        }).catch(function(res){
+        })
+
+
+      }
 
     },
     watch:{
+
+      valueRiver(val){
+        console.log("监听父组件传过来的值")
+        console.log(val)
+        this.ajaxRiverPark()
+
+      }
+
 
     },
   }

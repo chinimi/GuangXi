@@ -46,6 +46,9 @@ import twoDimensionalModel from '../components/programmodel/twoDimensionalModel/
 import remoteSensingModel from '../components/programmodel/remoteSensingModel/remoteSensingModel.vue'
 import moduleManager from '../components/programmodel/moduleManager/moduleManager.vue'
 
+/*河段公示牌组件*/
+import riverChiefSystem from '../components/infosys/riverChiefSystem.vue'//信息汇总河长制
+
 
 import schemeLibrary from "../components/programmodel/oneDimensionalModel/schemeLibrary"
 import programmePreparation from "../components/programmodel/oneDimensionalModel/programmePreparation"
@@ -56,6 +59,14 @@ import programmePreparations from "../components/programmodel/twoDimensionalMode
 
 
 Vue.use(Router)
+//解决vue路由重复导航错误
+//获取原型对象上的push函数
+const originalPush = Router.prototype.push
+//修改原型对象中的push方法
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 
 export default new Router({
   routes: [
@@ -188,6 +199,11 @@ export default new Router({
           path: '/infoSystem',
           name: 'infoSystem',
           component:infoSystem,//信息综合管理
+          children:[{
+            path: '/riverChiefSystem',
+            name: 'riverChiefSystem',
+            component:riverChiefSystem,
+          }],
         },
         {
           path: '/programModel',
@@ -255,8 +271,9 @@ export default new Router({
 
       ]
     },
-
-
-
   ]
+
+
+
 })
+

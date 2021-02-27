@@ -80,6 +80,7 @@
       /*切换对应组件*/
       "authName": "专项评价",
       id:'zxpjfxmodelpart',
+      path:'zxpjfxmodelpart',
       children: [
         { "authName": "地表水资源天然水化学特征评价" ,com:'groundWater', id:'dbszytrs', path:'groundWater'},
         { "authName": "水质变化趋势分析",com:"changeWater" ,id:'szbhqs',path:'changeWater'},

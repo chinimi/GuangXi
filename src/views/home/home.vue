@@ -65,35 +65,38 @@
           <indexright></indexright>
         </div>
 
-        <div v-show="currentComp=='infoSystem'">
+
+
+        <div v-if="currentComp=='infoSystem'">
           <router-view></router-view>
+<!--          <router-link :to="{ name: 'infoSystem'}"></router-link>-->
           <!-- <infoSystem></infoSystem> -->
         </div>
 
-        <div v-show="currentComp=='programModel'">
+        <div v-if="currentComp=='programModel'">
           <router-view></router-view>
           <!-- <programModel></programModel> -->
         </div>
 
-        <div v-show="currentComp=='qualityClassfy'">
+        <div v-if="currentComp=='qualityClassfy'">
 <!--          <qualityClassfy></qualityClassfy>-->
           <!--路由配置-->
           <router-view></router-view>
 
         </div>
 
-        <div v-show="currentComp=='qualityPrediction'">
+        <div v-if="currentComp=='qualityPrediction'">
           <!-- <qualityPrediction></qualityPrediction>-->
           <!--路由配置-->
 
           <router-view></router-view>
         </div>
-        <div v-show="currentComp=='bearingCapacity'">
+        <div v-if="currentComp=='bearingCapacity'">
           <router-view></router-view>
           <!-- <bearingCapacity></bearingCapacity> -->
         </div>
 
-        <div v-show="currentComp=='operationalDisplay'">
+        <div v-if="currentComp=='operationalDisplay'">
 
           <legendCom></legendCom>
 <!--          <operationalDisplay></operationalDisplay>-->
