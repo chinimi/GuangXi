@@ -477,7 +477,7 @@ export default {
 
      let  data=res.body.data.district
       console.log(data)
-let cityData=[]
+      let cityData=[]
       let obj={}
       obj.id="city"
       obj.label="市级河长制公示牌"
@@ -512,7 +512,6 @@ let cityData=[]
     //      this.$router.push({name:'riverChiefSystem',params:{adCode: currentRiverId}});
     //     }
     //   }
-
 
   },
   computed: {},
