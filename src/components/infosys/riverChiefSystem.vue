@@ -54,21 +54,21 @@
         border: solid 1px #c0c0c0;
         ">
         <el-row  style="text-align: center;border-bottom:solid 1px #c0c0c0;">
-          <el-col :span="6" class="river_title">河段名称</el-col>
+          <el-col :span="4" class="river_title">河段名称</el-col>
           <el-col :span="6" class="river_item">{{riverName}}</el-col>
-          <el-col :span="6" class="river_title">公示牌位置</el-col>
-          <el-col :span="6" class="river_item">{{boardLocation}}</el-col>
+          <el-col :span="4" class="river_title">公示牌位置</el-col>
+          <el-col :span="8" class="river_item">经度：{{boardLocation}} 纬度：{{boardLatitude}}</el-col>
         </el-row>
         <el-row  style="text-align: center;border-bottom:solid 1px #c0c0c0;">
-          <el-col :span="6" class="river_title">河段长度(km)</el-col>
+          <el-col :span="4" class="river_title">河段长度(km)</el-col>
           <el-col :span="6" class="river_item">{{riverLength}}</el-col>
-          <el-col :span="6" class="river_title">监督电话</el-col>
-          <el-col :span="6" class="river_item">{{listenTel}}</el-col>
+          <el-col :span="4" class="river_title">监督电话</el-col>
+          <el-col :span="8" class="river_item">{{listenTel}}</el-col>
         </el-row>
         <el-row style="text-align: center; ">
-          <el-col :span="6" class="river_title">起止点位置</el-col>
-          <el-col :span="9" class="river_item"  style="border-right:1px solid #c0c0c0;"> <i style='color:blue;' class="iconfont icon-dian"></i>{{startPosition}}</el-col>
-          <el-col :span="9" class="river_item"> <i style='color:red;' class="iconfont icon-dian"></i>{{endPosition}}</el-col>
+          <el-col :span="4" class="river_title">起止点位置</el-col>
+          <el-col :span="10" class="river_item"  style="border-right:1px solid #c0c0c0;"> <i style='color:blue;' class="iconfont icon-dian"></i>{{startPosition}}</el-col>
+          <el-col :span="10" class="river_item"> <i style='color:red;' class="iconfont icon-dian"></i>{{endPosition}}</el-col>
 
         </el-row>
 
@@ -94,7 +94,8 @@
 
         menulist: [],
         imgsrc:'',//图片地址
-        boardLocation:'', /*河段名称*/
+        boardLocation:'', /*经度*/
+        boardLatitude:'', /*纬度度*/
         riverName:'', /*公示牌位置*/
         riverLength:'', /*河段长度*/
         listenTel:'',/*监督电话*/
@@ -179,12 +180,14 @@
             this.currentRiver=this.menulist[i]
             console.log( this.currentRiver)
             this.imgsrc= this.currentRiver.filePath
-            this.boardLocation= this.currentRiver.rvName
-            this.riverName= this.currentRiver.signAddress
-            this.riverLength= this.currentRiver.signLng
-            this.listenTel= this.currentRiver.adCode
-            this.startPosition= this.currentRiver.signLat
-            this.endPosition= this.currentRiver.signLng
+            this.boardLocation= this.currentRiver.signLng
+            this.boardLatitude= this.currentRiver.signLat
+            this.riverName= this.currentRiver.photoName
+            this.riverLength= this.currentRiver.reaLen
+            // this.listenTel= this.currentRiver.adCode
+            this.listenTel= ""
+            this.startPosition= this.currentRiver.startLoc
+            this.endPosition= this.currentRiver.endLoc
           }
 
         }
