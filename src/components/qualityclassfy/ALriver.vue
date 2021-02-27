@@ -507,8 +507,9 @@
                 LjList.push(item.Lj);
                 VjList.push(item.Vj);
           })
+          
         EDr = EDr_fufen(AjList,LjList,VjList)
-        Alr = Math.min(PHP,FOE,EDr)
+        Alr = Math.min(PHPr,FOEr,EDr)
       
 
 

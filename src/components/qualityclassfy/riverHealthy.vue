@@ -340,7 +340,6 @@
 
                     <!--                      </template>-->
                   </el-table-column>
-
                   <el-table-column
                     prop="length"
                     label="长度">
@@ -360,8 +359,6 @@
                     label="流连通阻隔状况(RC)">
 
                   </el-table-column>
-
-
 
                 </el-table>
               </el-col>
@@ -430,7 +427,7 @@
                   </el-table-column>
 
                   <el-table-column
-                    prop="HMPr"
+                    prop="HMBr"
                     label="重金属污染状况">
 
                   </el-table-column>
@@ -644,13 +641,12 @@
           <el-table-column prop="name" label="河段名称"></el-table-column>
           <el-table-column prop="hdcd" label="河段长度"></el-table-column>
           <el-table-column  prop="HDr" label="水文水资源赋分（HDr）"></el-table-column>
-          <el-table-column prop="PHr"  label="物理结构（PHr）"></el-table-column>
+          <el-table-column prop="PFr"  label="物理结构（PFr）"></el-table-column>
           <el-table-column prop="WQr"  label="水资状况指标赋分（WQr）"></el-table-column>
           <el-table-column prop="ALr"  label="水生生物评估赋分（ALr）"></el-table-column>
           <el-table-column prop="RElir"  label="评估河段生态完整性评估分值（RElir）"></el-table-column>
           <el-table-column prop="RElr"  label="流域生态完整性评估分值（RElr）">
             <template slot-scope="scope">
-r
               <div style="color:dodgerblue;" >{{ scope.row.RElir }}</div>
             </template>
           </el-table-column>
@@ -661,8 +657,8 @@ r
 
         <el-row class="dialog_single_title">综合健康评估</el-row>
         <el-table :cell-style="isPink" :data="lystwazxData"  max-height="100"    border  >
-                <el-table-column prop="REIr" label="流域生态完整性评估分值（RElr）"></el-table-column>
-                <el-table-column prop="SSR" label="社会服务功能准则层分（SSr）"></el-table-column>       
+                <el-table-column prop="RElr" label="流域生态完整性评估分值（RElr）"></el-table-column>
+                <el-table-column prop="SSr" label="社会服务功能准则层分（SSr）"></el-table-column>       
                 <el-table-column  prop="RHlr"  style="background: #0b93d5" label="综合健康评估分值（RHlr）">
 
           <template slot-scope="scope">
@@ -1005,55 +1001,8 @@ r
         ALTableData:[],
         /*SS table*/
         SSTableData:[],
-
-        stwzxData:[
-          {
-            "name":'name',
-            "hdcd":111,
-            "szyff":111,
-            "dnpjjl":111,
-            'wljg':111,
-            'szyzk':111,
-            'sswpg':111,
-            'pghdst':111,
-            'lystwz':111,
-          },{
-            "name":'name',
-            "hdcd":111,
-            "szyff":111,
-            "dnpjjl":111,
-            'wljg':111,
-            'szyzk':111,
-            'sswpg':111,
-            'pghdst':111,
-            'lystwz':111,
-          },{
-            "name":'name',
-            "hdcd":111,
-            "szyff":111,
-            "dnpjjl":111,
-            'wljg':111,
-            'szyzk':111,
-            'sswpg':111,
-            'pghdst':111,
-            'lystwz':111,
-          },
-        ],
-
-        lystwazxData:[
-          {
-            "name":'name',
-            "hdcd":111,
-            "szyff":111,
-            "dnpjjl":111,
-            'wljg':111,
-            'szyzk':111,
-            'sswpg':111,
-            'pghdst':111,
-            'lystwz':111,
-          }
-        ],
-
+        stwzxData:[],
+        lystwazxData:[],
       }
     },
     components: {
@@ -1089,10 +1038,6 @@ r
         // console.log(column)//没用
         // console.log(rowIndex)//第几行
         // console.log(columnIndex)//第几列
-
-
-
-
         if (columnIndex === 7 ) {
           // const _row = this.spanArr[rowIndex];
           const _row = 6;
@@ -1182,9 +1127,7 @@ r
         this.queryTableData()
       },
       queryTableData(){//查看评价结果
-
-        
-        console.log("显示表格计算的全局变量")
+      
         // 流量过程变异 生态流量满足 健康流量指标过程FD 程度EF FD
 
         if(FDr==null ||EFr==null|| IFDr==null)
@@ -1193,7 +1136,7 @@ r
          
           return ;
         }
-        if(RSr==null || RCr==null)
+        if(RSr==null || RCr==null||PFr==null)
         {
           alert('物理结构为空') 
           return ;
@@ -1203,16 +1146,18 @@ r
            alert('水质状况指标为空') 
           return ;
         }
-        if (PHPr==null||FOEr==null||EDr==null)
+        if (PHPr==null||FOEr==null||EDr==null||Alr==null)
         {
            alert('水生生物评估为空') 
           return ;
         }
-        if(WFZr==null||WRUr==null||FLDr==null||PPr==null)
+        if(WFZr==null||WRUr==null||FLDr==null||PPr==null||SSr==null)
         {
             alert('社区服务功能评估为空') 
           return ;
         }
+      
+
         else{
       
         /*各河段得分*/
@@ -1220,7 +1165,7 @@ r
         this.HDTableData=[
           {
             "zonecode":101100,
-            "hdmc":'名称',
+            "hdmc":'桂河',
             "start":"起点",
             "end":"终点",
             'szhl':"所在河流",
@@ -1234,7 +1179,7 @@ r
           this.PFTableData=[
             {
               "zonecode":101100,
-              "hdmc":'名称',
+              "hdmc":'桂河',
               "start":"起点",
               "end":"终点",
               'szhl':"所在河流",
@@ -1246,7 +1191,7 @@ r
           this.WQTableData=[
             {
               "zonecode":101100,
-              "hdmc":'名称',
+              "hdmc":'桂河',
               "start":"起点",
               "end":"终点",
               'szhl':"所在河流",
@@ -1260,7 +1205,7 @@ r
         this.ALTableData=[
           {
             "zonecode":101100,
-            "hdmc":'名称',
+            "hdmc":'桂河',
             "start":"起点",
             "end":"终点",
             'szhl':"所在河流",
@@ -1274,7 +1219,7 @@ r
         this.SSTableData=[
           {
             "zonecode":101100,
-            "hdmc":'名称',
+            "hdmc":'桂河',
             "start":"起点",
             "end":"终点",
             'szhl':"所在河流",
@@ -1284,35 +1229,32 @@ r
             'FLD':FLDr,
             'PP':PPr
           }]
-
+        //=D4*0.2+E4*0.2+F4*0.3+G4*0.3
+        RElir = HDr*0.2+PFr*0.2+WQr_*0.3+Alr*0.3;
+        RElr = parseFloat(RElir*100/100).toFixed(2);
         /*生态完整性评估表*/
-
         this.stwzxData=[
           {
-            "zonecode":101100,
-            "hdmc":'名称',
-            "start":"起点",
-            "end":"终点",
-            'szhl':"所在河流",
-            'length':"1000rkm",
-            'HD':HDr,
+            "name":'桂河',
+            "hdcd":'100km',
+            'HDr':HDr,
             'PFr':PFr,
             'WQr':WQr_,
             'ALr':Alr,
             'RElir':RElir,
             'RElr':RElr
-        
-
           }]
 
 
         /**/
+        //B14*0.7+C14*0.3 
+        RHlr = RElr*0.7+SSr*0.3
 
         this.lystwazxData=[
           {
             'RElr':RElr,
             'SSr':SSr,
-            'RHir':RHir, 
+            'RHlr':RHlr, 
           }]
         }
       },

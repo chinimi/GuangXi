@@ -588,8 +588,8 @@
            })
 
          FLDr =  FLD_fufen(RIVLn_,RIVBn_,RIVWFn_)
-
-         SSr = (ss*0.25 + WRU*0.25+PP*0.25+FLD*0.25).toFixed(2);
+        
+         SSr = (WFZr*0.25 + WRUr*0.25+PPr*0.25+FLDr*0.25).toFixed(2);
 
       },
       backAgo(){

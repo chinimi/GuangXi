@@ -1038,6 +1038,9 @@
         },{
           label:"地表天然水",
           value:'dbtrs',
+        },{
+          label:"地表天然水",
+          value:'dbtrs',
         }],
         /*取值方式*/
         qzfsval:'avg',
@@ -2296,7 +2299,16 @@
   }
 
 
-.pop_div{
+/*图例*/
+.legend{
+  width:300px;
+  height: 200px;
+  border:solid 1px red;
+  background: red;
+  z-index: 999;
+  position: absolute;
+  top: 0px;
+  left: 20px;
 
 }
 
