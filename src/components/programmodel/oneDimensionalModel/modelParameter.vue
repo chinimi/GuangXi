@@ -9,16 +9,16 @@
           <li :class="[TapType == '4' ? 'actve' : '']" @click="TapSwitch(4)">生态</li>
         </ul>
       </div>
-      <div class="modelParameter_right" v-show="TapType == '1'">
+      <div class="modelParameter_right" v-if="TapType == '1'">
           <hydrology></hydrology>
       </div>
-      <div class="modelParameter_right" v-show="TapType == '2'">
+      <div class="modelParameter_right" v-if="TapType == '2'">
           <hydrodynamicForce></hydrodynamicForce>
       </div>
-      <div class="modelParameter_right" v-show="TapType == '3'">
+      <div class="modelParameter_right" v-if="TapType == '3'">
           <convectiveDiffusion></convectiveDiffusion>
       </div>
-      <div class="modelParameter_right" v-show="TapType == '4'">
+      <div class="modelParameter_right" v-if="TapType == '4'">
           <zoology></zoology>
       </div>
     </div>

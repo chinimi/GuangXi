@@ -45,10 +45,10 @@
       <!--toolbar tab-->
 
       <div  style="position: relative;z-index:9;" id="toolbar_tab">
-        <div v-show="currentTool=='layer'">
+        <div v-if="currentTool=='layer'">
         <layercontrol></layercontrol>
         </div>
-        <div v-show="currentTool=='measure'">
+        <div v-if="currentTool=='measure'">
         <measureRange></measureRange>
         </div>
       </div>
@@ -59,13 +59,11 @@
         <!--組件跳轉-->
         <!--  <com :is="currentComp"></com>-->
 
-        <div v-show="currentComp=='index'">
+        <div v-if="currentComp=='index'">
           <indexlefttop></indexlefttop>
           <indexleftbottom></indexleftbottom>
           <indexright></indexright>
         </div>
-
-
 
         <div v-if="currentComp=='infoSystem'">
           <router-view></router-view>

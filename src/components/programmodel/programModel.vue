@@ -15,19 +15,19 @@
           <!--切换组件-->
       <div  class="programModel_content">
         <!--組件跳轉-->
-        <div v-show="currentComp=='oneDimensionalModel'" class="Model_content">
+        <div v-if="currentComp=='oneDimensionalModel'" class="Model_content">
           <router-view></router-view>
           <!-- <oneDimensionalModel></oneDimensionalModel> -->
         </div>
-        <div v-show="currentComp=='twoDimensionalModel'" class="Model_content">
+        <div v-if="currentComp=='twoDimensionalModel'" class="Model_content">
           <router-view></router-view>
           <!-- <twoDimensionalModel></twoDimensionalModel> -->
         </div>
-        <div v-show="currentComp=='remoteSensingModel'"  class="Model_content">
+        <div v-if="currentComp=='remoteSensingModel'"  class="Model_content">
           <!-- <router-view></router-view> -->
           <remoteSensingModel></remoteSensingModel>
         </div>
-        <div v-show="currentComp=='moduleManager'"  class="Model_content">
+        <div v-if="currentComp=='moduleManager'"  class="Model_content">
           <!-- <router-view></router-view> -->
           <moduleManager></moduleManager>
         </div>

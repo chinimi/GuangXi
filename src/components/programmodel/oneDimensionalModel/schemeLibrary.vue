@@ -594,41 +594,31 @@ export default {
       }).readFeatures(featureJson),
       projection: "EPSG:4326"
     })
-    // var extent = source.getExtent()
-    // map.getView().fit(extent, map.getSize(), {padding: [10, 10, 10, 10]})
-
     this.layer = new ol.layer.Vector({
       source: source,
       style: function(feature) {
         var properties = feature.getProperties()
         var styles = []
         var iconN = new ol.style.Style({
-        image: new ol.style.Circle({
-            color: 'FF00FF',
-            radius: 5,
-            fill: new ol.style.Fill({
-                color: 'transparent'
-            }),
-          stroke:new ol.style.Stroke({color:'#778899', width:2})
-        })
-        })
-        styles.push(iconN)
-        var value = properties.station_id ? properties.station_id: properties.stationid;
-        var text = new ol.style.Style({
-          text: new ol.style.Text({
-              text: value,
-              offsetX: 3,
-              offsetY: 13,
-              fill: new ol.style.Fill({
-                  color: "#000000"
+              stroke: new ol.style.Stroke({ //边界样式
+                color: '#3a8ee6',
+                width: '6',
+                // lineDash: [5]
               }),
-          })
-      })
-      styles.push(text)
+            });
+        styles.push(iconN)
         return styles
       },
       zIndex: 15
     })
+           var view = new ol.View({
+                        center:[109.00,22.65],
+                        projection: "EPSG:4326",
+                        zoom:7,
+                        minZoom:0,
+                        maxZoom:15,
+                    });
+                map.setView(view)
       map.addLayer( this.layer)
 
     },
