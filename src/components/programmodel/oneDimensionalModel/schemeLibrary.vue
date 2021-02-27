@@ -612,9 +612,9 @@ export default {
       zIndex: 15
     })
            var view = new ol.View({
-                        center:[109.00,22.65],
+                        center:[110.35,23.35],
                         projection: "EPSG:4326",
-                        zoom:7,
+                        zoom:10,
                         minZoom:0,
                         maxZoom:15,
                     });
