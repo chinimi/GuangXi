@@ -8,7 +8,9 @@ var tdtURL  =  "http://t{0-7}.tianditu.gov.cn"; //use
 // 基础地图
 var baseMap = "http://112.26.122.200:7080/arcgis/rest/services/guangxi3/MapServer"
 //方案模型管理
-var modelURL = "http://112.26.122.200:8082/RiverChiefWQWebServer"
+// var modelURL = "http://112.26.122.200:8082/RiverChiefWQWebServer"
+var modelURL = "http://139.196.41.243/RiverChiefWQWebServer"
+
 var baseMap = "http://112.26.122.200:7080/arcgis/rest/services/guangxiwgs84/MapServer"
 // var baseMap = "http://112.26.122.200:6080/arcgis/rest/services/guangxi3/MapServer"
 

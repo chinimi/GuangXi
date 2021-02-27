@@ -596,6 +596,7 @@ export default {
     })
     // var extent = source.getExtent()
     // map.getView().fit(extent, map.getSize(), {padding: [10, 10, 10, 10]})
+
     this.layer = new ol.layer.Vector({
       source: source,
       style: function(feature) {
