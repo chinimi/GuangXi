@@ -77,7 +77,6 @@
               <el-input-number
                 v-model="SimIntervalMinute"
                 controls-position="right"
-                @change="handleChange"
                 :min="1"
                 :max="10"
                 class="SimIntervalMinute"
@@ -104,11 +103,20 @@
             <el-button size="small" plain @click="saveModel">保存</el-button>
             <el-button size="small" plain>计算</el-button>
             <el-button size="small" plain>查看结果</el-button>
-            <el-button size="small" plain>上传</el-button>
-            <!-- <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-change="handleChange" :file-list="fileList">
-            <el-button size="small" type="primary">上传</el-button>
-            </el-upload> -->
-            <el-button size="small" plain>下载</el-button>
+            <el-button size="small" plain>
+              <el-upload
+              style="width: 30px;height: 20px;margin-top: -12px;margin-left: -19px;"
+              class="upload-demo"
+              ref="upload"
+              action=""
+              :show-file-list="false"
+              :file-list="fileList"
+              :on-change="importFile"
+              :auto-upload="false">
+              <el-button size="small" type="primary">上传</el-button>
+           </el-upload></el-button>
+
+            <el-button size="small" plain @click="downloadFile">下载</el-button>
         </div>
       </div>
     </div>
@@ -126,6 +134,8 @@ export default {
       SimIntervalMinute: '',//计算步长
       Description:'',//方案描述
       ScenarioCode:'',//方案编码
+      fileList:[],
+      isConfirm: true
     };
   },
   methods: {
@@ -178,9 +188,93 @@ export default {
         error: function(data) {}
       });
     },
-    handleChange(){
+    //上传文件
+    async importFile(file) {
+      console.log(file)
+      console.log(this.ScenarioCode)
+      let formData = new FormData()
+      formData.append('scenarioCode', this.ScenarioCode)
+      formData.append('docFile',file.raw )
+      console.log(formData)
+      if (!this.isConfirm) {
+        this.isConfirm = true
+        return
+      }
+    const isSubmit = await this.$confirm('是否继续上传文件?', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(() => {
+      console.log(formData)
+      var _this = this
+       var url = modelURL + "/api/GXRCWQ/ModelManager/UploadScenairoDescriptionDocxFile"
+       console.log(url)
+      $.ajax({
+        type: "post",
+        dataType: "json",
+        processData : false,	// 使数据不做处理
+        contentType: false,   // 不要设置Content-Type请求头
+        // contentType:"application/x-www-form-urlencoded",
+        url: url,
+        data: formData,
+        success: function(data) {
+           if(data != false){
+            _this.$message({
+              message: '上传成功',
+              type: 'success'
+            });
+          }else{
+            _this.$message.error('上传失败');
+          }
+        },
+        error: function(data) {}
+      });
 
+      return false
+    }).catch(() => {
+      return true
+    });
+    if (isSubmit) {
+      console.log(formData,9999999)
+      this.$refs.upload.submit()
+      this.isConfirm = false
+    } else {
+      this.fileList = []
     }
+  },
+  //文件下载
+  downloadFile(){
+
+    if(this.$route.params.value != undefined){
+      this.ScenarioCode = this.$route.params.value.ScenarioCode
+        var url = modelURL + "/api/GXRCWQ/ModelManager/DownloadScenairoDescriptionDocxFile?scenarioCode="+this.ScenarioCode
+        window.location.href = url
+        return
+        fetch(url,{
+           responseType:'blob'
+         })
+        .then(respose => {
+          return respose.text();
+        })
+        .then(data => {
+          // var blob = new Blob([data], {type: 'application/vnd.ms-excel'})
+          var blob = new Blob([data], {type: 'application/msword'})
+          console.log(blob)
+          this.downFile(blob)
+        });
+        }
+  },
+  downFile(blob) {
+    if (window.navigator.msSaveOrOpenBlob) {
+        navigator.msSaveBlob(blob);
+    } else {
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        // link.download = fileName;
+        link.click();
+        window.URL.revokeObjectURL(link.href);
+    }
+}
   },
   computed: {},
   mounted() {

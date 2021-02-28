@@ -49,8 +49,6 @@ export default {
     return {
       DispersionFactor: "",
       DecayByComponentList: "",
-      tabRowIndex: null, //单元格横坐标
-      tabColumnIndex: null, //单元格纵坐标
       tableData: [],
       roughnessTable: [],
       tableValue: [],
@@ -75,26 +73,9 @@ export default {
           return respose.json();
         })
         .then(data => {
-          this.tableData = data.DecayByComponentList;
           this.DispersionFactor = data.DispersionFactor;
         });
       }
-    },
-    //点击单元格得到横纵坐标
-    handleCellClick(row, column, event, cell) {
-      this.tabRowIndex = row.index;
-      this.tabColumnIndex = column.index;
-      this.tableValue.push(row);
-    },
-    //数据中没有横纵坐标需要加上进行下一步判断
-    getRowColumn({ row, column, rowIndex, columnIndex }) {
-      row.index = rowIndex;
-      column.index = columnIndex;
-    },
-    //鼠标失去焦点事件
-    inputBlur() {
-      this.tabRowIndex = null;
-      this.tabColumnIndex = "";
     },
     //保存
     saveClick() {
@@ -110,7 +91,6 @@ export default {
       var testdata = {
         ScenarioCode:this.ScenarioCode ,
         DispersionFactor: this.DispersionFactor,
-        DecayByComponentList: arrList
       };
       var url =
         modelURL + "/api/GXRCWQ/ModelManager/UpdateDispersionAndDecayInfo";

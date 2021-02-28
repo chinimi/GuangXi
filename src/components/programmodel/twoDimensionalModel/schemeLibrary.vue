@@ -562,6 +562,16 @@ export default {
     },
     handleEdit(index, row) {
       this.$router.push({name:'programmePreparations',params:{value:row}});
+        var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetScenarioGIS?scenarioCode="+row.ScenarioCode;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          this.creatLayer(data)
+        });
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -571,11 +581,50 @@ export default {
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
-    }
+    },
+    creatLayer(featureJson){
+      var source = new ol.source.Vector({
+      features: new ol.format.GeoJSON({
+        dataProjection: "EPSG:4326",
+        featureProjection: "EPSG:4326"
+      }).readFeatures(featureJson),
+      projection: "EPSG:4326"
+    })
+    twoLayer = new ol.layer.Vector({
+      source: source,
+      style: function(feature) {
+        var properties = feature.getProperties()
+        var styles = []
+        var iconN = new ol.style.Style({
+              stroke: new ol.style.Stroke({ //边界样式
+                color: '#3a8ee6',
+                width: '6',
+                // lineDash: [5]
+              }),
+            });
+        styles.push(iconN)
+        return styles
+      },
+      zIndex: 15
+    })
+           var view = new ol.View({
+                        center:[110.35,23.35],
+                        projection: "EPSG:4326",
+                        zoom:10,
+                        minZoom:0,
+                        maxZoom:15,
+                    });
+                map.setView(view)
+      map.addLayer( twoLayer)
+
+    },
   },
   computed: {},
   mounted() {
     this.getTableData();
+    if(oneLayer !=null){
+      map.removeLayer( oneLayer)
+    }
   },
   watch: {}
 };

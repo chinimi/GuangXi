@@ -548,6 +548,9 @@ export default {
   this.$nextTick(()=>{
        this.getTableData();
         })
+    if(twoLayer !=null){
+      map.removeLayer( twoLayer)
+    }
   },
   methods: {
     getTableData(){
@@ -575,14 +578,12 @@ export default {
       this.$router.push({name:'programmePreparation',params:{value:row}});
         var url =
         modelURL +
-        "/api/GXRCWQ/ModelManager/GetScenarioGIS?scenarioCode=DHJKTXRCFA";
+        "/api/GXRCWQ/ModelManager/GetScenarioGIS?scenarioCode="+row.ScenarioCode;
       fetch(url)
         .then(respose => {
           return respose.json();
         })
         .then(data => {
-          debugger
-          console.log(data)
           this.creatLayer(data)
         });
     },
@@ -594,7 +595,7 @@ export default {
       }).readFeatures(featureJson),
       projection: "EPSG:4326"
     })
-    this.layer = new ol.layer.Vector({
+    oneLayer = new ol.layer.Vector({
       source: source,
       style: function(feature) {
         var properties = feature.getProperties()
@@ -611,15 +612,15 @@ export default {
       },
       zIndex: 15
     })
-           var view = new ol.View({
-                        center:[109.00,22.65],
-                        projection: "EPSG:4326",
-                        zoom:7,
-                        minZoom:0,
-                        maxZoom:15,
-                    });
-                map.setView(view)
-      map.addLayer( this.layer)
+           var view = new ol.View({
+                        center:[110.35,23.35],
+                        projection: "EPSG:4326",
+                        zoom:10,
+                        minZoom:0,
+                        maxZoom:15,
+                    });
+                map.setView(view)
+      map.addLayer( oneLayer)
 
     },
     handleDelete(index, row) {

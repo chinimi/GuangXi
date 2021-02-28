@@ -84,6 +84,12 @@ var RHlr =null
 
 /*河段公示牌adCode*/
 currentRiverId=null
+
+/*一维模型河段图层*/
+var oneLayer=null
+
+/*二维模型河段图层*/
+var twoLayer=null
 // 遥感影像反演
 /////////////////////
 /////////////////////////////

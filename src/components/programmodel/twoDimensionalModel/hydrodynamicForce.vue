@@ -68,10 +68,52 @@ export default {
   },
   mounted(){
       this.roughnessTable = roughnessTableData.roughnessTableData;
+      this.getTableData();
   },
   methods: {
-    display(value) {
-      console.log(value);
+    //获取表格数据
+    getTableData() {
+      if(this.$route.params.value != undefined){
+      this.ScenarioCode = this.$route.params.value.ScenarioCode
+      var url =
+        modelURL + "/api/GXRCWQ/ModelManager/GetHDInfo?scenarioCode="+this.ScenarioCode;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          this.ResistanceNumber = data.ResistanceNumber;
+        });
+        }
+    },
+        //保存
+    saveClick() {
+      var testdata = {
+        ScenarioCode: "DHJKTXRCFA",
+        ResistanceNumber: this.ResistanceNumber,
+      };
+      var url = modelURL + "/api/GXRCWQ/ModelManager/UpdateHDInfo";
+      var _this = this;
+      $.ajax({
+        type: "post",
+        dataType: "json",
+        headers: { "Content-Type": "application/json" },
+        url: url,
+        data: JSON.stringify(testdata),
+        success: function(data) {
+          if (data != false) {
+            _this.$message({
+              message: "保存成功",
+              type: "success"
+            });
+          } else {
+            _this.$message.error("保存失败");
+          }
+        },
+        error: function(data) {
+          console.log("error" + data);
+        }
+      });
     }
   }
 };

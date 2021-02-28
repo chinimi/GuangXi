@@ -60,7 +60,7 @@ export default {
       this.changeOneDimensionalModelTabID({value:id})
       this.TapType = id;
       if(id==1){
-              this.$router.push({name:'schemeLibrary',params:{}});
+        this.$router.push({name:'schemeLibrary',params:{}});
       }else{
         // this.$message.error("请选择方案！");
         this.$router.push({name:'programmePreparation',params:{}});
