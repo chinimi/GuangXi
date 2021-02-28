@@ -199,7 +199,7 @@ export default {
             },
             {
               icon:"icon-shuizhijiancezhan",
-              name: '水质预测预警',
+              name: '水质水量预测',
               value: 'qualityPrediction',
               comp: 'qualityPrediction'
             },{

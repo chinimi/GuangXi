@@ -85,7 +85,7 @@
         </div>
         <div class="bottomPan">
           <div class="analyze_title">
-            <span>三维展示</span>
+            <!-- <span>三维展示</span> -->
           </div>
 
           <!--内容部分-->
@@ -1004,10 +1004,10 @@
         fivestagePartition: "",
         fivestagePartitionList: [],
         firstRadio:'',//1
-        firstRadioOption:[{label:'监测成果测站一览表',value:'jccgylb'},{label:'·监测成果',value:'jccg'},{label:'监测成果月均',value:'jccgyj'},{label:'监测成果均值',value:'jccgjz'}],
+        firstRadioOption:[{label:'监测成果测站一览表',value:'jccgylb'},{label:'监测成果',value:'jccg'},{label:'监测成果月均',value:'jccgyj'},{label:'监测成果均值',value:'jccgjz'}],
 
         secondRadio:'',//2
-        secondRadioOption:[{label:'水质类别',value:'szlb'},{label:'·水质均',value:'szj'},{label:'水质类别月',value:'szlby'},{label:'水源地水质状',value:'sydszz'}],
+        secondRadioOption:[{label:'水质类别',value:'szlb'},{label:'水质均值',value:'szj'},{label:'水质类别月',value:'szlby'},{label:'水源地水质状',value:'sydszz'}],
         thirdRadio:'',//3
         thirdRadioOption:[{label:'测次、最差值、最优值统计表',value:'ztjb'},{label:'水质类别河流站次统计',value:'szlbtjb'},{label:'水质类别站次和河长统计总',value:'hctjzb'},{label:'河长、超标站次统计',value:'cbzctj'}],
         fourthRadio:'',//4
@@ -2176,6 +2176,12 @@
 
   }
 
+  >>>.el-radio__input {
+    line-height: 3;
+    outline: 0;
+    white-space: nowrap;
+}
+
 >>>.el-button{
     padding: 5px 15px !important;
   }
@@ -2207,7 +2213,7 @@
 
   >>>.el-radio__label {
     color: #333;
-  font-size: 14px;
+  font-size: 15px;
   padding-left: 4px;
 }
 /* 滚动样式修改*/
@@ -2253,9 +2259,9 @@
   color: #fff;
   float: left;
   list-style: none;
-  font-size: 10px;
-  line-height: 30px;
-  padding: 0px 6px;
+  font-size: 12px;
+  line-height: 35px;
+  padding: 0px 8px;
   background: #2784FF;
   border-radius: 5px;
   margin-left: 6px;
