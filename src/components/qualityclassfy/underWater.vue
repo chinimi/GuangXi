@@ -859,20 +859,20 @@
         // }
         this.tableData=[{
                stcd:'站点1',
-              long:'24.3',
-              lat:'109.4',
+              lat:'24.3',
+              long:'109.4',
              value:-5,
         },
         {
               stcd:'站点2',
-              long:'23.2',
-              lat:'108.9',
+              lat:'23.2',
+              long:'108.9',
               value:-5.3,
         },
         {
               stcd:'站点3',
-              long:'22.6',
-              lat:'110.4',
+              lat:'22.6',
+              long:'110.4',
               value:-6.7,
         },]
 
