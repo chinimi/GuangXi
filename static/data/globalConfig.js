@@ -11,7 +11,8 @@ var baseMap = "http://112.26.122.200:7080/arcgis/rest/services/guangxi3/MapServe
 // var modelURL = "http://112.26.122.200:8082/RiverChiefWQWebServer"
 var modelURL = "http://139.196.41.243/RiverChiefWQWebServer"
 
-var baseMap = "http://112.26.122.200:7080/arcgis/rest/services/guangxiwgs84/MapServer"
+
+var baseMap = "http://139.196.41.243:6080/arcgis/rest/services/guangxiwgs84/MapServer"
 // var baseMap = "http://112.26.122.200:6080/arcgis/rest/services/guangxi3/MapServer"
 
  window.ol = ol;
