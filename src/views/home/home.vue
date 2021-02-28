@@ -26,7 +26,22 @@
       <!--toolbar-->
 
       <div id="toolbar">
-        <ul  class="">
+        <ul>
+          <li> <i   class="iconfont  icon-quanping"></i>全屏</li>
+          <li> <i   class="iconfont  icon-yaosu"></i> 图层
+            <ul>
+              <layercontrol></layercontrol>
+            </ul>
+          </li>
+          <li> <i   class="iconfont  icon-juli"></i> 测距
+            <ul>
+              <measureRange></measureRange>
+            </ul>
+          </li>
+          <li><i   class="iconfont  icon-jietu"></i> 截屏</li>
+          <li><i   class="iconfont  icon-shezhi1"></i> 设置</li>
+        </ul>
+        <!--<ul  class="">
           <li
             v-for="(item,index) in toollist"
             :key="index"
@@ -37,21 +52,21 @@
             <i  :class="['iconfont', item.iconfit]"></i>
               <span>{{item.name}}</span>
 
-            <!--            @mouseover="selectStyle (item.value),currentTool= item.value "-->
-<!--            @mouseout="outStyle(item.value),currentTool=''"-->
+            &lt;!&ndash;            @mouseover="selectStyle (item.value),currentTool= item.value "&ndash;&gt;
+&lt;!&ndash;            @mouseout="outStyle(item.value),currentTool=''"&ndash;&gt;
           </li>
-        </ul>
+        </ul>-->
       </div>
       <!--toolbar tab-->
 
-      <div  style="position: relative;z-index:9;" id="toolbar_tab">
+  <!--    <div  style="position: relative;z-index:9;" id="toolbar_tab">
         <div v-if="currentTool=='layer'">
         <layercontrol></layercontrol>
         </div>
         <div v-if="currentTool=='measure'">
         <measureRange></measureRange>
         </div>
-      </div>
+      </div>-->
 
       <!--tab -->
       <!--切换组件-->
@@ -647,23 +662,6 @@ export default {
 }
 
 
-  /*toolbar*/
-  #toolbar{
-    z-index: 1;
-    position: absolute;
-    top: 86px;
-    right: 9px;
-    border: solid 1px #dddddd;
-    background: #fff;
-    border-radius: 5px;
-
-  }
-  #toolbar .toolbtn{
-    float: left;
-    cursor: pointer;
-    padding: 10px;
-
-    }
    /*放大*/
     .magnifying{
       background: url("../../../static/images/magnify.png") no-repeat;
@@ -689,17 +687,36 @@ export default {
     .set{
       background: url("../../../static/images/setting.png") no-repeat;
     }
+    .activeTool{
+      color: #6890b5;
+    }
 
+    /*toolbar*/
+    #toolbar{
+      z-index: 9;
+      position: absolute;
+      top: 86px;
+      right: 9px;
+      border: solid 1px #dddddd;
+      background: #fff;
+      border-radius: 5px;
 
-  .activeTool{
-    color: #6890b5;
-  }
-  #toolbar_tab{
-    /*border:solid 1px pink;*/
+    }
+    #toolbar .toolbtn{
+      float: left;
+      cursor: pointer;
+      padding: 10px;
 
-
-  }
-
+    }
+    #toolbar ul{background: #aaa}
+    #toolbar ul li{float:left; display:block; height: 40px; line-height: 40px; padding: 0 20px; position: relative;}
+    #toolbar ul li:hover{background: #fff;color:#6890B5;}
+    #toolbar ul li ul li{float: none;}
+    /*关键一：将二级菜单设置为display：none;*/
+    #toolbar ul li ul{position: absolute;top:40px;left: 0; display: none;}
+    /*#toolbar ul li ul li:hover{background: red;}*/
+    /*关键二：在划过二级菜单从属的一级菜单时，设置为display:block;*/
+    #toolbar ul li:hover ul{display: block;}
 
 </style>
 <style>

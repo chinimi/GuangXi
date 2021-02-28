@@ -43,9 +43,10 @@
 <style scoped="scoped">
 .measureRange{
   width: 93px;
-  position: absolute;
+  float:left;
+ /* position: absolute;
   top: 60px;
-  right: 92px;
+  right: 92px;*/
   z-index: 9;
   background: #fff;
   min-height: 50px;
