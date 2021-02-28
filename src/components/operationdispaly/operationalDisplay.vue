@@ -1354,11 +1354,13 @@
       ajaxPointSource(param,pointLayer){//传请求参数
 
         debugger
+      
         var  that=this
 
         /*矿化度请求*/
 
         if(that.pjxmval=="khd") {
+          
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
           /*http请求*/
           this.$http.post(khdurl, JSON.stringify(param), {
@@ -1411,7 +1413,7 @@
 
               map.addLayer(that.pointLayer);//添加上站点的图层
 
-            this.activeLayerEvent()
+              this.activeLayerEvent()
 
 
 

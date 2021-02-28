@@ -3,74 +3,43 @@
   <div class="dimension">
     <template>
       <el-table
-        :data="tableData"
+        :data="tableData_0"
         border
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
         :cell-class-name="getRowColumn"
         @cell-click="handleCellClick"
-        height="260"
-      >
-
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-
-        <el-table-column prop="name" label="排放流量(m³/s)">
-         <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.name"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.name }}</span>
-              </template>
+        height="260">
+        <el-table-column prop="pjzb" label="评价指标">
+             <template slot-scope="scope">
+            <el-input   v-model="scope.row.pjzb" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
 
-        <el-table-column prop="address" label="排放浓度(mg/l)">
+        <el-table-column prop="pfll" label="排放流量(m³/s)">
          <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.address"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.address }}</span>
-              </template>
+            <el-input   v-model="scope.row.pfll" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
 
-        <el-table-column prop="max" label="进水流量(m³/s)">
+        <el-table-column prop="pfnd" label="排放浓度(mg/l)">
          <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.max"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.max }}</span>
-              </template>
+            <el-input   v-model="scope.row.pfnd" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
 
-        <el-table-column prop="mix" label="进水浓度(mg/l)">
-         <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
+        <el-table-column prop="jsll" label="进水流量(m³/s)">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsll" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
 
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        <el-table-column prop="jsnd" label="进水浓度(mg/l)">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsnd" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jsjg" label="计算结果"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -202,7 +171,12 @@ export default {
 
       tabRowIndex: null,
       tabColumnIndex: null,
-
+        tableData_0:[
+            {pjzb:'COD',pfll:'10',pfnd:'50',jsll:'20',jsnd:'10',jsjg:''},
+            {pjzb:'NH3',pfll:'10',pfnd:'5',jsll:'20',jsnd:'1',jsjg:''},
+            {pjzb:'TP',pfll:'10',pfnd:'0.5',jsll:'20',jsnd:'0.1',jsjg:''},
+          
+        ],
         type:0,
         tableData:[
             {date:'COD',name:'',address:'',max:'',mix:'',xas:''},

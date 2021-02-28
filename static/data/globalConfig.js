@@ -49,8 +49,6 @@ var RVSr =null
 var RDr = null
 
 
-
-
 /*tab3*/
 var DOr_ =null
 var OCPr_ =null
@@ -58,9 +56,6 @@ var HMBr_ =null
 var BCPr_ = null
 
 var WQr_ = null
-
-
-
 
 
 
@@ -88,4 +83,5 @@ currentRiverId=null
 // 遥感影像反演
 /////////////////////
 /////////////////////////////
+
 
