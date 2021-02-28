@@ -520,79 +520,79 @@
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="hlbm"
             label="河流编码"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="hlmc"
             label="河流名称"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="hmbz"
             label="河名备注"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="hljb"
             label="河流级别"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="sjhljb"
             label="上一级河流编码"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="syjhlmc"
             label="上一级河流名称"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="hllength"
             label="河流长度（km）"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="lymj"
             label="流域面积（k㎡）"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="liujing"
             label="流经"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="sscity"
             label="所属市"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="sslusx"
             label="所属流域水系"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="pjsj"
             label="评价时间"
             min-width="100"
             align="center"
           ></el-table-column>
           <el-table-column
-            prop="stcd"
+            prop="pjsz"
             label="评价水质"
             min-width="100"
             align="center"
@@ -780,22 +780,82 @@ export default {
       this.queryTableData();
     },
     queryTableData() {
-      console.log(this.selectTimeType);
-      console.log(this.startTime);
-      console.log(this.endTime);
-      let checkstartTime = moment(this.startTime).format("YYYYMM");
+
+      this.tableData=[
+        {
+          hlbm:'10923',
+          hlmc:'柳江',
+          hmbz:'备注',
+          hljb:'I',
+          sjhljb:'102100',
+          syjhlmc:'黄江',
+          hllength:'10000km',
+          lymj:'1000km2',
+          liujing:'长江',
+          sscity:'广西',
+          sslusx:'淡水',
+          pjsj:'20200123',
+          pjsz:'评价水质',
+
+        },
+        {
+          hlbm:'10923',
+          hlmc:'柳春江',
+          hmbz:'备注',
+          hljb:'II',
+          sjhljb:'102100',
+          syjhlmc:'黄江',
+          hllength:'10000km',
+          lymj:'1000km2',
+          liujing:'长江',
+          sscity:'广西',
+          sslusx:'淡水',
+          pjsj:'20200123',
+          pjsz:'评价水质',
+
+        },
+        {
+          hlbm:'10923',
+          hlmc:'黄江',
+          hmbz:'备注',
+          hljb:'III',
+          sjhljb:'102100',
+          syjhlmc:'丽江',
+          hllength:'10000km',
+          lymj:'1000km2',
+          liujing:'长江',
+          sscity:'广西',
+          sslusx:'淡水',
+          pjsj:'20200123',
+          pjsz:'评价水质',
+
+        },
+        {
+          hlbm:'10923',
+          hlmc:'柳江',
+          hmbz:'备注',
+          hljb:'I',
+          sjhljb:'102100',
+          syjhlmc:'黄江',
+          hllength:'10000km',
+          lymj:'1000km2',
+          liujing:'长江',
+          sscity:'广西',
+          sslusx:'淡水',
+          pjsj:'20200123',
+          pjsz:'评价水质',
+
+        }
+
+      ]
+    }
+
+    /*  let checkstartTime = moment(this.startTime).format("YYYYMM");
       let startyear = moment(this.startTime).format("YYYY");
       let checkendTime = moment(this.endTime).format("YYYYMM");
       let endyear = moment(this.endTime).format("YYYY");
-      console.log(checkstartTime);
-      console.log(startyear);
-      console.log(checkstartTime.substring(checkstartTime.length - 2));
       let startMonth = checkstartTime.substring(checkstartTime.length - 2);
-      console.log(checkendTime);
-      console.log(endyear);
-      console.log(checkendTime.substring(checkendTime.length - 2));
       let endMonth = checkendTime.substring(checkendTime.length - 2);
-      console.log(parseInt(endMonth) - parseInt(startMonth));
       var str = "";
       var count = parseInt(endMonth) - parseInt(startMonth);
       for (var i = parseInt(startMonth); i < count; i++) {
@@ -818,10 +878,10 @@ export default {
         tjsj: tjsj
       };
       this.tableData = [];
-      /*矿化度请求*/
+      /!*矿化度请求*!/
       let url =
         "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/base/listswmsar";
-      /*http请求*/
+      /!*http请求*!/
       this.$http
         .post(url, JSON.stringify(param), {
           emulateJSON: true
@@ -832,7 +892,10 @@ export default {
           this.tableData = res.body.data.pageResultList;
         })
         .catch(function(res) {});
-    }
+    }*/
+  },
+  mounted() {
+    this.queryTableData()
   },
   watch: {
    queryProject:{

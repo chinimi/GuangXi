@@ -199,7 +199,7 @@ export default {
             },
             {
               icon:"icon-shuizhijiancezhan",
-              name: '水质预测预警',
+              name: '水质水量预测',
               value: 'qualityPrediction',
               comp: 'qualityPrediction'
             },{
@@ -305,7 +305,7 @@ export default {
         this.$router.push({name:'qualityPrediction',params:{}});
       }
       if(newValue=="qualityClassfy"){
-        this.$router.push({name:'qualityClassfy',params:{}});
+        this.$router.push({name:'generalwaterevaluate',params:{}});
       }
       /*运算*/
       if(newValue=="operationalDisplay"){

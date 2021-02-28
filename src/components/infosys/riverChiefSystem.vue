@@ -111,34 +111,30 @@
     created() {
     },
     mounted() {
-      console.log("获取当前跳转传过来的参数")
+
       // var checkParam=this.$route.params
       // var currentPath=this.$route.path
-      // console.log(checkParam)
-      // console.log(currentPath)
-      // console.log(currentRiverId)
+
 
       /*请求左侧目录接口*/
       /*http请求*/
       var that=this
-
       let  param={
-        "adCode":"450200000000",
-        // "adCode":currentRiverId,
+        "adCode":this.valueRiver,
       }
       let url="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/masterSign"
       this.$http.post(url,JSON.stringify(param),{
         emulateJSON: true,
       }).then(function(res) {
-        console.log("显示当前查询结果")
+
         let data=res.body.data.mastersign
-        console.log(data)
+
         that.menulist=data
 
         for(var i=0;i<data.length;i++){
-          console.log(data[i])
-          console.log(data[i].id)
-          console.log(data[i].adCode)
+          // console.log(data[i])
+          // console.log(data[i].id)
+          // console.log(data[i].adCode)
 
         }
 
@@ -159,13 +155,13 @@
 
 
       handleSelectionChange(val){
-        console.log("获取选中的行要素数组集合")
-        console.log(val)
+        // console.log("获取选中的行要素数组集合")
+        // console.log(val)
       },
       handleSelect(key, keyPath){
-        console.log("选中当前要素请求接口数据渲染表格")
-        console.log(key)//
-        console.log(this.menulist)
+        // console.log("选中当前要素请求接口数据渲染表格")
+        // console.log(key)//
+        // console.log(this.menulist)
         this.currentRiver=key
         this.imgsrc=""
         this.boardLocation=""
@@ -192,10 +188,6 @@
 
         }
 
-
-
-
-        // console.log(keyPath)
       },
       handleOpen(key, keyPath){
         console.log(key, keyPath)

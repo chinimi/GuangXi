@@ -1,27 +1,79 @@
 <template>
-<!-- 富营养化 -->
+<!-- 分层界面 -->
   <div class="dimension">
     <template>
       <el-table
-        :data="tableData"
+        :data="tableData_FC"
         border
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
         height="260"
+        :cell-class-name="getRowColumn"
+        @cell-click="handleCellClick"
       >
-        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="上层排放浓度" min-width="150"></el-table-column>
-        <el-table-column prop="address" label="上层排放流量" min-width="150"></el-table-column>
-        <el-table-column prop="date" label="上层体积" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="下层排放浓度" min-width="150"></el-table-column>
-        <el-table-column prop="address" label="下层排放流量" min-width="150"></el-table-column>
-        <el-table-column prop="date" label="下层体积" min-width="100"></el-table-column>
-        <el-table-column prop="max" label="现状浓度" min-width="100"></el-table-column>
-        <el-table-column prop="mix" label="分层期天数" min-width="120"></el-table-column>
-        <el-table-column prop="name" label="分层至非分层" min-width="150"></el-table-column>
-        <el-table-column prop="mix" label="降解系数" min-width="100"></el-table-column>
-        <el-table-column prop="mix" label="库容" min-width="80"></el-table-column>
-        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
+        <el-table-column prop="pjzb" label="评价指标" min-width="100">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.pjzb" @blur="inputBlur"></el-input>
+                 </template>
+
+      
+        </el-table-column>
+        <el-table-column prop="scpfnd" label="上层排放浓度(mg/L)" min-width="150">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.scpfnd" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="scpfll" label="上层排放流量(m³/s)" min-width="150">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.scpfll" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="sctj" label="上层体积(m³)" min-width="100">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.sctj" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="name" label="下层排放浓度(mg/L)" min-width="150">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.xcpfnd" @blur="inputBlur"></el-input>
+                 </template>
+              </el-table-column>
+        <el-table-column prop="xcpfll" label="下层排放流量(m³/s)" min-width="150">
+        <template slot-scope="scope">
+            <el-input   v-model="scope.row.xcpfll" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="xctj" label="下层体积(m³)" min-width="100">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.xctj" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="xznd" label="现状浓度(mg/L)" min-width="100">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.xznd" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="fcqts" label="分层期天数(day)" min-width="120">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.fcqts" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="fczffc" label="分层至非分层(day)" min-width="150">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.fczffc" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jjxs" label="降解系数" min-width="100">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.jjxs" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="kr" label="库容(m³)" min-width="80">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.kr" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jsjg" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -150,13 +202,17 @@ export default {
   components: {},
   data() {
     return {
+      tabRowIndex: null,
+      tabColumnIndex: null,
+
         type:0,
-        tableData:[
-            {date:'COD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'BOD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TP',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TN',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'组分3',name:'',address:'',max:'',mix:'',xas:''},
+        tableData_FC:[
+            {pjzb:'COD',scpfnd:'10',scpfll:'100',sctj:'10000',
+            xcpfnd:'5',xcpfll:'300',xctj:'30000',
+            xznd:'8',fcqts:'120',
+            fczffc:'90',jjxs:'0.00005',
+            kr:'400000',jsjg:''},
+          
         ],
         tableData1:[
           {PK:'排口',RH:'',CS:'',SY:'',JJ:'',LL:'',COD:'',BOD:'',TP:'',TN:''},
@@ -172,6 +228,22 @@ export default {
     };
   },
   methods: {
+
+    //点击单元格得到横纵坐标
+    handleCellClick(row, column, event, cell) {
+      this.tabRowIndex = row.index;
+      this.tabColumnIndex = column.index;
+      this.tableValue.push(row);
+    },
+    //数据中没有横纵坐标需要加上进行下一步判断
+    getRowColumn({ row, column, rowIndex, columnIndex }) {
+      row.index = rowIndex;
+      column.index = columnIndex;
+    },
+    inputBlur() {
+      this.tabRowIndex = null;
+      this.tabColumnIndex = "";
+    },
       tabbar(id){
         this.type = id;
         if(id == 3){

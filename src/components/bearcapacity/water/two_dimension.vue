@@ -3,24 +3,69 @@
   <div class="dimension">
     <template>
       <el-table
-        :data="tableData"
+        :data="tableData_2"
         border
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
         height="260"
+        :cell-class-name="getRowColumn"
+        @cell-click="handleCellClick"
       >
-        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="排放流量" min-width="100"></el-table-column>
-        <el-table-column prop="address" label="排放浓度" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="距下断面位置" min-width="120"></el-table-column>
-        <el-table-column prop="name" label="距岸边" min-width="90"></el-table-column>
-        <el-table-column prop="name" label="速率" min-width="80"></el-table-column>
-        <el-table-column prop="max" label="进水流量" min-width="100"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="流速" min-width="80"></el-table-column>
-        <el-table-column prop="mix" label="系数横向扩散系数" min-width="170"></el-table-column>
+        <el-table-column prop="pjzb" label="评价指标" min-width="180">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.pjzb" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+
+        <el-table-column prop="pfll" label="排放流量(m³/s)" min-width="180">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.pfll" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="pfnd" label="排放浓度(mg/l)" min-width="180">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.pfnd" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="dmwz" label="距下断面位置(m)" min-width="180">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.dmwz" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jl" label="距岸边(m)" min-width="180">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.jl" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="sl" label="速率（g/s）" min-width="180">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.sl" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jsll" label="进水流量(m³/s)" min-width="180">
+       <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsll" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jsnd" label="进水浓度(mg/l)" min-width="180">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsnd" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="ls" label="流速(m/s)" min-width="180">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.ls" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="ksxs" label="系数横向扩散系数" min-width="180">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.ksxs" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
         <!-- <el-table-column prop="mix" label="承载能力" min-width="100"></el-table-column> -->
-        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
+        <el-table-column prop="jsjg" label="计算结果" min-width="100">
+
+        </el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -148,13 +193,15 @@ export default {
   components: {},
   data() {
     return {
+       tabRowIndex: null,
+      tabColumnIndex: null,
         type:0,
-        tableData:[
-            {date:'COD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'BOD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TP',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TN',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'组分3',name:'',address:'',max:'',mix:'',xas:''},
+        tableData_2:[
+            {pjzb:'COD',pfll:'10',pfnd:'50',dmwz:'10000',sl:'0.2',jl:'100',pjss:'2',jsll:'20',jsnd:'10',ls:'0.5',ksxs:'0.05',jsjg:''},
+            {pjzb:'NH3',pfll:'10',pfnd:'5',dmwz:'10000',sl:'0.2',jl:'100',pjss:'2',jsll:'20',jsnd:'1',ls:'0.5',ksxs:'0.05',jsjg:''},
+            {pjzb:'TP',pfll:'10',pfnd:'0.5',dmwz:'10000',sl:'0.2',jl:'100',pjss:'2',jsll:'20',jsnd:'0.1',ls:'0.5',ksxs:'0.05',jsjg:''},
+            {pjzb:'TN',pfll:'10',pfnd:'0.3',dmwz:'10000',sl:'0.3',jl:'100',pjss:'2',jsll:'20',jsnd:'0.2',ls:'0.5',ksxs:'0.05',jsjg:''},
+          
         ],
         tableData1:[
           {PK:'排口',RH:'',CS:'',SY:'',JJ:'',LL:'',COD:'',BOD:'',TP:'',TN:''},
@@ -170,6 +217,21 @@ export default {
     };
   },
   methods: {
+    //点击单元格得到横纵坐标
+    handleCellClick(row, column, event, cell) {
+      this.tabRowIndex = row.index;
+      this.tabColumnIndex = column.index;
+      this.tableValue.push(row);
+    },
+    //数据中没有横纵坐标需要加上进行下一步判断
+    getRowColumn({ row, column, rowIndex, columnIndex }) {
+      row.index = rowIndex;
+      column.index = columnIndex;
+    },
+    inputBlur() {
+      this.tabRowIndex = null;
+      this.tabColumnIndex = "";
+    },
       tabbar(id){
         this.type = id;
         if(id == 3){

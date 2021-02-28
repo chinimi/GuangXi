@@ -3,18 +3,43 @@
   <div class="dimension">
     <template>
       <el-table
-        :data="tableData"
+        :data="tableData_0"
         border
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
-        height="260"
-      >
-        <el-table-column prop="date" label="评价指标"></el-table-column>
-        <el-table-column prop="name" label="排放流量"></el-table-column>
-        <el-table-column prop="address" label="排放浓度"></el-table-column>
-        <el-table-column prop="max" label="进水流量"></el-table-column>
-        <el-table-column prop="mix" label="进水浓度"></el-table-column>
-        <el-table-column prop="xas" label="计算结果"></el-table-column>
+        :cell-class-name="getRowColumn"
+        @cell-click="handleCellClick"
+        height="260">
+        <el-table-column prop="pjzb" label="评价指标">
+             <template slot-scope="scope">
+            <el-input   v-model="scope.row.pjzb" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+
+        <el-table-column prop="pfll" label="排放流量(m³/s)">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.pfll" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+
+        <el-table-column prop="pfnd" label="排放浓度(mg/l)">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.pfnd" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+
+        <el-table-column prop="jsll" label="进水流量(m³/s)">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsll" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+
+        <el-table-column prop="jsnd" label="进水浓度(mg/l)">
+         <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsnd" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jsjg" label="计算结果"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -143,6 +168,15 @@ export default {
   components: {},
   data() {
     return {
+
+      tabRowIndex: null,
+      tabColumnIndex: null,
+        tableData_0:[
+            {pjzb:'COD',pfll:'10',pfnd:'50',jsll:'20',jsnd:'10',jsjg:''},
+            {pjzb:'NH3',pfll:'10',pfnd:'5',jsll:'20',jsnd:'1',jsjg:''},
+            {pjzb:'TP',pfll:'10',pfnd:'0.5',jsll:'20',jsnd:'0.1',jsjg:''},
+          
+        ],
         type:0,
         tableData:[
             {date:'COD',name:'',address:'',max:'',mix:'',xas:''},
@@ -165,6 +199,22 @@ export default {
     };
   },
   methods: {
+    //点击单元格得到横纵坐标
+    handleCellClick(row, column, event, cell) {
+      this.tabRowIndex = row.index;
+      this.tabColumnIndex = column.index;
+      this.tableValue.push(row);
+    },
+    //数据中没有横纵坐标需要加上进行下一步判断
+    getRowColumn({ row, column, rowIndex, columnIndex }) {
+      row.index = rowIndex;
+      column.index = columnIndex;
+    },
+    inputBlur() {
+      this.tabRowIndex = null;
+      this.tabColumnIndex = "";
+    },
+
       tabbar(id){
         this.type = id;
         if(id == 3){
@@ -237,6 +287,9 @@ export default {
   },
   mounted() {
      this.drawLine();
+
+    this.getTableData();
+
   },
   watch: {},
   computed: {},

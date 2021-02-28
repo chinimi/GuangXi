@@ -601,18 +601,30 @@
               <el-table-column
                 prop="stcd"
                 label="站点">
+                <template slot-scope="scope">
+              <el-input   v-model="scope.row.stcd" @blur="inputBlur"></el-input>
+              </template>
               </el-table-column>
               <el-table-column
                 prop="long"
                 label="经度">
+                  <template slot-scope="scope">
+              <el-input   v-model="scope.row.long" @blur="inputBlur"></el-input>
+              </template>
               </el-table-column>
               <el-table-column
                 prop="lat"
                 label="纬度">
+                 <template slot-scope="scope">
+              <el-input   v-model="scope.row.lat" @blur="inputBlur"></el-input>
+              </template>
               </el-table-column>
               <el-table-column
                 prop="value"
-                label="值">
+                label="值(m)">
+                  <template slot-scope="scope">
+              <el-input   v-model="scope.row.value" @blur="inputBlur"></el-input>
+              </template>
               </el-table-column>
 
             </el-table-column>
@@ -666,14 +678,7 @@
         fourstagePartitionList: [],
         fivestagePartition: "",
         fivestagePartitionList: [],
-        tableData: [{
-          stcd:'站点名称',
-          long:'34.4',
-          lat:'121.9',
-          value:'站',
-
-
-        },],
+        tableData: [],
 
 
 
@@ -754,7 +759,11 @@
 
     },
     methods: {
-
+            //鼠标失去焦点事件
+      inputBlur() {
+        this.tabRowIndex = null;
+        this.tabColumnIndex = "";
+      },
       // 河长制切换切换
       companySwitch(id) {
         this.companyType = id;
@@ -848,77 +857,95 @@
         //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
         //   "tjsj":"201507-201508"
         // }
-        this.tableData=[]
+        this.tableData=[{
+               stcd:'站点1',
+              lat:'24.3',
+              long:'109.4',
+             value:-5,
+        },
+        {
+              stcd:'站点2',
+              lat:'23.2',
+              long:'108.9',
+              value:-5.3,
+        },
+        {
+              stcd:'站点3',
+              lat:'22.6',
+              long:'110.4',
+              value:-6.7,
+        },]
+
         /*矿化度请求*/
-        if(this.pjxmval=="khd") {
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-          /*http请求*/
-          this.$http.post(khdurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function(res) {
-            console.log(res)
+        // if(this.pjxmval=="khd") {
+        //   let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+        //   /*http请求*/
+        //   this.$http.post(khdurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function(res) {
+        //     console.log(res)
 
-            this.tableData=res.body.data.pageResultList
-          }).catch(function(res){
-
-
-          })
+        //     this.tableData=res.body.data.pageResultList
+        //   }).catch(function(res){
 
 
-        }
-
-        /*水化学类型*/
-        if(this.pjxmval=="shxlx") {
-          let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
-          /*http请求*/
-          this.$http.post(chemistryurl, JSON.stringify( param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
-
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-
-            // alert("请求失败")
-          })
-
-        }
-
-        /*总硬度*/
-        if(this.pjxmval=="zyd") {
-          let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
-          /*http请求*/
-          this.$http.post(zydurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
-
-            console.log(res)
-
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-            console.log(res)
-
-          })
-
-        }
+        //   })
 
 
-        /*地表天然水*/
-        if(this.pjxmval=="dbtrs") {
+        // }
 
-          let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
-          /*http请求*/
-          this.$http.post(dbtrsurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
+        // /*水化学类型*/
+        // if(this.pjxmval=="shxlx") {
+        //   let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
+        //   /*http请求*/
+        //   this.$http.post(chemistryurl, JSON.stringify( param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+        //     console.log(res)
+
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
+
+        //     // alert("请求失败")
+        //   })
+
+        // }
+
+        // /*总硬度*/
+        // if(this.pjxmval=="zyd") {
+        //   let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
+        //   /*http请求*/
+        //   this.$http.post(zydurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+
+        //     console.log(res)
+
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
+        //     console.log(res)
+
+        //   })
+
+        // }
 
 
-          })
+        // /*地表天然水*/
+        // if(this.pjxmval=="dbtrs") {
 
-        }
+        //   let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
+        //   /*http请求*/
+        //   this.$http.post(dbtrsurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+        //     console.log(res)
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
+
+
+        //   })
+
+        // }
 
 
 

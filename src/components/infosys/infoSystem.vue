@@ -51,6 +51,7 @@
                   class="filter-tree"
                   :data="data3"
                   accordion
+                  node-key="id"
                   :props="defaultProps"
                   :filter-node-method="filterNode"
                   @node-click="handleNodeClick"
@@ -112,16 +113,16 @@
         @select="handleRightSelect"
         active-text-color="#333"
         text-color="#333">
-        <el-menu-item index="1" class="menuItem">
+        <el-menu-item index="1" class="menuItem"  v-if="addVisible">
           <span slot="title">添加</span>
         </el-menu-item>
 <!--        <el-menu-item index="2" class="menuItem">-->
 <!--          <span slot="title">修改分类</span>-->
 <!--        </el-menu-item>-->
-        <el-menu-item index="3" class="menuItem">
+        <el-menu-item index="3" class="menuItem"   v-if="delVisible">
           <span slot="title">删除</span>
         </el-menu-item>
-        <hr style="color: #333">
+<!--        <hr style="color: #333">-->
 <!--        <el-menu-item index="4" class="menuItem">-->
 <!--          <span slot="title">添加标签</span>-->
 <!--        </el-menu-item>-->
@@ -149,9 +150,15 @@ export default {
   },
   data() {
     return {
+      //右键功能
+      objectID:null,
+      menuVisible:false,//右键弹窗显示
+      DATA:null,
+      NODE:null,
+      addVisible:false,
+      delVisible:false,
       non_maxexpandId:"",
       maxexpandId:0,
-      menuVisible:false,//右键弹窗显示
       currentRiverId:'',//河段公示牌id
       filterText: "",
       Type: "1",
@@ -299,7 +306,17 @@ export default {
   },
   methods: {
     handleRightSelect(key) {
-      console.log(key);
+
+      if (key == 1) {
+        this.NodeAdd(this.NODE, this.DATA);
+
+      }
+
+      if(key == 3){
+        this.NodeDel(this.NODE, this.DATA);
+
+
+      }
      /* if (key == 1) {
         this.NodeAdd(this.NODE, this.DATA);
         this.menuVisible2 = false;
@@ -329,39 +346,85 @@ export default {
       }
     },
     NodeDel(n, d){//删除节点
+      console.log(n)
+      console.log(d)
       console.log(n, d)
-      let that = this;
-      if(d.children && d.children.length !== 0){
-        this.$message.error("此节点有子级，不可删除！")
-        return false;
-      }else{
-        //新增节点可直接删除，已存在的节点要二次确认
-        //删除操作
-        let DelFun = () => {
-          let _list = n.parent.data.children || n.parent.data;//节点同级数据
+      /*删除重点关注节点*/
+
+      for(var i=0;i<this.data3.length;i++){
+        console.log(this.data3[i].id)
+        if(this.data3[i].id=='focus'){
+          console.log(this.data3[i].children)
+          console.log(d)
+
+          let _list = this.data3[i].children
           let _index = _list.map((c) => c.id).indexOf(d.id);
           console.log(_index)
           _list.splice(_index, 1);
-          this.$message.success("删除成功！")
         }
-        //二次确认
-        let ConfirmFun = () => {
-          this.$confirm("是否删除此节点？","提示",{
-            confirmButtonText: "确认",
-            cancelButtonText: "取消",
-            type: "warning"
-          }).then(() => {
-            DelFun()
-          }).catch(() => {})
-        }
-        //判断是否是新增节点
-        d.id > this.non_maxexpandId ? DelFun() : ConfirmFun()
+
+
+
       }
+
+
+
+     // /* let that = this;
+     //  if(d.children && d.children.length !== 0){
+     //    this.$message.error("此节点有子级，不可删除！")
+     //    return false;
+     //  }else{
+     //    //新增节点可直接删除，已存在的节点要二次确认
+     //    //删除操作
+     //    let DelFun = () => {
+     //      let _list = n.parent.data.children || n.parent.data;//节点同级数据
+     //      let _index = _list.map((c) => c.id).indexOf(d.id);
+     //      console.log(_index)
+     //      _list.splice(_index, 1);
+     //      this.$message.success("删除成功！")
+     //    }
+     //    //二次确认
+     //    let ConfirmFun = () => {
+     //      this.$confirm("是否删除此节点？","提示",{
+     //        confirmButtonText: "确认",
+     //        cancelButtonText: "取消",
+     //        type: "warning"
+     //      }).then(() => {
+     //        DelFun()
+     //      }).catch(() => {})
+     //    }
+     //    //判断是否是新增节点
+     //    d.id > this.non_maxexpandId ? DelFun() : ConfirmFun()*/
+     //  }
     },
-    NodeAdd(n, d){//新增节点
-      console.log(n, d)
+    NodeAdd(n, node){//新增节点
+      console.log(node)
+      console.log(n, node)
+      console.log(n.level)
+
+      console.log(this.data3)
+      let addObj={}
+      let index=1
+
+      for(var i=0;i<this.data3.length;i++){
+        console.log(this.data3[i].id)
+        if(this.data3[i].id=='focus'){
+          // let id="focus_"+index++
+          // addObj.id="focus_"+index++
+          addObj.id=node.id
+          addObj.label=node.label
+          addObj.type="focustype"
+          this.data3[i].children.push(addObj)
+
+        }
+
+      }
+      //同时展开节点
+      if(!n.expanded){
+        n.expanded = true
+      }
       //判断层级
-      if(n.level >= 3){
+   /*   if(n.level >= 3){
         this.$message.error("最多只支持三级！")
         return false;
       }
@@ -375,19 +438,47 @@ export default {
       //同时展开节点
       if(!n.expanded){
         n.expanded = true
-      }
+      }*/
     },
 
      /*右键选择*/
     rihgtClick(event, object, value, element) {
-      if (this.objectID !== object.id) {
+      console.log(object)
+
+
+
+
+      // if (this.objectID !== object.id) {
         this.objectID = object.id;
-        this.menuVisible = true;
         this.DATA = object;
         this.NODE = value;
-      } else {
-        this.menuVisible = !this.menuVisible;
-      }
+
+
+        if(object.id=='province'||object.id=='city'||object.id=='focus'){
+          this.menuVisible = false;//什么时候显示右键弹窗
+
+
+        }else{
+          // this.menuVisible = true;//什么时候显示右键弹窗
+
+          if(object.type=='provincetype'||object.type=='citytype'){
+            this.menuVisible = true;//什么时候显示右键弹窗
+            this.addVisible = true;
+            this.delVisible = false;
+          }
+          if(object.type=='focustype'){
+            this.menuVisible = true;//什么时候显示右键弹窗
+            this.addVisible = false;
+            this.delVisible = true;
+          }
+
+        }
+
+      // }
+      // else {
+        // this.menuVisible = !this.menuVisible;
+        // this.menuVisible = false;
+      // }
       document.addEventListener('click',(e)=>{
         this.menuVisible = false;
       })
@@ -397,6 +488,8 @@ export default {
       menu.style.top = event.clientY - 30 + "px";
       menu.style.position = "absolute"; // 为新创建的DIV指定绝对定位
       menu.style.width = 160 + "px";
+      menu.style.borderRadius = 5 + "px";
+      menu.style.border = 'solid 1px #c0c0c0'
       /*console.log("右键被点击的左侧:",menu.style.left);
         console.log("右键被点击的顶部:",menu.style.top);*/
       //        console.log("右键被点击的event:",event);
@@ -442,18 +535,12 @@ export default {
     }
   },
   mounted() {
-    console.log("省市县接口")
 
     /*tab1 省 */
-
      let provinceParam={
-        // "adCode":"450000000000",
-       arGrad:2,
-       pageSize:0,
-       pageNum:0,
+       "adCode":"000000000000"
       }
-      // let districtUrl='http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/district'
-      let districtUrl='http://222.216.6.169:8888/api/info/ad/get'
+      let districtUrl='http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/gm/district'
       this.$http.post(districtUrl, JSON.stringify(provinceParam), {
       emulateJSON: true,
     }).then(function(res) {
@@ -479,23 +566,54 @@ export default {
 
      let  data=res.body.data.district
       console.log(data)
-let cityData=[]
+      let treeData=[]
+
+      /*省*/
+      let provinceObj={}
+      provinceObj.id="province"
+      provinceObj.type="province"
+      provinceObj.label="省级河长制公示牌"
+      provinceObj.children=[
+        {
+          id:'450000000000',
+          label:'广西壮族自治区',
+          type:'provincetype'
+
+        }
+
+      ]
+      /*adCode: "450000000000"
+      adGrad: "自治区级"
+      adName: "广西壮族自治区"
+      preaddvcd: "000000000000"*/
+
+
       let obj={}
       obj.id="city"
       obj.label="市级河长制公示牌"
-
+      obj.type="city"
       obj.children=[]
+      /*重点关注*/
+      let  focusObj={}
+      focusObj.id="focus"
+      focusObj.label="重点关注"
+      focusObj.children=[]
+      focusObj.type='focus'
 
       for(var i=0;i<data.length;i++){
         console.log(data[i])
         let cityObj={}
         cityObj.id=data[i].adCode
         cityObj.label=data[i].adName
+        cityObj.type="citytype"
+
         obj.children.push(cityObj)
       }
 
-      cityData.push(obj)
-      this.data3=cityData
+      treeData.push(provinceObj)
+      treeData.push(obj)
+      treeData.push(focusObj)
+      this.data3=treeData
 
     }).catch(function(res){
 
@@ -514,7 +632,6 @@ let cityData=[]
     //      this.$router.push({name:'riverChiefSystem',params:{adCode: currentRiverId}});
     //     }
     //   }
-
 
   },
   computed: {},

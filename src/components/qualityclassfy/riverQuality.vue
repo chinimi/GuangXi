@@ -727,67 +727,78 @@
     <!--table表格-->
     <div class="right_menu">
       <!--水质评价-->
-      <el-row  style="color:#fff;    padding: 12px;">水质评价</el-row>
-      <el-table  v-if="pjxmval=='khd'"  border :data="tableData" height="170" style=" width:80%;margin-bottom:0px;background-color: transparent;">
+      <el-row  style="color:#fff;    padding: 10px;">水质评价</el-row>
+       <el-table   :data="tableData" height="300" style=" width:80%;margin-bottom:0px;background-color: transparent;">
+          <!-- <el-table  v-if="pjxmval=='khd'"    :data="tableData" height="170" style=" width:80%;margin-bottom:0px;background-color: transparent;"> -->
+        <el-table-column  align="center" label="水质评价">
         <el-table-column
-          label="评价位置"
-        >
+          prop="SZ_WZ"
+          label="评价位置">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.SZ_WZ" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
         <el-table-column
-          prop="stcd"
+          prop="SZ_LX"
           label="水质类型">
+              <template slot-scope="scope">
+            <el-input   v-model="scope.row.SZ_LX" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
         <el-table-column
-          prop="stnm"
+          prop="SZ_FZ"
           label="分值">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.SZ_FZ" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
+         </el-table-column>
       </el-table>
       <el-row  style="color:#fff; padding: 12px;">
-        <el-row style="float: right;padding-right:30px;">
+        <el-row style="float: right;padding-right:20px;">
         <el-button>上传表</el-button>
         <el-button>下载模板</el-button>
 
       </el-row>
       </el-row>
-      <el-row  style="color:#fff; padding: 12px;">生境评价</el-row>
-      <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="170" style="width:80%;margin-bottom:0px;background-color: transparent;">
+      <el-row  style="color:#fff; padding: 10px;">生境评价</el-row>
+      <!-- <el-table v-if="pjxmval=='khd'"  border :data="tableData" height="170" style="width:80%;margin-bottom:0px;background-color: transparent;"> -->
+      <el-table  border :data="SJ_tableData" height="300" style="width:80%;margin-bottom:0px;background-color: transparent;">
+        <el-table-column  align="center" label="生境评价">
         <el-table-column
-          label="评价位置"
-
-        >
+          prop="SJ_WZ"
+          label="评价位置" >
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.SJ_WZ" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
         <el-table-column
-          prop="stcd"
+          prop="SJ_PF"
           label="湖库生境评分HS">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.SJ_PF" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
         <el-table-column
-          prop="stnm"
-          label="等级">
-        </el-table-column>
-        <el-table-column
-          prop="stnm"
+          prop="SJ_FZ"
           label="分值">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.SJ_FZ" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
         <el-table-column
-          prop="stnm"
+          prop="SJ_HBD"
           label="湖滨点">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.SJ_HBD" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
-        <!-- <el-table-column
-           fixed="right"
-           label="操作"
-           width="100">
-           <template slot-scope="scope">
-             <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-             <el-button type="text" size="small">编辑</el-button>
-           </template>
-         </el-table-column>-->
-
         <el-table-column
           fixed="right"
           type="selection"
           width="55">
         </el-table-column>
-
+       </el-table-column>
       </el-table>
       <el-row style="float: right;padding-right:30px;">
         <el-button>上传表</el-button>
@@ -796,17 +807,20 @@
       </el-row>
       <!--生物评价-->
       <el-row  style="color:#fff; padding: 12px;">生物评价</el-row>
-      <el-table v-if="pjxmval=='khd'"  border :data="biologytabData" height="170" style="width:80%;margin-bottom:0px;background-color: transparent;">
+      <!-- <el-table v-if="pjxmval=='khd'"  border :data="biologytabData" height="170" style="width:80%;margin-bottom:0px;background-color: transparent;"> -->
+       <el-table  border :data="biologytabData" height="300" style="width:80%;margin-bottom:0px;background-color: transparent;">
+        <el-table-column  align="center" label="生物评价">
         <el-table-column
           prop="swpj"
-          label="评价点"
-        >
+          label="评价点">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.swpj" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
         <el-table-column
           prop="swzs"
           label="指数">
           <template slot-scope="scope" >
-
             <el-select v-model="scope.row.swzs" @change="getDatalist(scope.row)">
               <el-option
                 v-for="item in swpjOption"
@@ -820,10 +834,17 @@
         <el-table-column
           prop="swzt"
           label="生物状态">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.swzt" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
         <el-table-column
           prop="stnm"
           label="分值">
+              <template slot-scope="scope">
+            <el-input   v-model="scope.row.stnm" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
         </el-table-column>
       </el-table>
       <el-row style="float: right;padding-right:30px;">
@@ -848,7 +869,7 @@
         <el-table-column
           prop="poolweight"
           label="湖滨点权重">
-          <template slot-scope="scope">
+          input<template slot-scope="scope">
             <el-input   v-model="scope.row.poolweight" @blur="inputBlur"></el-input>
           </template>
         </el-table-column>
@@ -1817,6 +1838,7 @@
     data() {
       return {
         currentTableName:'表1:呼兰河口湿地及周边水域各采样点地理位置',
+        SJ_tableData:[],
         pjbtableData: [{
           pjd: '平价点1',
           sthjzl: '非常健康',
@@ -2174,27 +2196,25 @@
     mounted() {
       this.biologytabData=[
         {
-          'swpj':1,
-          'swzt':"优",
+          'swpj':'c001',
+          'swzt':"清洁",
           "swzs":'varityswdyx',
-          "stnm":20,
+          "stnm":5,
 
         },
         {
-          'swpj':2,
-          'swzt':"优",
-          "swzs":'varityswdyx',
-          "stnm":20,
+          'swpj':'c002',
+          'swzt':"清洁",
+          "swzs":'swwzx',
+          "stnm":3,
 
 
         },
         {
-          'swpj':3,
-          'swzt':"优",
+          'swpj':'c003',
+          'swzt':"非常健康",
           "swzs":'varityswdyx',
-          "stnm":20,
-
-
+          "stnm":4,
         },
 
 
@@ -2233,6 +2253,10 @@
 
     },
     methods: {
+        inputBlur() {
+        this.tabRowIndex = null;
+        this.tabColumnIndex = "";
+      },
       thStyle(){
         return  {backgroundColor:'#caebff', color: '#235d9a'}
 
@@ -2324,14 +2348,11 @@
         if(scope.swzs=='swwzx'){
           this.eightVisible=true
 
-
         }else{
           this.eightVisible=false
           this.indexPage=1
 
         }
-
-
       },
       showDialog(){
         this.dialogVisible=true
@@ -2448,77 +2469,131 @@
         //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
         //   "tjsj":"201507-201508"
         // }
-        this.tableData=[]
+        this.tableData=[{
+            SZ_WZ:'c001',
+            SZ_LX:'II',
+            SZ_FZ:'4'
+        },
+        {
+            SZ_WZ:'c002',
+            SZ_LX:'III',
+            SZ_FZ:'3'
+        },
+        {
+            SZ_WZ:'c003',
+            SZ_LX:'V',
+            SZ_FZ:'1'
+        },
+        ]
+
+        this.SJ_tableData=[{
+          SJ_WZ:'c001',
+          SJ_PF:'140',
+          SJ_DJ:'II',
+          SJ_FZ:'4',
+        },
+        {
+          SJ_WZ:'c002',
+          SJ_PF:'100',
+          SJ_DJ:'II',
+          SJ_FZ:'3',
+        },
+        {
+          SJ_WZ:'c003',
+          SJ_PF:'50',
+          SJ_DJ:'II',
+          SJ_FZ:'1',
+          SJ_HBD:'√',
+        }]
+
+        //  prop="SJ_WZ"
+        //   label="评价位置"
+        // >
+        // </el-table-column>
+        // <el-table-column
+        //   prop="SZ_PF"
+        //   label="湖库生境评分HS">
+        // </el-table-column>
+        // <el-table-column
+        //   prop="SJ_DJ"
+        //   label="等级">
+        // </el-table-column>
+        // <el-table-column
+        //   prop="SJ_FZ"
+        //   label="分值">
+        // </el-table-column>
+        // <el-table-column
+        //   prop="SJ_HBD"
         /*矿化度请求*/
-        if(this.pjxmval=="khd") {
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-          /*http请求*/
-          this.$http.post(khdurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function(res) {
-            console.log(res)
+        // if(this.pjxmval=="khd") {
+        //   let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+        //   /*http请求*/
+        //   this.$http.post(khdurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function(res) {
+        //     console.log(res)
 
-            this.tableData=res.body.data.pageResultList
-          }).catch(function(res){
-
-
-          })
+        //     this.tableData=res.body.data.pageResultList
+        //   }).catch(function(res){
 
 
-        }
-
-        /*水化学类型*/
-        if(this.pjxmval=="shxlx") {
-          let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
-          /*http请求*/
-          this.$http.post(chemistryurl, JSON.stringify( param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
-
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-
-            // alert("请求失败")
-          })
-
-        }
-
-        /*总硬度*/
-        if(this.pjxmval=="zyd") {
-          let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
-          /*http请求*/
-          this.$http.post(zydurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
-
-            console.log(res)
-
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-            console.log(res)
-
-          })
-
-        }
+        //   })
 
 
-        /*地表天然水*/
-        if(this.pjxmval=="dbtrs") {
+        // }
 
-          let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
-          /*http请求*/
-          this.$http.post(dbtrsurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
+        // /*水化学类型*/
+        // if(this.pjxmval=="shxlx") {
+        //   let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
+        //   /*http请求*/
+        //   this.$http.post(chemistryurl, JSON.stringify( param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+        //     console.log(res)
+
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
+
+        //     // alert("请求失败")
+        //   })
+
+        // }
+
+        // /*总硬度*/
+        // if(this.pjxmval=="zyd") {
+        //   let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
+        //   /*http请求*/
+        //   this.$http.post(zydurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+
+        //     console.log(res)
+
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
+        //     console.log(res)
+
+        //   })
+
+        // }
 
 
-          })
+        // /*地表天然水*/
+        // if(this.pjxmval=="dbtrs") {
 
-        }
+        //   let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
+        //   /*http请求*/
+        //   this.$http.post(dbtrsurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+        //     console.log(res)
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
+
+
+        //   })
+
+        // }
 
 
 

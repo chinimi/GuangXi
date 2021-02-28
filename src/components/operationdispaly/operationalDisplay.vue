@@ -85,7 +85,7 @@
         </div>
         <div class="bottomPan">
           <div class="analyze_title">
-            <span>三维展示</span>
+            <!-- <span>三维展示</span> -->
           </div>
 
           <!--内容部分-->
@@ -1004,10 +1004,10 @@
         fivestagePartition: "",
         fivestagePartitionList: [],
         firstRadio:'',//1
-        firstRadioOption:[{label:'监测成果测站一览表',value:'jccgylb'},{label:'·监测成果',value:'jccg'},{label:'监测成果月均',value:'jccgyj'},{label:'监测成果均值',value:'jccgjz'}],
+        firstRadioOption:[{label:'监测成果测站一览表',value:'jccgylb'},{label:'监测成果',value:'jccg'},{label:'监测成果月均',value:'jccgyj'},{label:'监测成果均值',value:'jccgjz'}],
 
         secondRadio:'',//2
-        secondRadioOption:[{label:'水质类别',value:'szlb'},{label:'·水质均',value:'szj'},{label:'水质类别月',value:'szlby'},{label:'水源地水质状',value:'sydszz'}],
+        secondRadioOption:[{label:'水质类别',value:'szlb'},{label:'水质均值',value:'szj'},{label:'水质类别月',value:'szlby'},{label:'水源地水质状',value:'sydszz'}],
         thirdRadio:'',//3
         thirdRadioOption:[{label:'测次、最差值、最优值统计表',value:'ztjb'},{label:'水质类别河流站次统计',value:'szlbtjb'},{label:'水质类别站次和河长统计总',value:'hctjzb'},{label:'河长、超标站次统计',value:'cbzctj'}],
         fourthRadio:'',//4
@@ -1027,18 +1027,21 @@
         /*评价项目*/
         pjxmval:'khd',
         pjxmOption:[{
-          label:"矿化度",
+          label:"水质分类",
           value:'khd',
-        },{
-          label:"总硬度",
-          value:'zyd',
-        },{
-          label:"水化学类型",
-          value:'shxlx',
-        },{
-          label:"地表天然水",
-          value:'dbtrs',
-        }],
+        }
+        // ,{
+        //   label:"总硬度",
+        //   value:'zyd',
+        // },{
+        //   label:"水化学类型",
+        //   value:'shxlx',
+        // },{
+        //   label:"地表天然水",
+        //   value:'dbtrs',
+        // }
+
+        ],
         /*取值方式*/
         qzfsval:'avg',
         qzfsOption:[{
@@ -1269,7 +1272,7 @@
         // 给树状图赋值
         let lineOption={
           title: {
-            text: 'title',
+            text: '',
             textStyle: {
               color: '#333',
               fontSize: 14
@@ -1354,11 +1357,13 @@
       ajaxPointSource(param,pointLayer){//传请求参数
 
         debugger
+      
         var  that=this
 
         /*矿化度请求*/
 
         if(that.pjxmval=="khd") {
+          
           let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
           /*http请求*/
           this.$http.post(khdurl, JSON.stringify(param), {
@@ -1378,6 +1383,39 @@
               });//构点
               point.set('attribute',data[i])
 
+
+              let color=null
+              if(coord.mndgType=="一"){
+                color='rgb(22, 119, 255)'
+              }
+              if(coord.mndgType=="二"){
+                color='rgb(16, 231, 102)'
+              }
+              if(coord.mndgType=="三"){
+                color='rgb(250, 255, 0)'
+              }
+              if(coord.mndgType=="四"){
+                color='rgb(255, 0, 0)'
+              }
+              if(coord.mndgType=="五"){
+                color='rgb(132, 10, 255)'
+              }
+              var styleobj= new ol.style.Style({
+                fill: new ol.style.Fill({
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }),
+                stroke: new ol.style.Stroke({
+                  color: 'red',
+                  width: 5
+                }),
+                image: new ol.style.Circle({
+                  radius: 5,
+                  fill: new ol.style.Fill({
+                    color: color//颜色变成变量
+                  })
+                })
+              })
+              point.setStyle(styleobj);
               points.push(point)
             }
 
@@ -1392,7 +1430,7 @@
                 zIndex: 10,
                 projection: 'EPSG:4326',
                 source:source,
-                style: new ol.style.Style({
+         /*       style: new ol.style.Style({
                   fill: new ol.style.Fill({
                     color: 'rgba(255, 255, 255, 0.1)'
                   }),
@@ -1406,12 +1444,12 @@
                       color: '#62ff3c'
                     })
                   })
-                })
+                })*/
               });
 
               map.addLayer(that.pointLayer);//添加上站点的图层
 
-            this.activeLayerEvent()
+              this.activeLayerEvent()
 
 
 
@@ -1886,7 +1924,7 @@
 
         let attribute=attr
         console.log(attribute)
-        console.log(attribute[0].values_.attribute.stnm)
+        // console.log(attribute[0].values_.attribute.stnm)
 
         /*创建echarts*/
         //测站名称、等级、经纬度、地址、管理单位、监测单位、监测频次
@@ -2176,6 +2214,12 @@
 
   }
 
+  >>>.el-radio__input {
+    line-height: 3;
+    outline: 0;
+    white-space: nowrap;
+}
+
 >>>.el-button{
     padding: 5px 15px !important;
   }
@@ -2207,7 +2251,7 @@
 
   >>>.el-radio__label {
     color: #333;
-  font-size: 14px;
+  font-size: 15px;
   padding-left: 4px;
 }
 /* 滚动样式修改*/
@@ -2253,9 +2297,9 @@
   color: #fff;
   float: left;
   list-style: none;
-  font-size: 10px;
-  line-height: 30px;
-  padding: 0px 6px;
+  font-size: 12px;
+  line-height: 35px;
+  padding: 0px 8px;
   background: #2784FF;
   border-radius: 5px;
   margin-left: 6px;

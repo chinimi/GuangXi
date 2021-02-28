@@ -596,15 +596,28 @@
       <!--上游来水-->
       <el-row style="padding-top:20px;padding-left:30px;"  v-if="sylsFlag">
         <el-col :span="20">
-          <el-table   border :data="tableData" height="300px" style="background-color: transparent;">
+          <el-table   border :data="SY_tableData" height="300px" style="background-color: transparent;">
             <el-table-column  align="center" label="上游来水">
               <el-table-column
-                prop="stcd"
-                label="站点1">
+                prop="data_time"
+                label="时间">
+                <template slot-scope="scope">
+            <el-input   v-model="scope.row.data_time" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="stcd1"
+                label="站点1">
+                  <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd1" @blur="inputBlur"></el-input>
+                 </template>
+              </el-table-column>
+              <el-table-column
+                prop="stcd2"
                 label="站点2">
+                 <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd2" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
             </el-table-column>
           </el-table>
@@ -613,23 +626,42 @@
       <!--区间来水-->
       <el-row style="padding:20px  0 30px  30px;" v-if="midlsFlag">
         <el-col :span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
+          <el-table    border :data="QJ_tableData" height="300px" style="background-color: transparent;">
             <el-table-column  align="center" label="区间来水">
-              <el-table-column
-                prop="stcd"
-                label="站点1">
+               <el-table-column
+                prop="data"
+                label="时间">
+                 <template slot-scope="scope">
+            <el-input   v-model="scope.row.data" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="stcd1"
                 label="站点1">
+                  <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd1" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
               <el-table-column
-                prop="stnm"
-                label="站点1">
+                prop="stcd2"
+                label="站点2">
+                   <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd2" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
-              <el-table-column
-                prop="stnm"
-                label="站点1">
+               <el-table-column
+                prop="stcd3"
+                label="站点3">
+                    <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd3" @blur="inputBlur"></el-input>
+                 </template>
+              </el-table-column>
+               <el-table-column
+                prop="stcd4"
+                label="站点4">
+                   <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd4" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
             </el-table-column>
           </el-table>
@@ -638,19 +670,35 @@
       <!--区间耗水-->
       <el-row  style="padding:30px 0 0 30px;"  v-if="wasteFlag">
         <el-col :span="20">
-          <el-table    border :data="tableData" height="300px" style="background-color: transparent;">
+          <el-table    border :data="HS_tableData" height="300px" style="background-color: transparent;">
             <el-table-column  align="center" label="区间耗水">
-              <el-table-column
-                prop="stcd"
-                label="站点1">
+            <el-table-column
+                prop="data"
+                label="时间">
+                 <template slot-scope="scope">
+            <el-input   v-model="scope.row.data" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
               <el-table-column
-                prop="stnm"
+                prop="stcd1"
                 label="站点1">
+                  <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd1" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
               <el-table-column
-                prop="mndgMax"
-                label="站点1">
+                prop="stcd2"
+                label="站点2">
+                    <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd2" @blur="inputBlur"></el-input>
+                 </template>
+              </el-table-column>
+               <el-table-column
+                prop="stcd3"
+                label="站点3">
+                 <template slot-scope="scope">
+            <el-input   v-model="scope.row.stcd3" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
             </el-table-column>
           </el-table>
@@ -704,7 +752,9 @@
         fivestagePartitionList: [],
         tableData: [],
 
-
+        SY_tableData:[],
+        QJ_tableData:[],
+        HS_tableData:[],
 
         /*评价标准*/
         pjbzval:'all',
@@ -783,7 +833,11 @@
 
     },
     methods: {
-
+        //鼠标失去焦点事件
+      inputBlur() {
+        this.tabRowIndex = null;
+        this.tabColumnIndex = "";
+      },
       // 河长制切换切换
       companySwitch(id) {
         this.companyType = id;
@@ -871,87 +925,166 @@
             "qzfs":this.qzfsval,// min max avg
             "tjsj":tjsj
           }
+
+           this.SY_tableData =[{
+            data_time:'2015/7/1',
+            stcd1:'2000',
+            stcd2:'1100',
+          },  
+          {
+            data_time:'2015/8/1',
+            stcd1:'2300',
+            stcd2:'1000',
+          },  
+         {
+            data_time:'2015/9/1',
+            stcd1:'1800',
+            stcd2:'900',
+          }, ]
+
+          this.QJ_tableData=[{
+            data:'2015/7/1',
+            stcd1:'1500',
+            stcd2:'300',
+            stcd3:'800',
+            stcd4:'1600',
+          },  
+          {
+            data:'2015/8/1',
+            stcd1:'1400',
+            stcd2:'500',
+            stcd3:'900',
+            stcd4:'1800',
+          },  
+         {
+            data:'2015/9/1',
+            stcd1:'1300',
+            stcd2:'400',
+            stcd3:'900',
+            stcd4:'1900',
+          }, ]
+
+
+          this.HS_tableData=[{
+            data:'2015/7/1',
+            stcd1:'2000',
+            stcd2:'1200',
+            stcd3:'500',
+        
+          },  
+          {
+            data:'2015/8/1',
+            stcd1:'1900',
+            stcd2:'800',
+            stcd3:'500',
+        
+          },  
+         {
+            data:'2015/9/1',
+            stcd1:'1750',
+            stcd2:'1200',
+            stcd3:'400',
+          
+          }, ]
+
+
         // var param={
         //   "pageNum":"0",      // --当前页
         //   "pageSize":"10",     //--一页显示数量
         //   "qzfs":"avg",        //--取值方式: min max avg  （分别为最小值、最大值、平均值）
         //   "tjsj":"201507-201508"
         // }
-        this.tableData=[]
+//         this.tableData=[]
+
+//         this.SY_tableData =[{
+//             date:'2015/7/1',
+//             stcd1:'2000',
+//             stcd2:'1100',
+//         },     
+//         {
+//             date:'2015/8/1',
+//             stcd1:'2300',
+//             stcd2:'1000',
+//         },
+//         {
+//             date:'2015/9/1',
+//             stcd1:'1800',
+//             stcd2:'900',
+//         },
+//         ] ,
+
+
+        
         /*矿化度请求*/
-        if(this.pjxmval=="khd") {
-          let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
-          /*http请求*/
-          this.$http.post(khdurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function(res) {
-            console.log(res)
+        // if(this.pjxmval=="khd") {
+        //   let khdurl="http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/list"
+        //   /*http请求*/
+        //   this.$http.post(khdurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function(res) {
+        //     console.log(res)
 
-            this.tableData=res.body.data.pageResultList
-          }).catch(function(res){
-
-
-          })
+        //     this.tableData=res.body.data.pageResultList
+        //   }).catch(function(res){
 
 
-        }
+        //   })
+
+
+        // }
 
         /*水化学类型*/
-        if(this.pjxmval=="shxlx") {
-          let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
-          /*http请求*/
-          this.$http.post(chemistryurl, JSON.stringify( param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
+        // if(this.pjxmval=="shxlx") {
+        //   let chemistryurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listshx"
+        //   /*http请求*/
+        //   this.$http.post(chemistryurl, JSON.stringify( param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+        //     console.log(res)
 
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
 
-            // alert("请求失败")
-          })
+        //     // alert("请求失败")
+        //   })
 
-        }
+        // }
 
         /*总硬度*/
-        if(this.pjxmval=="zyd") {
-          let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
-          /*http请求*/
-          this.$http.post(zydurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
+        // if(this.pjxmval=="zyd") {
+        //   let zydurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listthrd"
+        //   /*http请求*/
+        //   this.$http.post(zydurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
 
-            console.log(res)
+        //     console.log(res)
 
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-            console.log(res)
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
+        //     console.log(res)
 
-          })
+        //   })
 
-        }
+        // }
 
 
         /*地表天然水*/
-        if(this.pjxmval=="dbtrs") {
+        // if(this.pjxmval=="dbtrs") {
 
-          let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
-          /*http请求*/
-          this.$http.post(dbtrsurl, JSON.stringify(param), {
-            emulateJSON: true,
-          }).then(function (res) {
-            console.log(res)
-            this.tableData = res.body.data.pageResultList
-          }).catch(function (res) {
-
-
-          })
-
-        }
+        //   let dbtrsurl = "http://rsapp.nsmc.org.cn/waterquality_server/waterquality_server/wqpcpd/listTrlzs"
+        //   /*http请求*/
+        //   this.$http.post(dbtrsurl, JSON.stringify(param), {
+        //     emulateJSON: true,
+        //   }).then(function (res) {
+        //     console.log(res)
+        //     this.tableData = res.body.data.pageResultList
+        //   }).catch(function (res) {
 
 
+        //   })
 
-
+        // }
 
 
       }
