@@ -305,7 +305,7 @@ export default {
         this.$router.push({name:'qualityPrediction',params:{}});
       }
       if(newValue=="qualityClassfy"){
-        this.$router.push({name:'qualityClassfy',params:{}});
+        this.$router.push({name:'generalwaterevaluate',params:{}});
       }
       /*运算*/
       if(newValue=="operationalDisplay"){

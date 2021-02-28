@@ -15,44 +15,19 @@
         </el-row>
 
         <!--table表格-->
+        <!--跑马灯效果-->
+        <!--:class="{marquee_top:animate}"
+        animate?'marquee_top':''
 
-        <div  class="content_table">
-          <el-row     class="on">
-            <el-col :span="5" class="border-right">田东</el-col>
-            <el-col :span="8" class="border-right">2021-01-03  </el-col>
-            <el-col :span="5" class="border-right">30</el-col>
-            <el-col :span="5" class="border-right">5000</el-col>
+        -->
+        <div  class="content_table" v-on:mouseover="stopmove()" v-on:mouseout="play()"  style="cursor:pointer;max-height:150px;overflow-y: hidden;">
+          <el-row     v-for="(item, index) in announcementArr" :key="index"  :class="[index%2==0?'on':'off',  ]" >
+                <el-col :span="5" class="border-right">{{item.city}}</el-col>
+                <el-col :span="8" class="border-right">{{item.time}} </el-col>
+                <el-col :span="5" class="border-right">{{item.waterlevel}}</el-col>
+                <el-col :span="5" class="border-right">{{item.watertraffic}}</el-col>
           </el-row>
-          <el-row  class="off">
-            <el-col :span="5"   class="border-right" >隆安</el-col>
-            <el-col :span="8"  class="border-right">2021-01-03  </el-col>
-            <el-col :span="5"   class="border-right">35</el-col>
-            <el-col :span="5"   class="border-right">4563</el-col>
-          </el-row>
-          <el-row    class="on">
-            <el-col :span="5"  class="border-right">太平</el-col>
-            <el-col :span="8" class="border-right">2021-01-03</el-col>
-            <el-col :span="5"  class="border-right">44</el-col>
-            <el-col :span="5"  class="border-right">2564</el-col>
-          </el-row>
-          <el-row    class="off">
-            <el-col :span="5"  class="border-right" >英竹</el-col>
-            <el-col :span="8" class="border-right">2021-01-03 </el-col>
-            <el-col :span="5"  class="border-right">35.3</el-col>
-            <el-col :span="5"  class="border-right">2235</el-col>
-          </el-row>
-
-          <!--循环 奇数偶数行样式不一致  -->
-          <el-row   class="on">
-            <el-col :span="5"  class="border-right" >东华</el-col>
-            <el-col :span="8" class="border-right">2021-01-03  </el-col>
-            <el-col :span="5"  class="border-right">44</el-col>
-            <el-col :span="5"  class="border-right">8654</el-col>
-          </el-row>
-
         </div>
-
-
       </div>
 
 
@@ -197,6 +172,46 @@
     },
     data() {
       return {
+        timer:null,//定时器
+        animate: false,//走马灯
+        zmdTableData:[
+          {
+            city:'田东',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+          {
+            city:'隆安',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+          {
+            city:'太平',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },   {
+            city:'英竹',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+          {
+            city:'东华',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+
+
+
+
+
+        ],//走马灯数据
+        announcementArr: [],//走马灯数据
+
         tableData: [{
           date: '2016-05-03',
           name: '王小虎',
@@ -230,6 +245,79 @@
       }
     },
     methods: {
+      /*跑马灯效果*/
+      getScrollData(){
+        this.announcementArr=[
+          {
+            city:'田东',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+          {
+            city:'隆安',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+          {
+            city:'太平',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },   {
+            city:'英竹',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+          {
+            city:'东华',
+            time:'2021-01-03',
+            waterlevel:30,
+            watertraffic:5000,
+          },
+
+
+
+
+
+        ]
+
+      },
+      showMarquee(){
+        this.animate = true;
+        setTimeout(() => {
+          this.announcementArr.push(this.announcementArr[0]);
+          this.announcementArr.shift();
+          this.animate = false
+        }, 1000)
+
+
+      },
+
+      /*走马灯效果*/
+
+      change() {
+        //change、paly表格数据动态滚动
+        this.animate = true;
+        this.announcementArr.push(this.announcementArr[0]);//把第一条数据插入数组最有一条
+
+        this.announcementArr.shift();//删除数组中第一条数据
+
+      },
+
+      play() {
+        this.timer=setInterval(this.change, 2000);//每两秒执行一次插入删除操作
+
+      },
+      //鼠标悬停时停止移动
+      stopmove() {
+        clearInterval(this.timer)
+      }
+
+
+
 
     },
     computed: {
@@ -237,8 +325,9 @@
 
     },
     mounted(){
-
-
+      this.getScrollData()
+      this.play()
+      // setInterval(this.showMarquee, 2000);
     },
     watch: {
 
@@ -317,5 +406,11 @@
   }
   .date_color{
     color:#333;
+  }
+
+  .marquee_top{
+    transition: all 0.5s;
+    /*transition: all 1s linear;		//这个是关键*/
+
   }
 </style>

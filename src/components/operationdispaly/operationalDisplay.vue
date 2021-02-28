@@ -1027,18 +1027,21 @@
         /*评价项目*/
         pjxmval:'khd',
         pjxmOption:[{
-          label:"矿化度",
+          label:"水质分类",
           value:'khd',
-        },{
-          label:"总硬度",
-          value:'zyd',
-        },{
-          label:"水化学类型",
-          value:'shxlx',
-        },{
-          label:"地表天然水",
-          value:'dbtrs',
-        }],
+        }
+        // ,{
+        //   label:"总硬度",
+        //   value:'zyd',
+        // },{
+        //   label:"水化学类型",
+        //   value:'shxlx',
+        // },{
+        //   label:"地表天然水",
+        //   value:'dbtrs',
+        // }
+
+        ],
         /*取值方式*/
         qzfsval:'avg',
         qzfsOption:[{
@@ -1269,7 +1272,7 @@
         // 给树状图赋值
         let lineOption={
           title: {
-            text: 'title',
+            text: '',
             textStyle: {
               color: '#333',
               fontSize: 14
@@ -1378,6 +1381,39 @@
               });//构点
               point.set('attribute',data[i])
 
+
+              let color=null
+              if(coord.mndgType=="一"){
+                color='rgb(22, 119, 255)'
+              }
+              if(coord.mndgType=="二"){
+                color='rgb(16, 231, 102)'
+              }
+              if(coord.mndgType=="三"){
+                color='rgb(250, 255, 0)'
+              }
+              if(coord.mndgType=="四"){
+                color='rgb(255, 0, 0)'
+              }
+              if(coord.mndgType=="五"){
+                color='rgb(132, 10, 255)'
+              }
+              var styleobj= new ol.style.Style({
+                fill: new ol.style.Fill({
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }),
+                stroke: new ol.style.Stroke({
+                  color: 'red',
+                  width: 5
+                }),
+                image: new ol.style.Circle({
+                  radius: 5,
+                  fill: new ol.style.Fill({
+                    color: color//颜色变成变量
+                  })
+                })
+              })
+              point.setStyle(styleobj);
               points.push(point)
             }
 
@@ -1392,7 +1428,7 @@
                 zIndex: 10,
                 projection: 'EPSG:4326',
                 source:source,
-                style: new ol.style.Style({
+         /*       style: new ol.style.Style({
                   fill: new ol.style.Fill({
                     color: 'rgba(255, 255, 255, 0.1)'
                   }),
@@ -1406,7 +1442,7 @@
                       color: '#62ff3c'
                     })
                   })
-                })
+                })*/
               });
 
               map.addLayer(that.pointLayer);//添加上站点的图层
@@ -1886,7 +1922,7 @@
 
         let attribute=attr
         console.log(attribute)
-        console.log(attribute[0].values_.attribute.stnm)
+        // console.log(attribute[0].values_.attribute.stnm)
 
         /*创建echarts*/
         //测站名称、等级、经纬度、地址、管理单位、监测单位、监测频次
