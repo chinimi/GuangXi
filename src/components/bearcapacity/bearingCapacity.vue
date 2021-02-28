@@ -526,8 +526,8 @@ import dimension from '@/components/bearcapacity/water/dimension.vue'//零维
 import onedimension from '@/components/bearcapacity/water/one_dimension.vue'//一维
 import onedimensionMIKE from '@/components/bearcapacity/water/one_dimensionMIKE.vue'//一维mike
 import twodimension from '@/components/bearcapacity/water/two_dimension.vue'//二维
-import hierarchy from '@/components/bearcapacity/water/hierarchy.vue'//富营养化
-import eutrophication from '@/components/bearcapacity/water/eutrophication.vue'//分层
+import hierarchy from '@/components/bearcapacity/water/eutrophication.vue'//分层
+import eutrophication from '@/components/bearcapacity/water/hierarchy.vue'//富营养化
 import estuaryOoneDimensional from '@/components/bearcapacity/water/estuary_one_dimensional.vue'//河口一维
 import Oneall from './water/oneall.vue'
 import twoall from '@/components/bearcapacity/water/twoall.vue'

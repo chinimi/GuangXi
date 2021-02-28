@@ -3,43 +3,38 @@
   <div class="dimension">
     <template>
       <el-table
-        :data="tableData"
+        :data="tableData_1_sz"
                 border
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
         height="260"
         :cell-class-name="getRowColumn"
-        @cell-click="handleCellClick"
-      >
-        <el-table-column prop="date" label="指定方案" min-width="100"></el-table-column>
-        <!-- <el-table-column prop="name" label="指定评价位置" min-width="150"></el-table-column> -->
-        <el-table-column prop="address" label="河" min-width="150">
-           <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.address"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.address }}</span>
-              </template>
+        @cell-click="handleCellClick" >
+        <el-table-column prop="zdfa" label="指定方案" min-width="150">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.zdfa" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
-        <el-table-column prop="name" label="里程(m)" min-width="100"> <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.name"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.name }}</span>
-              </template>
-              </el-table-column>
+     <el-table-column prop="pjzb" label="评价指标" min-width="100">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.pjzb" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="river" label="河" min-width="150">
+
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.river" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+       
+        <el-table-column prop="lc" label="里程(m)" min-width="100"> 
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.lc" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+             
         <!-- <el-table-column prop="date" label="返回" min-width="100"></el-table-column> -->
-        <el-table-column prop="date" label="计算结果" min-width="100"></el-table-column>
+        <el-table-column prop="jsjg" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -171,12 +166,10 @@ export default {
       tabColumnIndex: null,
 
         type:0,
-        tableData:[
-            {date:'COD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'BOD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TP',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TN',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'组分3',name:'',address:'',max:'',mix:'',xas:''},
+        tableData_1_sz:[
+            {zdfa:'大湟江口-藤县-日常方案',pjzb:'COD',river:'郁江',lc:'20000',jsjg:''},
+            {zdfa:'田东-隆安-日常方案',pjzb:'TP',river:'西江',lc:'25000',jsjg:''},
+        
         ],
         tableData1:[
           {PK:'排口',RH:'',CS:'',SY:'',JJ:'',LL:'',COD:'',BOD:'',TP:'',TN:''},

@@ -3,7 +3,7 @@
   <div class="dimension">
     <template>
       <el-table
-        :data="tableData"
+        :data="tableData_2_MIKE"
                 border
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
@@ -11,33 +11,23 @@
          :cell-class-name="getRowColumn"
         @cell-click="handleCellClick"
       >
-        <el-table-column prop="date" label="指定方案" min-width="100"></el-table-column>
-        <!-- <el-table-column prop="name" label="指定评价位置" min-width="150"></el-table-column> -->
-        <el-table-column prop="address" label="横坐标" min-width="150">
-          <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.address"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.address }}</span>
-              </template>
+        <el-table-column prop="zdfa" label="指定方案" min-width="100">
+              <template slot-scope="scope">
+            <el-input   v-model="scope.row.zdfa" @blur="inputBlur"></el-input>
+             </template>
+
         </el-table-column>
-        <el-table-column prop="address" label="纵坐标" min-width="100">
+      
+        <el-table-column prop="hzb" label="横坐标" min-width="150">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.hzb" @blur="inputBlur"></el-input>
+             </template>
+
+        </el-table-column>
+        <el-table-column prop="zzb" label="纵坐标" min-width="100">
           <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.address"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.address }}</span>
-              </template>
+            <el-input   v-model="scope.row.zzb" @blur="inputBlur"></el-input>
+             </template>
         </el-table-column>
         <!-- <el-table-column prop="date" label="返回" min-width="100"></el-table-column> -->
         <el-table-column prop="date" label="计算结果" min-width="100"></el-table-column>
@@ -172,12 +162,9 @@ export default {
       tabRowIndex: null,
       tabColumnIndex: null,
         type:0,
-        tableData:[
-            {date:'COD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'BOD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TP',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TN',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'组分3',name:'',address:'',max:'',mix:'',xas:''},
+        tableData_2_MIKE:[
+            {zdfa:'贵梧-藤县-日常方案',pjzb:'COD',hzb:'467350.4879',zzb:'2594735.669412',jsjg:''},
+            {zdfa:'贵梧-藤县-日常方案',pjzb:'TP',hzb:'467759.514429',zzb:'2592804.915789',jsjg:''},
         ],
         tableData1:[
           {PK:'排口',RH:'',CS:'',SY:'',JJ:'',LL:'',COD:'',BOD:'',TP:'',TN:''},

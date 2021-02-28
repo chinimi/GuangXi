@@ -3,197 +3,90 @@
   <div class="dimension">
     <template>
       <el-table
-        :data="tableData"
+        :data="tableData_FYY"
         border
         style="background-color: transparent;"
         :header-cell-style="{background:' linear-gradient(0deg, #F3F3F3, #FEFEFE)'}"
         height="260"
         :cell-class-name="getRowColumn"
-        @cell-click="handleCellClick"
-      >
-        <el-table-column prop="date" label="评价指标" min-width="100"></el-table-column>
-        <el-table-column prop="name" label="入库量(t/a)" min-width="90">
+        @cell-click="handleCellClick">
+
+        <el-table-column prop="pjzb" label="评价指标" min-width="100">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.pjzb" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="rkl" label="入库量(t/a)" min-width="90">
          <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.name"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.name }}</span>
-              </template>
+            <el-input   v-model="scope.row.rkl" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
-        <el-table-column prop="address" label="出库量(t/a)" min-width="90">
+        <el-table-column prop="ckl" label="出库量(t/a)" min-width="90">
+          <template slot-scope="scope">
+            <el-input   v-model="scope.row.ckl" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="dwmj" label="单位面积负荷（g/m²·a）" min-width="160">
+        <template slot-scope="scope">
+            <el-input   v-model="scope.row.dwmj" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="smmj" label="水面面积（m²）" min-width="100">
+             <template slot-scope="scope">
+            <el-input   v-model="scope.row.smmj" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="ks" label="库深（m）" min-width="80">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.ks" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="kr" label="库容（m³）" min-width="80">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.kr" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="cksl" label="出库水量（m³/a）" min-width="100">
+           <template slot-scope="scope">
+            <el-input   v-model="scope.row.cksl" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="nd" label="控制浓度（g/m³）" min-width="100">
          <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.address"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.address }}</span>
-              </template>
+            <el-input   v-model="scope.row.nd" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
-        <el-table-column prop="max" label="单位面积负荷（g/m²·a）" min-width="160">
-         <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.max"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.max }}</span>
-              </template>
+        <el-table-column prop="hppjss" label="湖泊平均水深（m）" min-width="160">
+             <template slot-scope="scope">
+            <el-input   v-model="scope.row.hppjss" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
-        <el-table-column prop="mix" label="水面面积（m²）" min-width="100">
+        <el-table-column prop="jsqpjss" label="计算区平均水深（m）" min-width="170">
+              <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsqpjss" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jsqsmmj" label="计算区水面面积（km²）" min-width="170">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.jsqsmmj" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="szmbz" label="水质目标值（mg/L）" min-width="150"> 
            <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="库深（m）" min-width="80">
-           <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="库容（m³）" min-width="80">
-           <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="出库水量（m³/a）" min-width="100">
-         <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="控制浓度（g/m³）" min-width="100">
-         <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="湖泊平均水深（m）" min-width="160">
-           <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="计算区平均水深（m）" min-width="170">
-           <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="计算区水面面积（km²）" min-width="170">
-           <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="水质目标值（mg/L）" min-width="150"> <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
+            <el-input   v-model="scope.row.szmbz" @blur="inputBlur"></el-input>
+                 </template>
               </el-table-column>
-        <el-table-column prop="mix" label="出库水量（m³/a）" min-width="100">
-         <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
-        </el-table-column>
-        <el-table-column prop="mix" label="湖区库容（m³）" min-width="100">
+        <el-table-column prop="cksl" label="出库水量（m³/a）" min-width="100">
            <template slot-scope="scope">
-                <el-input
-                  v-if="
-                    scope.row.index === tabRowIndex &&
-                      scope.column.index === tabColumnIndex
-                  "
-                  v-model="scope.row.mix"
-                  @blur="inputBlur"
-                ></el-input>
-                <span v-else>{{ scope.row.mix }}</span>
-              </template>
+            <el-input   v-model="scope.row.cksl" @blur="inputBlur"></el-input>
+                 </template>
         </el-table-column>
-        <el-table-column prop="xas" label="计算结果" min-width="100"></el-table-column>
+        <el-table-column prop="hqkr" label="湖区库容（m³）" min-width="100">
+            <template slot-scope="scope">
+            <el-input   v-model="scope.row.hqkr" @blur="inputBlur"></el-input>
+                 </template>
+        </el-table-column>
+        <el-table-column prop="jsjg" label="计算结果" min-width="100"></el-table-column>
       </el-table>
     </template>
     <div class="dimension_button">
@@ -324,12 +217,13 @@ export default {
        tabRowIndex: null,
       tabColumnIndex: null,
         type:0,
-        tableData:[
-            {date:'COD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'BOD',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TP',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'TN',name:'',address:'',max:'',mix:'',xas:''},
-            {date:'组分3',name:'',address:'',max:'',mix:'',xas:''},
+        tableData_FYY:[
+            {pjzb:'TP',rkl:'15',ckl:'8',dwmj:'100',
+            smmj:'10000',ks:'3',kr:'30000',
+            cksl:'500000',nd:'1.5',
+            hppjss:'90',jsqpjss:'1.5',
+            jsqsmmj:'0.1',szmbz:'1.5',
+            cksl:'80000',hqkr:'10000',jsjg:''},
         ],
         tableData1:[
           {PK:'排口',RH:'',CS:'',SY:'',JJ:'',LL:'',COD:'',BOD:'',TP:'',TN:''},
