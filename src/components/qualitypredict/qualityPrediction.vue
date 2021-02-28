@@ -60,7 +60,7 @@
       path:'szylyc',
       id:'szylyc',
       children: [
-        { "authName": "地表水水资源量预测" ,com:'waterPrediction', id:'waterPrediction', path:'waterPrediction'},
+        { "authName": "地表水资源量预测" ,com:'waterPrediction', id:'waterPrediction', path:'waterPrediction'},
         { "authName": "地下水水位评价",com:"underWater" ,id:'underWater',path:'underWater'},
       ]
     },
