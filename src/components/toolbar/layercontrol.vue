@@ -3806,9 +3806,10 @@
 <style scoped="scoped">
 #layercontrol{
   width: 120px;
-  position: absolute;
-  top: 60px;
-  right: 160px;
+  float:left;
+  /*position: absolute;*/
+  /*top: 60px;*/
+  /*right: 160px;*/
   z-index: 9;
   background: #fff;
   min-height: 30px;
