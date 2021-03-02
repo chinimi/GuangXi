@@ -97,6 +97,7 @@
               :show-file-list="false"
               :file-list="fileList"
               :on-change="importFile"
+              accept=".xlsx"
               :auto-upload="false">
               <el-button size="small" type="primary">上传</el-button>
            </el-upload></el-button>
@@ -110,7 +111,7 @@
             <div  ref='echart'  id="echartsLine" style="height:500px"></div>
           </div>
           <div class="boundaryConditions_bottom">
-          <el-button size="small" plain>保存</el-button>
+          <el-button size="small" plain  @click="preserve">保存</el-button>
           <el-button size="small" plain>计算</el-button>
           <el-button size="small" plain>查看结果</el-button>
         </div>
@@ -710,7 +711,7 @@ export default {
   downloadFile(){
     if(this.$route.params.value != undefined){
       this.ScenarioCode = this.$route.params.value.ScenarioCode
-        var url = modelURL + "/api/GXRCWQ/ModelManager/DownloadScenairoDescriptionDocxFile?scenarioCode="+this.ScenarioCode
+        var url = modelURL + "api/GXRCWQ/ModelManager/DownloadScenairoBoundaryTSExcelFile?scenarioCode="+this.ScenarioCode+"&boundaryType="+this.boundaryType
         window.location.href = url
         }
   },
@@ -719,7 +720,6 @@ export default {
         var xAxisData = [];
         var yAxisData = [];
         data.forEach((item,index)=>{
-        console.log(item);
         xAxisData.push(item.DT.substr(0,10))
         yAxisData.push(item.Value)
     })
@@ -759,7 +759,6 @@ export default {
         var xAxisData = [];
         var yAxisData = [];
         data.forEach((item,index)=>{
-        console.log(item);
         xAxisData.push(item.DT.substr(0,10))
         yAxisData.push(item.Value)
     })

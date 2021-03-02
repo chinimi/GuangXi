@@ -97,6 +97,7 @@
               :show-file-list="false"
               :file-list="fileList"
               :on-change="importFile"
+              accept=".xlsx"
               :auto-upload="false">
               <el-button size="small" type="primary">上传</el-button>
            </el-upload></el-button>
@@ -110,7 +111,7 @@
             <div  ref='echart'  id="echartsLine" style="height:500px"></div>
           </div>
           <div class="boundaryConditions_bottom">
-          <el-button size="small" plain>保存</el-button>
+          <el-button size="small" plain @click="preserve">保存</el-button>
           <el-button size="small" plain>计算</el-button>
           <el-button size="small" plain>查看结果</el-button>
         </div>
@@ -673,7 +674,6 @@ export default {
     }).then(() => {
       var _this = this
        var url = modelURL + "/api/GXRCWQ/ModelManager/UploadScenairoBoundaryTSExcelFile"
-       console.log(url)
       $.ajax({
         type: "post",
         dataType: "json",
@@ -710,7 +710,7 @@ export default {
   downloadFile(){
     if(this.$route.params.value != undefined){
       this.ScenarioCode = this.$route.params.value.ScenarioCode
-        var url = modelURL + "/api/GXRCWQ/ModelManager/DownloadScenairoDescriptionDocxFile?scenarioCode="+this.ScenarioCode
+        var url = modelURL + "/api/GXRCWQ/ModelManager/DownloadScenairoBoundaryTSExcelFile?scenarioCode="+this.ScenarioCode+"&boundaryType="+this.boundaryType
         window.location.href = url
         }
   },
@@ -748,6 +748,14 @@ export default {
         yAxis: {
               type: 'value'
           },
+    //     dataZoom: [{
+    //     type: 'inside',
+    //     start: 0,
+    //     end: 5
+    // }, {
+    //     start: 0,
+    //     end: 5
+    // }],
         series: [{
               data: yAxisData,
               type: 'line',

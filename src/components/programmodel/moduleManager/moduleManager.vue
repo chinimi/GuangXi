@@ -577,7 +577,7 @@ export default {
          if(newvalue.indexOf("2") != -1){
            this.cusParam= 'MIKE21FMModel'
          }
-        if(newvalue.length == 2){s
+        if(newvalue.length == 2){
              this.cusParam= ''
         }
         if(newvalue.length == 0){

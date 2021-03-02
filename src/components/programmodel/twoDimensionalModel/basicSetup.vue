@@ -112,6 +112,7 @@
               :show-file-list="false"
               :file-list="fileList"
               :on-change="importFile"
+              accept=".docx"
               :auto-upload="false">
               <el-button size="small" type="primary">上传</el-button>
            </el-upload></el-button>

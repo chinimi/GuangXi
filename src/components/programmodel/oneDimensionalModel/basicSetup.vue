@@ -11,7 +11,10 @@
           </el-col>
           <el-col :span="13">
             <div>
-              <el-input v-model="GroupName" placeholder="请输入内容" disabled></el-input>
+          <el-input v-model="GroupName" placeholder="请输入内容" disabled></el-input>
+          <!-- <el-tooltip  effect="dark" :content="GroupName" placement="top">
+            <el-input v-model="GroupName" placeholder="请输入内容" disabled :show-overflow-tooltip="true"></el-input>
+          </el-tooltip> -->
             </div>
           </el-col>
         </el-row>
@@ -25,7 +28,7 @@
           </el-col>
           <el-col :span="13" >
             <div>
-              <el-input v-model="ScenarioName" placeholder="请输入内容"></el-input>
+                <el-input v-model="ScenarioName" placeholder="请输入内容"></el-input>
             </div>
           </el-col>
         </el-row>
@@ -43,6 +46,8 @@
                 type="date"
                 placeholder="选择日期"
                 class="StartTime"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                format = "yyyy-MM-dd HH:mm:ss"
               >
               </el-date-picker>
           </el-col>
@@ -61,6 +66,8 @@
                 type="date"
                 placeholder="选择日期"
                 class="StartTime"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                format = "yyyy-MM-dd HH:mm:ss"
               >
               </el-date-picker>
           </el-col>
@@ -112,6 +119,8 @@
               :show-file-list="false"
               :file-list="fileList"
               :on-change="importFile"
+              :before-upload="beforeUpload"
+               accept=".docx"
               :auto-upload="false">
               <el-button size="small" type="primary">上传</el-button>
            </el-upload></el-button>
@@ -188,6 +197,19 @@ export default {
         error: function(data) {}
       });
     },
+    //上传文件校验
+    beforeUpload(file) {
+      console.log(file)
+      debugger
+	 var FileExt = file.name.replace(/.+\./, "");
+	  if (['docx'].indexOf(FileExt.toLowerCase()) === -1){
+	  	this.$message({
+	  		type: 'warning',
+	  		message: '请上传后缀名为docx的附件！'
+		 });
+	 	return false;
+	  }
+},
     //上传文件
     async importFile(file) {
       console.log(file)
@@ -244,7 +266,6 @@ export default {
   },
   //文件下载
   downloadFile(){
-
     if(this.$route.params.value != undefined){
       this.ScenarioCode = this.$route.params.value.ScenarioCode
         var url = modelURL + "/api/GXRCWQ/ModelManager/DownloadScenairoDescriptionDocxFile?scenarioCode="+this.ScenarioCode
