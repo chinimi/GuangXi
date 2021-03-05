@@ -44,9 +44,15 @@ export default {
   created () {
 
   },
+    computed: {
+    ...mapGetters({
+      getter_OneDimensionalModelTabID:'getter_OneDimensionalModelTabID'
+
+    })
+  },
   methods: {
     ...mapActions({
-      changeOneDimensionalModelTabID: "changeOneDimensionalModelTabID",
+      ChangeOneDimensionalModelTabID: "ChangeOneDimensionalModelTabID",
     }),
     // 增加显示隐藏
     header(id) {
@@ -57,21 +63,29 @@ export default {
       }
     },
     TapSwitch(id){
-      this.changeOneDimensionalModelTabID({value:id})
       this.TapType = id;
+      this.ChangeOneDimensionalModelTabID({value:''})
       if(id==1){
         this.$router.push({name:'schemeLibrary',params:{}});
       }else{
-        // this.$message.error("请选择方案！");
         this.$router.push({name:'programmePreparation',params:{}});
       }
     }
   },
-  computed: {},
   mounted() {
 
   },
   watch: {
+    getter_OneDimensionalModelTabID:{
+      handler(newvalue,oldvalue){
+        console.log(newvalue)
+        if(newvalue != ''){
+           this.TapType = newvalue;
+        }
+      },
+      // immediate: true,
+      deep:true
+    }
 
 
   }

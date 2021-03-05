@@ -10,13 +10,13 @@ const state={
 }
 import mutations from  "./mutations"
 import actions from  "./action"
-import OneModel from "./model/index"
+import modelData from "./model/modelData"
 export default new Vuex.Store({
   modules:{
     state,
     mutations,
     actions,
-    OneModel
+    modelData
   }
 
 

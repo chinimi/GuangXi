@@ -519,6 +519,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   components: {},
   data() {
@@ -575,11 +577,11 @@ export default {
     this.$nextTick(() => {
       this.getTableData();
     });
-    if (twoLayer != null) {
-      map.removeLayer(twoLayer);
-    }
   },
   methods: {
+    ...mapActions({
+      ChangeOneDimensionalModelTabID: "ChangeOneDimensionalModelTabID",
+    }),
     getTableData() {
       var url =
         modelURL +
@@ -602,6 +604,7 @@ export default {
       console.log(index, row);
     },
     handleEdit(index, row) {
+       this.ChangeOneDimensionalModelTabID({value:'2'})
       this.$router.push({
         name: "programmePreparation",
         params: { value: row }
@@ -634,7 +637,8 @@ export default {
           var iconN = new ol.style.Style({
             stroke: new ol.style.Stroke({
               //边界样式
-              color: "#3a8ee6",
+              // color: "#3a8ee6",
+              color: "#0000BB",
               width: "6"
               // lineDash: [5]
             })

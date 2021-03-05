@@ -1,14 +1,22 @@
 <template>
-<!--方案库主页面-->
+  <!--方案库主页面-->
   <!--方案库主页面-->
   <div class="schemeLibrary clear-fix">
     <!-- 左侧 -->
     <div class="schemeLibrary_left ">
       <ul class="clear-fix schemeLibrary_ul">
-        <li :class="[TapType == '1' ? 'csour' : '']" @click="TapSwitch(1)">河长制</li>
-        <li :class="[TapType == '2' ? 'csour' : '']" @click="TapSwitch(2)">流域</li>
-        <li :class="[TapType == '3' ? 'csour' : '']" @click="TapSwitch(3)">水资源</li>
-        <li :class="[TapType == '4' ? 'csour' : '']" @click="TapSwitch(4)">行政</li>
+        <li :class="[TapType == '1' ? 'csour' : '']" @click="TapSwitch(1)">
+          河长制
+        </li>
+        <li :class="[TapType == '2' ? 'csour' : '']" @click="TapSwitch(2)">
+          流域
+        </li>
+        <li :class="[TapType == '3' ? 'csour' : '']" @click="TapSwitch(3)">
+          水资源
+        </li>
+        <li :class="[TapType == '4' ? 'csour' : '']" @click="TapSwitch(4)">
+          行政
+        </li>
       </ul>
       <div class="schemeLibrary_div" v-show="TapType == '1'">
         <div class="singleli_title">
@@ -18,7 +26,7 @@
                 省：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="province">
                   <el-option
@@ -39,7 +47,7 @@
                 市：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="city">
                   <el-option
@@ -60,7 +68,7 @@
                 县：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="county">
                   <el-option
@@ -81,7 +89,7 @@
                 镇：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="town">
                   <el-option
@@ -102,7 +110,7 @@
                 村：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="rustic">
                   <el-option
@@ -125,7 +133,7 @@
                 流域：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="drainageBasin">
                   <el-option
@@ -146,7 +154,7 @@
                 水系：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="basin">
                   <el-option
@@ -167,7 +175,7 @@
                 一级河流：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="firstOrderStream">
                   <el-option
@@ -188,7 +196,7 @@
                 二级河流：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="secondOrderStream">
                   <el-option
@@ -203,7 +211,7 @@
           </el-row>
         </div>
       </div>
-      <div  class="schemeLibrary_div" v-show="TapType == '3'">
+      <div class="schemeLibrary_div" v-show="TapType == '3'">
         <div class="singleli_title">
           <el-row>
             <el-col :span="9">
@@ -211,7 +219,7 @@
                 一级分区：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="primaryPartition">
                   <el-option
@@ -232,7 +240,7 @@
                 二级分区：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="secondaryPartition">
                   <el-option
@@ -253,7 +261,7 @@
                 三级分区：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="tertiaryPartition">
                   <el-option
@@ -274,7 +282,7 @@
                 四级分区：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="fourstagePartition">
                   <el-option
@@ -295,7 +303,7 @@
                 五级分区：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="fivestagePartition">
                   <el-option
@@ -318,7 +326,7 @@
                 省：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="province">
                   <el-option
@@ -339,7 +347,7 @@
                 市：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="city">
                   <el-option
@@ -360,7 +368,7 @@
                 县：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="county">
                   <el-option
@@ -381,7 +389,7 @@
                 镇：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="town">
                   <el-option
@@ -402,7 +410,7 @@
                 村：
               </div>
             </el-col>
-            <el-col :span="13" >
+            <el-col :span="13">
               <div>
                 <el-select v-model="rustic">
                   <el-option
@@ -418,104 +426,128 @@
         </div>
       </div>
       <div class="schemeLibrary_button">
-        <el-button
-          type="primary"
-          size="small"
-          plain>查找</el-button>
+        <el-button type="primary" size="small" plain>查找</el-button>
       </div>
     </div>
     <!-- 右侧 -->
     <div class="schemeLibrary_right">
       <el-button type="primary" size="small" plain>新增方案</el-button>
-        <div>
-         <el-table border :data="tableData" height="480" style="background-color: transparent;margin: 10px 0px;">
-            <el-table-column prop="tab1" label="序号" width="70" type="index">
-            </el-table-column>
-            <el-table-column prop="ScenarioCode" label="方案编码" min-width="80">
-            </el-table-column>
-            <el-table-column prop="ScenarioName" label="方案名称" min-width="100">
-            </el-table-column>
-            <el-table-column prop="CreateTime" label="创建时间" min-width="100">
-            </el-table-column>
-            <!-- <el-table-column prop="ForecastTime" label="修改时间" min-width="100">
+      <div>
+        <el-table
+          border
+          :data="tableData"
+          height="480"
+          style="background-color: transparent;margin: 10px 0px;"
+        >
+          <el-table-column prop="tab1" label="序号" width="70" type="index">
+          </el-table-column>
+          <el-table-column prop="ScenarioCode" label="方案编码" min-width="80">
+          </el-table-column>
+          <el-table-column prop="ScenarioName" label="方案名称" min-width="100">
+          </el-table-column>
+          <el-table-column prop="CreateTime" label="创建时间" min-width="100">
+          </el-table-column>
+          <!-- <el-table-column prop="ForecastTime" label="修改时间" min-width="100">
             </el-table-column> -->
-            <el-table-column prop="GroupName" label="基准模板" min-width="80">
-            </el-table-column>
-            <el-table-column prop="RiverGrade1_ZoneName" label="一级流域分区" min-width="150">
-            </el-table-column>
-            <el-table-column prop="RiverGrade2_ZoneName" label="二级流域分区" min-width="150">
-            </el-table-column>
-            <el-table-column prop="District_ZoneName" label="行政分区（市）" min-width="150">
-            </el-table-column>
-            <el-table-column prop="WaterResource_ZoneName" label="水资源分区" min-width="100">
-            </el-table-column>
-            <el-table-column prop="RiverChief_ZoneName" label="所属河长" min-width="100">
-            </el-table-column>
-            <el-table-column label="操作" min-width="300">
-              <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  @click="handleLook(scope.$index, scope.row)"
-                  >查看结果</el-button
-                >
-                <el-button
-                  size="mini"
-                  @click="handleEdit(scope.$index, scope.row)"
-                  >修改方案</el-button
-                >
-                <el-button
-                  size="mini"
-                  @click="handleDelete(scope.$index, scope.row)"
-                  >删除方案</el-button
-                >
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
-        <div class="pages">
-          <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
-          <el-pagination
-            background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="400"
+          <el-table-column prop="GroupName" label="基准模板" min-width="80">
+          </el-table-column>
+          <el-table-column
+            prop="RiverGrade1_ZoneName"
+            label="一级流域分区"
+            min-width="150"
           >
-          </el-pagination>
-        </div>
+          </el-table-column>
+          <el-table-column
+            prop="RiverGrade2_ZoneName"
+            label="二级流域分区"
+            min-width="150"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="District_ZoneName"
+            label="行政分区（市）"
+            min-width="150"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="WaterResource_ZoneName"
+            label="水资源分区"
+            min-width="100"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="RiverChief_ZoneName"
+            label="所属河长"
+            min-width="100"
+          >
+          </el-table-column>
+          <el-table-column label="操作" min-width="300">
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                @click="handleLook(scope.$index, scope.row)"
+                >查看结果</el-button
+              >
+              <el-button
+                size="mini"
+                @click="handleEdit(scope.$index, scope.row)"
+                >修改方案</el-button
+              >
+              <el-button
+                size="mini"
+                @click="handleDelete(scope.$index, scope.row)"
+                >删除方案</el-button
+              >
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+      <div class="pages">
+        <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
+        <el-pagination
+          background
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage4"
+          :page-sizes="[100, 200, 300, 400]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400"
+        >
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   components: {},
   data() {
     return {
-      TapType:1,
-    //行政分区
-      province:'',
-      provinceList:[],
-      city:'',
-      cityList:[],
-      county:'',
-      countyList:[],
-      town:'',
-      townList:[],
-      rustic:'',
-      rusticList:[],
+      TapType: 1,
+      //行政分区
+      province: "",
+      provinceList: [],
+      city: "",
+      cityList: [],
+      county: "",
+      countyList: [],
+      town: "",
+      townList: [],
+      rustic: "",
+      rusticList: [],
 
       //流域分区
-      drainageBasin:'',
-      drainageBasinList:[],
-      basin:'',
-      basinList:[],
-      firstOrderStream:'',
-      firstOrderStreamList:[],
-      secondOrderStream:'',
-      secondOrderStreamList:[],
+      drainageBasin: "",
+      drainageBasinList: [],
+      basin: "",
+      basinList: [],
+      firstOrderStream: "",
+      firstOrderStreamList: [],
+      secondOrderStream: "",
+      secondOrderStreamList: [],
 
       //水资源
       primaryPartition: "",
@@ -534,16 +566,22 @@ export default {
       currentPage3: 5,
       currentPage4: 4,
 
-      cursysval:'chief',
-      curWaterSysOption:[{label:'河长制',value:'chief'},{label:'流域',value:'drainagebasin'},{label:'水资源',value:'waterResource'},{label:'行政',value:'administrative'}],
+      cursysval: "chief",
+      curWaterSysOption: [
+        { label: "河长制", value: "chief" },
+        { label: "流域", value: "drainagebasin" },
+        { label: "水资源", value: "waterResource" },
+        { label: "行政", value: "administrative" }
+      ]
     };
   },
-  created() {
-
-  },
+  created() {},
   methods: {
-    getTableData(){
-        var url =
+       ...mapActions({
+      ChangeTwoDimensionalModelTabID: "ChangeTwoDimensionalModelTabID",
+    }),
+    getTableData() {
+      var url =
         modelURL +
         "/api/GXRCWQ/ModelManager/GetScenarioInfoList?scenarioType=MIKE21FMModel";
       fetch(url)
@@ -551,26 +589,31 @@ export default {
           return respose.json();
         })
         .then(data => {
-         this.tableData = data
+          this.tableData = data;
         });
     },
-    TapSwitch(id){
+    TapSwitch(id) {
       this.TapType = id;
     },
     handleLook(index, row) {
       console.log(index, row);
     },
     handleEdit(index, row) {
-      this.$router.push({name:'programmePreparations',params:{value:row}});
-        var url =
+      this.ChangeTwoDimensionalModelTabID({value:'2'})
+      this.$router.push({
+        name: "programmePreparations",
+        params: { value: row }
+      });
+      var url =
         modelURL +
-        "/api/GXRCWQ/ModelManager/GetScenarioGIS?scenarioCode="+row.ScenarioCode;
+        "/api/GXRCWQ/ModelManager/GetScenarioGIS?scenarioCode=" +
+        row.ScenarioCode;
       fetch(url)
         .then(respose => {
           return respose.json();
         })
         .then(data => {
-          this.creatLayer(data)
+          this.creatLayer(data);
         });
     },
     handleDelete(index, row) {
@@ -582,53 +625,51 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
     },
-    creatLayer(featureJson){
+    creatLayer(featureJson) {
       var source = new ol.source.Vector({
-      features: new ol.format.GeoJSON({
-        dataProjection: "EPSG:4326",
-        featureProjection: "EPSG:4326"
-      }).readFeatures(featureJson),
-      projection: "EPSG:4326"
-    })
-    twoLayer = new ol.layer.Vector({
-      source: source,
-      style: function(feature) {
-        var properties = feature.getProperties()
-        var styles = []
-        var iconN = new ol.style.Style({
-              stroke: new ol.style.Stroke({ //边界样式
-                color: '#3a8ee6',
-                width: '6',
-                // lineDash: [5]
-              }),
-            });
-        styles.push(iconN)
-        return styles
-      },
-      zIndex: 15
-    })
-           var view = new ol.View({
-                        center:[110.35,23.35],
-                        projection: "EPSG:4326",
-                        zoom:10,
-                        minZoom:0,
-                        maxZoom:15,
-                    });
-                map.setView(view)
-      map.addLayer( twoLayer)
-
-    },
+        features: new ol.format.GeoJSON({
+          dataProjection: "EPSG:4326",
+          featureProjection: "EPSG:4326"
+        }).readFeatures(featureJson),
+        projection: "EPSG:4326"
+      });
+      twoLayer = new ol.layer.Vector({
+        source: source,
+        style: function(feature) {
+          var properties = feature.getProperties();
+          var styles = [];
+          var iconN = new ol.style.Style({
+            stroke: new ol.style.Stroke({
+              //边界样式
+              // color: "#3a8ee6",
+              color: "#0000BB",
+              width: "6"
+              // lineDash: [5]
+            })
+          });
+          styles.push(iconN);
+          return styles;
+        },
+        zIndex: 15
+      });
+      var view = new ol.View({
+        center: [110.35, 23.35],
+        projection: "EPSG:4326",
+        zoom: 10,
+        minZoom: 0,
+        maxZoom: 15
+      });
+      map.setView(view);
+      map.addLayer(twoLayer);
+    }
   },
   computed: {},
   mounted() {
     this.getTableData();
-    if(oneLayer !=null){
-      map.removeLayer( oneLayer)
-    }
   },
   watch: {}
 };
 </script>
 <style scoped>
-@import '../../../../static/css/public.css';
+@import "../../../../static/css/public.css";
 </style>

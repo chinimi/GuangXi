@@ -89,16 +89,29 @@ import moduleManager from './moduleManager/moduleManager.vue';
     },
     watch: {
     currentComp(newValue) {
+      debugger
       if(newValue=="oneDimensionalModel"){
+          if (twoLayer != null) {
+            map.removeLayer(twoLayer);
+          }
         this.$router.push({name:'schemeLibrary',params:{}});
       }
       if(newValue=="twoDimensionalModel"){
+          if (oneLayer != null) {
+            map.removeLayer(oneLayer);
+          }
         this.$router.push({name:'schemeLibrarys',params:{}});
       }
       if(newValue=="remoteSensingModel"){
         this.$router.push({name:'remoteSensingModel',params:{}});
       }
        if(newValue=="moduleManager"){
+          if (oneLayer != null) {
+            map.removeLayer(oneLayer);
+          }
+           if (twoLayer != null) {
+            map.removeLayer(twoLayer);
+          }
         this.$router.push({name:'moduleManager',params:{}});
       }
     }

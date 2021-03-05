@@ -15,19 +15,21 @@
           </div>
         </li>
       </ul>
-      <div  class="Model_text">
+      <div class="Model_text">
         <router-view></router-view>
       </div>
     </div>
     <div class="header_true" v-show="!slideDown">
       <div class="header_shangla_div" @click="header(2)">
-        <img  src="static/images/icon/chuangkou.png" alt="" />
+        <img src="static/images/icon/chuangkou.png" alt="" />
         方案管理窗口
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import schemeLibrary from "./schemeLibrary.vue";
 import programmePreparation from "./programmePreparation.vue";
 
@@ -42,7 +44,15 @@ export default {
       slideDown: true
     };
   },
+  computed: {
+    ...mapGetters({
+      getter_TwoDimensionalModelTabID: "getter_TwoDimensionalModelTabID"
+    })
+  },
   methods: {
+    ...mapActions({
+      ChangeTwoDimensionalModelTabID: "ChangeTwoDimensionalModelTabID"
+    }),
     // 增加显示隐藏
     header(id) {
       if (id == "1") {
@@ -51,19 +61,29 @@ export default {
         this.slideDown = true;
       }
     },
-    TapSwitch(id){
+    TapSwitch(id) {
       this.TapType = id;
-      if(id==1){
-        this.$router.push({name:'schemeLibrarys',params:{}});
-      }
-      else{
-        this.$router.push({name:'programmePreparations',params:{}});
+      this.ChangeTwoDimensionalModelTabID({ value: "" });
+      if (id == 1) {
+        this.$router.push({ name: "schemeLibrarys", params: {} });
+      } else {
+        this.$router.push({ name: "programmePreparations", params: {} });
       }
     }
   },
-  computed: {},
   mounted() {},
-  watch: {}
+  watch: {
+    getter_TwoDimensionalModelTabID: {
+      handler(newvalue, oldvalue) {
+        console.log(newvalue);
+        if (newvalue != "") {
+          this.TapType = newvalue;
+        }
+      },
+      // immediate: true,
+      deep: true
+    }
+  }
 };
 </script>
 <style scoped>
