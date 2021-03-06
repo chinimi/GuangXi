@@ -128,6 +128,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import "ol/ol.css";
 import olMap from "ol/Map";
 import olView from "ol/View";
@@ -278,7 +280,12 @@ export default {
       ]
     };
   },
-
+  computed: {
+    ...mapGetters({
+      getter_OneDimensionalModelTabLayer: "getter_OneDimensionalModelTabLayer",
+      getter_TwoDimensionalModelTabLayer: "getter_TwoDimensionalModelTabLayer"
+    })
+  },
   mounted() {
     // 初始化定位
     let pos = [107.8, 23.729];
@@ -316,58 +323,58 @@ export default {
   watch: {
     currentComp(newValue) {
       if (newValue == "qualityPrediction") {
-        if (oneLayer != null) {
-          map.removeLayer(oneLayer);
+        if (this.getter_OneDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_OneDimensionalModelTabLayer);
         }
-        if (twoLayer != null) {
-          map.removeLayer(twoLayer);
+        if (this.getter_TwoDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_TwoDimensionalModelTabLayer);
         }
         this.$router.push({ name: "qualityPrediction", params: {} });
       }
       if (newValue == "qualityClassfy") {
-        if (oneLayer != null) {
-          map.removeLayer(oneLayer);
+        if (this.getter_OneDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_OneDimensionalModelTabLayer);
         }
-        if (twoLayer != null) {
-          map.removeLayer(twoLayer);
+        if (this.getter_TwoDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_TwoDimensionalModelTabLayer);
         }
         this.$router.push({ name: "generalwaterevaluate", params: {} });
       }
       /*运算*/
       if (newValue == "operationalDisplay") {
-        if (oneLayer != null) {
-          map.removeLayer(oneLayer);
+        if (this.getter_OneDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_OneDimensionalModelTabLayer);
         }
-        if (twoLayer != null) {
-          map.removeLayer(twoLayer);
+        if (this.getter_TwoDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_TwoDimensionalModelTabLayer);
         }
         this.$router.push({ name: "operationalDisplay", params: {} });
       }
 
       if (newValue == "infoSystem") {
-        if (oneLayer != null) {
-          map.removeLayer(oneLayer);
+        if (this.getter_OneDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_OneDimensionalModelTabLayer);
         }
-        if (twoLayer != null) {
-          map.removeLayer(twoLayer);
+        if (this.getter_TwoDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_TwoDimensionalModelTabLayer);
         }
         this.$router.push({ name: "infoSystem", params: {} });
       }
       if (newValue == "programModel") {
-        if (oneLayer != null) {
-          map.removeLayer(oneLayer);
+        if (this.getter_OneDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_OneDimensionalModelTabLayer);
         }
-        if (twoLayer != null) {
-          map.removeLayer(twoLayer);
+        if (this.getter_TwoDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_TwoDimensionalModelTabLayer);
         }
         this.$router.push({ name: "schemeLibrary", params: {} });
       }
       if (newValue == "bearingCapacity") {
-        if (oneLayer != null) {
-          map.removeLayer(oneLayer);
+        if (this.getter_OneDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_OneDimensionalModelTabLayer);
         }
-        if (twoLayer != null) {
-          map.removeLayer(twoLayer);
+        if (this.getter_TwoDimensionalModelTabLayer) {
+          map.removeLayer(this.getter_TwoDimensionalModelTabLayer);
         }
         this.$router.push({ name: "bearingCapacity", params: {} });
       }

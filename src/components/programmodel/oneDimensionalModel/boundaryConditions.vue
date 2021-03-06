@@ -545,7 +545,7 @@ export default {
             });
         }
         if (this.name == "污染源") {
-          this.inputDisabled = false
+          this.inputDisabled = false;
           var url =
             modelURL +
             "/api/GXRCWQ/ModelManager/GetPollutionBoundaryInfo?scenarioCode=" +

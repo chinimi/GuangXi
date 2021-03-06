@@ -430,7 +430,7 @@
     </div>
     <!-- 右侧 -->
     <div class="schemeLibrary_right">
-      <el-button size="small">新增方案</el-button>
+      <el-button size="small" @click="addProject">新增方案</el-button>
       <div>
         <el-table
           border
@@ -516,6 +516,42 @@
         </el-pagination>
       </div>
     </div>
+    <!-- 新增方案 -->
+    <div>
+      <el-dialog
+        title="新增方案"
+        :visible.sync="dialogFormVisible"
+        append-to-body
+        width="30%"
+      >
+        <el-form :model="form">
+          <el-form-item label="方案名称" :label-width="formLabelWidth">
+            <el-input
+              v-model="form.projectName"
+              autocomplete="off"
+              style="width:290px"
+              placeholder="方案名称"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="选择模板" :label-width="formLabelWidth">
+            <el-select v-model="form.optionalModule" placeholder="选择模板" style="width:290px">
+              <el-option
+                v-for="(item, index) in optionalModuleList"
+                :key="item.ScenarioCode"
+                :label="item.Description"
+                :value="item.ScenarioCode"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="submit"
+            >确 定</el-button
+          >
+        </div>
+      </el-dialog>
+    </div>
   </div>
 </template>
 <script>
@@ -526,6 +562,13 @@ export default {
   data() {
     return {
       TapType: 1,
+      dialogFormVisible: false,
+      form: {
+        projectName: "",
+        optionalModule: ""
+      },
+      optionalModuleList:[],
+      formLabelWidth: "120px",
 
       //行政分区
       province: "",
@@ -578,9 +621,15 @@ export default {
       this.getTableData();
     });
   },
+  computed: {
+    ...mapGetters({
+      getter_OneDimensionalModelTabLayer: "getter_OneDimensionalModelTabLayer"
+    })
+  },
   methods: {
     ...mapActions({
       ChangeOneDimensionalModelTabID: "ChangeOneDimensionalModelTabID",
+      ChangeOneDimensionalModelTabLayer: "ChangeOneDimensionalModelTabLayer"
     }),
     getTableData() {
       var url =
@@ -594,6 +643,43 @@ export default {
           this.tableData = data;
         });
     },
+    //新增方案
+    addProject() {
+      this.dialogFormVisible = true;
+      var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/GetTemplateInfoList?scenarioType=MIKE11Model";
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          this.optionalModuleList = data;
+        });
+    },
+    //提交新增方案
+    submit(){
+      if(this.form.projectName == ''){
+        this.$message.error('请填写方案名称！');
+        return
+      }
+        var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/CreateScenairo?scenarioName="+this.form.projectName+"&templateCode="+this.form.optionalModule;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+           if( data != 'null'){
+             this.tableData.shift(data)
+              this.dialogFormVisible = false;
+           }else{
+               this.$message.error('模板保存失败！');
+           }
+        });
+
+    },
     TapSwitch(id) {
       this.TapType = id;
     },
@@ -604,7 +690,7 @@ export default {
       console.log(index, row);
     },
     handleEdit(index, row) {
-       this.ChangeOneDimensionalModelTabID({value:'2'})
+      this.ChangeOneDimensionalModelTabID({ value: "2" });
       this.$router.push({
         name: "programmePreparation",
         params: { value: row }
@@ -622,6 +708,9 @@ export default {
         });
     },
     creatLayer(featureJson) {
+      if (this.getter_OneDimensionalModelTabLayer) {
+        map.removeLayer(this.getter_OneDimensionalModelTabLayer);
+      }
       var source = new ol.source.Vector({
         features: new ol.format.GeoJSON({
           dataProjection: "EPSG:4326",
@@ -629,7 +718,7 @@ export default {
         }).readFeatures(featureJson),
         projection: "EPSG:4326"
       });
-      oneLayer = new ol.layer.Vector({
+      var oneLayer = new ol.layer.Vector({
         source: source,
         style: function(feature) {
           var properties = feature.getProperties();
@@ -657,9 +746,29 @@ export default {
       });
       map.setView(view);
       map.addLayer(oneLayer);
+      this.ChangeOneDimensionalModelTabLayer({ layer: oneLayer });
     },
+    //删除方案
     handleDelete(index, row) {
-      console.log(index, row);
+       var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/DeleteScenario?scenarioCode="+row.ScenarioCode;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          if(data ==true){
+            this.getTableData()
+             this.$message({
+              message: '删除成功',
+              type: 'success'
+            });
+          }else if(data ==false){
+            this.$message.error('删除失败');
+          }
+
+        });
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -668,7 +777,6 @@ export default {
       console.log(`当前页: ${val}`);
     }
   },
-  computed: {},
   watch: {}
 };
 </script>

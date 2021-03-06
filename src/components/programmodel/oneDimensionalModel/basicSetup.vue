@@ -106,9 +106,13 @@
             v-model="Description"
           >
           </el-input>
-          <div style="margin: 10px;text-align: right;">
+          <div style="margin: 10px;width:45%;float: left;">
+              <el-progress :percentage="50"></el-progress>
+              <!-- <span>111</span> -->
+          </div>
+          <div style="margin: 10px;float: right;width:39%">
             <el-button size="small" plain @click="saveModel">保存</el-button>
-            <el-button size="small" plain>计算</el-button>
+            <el-button size="small" plain @click="calculateData">计算</el-button>
             <el-button size="small" plain>查看结果</el-button>
             <el-button size="small" plain>
               <el-upload
@@ -197,10 +201,43 @@ export default {
         error: function(data) {}
       });
     },
+    //计算
+    calculateData(){
+       if(this.$route.params.value != undefined){
+      this.ScenarioCode = this.$route.params.value.ScenarioCode
+        var url =
+        modelURL +
+        "/api/GXRCWQ/ModelManager/RunScenario?scenarioCode="+this.ScenarioCode;
+      fetch(url)
+        .then(respose => {
+          return respose.json();
+        })
+        .then(data => {
+          //........永远进行这一步
+          console.log(data)
+        })
+        .catch(data => {
+          //当第一个接口成为false
+          console.log(data)
+              var url =
+            modelURL +
+            "/api/GXRCWQ/ModelManager/GetModelRunState?scenarioCode="+this.ScenarioCode;
+          fetch(url)
+            .then(respose => {
+              return respose.json();
+            })
+            .then(data => {
+              resolve(data)
+            });
+        })
+
+	//只有上一个 接口调用成并且返回数据以后才能调取下面这个方法
+
+       }
+
+    },
     //上传文件校验
     beforeUpload(file) {
-      console.log(file)
-      debugger
 	 var FileExt = file.name.replace(/.+\./, "");
 	  if (['docx'].indexOf(FileExt.toLowerCase()) === -1){
 	  	this.$message({
