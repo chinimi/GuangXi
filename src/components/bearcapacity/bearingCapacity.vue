@@ -15,7 +15,7 @@
               <li>
                 <div class="searchMain_div w80">省：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -28,7 +28,7 @@
               <li>
                 <div class="searchMain_div w80">市：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -41,7 +41,7 @@
               <li>
                 <div class="searchMain_div w80">县：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -54,7 +54,7 @@
               <li>
                 <div class="searchMain_div w80">镇：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -67,7 +67,7 @@
               <li>
                 <div class="searchMain_div w80">村：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -84,7 +84,7 @@
               <li>
                 <div class="searchMain_div w80">流域：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -97,7 +97,7 @@
               <li>
                 <div class="searchMain_div w80">水系：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -108,9 +108,9 @@
                 </div>
               </li>
               <li>
-                <div class="searchMain_div w80">一级河流：</div>
+                <div class="searchMain_div w80">河流：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -120,10 +120,10 @@
                   </el-select>
                 </div>
               </li>
-              <li>
+              <!-- <li>
                 <div class="searchMain_div w80">二级河流：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -132,7 +132,7 @@
                     ></el-option>
                   </el-select>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="searchMain " v-if="companyType=='3'">
@@ -140,7 +140,7 @@
               <li>
                 <div class="searchMain_div w80">一级分区：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -153,7 +153,7 @@
               <li>
                 <div class="searchMain_div w80">二级分区：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -166,7 +166,7 @@
               <li>
                 <div class="searchMain_div w80">三级分区：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -179,7 +179,7 @@
               <li>
                 <div class="searchMain_div w80">四级分区：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -189,10 +189,10 @@
                   </el-select>
                 </div>
               </li>
-              <li>
+              <!-- <li>
                 <div class="searchMain_div w80">五级分区：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -201,7 +201,7 @@
                     ></el-option>
                   </el-select>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="searchMain " v-if="companyType=='4'">
@@ -209,7 +209,7 @@
               <li>
                 <div class="searchMain_div w80">省：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -222,7 +222,7 @@
               <li>
                 <div class="searchMain_div w80">市：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -235,7 +235,7 @@
               <li>
                 <div class="searchMain_div w80">县：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -248,7 +248,7 @@
               <li>
                 <div class="searchMain_div w80">镇：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -261,7 +261,7 @@
               <li>
                 <div class="searchMain_div w80">村：</div>
                 <div class="searchMain_div">
-                  <el-select v-model="one" placeholder="请选择">
+                  <el-select v-model="one" placeholder="全部">
                     <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -289,7 +289,7 @@
         <div class="water">
           <p class="water_p"><img src="/static/images/icon/pingjia.png" alt="">评价项目</p>
           <div class="water_div">
-             <el-select v-model="one" placeholder="请选择">
+             <el-select v-model="one" placeholder="全部">
              <el-option
                       v-for="(item,i) in one_options"
                       :key="i"
@@ -309,7 +309,7 @@
           <div>
             <div class="searchMain_div w80">水质类别:</div>
             <div class="searchMain_div">
-              <el-select v-model="one" placeholder="请选择">
+              <el-select v-model="one" placeholder="全部">
                 <el-option
                   v-for="(item,i) in one_selections"
                   :key="i"
@@ -329,7 +329,7 @@
           <div class="step">
             <div class="searchMain_div w80">步长:</div>
             <div class="searchMain_div">
-              <el-select v-model="time" placeholder="请选择">
+              <el-select v-model="time" placeholder="全部">
                 <el-option
                   v-for="(item,i) in time_options"
                   :key="i"
@@ -384,7 +384,7 @@
                 </el-date-picker>
               </div>
             <div class="searchMain_div w110 pl">
-                <el-select v-model="quarter" placeholder="请选择">
+                <el-select v-model="quarter" placeholder="全部">
                   <el-option
                     v-for="(item,i) in quarter_options"
                     :key="i"
@@ -404,7 +404,7 @@
                 </el-date-picker>
               </div>
               <div class="searchMain_div w110 pl">
-                <el-select v-model="quarter" placeholder="请选择">
+                <el-select v-model="quarter" placeholder="全部">
                   <el-option
                     v-for="(item,i) in quarter_options"
                     :key="i"

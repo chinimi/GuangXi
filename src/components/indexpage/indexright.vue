@@ -41,7 +41,7 @@
       <div class="r_model_content">
         <el-row>
           <el-col :span="6" ><span  class="th_bg">河流</span></el-col>
-          <el-col :span="9"><span  class="th_bg">占地名称</span></el-col>
+          <el-col :span="9"><span  class="th_bg">站点名称</span></el-col>
           <el-col :span="9" ><span  class="th_bg">水质类别</span></el-col>
 
         </el-row>

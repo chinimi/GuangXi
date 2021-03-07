@@ -15,7 +15,7 @@
           水资源
         </li>
         <li :class="[TapType == '4' ? 'csour' : '']" @click="TapSwitch(4)">
-          行政
+          行政区
         </li>
       </ul>
       <div class="schemeLibrary_div" v-show="TapType == '1'">
@@ -172,7 +172,7 @@
           <el-row>
             <el-col :span="9">
               <div class="sysfxTit">
-                一级河流：
+                河流：
               </div>
             </el-col>
             <el-col :span="13">
@@ -189,7 +189,7 @@
             </el-col>
           </el-row>
         </div>
-        <div class="singleli_title">
+        <!-- <div class="singleli_title">
           <el-row>
             <el-col :span="9">
               <div class="sysfxTit">
@@ -209,7 +209,7 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
       </div>
       <div class="schemeLibrary_div" v-show="TapType == '3'">
         <div class="singleli_title">
@@ -296,7 +296,7 @@
             </el-col>
           </el-row>
         </div>
-        <div class="singleli_title">
+        <!-- <div class="singleli_title">
           <el-row>
             <el-col :span="9">
               <div class="sysfxTit">
@@ -316,7 +316,7 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
       </div>
       <div class="schemeLibrary_div" v-show="TapType == '4'">
         <div class="singleli_title">
@@ -570,37 +570,37 @@ export default {
       optionalModuleList:[],
       formLabelWidth: "120px",
       //行政分区
-      province: "",
+      province: "全部",
       provinceList: [],
-      city: "",
+      city: "全部",
       cityList: [],
-      county: "",
+      county: "全部",
       countyList: [],
-      town: "",
+      town: "全部",
       townList: [],
-      rustic: "",
+      rustic: "全部",
       rusticList: [],
 
       //流域分区
-      drainageBasin: "",
+      drainageBasin: "全部",
       drainageBasinList: [],
-      basin: "",
+      basin: "全部",
       basinList: [],
-      firstOrderStream: "",
+      firstOrderStream: "全部",
       firstOrderStreamList: [],
-      secondOrderStream: "",
+      secondOrderStream: "全部",
       secondOrderStreamList: [],
 
       //水资源
-      primaryPartition: "",
+      primaryPartition: "全部",
       primaryPartitionList: [],
-      secondaryPartition: "",
+      secondaryPartition: "全部",
       secondaryPartitionList: [],
-      tertiaryPartition: "",
+      tertiaryPartition: "全部",
       tertiaryPartitionList: [],
-      fourstagePartition: "",
+      fourstagePartition: "全部",
       fourstagePartitionList: [],
-      fivestagePartition: "",
+      fivestagePartition: "全部",
       fivestagePartitionList: [],
       tableData: [],
       currentPage1: 5,
@@ -613,7 +613,7 @@ export default {
         { label: "河长制", value: "chief" },
         { label: "流域", value: "drainagebasin" },
         { label: "水资源", value: "waterResource" },
-        { label: "行政", value: "administrative" }
+        { label: "行政区", value: "administrative" }
       ]
     };
   },

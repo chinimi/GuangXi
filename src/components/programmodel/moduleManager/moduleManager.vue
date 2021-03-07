@@ -180,7 +180,7 @@
                 <el-row>
                   <el-col :span="9">
                     <div class="sysfxTit">
-                      一级河流：
+                      河流：
                     </div>
                   </el-col>
                   <el-col :span="13">
@@ -462,35 +462,35 @@ export default {
       Type: 1,
       slideDown: true,
       //行政分区
-      province: "",
+      province: "全部",
       provinceList: [],
-      city: "",
+      city: "全部",
       cityList: [],
-      county: "",
+      county: "全部",
       countyList: [],
-      town: "",
+      town: "全部",
       townList: [],
-      rustic: "",
+      rustic: "全部",
       rusticList: [],
       //流域分区
-      drainageBasin: "",
+      drainageBasin: "全部",
       drainageBasinList: [],
-      basin: "",
+      basin: "全部",
       basinList: [],
-      firstOrderStream: "",
+      firstOrderStream: "全部",
       firstOrderStreamList: [],
-      secondOrderStream: "",
+      secondOrderStream: "全部",
       secondOrderStreamList: [],
       //水资源分区
-      primaryPartition: "",
+      primaryPartition: "全部",
       primaryPartitionList: [],
-      secondaryPartition: "",
+      secondaryPartition: "全部",
       secondaryPartitionList: [],
-      tertiaryPartition: "",
+      tertiaryPartition: "全部",
       tertiaryPartitionList: [],
-      fourstagePartition: "",
+      fourstagePartition: "全部",
       fourstagePartitionList: [],
-      fivestagePartition: "",
+      fivestagePartition: "全部",
       fivestagePartitionList: [],
       dimension: ["1", "2"],
       dimensionList: [

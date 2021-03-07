@@ -130,7 +130,7 @@
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
-                一级河流：
+                河流：
               </div>
             </el-col>
             <el-col :span="14" style="margin-left: -5%;">
@@ -148,7 +148,7 @@
           </el-row>
         </div>
         <!--二级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -168,9 +168,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--三级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -190,9 +190,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--四级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'"  >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'"  >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -212,9 +212,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--五级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -234,9 +234,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--六级河流-->
-        <div class="singleli_title"  v-if="cursysval=='river'" >
+        <!-- <div class="singleli_title"  v-if="cursysval=='river'" >
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -256,7 +256,7 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--流域水系  over-->
         <!--水资源分区-->
         <!--1级-->
@@ -348,7 +348,7 @@
           </el-row>
         </div>
         <!--测站级别-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
+        <!-- <div class="singleli_title" v-if="cursysval=='watersource'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -368,9 +368,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--测站名称-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
+        <!-- <div class="singleli_title" v-if="cursysval=='watersource'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -390,9 +390,9 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--自定义-->
-        <div class="singleli_title" v-if="cursysval=='watersource'">
+        <!-- <div class="singleli_title" v-if="cursysval=='watersource'">
           <el-row>
             <el-col :span="8">
               <div class="sysfxTit">
@@ -412,7 +412,7 @@
               </div>
             </el-col>
           </el-row>
-        </div>
+        </div> -->
         <!--水资源分区 over-->
 
 
@@ -798,15 +798,15 @@
             currentPage2: 5,
             currentPage3: 5,
             currentPage4: 4,
-            primaryPartition: "",
+            primaryPartition: "全部",
             primaryPartitionList: [],
-            secondaryPartition: "",
+            secondaryPartition: "全部",
             secondaryPartitionList: [],
-            tertiaryPartition: "",
+            tertiaryPartition: "全部",
             tertiaryPartitionList: [],
-            fourstagePartition: "",
+            fourstagePartition: "全部",
             fourstagePartitionList: [],
-            fivestagePartition: "",
+            fivestagePartition: "全部",
             fivestagePartitionList: [],
             tableData: [],
             cities:['流域水系', '水资源分区', '行政区划'],
