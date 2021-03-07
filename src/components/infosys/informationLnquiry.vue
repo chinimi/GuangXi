@@ -71,7 +71,7 @@
           </el-row>
         </div>
         <!--水系参数-->
-        <div style="width: 100%;padding:0 20px;box-sizing: border-box;">
+        <div style="width: 100%;padding:0 0px;box-sizing: border-box;">
           <ul class="clear-fix informationLnquiry_ui">
             <li>
               <span :class="[cursys == '1' ? 'couser' : '']" @click="cursysvals(1)" >行政区</span>
@@ -80,7 +80,10 @@
               <span :class="[cursys == '2' ? 'couser' : '']" @click="cursysvals(2)" >流域</span>
             </li>
             <li>
-              <span :class="[cursys == '3' ? 'couser' : '']" @click="cursysvals(3)" >河长制</span>
+              <span :class="[cursys == '3' ? 'couser' : '']" @click="cursysvals(3)" >水资源</span>
+            </li>
+            <li>
+              <span :class="[cursys == '4' ? 'couser' : '']" @click="cursysvals(4)" >河长制</span>
             </li>
           </ul>
         </div>
@@ -197,7 +200,78 @@
           </div>
         </div>
         <!--1级-->
+
         <div v-if="cursys == '2'">
+          <div class="singleli_title">
+            <el-row>
+              <el-col :span="9">
+                <div class="sysfxTit">
+                  流域：
+                </div>
+              </el-col>
+              <el-col :span="13" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="stairPartition">
+                    <el-option
+                      v-for="(item, index) in stairPartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--2级-->
+          <div class="singleli_title">
+            <el-row>
+              <el-col :span="9">
+                <div class="sysfxTit">
+                  水系：
+                </div>
+              </el-col>
+              <el-col :span="13" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="secondPartition">
+                    <el-option
+                      v-for="(item, index) in secondPartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--3级-->
+          <div class="singleli_title">
+            <el-row>
+              <el-col :span="9">
+                <div class="sysfxTit">
+                  河流：
+                </div>
+              </el-col>
+              <el-col :span="13" style="margin-left: -5%;">
+                <div>
+                  <el-select v-model="threePartition">
+                    <el-option
+                      v-for="(item, index) in threePartitionList"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <!--4级-->
+        
+        </div>
+
+        <div v-if="cursys == '3'">
           <div class="singleli_title">
             <el-row>
               <el-col :span="9">
@@ -286,8 +360,10 @@
             </el-row>
           </div>
         </div>
+
+        
         <!--河长制-->
-        <div v-if="cursys == '3'">
+        <div v-if="cursys == '4'">
           <div class="singleli_title">
             <el-row>
               <el-col :span="9">
@@ -688,35 +764,35 @@ export default {
       /*当前水系*/
       cursys: "1",
       /*行政区*/
-      XZprovince: "", //省
+      XZprovince: "全部", //省
       XZprovinceList: [],
-      XZcity: "", //市
+      XZcity: "全部", //市
       XZcityList: [],
-      XZcounty: "", //县
+      XZcounty: "全部", //县
       XZcountyList: [],
-      XZtown: "", //镇
+      XZtown: "全部", //镇
       XZtownList: [],
-      XZvillage: "", //村
+      XZvillage: "全部", //村
       XZvillageList: [],
       /*流域*/
-      stairPartition: "", //一级分区
+      stairPartition: "全部", //一级分区
       stairPartitionList: [],
-      secondPartition: "", //二级分区
+      secondPartition: "全部", //二级分区
       secondPartitionList: [],
-      threePartition: "", //三级分区
+      threePartition: "全部", //三级分区
       threePartitionList: [],
-      fourPartition: "", //四级分区
+      fourPartition: "全部", //四级分区
       fourPartitionList: [],
       /*河长制*/
-      HCZprovince: "", //省
+      HCZprovince: "全部", //省
       HCZprovinceList: [],
-      HCZcity: "", //市
+      HCZcity: "全部", //市
       HCZcityList: [],
-      HCZcounty: "", //县
+      HCZcounty: "全部", //县
       HCZcountyList: [],
-      HCZtown: "", //镇
+      HCZtown: "全部", //镇
       HCZtownList: [],
-      HCZvillage: "", //村
+      HCZvillage: "全部", //村
       HCZvillageList: [],
       currentPage: 1, //当前页
       pageSize: 10, //当前页显示条数
