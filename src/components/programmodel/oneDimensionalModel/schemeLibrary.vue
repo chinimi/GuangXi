@@ -501,8 +501,7 @@
           </el-table-column>
         </el-table>
       </div>
-      <div class="pages">
-        <!-- <el-pagination background layout="prev, pager, next" :total="1000"> </el-pagination> -->
+      <!-- <div class="pages">
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -514,7 +513,7 @@
           :total="400"
         >
         </el-pagination>
-      </div>
+      </div> -->
     </div>
     <!-- 新增方案 -->
     <div>
@@ -720,18 +719,18 @@ export default {
         }).readFeatures(featureJson),
         projection: "EPSG:4326"
       });
-     
-     
+
+
       for(var j=0;j<featureJson.features.length;j++)
       {
-       
+
         var fea = featureJson.features[j].geometry;
         var geo = fea.coordinates;
         mapcenter = geo[j]
-        break;    
-      } 
+        break;
+      }
 
-     
+
       var oneLayer = new ol.layer.Vector({
         source: source,
         style: function(feature) {

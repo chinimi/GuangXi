@@ -818,7 +818,7 @@ export default {
         this.ScenarioCode = this.$route.params.value.ScenarioCode;
         var url =
           modelURL +
-          "api/GXRCWQ/ModelManager/DownloadScenairoBoundaryTSExcelFile?scenarioCode=" +
+          "/api/GXRCWQ/ModelManager/DownloadScenairoBoundaryTSExcelFile?scenarioCode=" +
           this.ScenarioCode +
           "&boundaryType=" +
           this.boundaryType;

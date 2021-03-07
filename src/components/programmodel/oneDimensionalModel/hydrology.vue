@@ -20,7 +20,7 @@
           </el-table-column>
         </el-table-column>
 
-        <el-table-column label="Model" min-width="100" align="center">
+        <!-- <el-table-column label="Model" min-width="100" align="center">
           <el-table-column
             prop="RRModelName"
             label="模型名称"
@@ -28,7 +28,7 @@
             align="center"
           >
           </el-table-column>
-        </el-table-column>
+        </el-table-column> -->
 
         <el-table-column prop="Area" label="Area" min-width="120" align="center">
           <el-table-column
@@ -445,7 +445,7 @@
     </div>
     <div class="hydrology_pages">
       <div style="float: left;" class="pages">
-         <el-pagination
+         <!-- <el-pagination
             background
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -455,7 +455,7 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="400"
           >
-          </el-pagination>
+          </el-pagination> -->
       </div>
        <div style="float: right;">
           <el-button type="primary" size="small" plain @click="saveClick"

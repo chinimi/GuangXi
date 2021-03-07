@@ -417,19 +417,20 @@
                   >
                   <el-button
                     size="mini"
-                    @click="handleEdit(scope.$index, scope.row)"
-                    >修改</el-button
-                  >
-                  <el-button
-                    size="mini"
                     @click="handleDelete(scope.$index, scope.row)"
                     >删除</el-button
+                  >
+                 <el-button
+                    size="mini"
+                    @click="handleEdit(scope.$index, scope.row)"
+                     :disabled="isDisabled"
+                    >设为预警模板</el-button
                   >
                 </template>
               </el-table-column>
             </el-table>
           </div>
-          <div class="pages">
+          <!-- <div class="pages">
             <el-pagination
               background
               @size-change="handleSizeChange"
@@ -441,7 +442,7 @@
               :total="400"
             >
             </el-pagination>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -504,6 +505,7 @@ export default {
       currentPage4: 4,
       //
       cusParam:'',//空
+      isDisabled:true,
     };
   },
   methods: {
@@ -519,7 +521,6 @@ export default {
         "/api/GXRCWQ/ModelManager/GetTemplateInfoList?scenarioType=''";
 
        }
-
       fetch(url)
         .then(respose => {
           return respose.json();
