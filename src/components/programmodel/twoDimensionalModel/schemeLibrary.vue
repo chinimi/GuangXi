@@ -731,6 +731,7 @@ export default {
       console.log(`当前页: ${val}`);
     },
     creatLayer(featureJson) {
+      //console.log("22222")
         if(this.getter_TwoDimensionalModelTabLayer){
            map.removeLayer(this.getter_TwoDimensionalModelTabLayer);
       }
@@ -741,6 +742,14 @@ export default {
         }).readFeatures(featureJson),
         projection: "EPSG:4326"
       });
+      for(var j=0;j<featureJson.features.length;j++)
+      {
+       
+        var fea = featureJson.features[j].geometry;
+        var geo = fea.coordinates;
+        mapcenter = geo[j]
+        break;    
+      } 
      var twoLayer = new ol.layer.Vector({
         source: source,
         style: function(feature) {
@@ -761,7 +770,7 @@ export default {
         zIndex: 15
       });
       var view = new ol.View({
-        center: [110.35, 23.35],
+        center: mapcenter,
         projection: "EPSG:4326",
         zoom: 10,
         minZoom: 0,

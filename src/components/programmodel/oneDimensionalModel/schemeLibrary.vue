@@ -711,6 +711,8 @@ export default {
       if (this.getter_OneDimensionalModelTabLayer) {
         map.removeLayer(this.getter_OneDimensionalModelTabLayer);
       }
+      //console.log("11111")
+
       var source = new ol.source.Vector({
         features: new ol.format.GeoJSON({
           dataProjection: "EPSG:4326",
@@ -718,6 +720,18 @@ export default {
         }).readFeatures(featureJson),
         projection: "EPSG:4326"
       });
+     
+     
+      for(var j=0;j<featureJson.features.length;j++)
+      {
+       
+        var fea = featureJson.features[j].geometry;
+        var geo = fea.coordinates;
+        mapcenter = geo[j]
+        break;    
+      } 
+
+     
       var oneLayer = new ol.layer.Vector({
         source: source,
         style: function(feature) {
@@ -738,7 +752,8 @@ export default {
         zIndex: 15
       });
       var view = new ol.View({
-        center: [110.35, 23.35],
+        // center: [110.35, 23.35],
+        center:mapcenter,
         projection: "EPSG:4326",
         zoom: 10,
         minZoom: 0,
